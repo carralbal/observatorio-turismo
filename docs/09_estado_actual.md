@@ -1,5 +1,5 @@
 # 09 · ESTADO ACTUAL DEL BUILD
-## Sesión 8 de abril 2026 — checkpoint actualizado 16:00hs
+## Sesión 8 de abril 2026 — checkpoint final 18:30hs
 
 ---
 
@@ -35,6 +35,8 @@ Branch: main
     con.execute('SELECT * FROM mart_sde_motogp').df().to_csv('dashboard/data_motogp.csv', index=False)
     con.execute('SELECT * FROM mart_sde_benchmark').df().to_csv('dashboard/data_benchmark.csv', index=False)
     con.execute('SELECT * FROM mart_nacional_macro').df().to_csv('dashboard/data_macro.csv', index=False)
+    con.execute('SELECT * FROM mart_sde_captura_valor').df().to_csv('dashboard/data_captura.csv', index=False)
+    con.execute('SELECT * FROM mart_nacional_madurez').df().to_csv('dashboard/data_madurez.csv', index=False)
     con.close()
     "
     streamlit run dashboard/app.py
@@ -43,7 +45,7 @@ Branch: main
 
 ## Warehouse — tablas en DuckDB
 
-### Raw
+### Raw (12 tablas)
 | Tabla | Filas | Período |
 |-------|-------|---------|
 | raw_eoh_viajeros_localidad | 14.064 | 2004-2025 |
@@ -59,58 +61,32 @@ Branch: main
 | raw_eti_balanza | 3.294 | 2004-2025 |
 | raw_eti_serie_mensual | 122 | 2015-2026 |
 
-### Staging
+### Staging (6 modelos)
 stg_eoh_viajeros · stg_eoh_pernoctes · stg_trends_sde · stg_bcra_tcn · stg_anac_sde · stg_eti_serie
 
-### Marts
+### Marts (6 modelos)
 | Mart | Módulo | Descripción |
 |------|--------|-------------|
 | mart_sde_pulso | M1 | Pulso mensual Termas + Capital |
 | mart_sde_motogp | M5 | Diff-in-diff MotoGP 2018-2025 |
 | mart_sde_benchmark | M2 | SDE vs 6 provincias pares |
 | mart_nacional_macro | M7 | Receptivo · emisivo · balanza · TCN |
+| mart_sde_captura_valor | M3 | ICV estimado 38% |
+| mart_nacional_madurez | M8 | Ranking 24 provincias — SDE 4° nacional |
 
 ---
 
-## Dashboard Streamlit Cloud
+## Dashboard — 7 páginas en producción (Streamlit Cloud)
 
-| Página | Módulo | Datos |
-|--------|--------|-------|
-| app.py | M1 Pulso SDE | data_pulso.csv |
-| 01_MotoGP.py | M5 MotoGP | data_motogp.csv |
-| 02_Señal_Anticipada.py | M4 IBT | data_pulso.csv |
-| 03_Benchmark.py | M2 Pares | data_benchmark.csv |
-| 04_Nacional.py | M7 Macro | data_macro.csv |
-
----
-
-## Pendiente — en orden de prioridad
-
-### Conectores
-- [ ] OEDE empleo (servidor cdn.produccion.gob.ar caído — reintentar)
-- [ ] IPC Restaurantes y Hoteles
-- [ ] EVyTH — perfil turista interno
-- [ ] IIBB SDE — N2, requiere acuerdo DGR SDE
-
-### Marts dbt
-- [ ] mart_sde_captura_valor (M3)
-- [ ] mart_sde_perfil_turista (M6)
-- [ ] mart_nacional_madurez (M8)
-
-### Dashboard
-- [ ] Página Captura de valor M3 (gestores)
-- [ ] Página Madurez M8 (gestores)
-
-### Infraestructura
-- [ ] GitHub Actions — cron mensual automático
-- [ ] MotherDuck — warehouse en cloud
-- [ ] Boletín PDF Quarto
-- [ ] requirements.txt completo
-
-### N2 — Acuerdo SDE
-- [ ] Estrategia entrada Secretaría de Turismo SDE
-- [ ] Acuerdo DGR SDE — IIBB por rubro
-- [ ] Calendario de eventos SDE
+| Página | Módulo | Acceso |
+|--------|--------|--------|
+| app.py — Pulso SDE | M1 | Público |
+| 01_MotoGP.py | M5 | Público |
+| 02_Señal_Anticipada.py | M4 | Público |
+| 03_Benchmark.py | M2 | Público |
+| 04_Nacional.py | M7 | Público |
+| 05_Captura_de_Valor.py | M3 | 🔒 Gestores |
+| 06_Madurez.py | M8 | 🔒 Gestores |
 
 ---
 
@@ -123,8 +99,29 @@ stg_eoh_viajeros · stg_eoh_pernoctes · stg_trends_sde · stg_bcra_tcn · stg_a
 5. TCN febrero 2026: $1.427 ARS/USD
 6. Pasajeros aéreos SDE 2025: 242.599 — casi récord
 7. Balanza turística: déficit en todos los meses 2025-2026
-8. Marzo 2025: peor mes — déficit 894.717 turistas (emisivo 3x el receptivo)
-9. Argentina estructuralmente deficitaria — emisivo supera receptivo en casi todos los meses
+8. Marzo 2025: peor mes — déficit 894.717 turistas
+9. SDE 4° en madurez nacional con 3.7/5 — 1° del NOA
+10. ICV estimado SDE: 38% — 14pp por debajo de Tucumán (52%)
+
+---
+
+## Pendiente
+
+### Alta prioridad
+- [ ] GitHub Actions — cron mensual automático
+- [ ] MotherDuck — warehouse en cloud
+- [ ] requirements.txt completo
+
+### Media prioridad
+- [ ] OEDE empleo (servidor caído — reintentar)
+- [ ] IPC Restaurantes y Hoteles
+- [ ] EVyTH — perfil turista interno
+- [ ] Boletín PDF Quarto
+
+### N2 — Acuerdo SDE
+- [ ] Estrategia entrada Secretaría de Turismo SDE
+- [ ] Acuerdo DGR SDE — IIBB por rubro
+- [ ] Calendario de eventos SDE
 
 ---
 
