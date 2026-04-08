@@ -1,0 +1,67 @@
+name: Actualización mensual de datos
+
+on:
+  schedule:
+    - cron: '0 6 25 * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Correr conectores
+        run: |
+          python3 etl/connectors/sinta_eoh.py
+          python3 etl/connectors/google_trends.py
+          python3 etl/connectors/bcra_fx.py
+          python3 etl/connectors/anac_sde.py
+          python3 etl/connectors/cnrt.py
+          python3 etl/connectors/sinta_eti.py
+          python3 etl/connectors/indec_ipc.py
+
+      - name: Setup dbt profile
+        run: |
+          mkdir -p ~/.dbt
+          echo "observatorio:
+            target: dev
+            outputs:
+              dev:
+                type: duckdb
+                path: warehouse/observatorio.duckdb" > ~/.dbt/profiles.yml
+
+      - name: Correr dbt
+        run: cd dbt/observatorio && dbt run
+
+      - name: Exportar CSVs
+        run: |
+          python3 -c "
+          import duckdb
+          con = duckdb.connect('warehouse/observatorio.duckdb', read_only=True)
+          con.execute('SELECT * FROM mart_sde_pulso').df().to_csv('dashboard/data_pulso.csv', index=False)
+          con.execute('SELECT * FROM mart_sde_motogp').df().to_csv('dashboard/data_motogp.csv', index=False)
+          con.execute('SELECT * FROM mart_sde_benchmark').df().to_csv('dashboard/data_benchmark.csv', index=False)
+          con.execute('SELECT * FROM mart_nacional_macro').df().to_csv('dashboard/data_macro.csv', index=False)
+          con.execute('SELECT * FROM mart_sde_captura_valor').df().to_csv('dashboard/data_captura.csv', index=False)
+          con.execute('SELECT * FROM mart_nacional_madurez').df().to_csv('dashboard/data_madurez.csv', index=False)
+          con.close()
+          "
+
+      - name: Commit CSVs actualizados
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add dashboard/data_*.csv
+          git diff --staged --quiet || git commit -m "data: actualización mensual $(date +'%Y-%m')"
+          git push
