@@ -10,3 +10,4 @@ sources:
       - name: raw_bcra_tcn
       - name: raw_anac_sde
       - name: raw_cnrt_pares
+      - name: raw_eti_serie_mensual
