@@ -1,0 +1,18 @@
+name: observatorio
+version: 1.0.0
+profile: observatorio
+
+model-paths: ["models"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  observatorio:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
+      nacional:
+        +materialized: table
+      sde:
+        +materialized: table
