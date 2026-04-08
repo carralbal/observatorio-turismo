@@ -1,5 +1,5 @@
 # 09 · ESTADO ACTUAL DEL BUILD
-## Sesión 8 de abril 2026 — checkpoint completo
+## Sesión 8 de abril 2026 — checkpoint actualizado 16:00hs
 
 ---
 
@@ -26,6 +26,7 @@ Branch: main
     python3 etl/connectors/bcra_fx.py
     python3 etl/connectors/anac_sde.py
     python3 etl/connectors/cnrt.py
+    python3 etl/connectors/sinta_eti.py
     cd dbt/observatorio && dbt run && cd ../..
     python3 -c "
     import duckdb
@@ -33,6 +34,7 @@ Branch: main
     con.execute('SELECT * FROM mart_sde_pulso').df().to_csv('dashboard/data_pulso.csv', index=False)
     con.execute('SELECT * FROM mart_sde_motogp').df().to_csv('dashboard/data_motogp.csv', index=False)
     con.execute('SELECT * FROM mart_sde_benchmark').df().to_csv('dashboard/data_benchmark.csv', index=False)
+    con.execute('SELECT * FROM mart_nacional_macro').df().to_csv('dashboard/data_macro.csv', index=False)
     con.close()
     "
     streamlit run dashboard/app.py
@@ -52,48 +54,50 @@ Branch: main
 | raw_bcra_tcn | 135 | 2004-2026 |
 | raw_anac_sde | 12.496 | 2017-2026 |
 | raw_cnrt_pares | 559 | 2019-2024 |
+| raw_eti_receptivo | 5.238 | 2004-2025 |
+| raw_eti_emisivo | 3.294 | 2004-2025 |
+| raw_eti_balanza | 3.294 | 2004-2025 |
+| raw_eti_serie_mensual | 122 | 2015-2026 |
 
 ### Staging
-stg_eoh_viajeros · stg_eoh_pernoctes · stg_trends_sde · stg_bcra_tcn · stg_anac_sde
+stg_eoh_viajeros · stg_eoh_pernoctes · stg_trends_sde · stg_bcra_tcn · stg_anac_sde · stg_eti_serie
 
 ### Marts
-| Mart | Módulo |
-|------|--------|
-| mart_sde_pulso | M1 — Pulso SDE |
-| mart_sde_motogp | M5 — MotoGP diff-in-diff |
-| mart_sde_benchmark | M2 — Benchmark pares |
+| Mart | Módulo | Descripción |
+|------|--------|-------------|
+| mart_sde_pulso | M1 | Pulso mensual Termas + Capital |
+| mart_sde_motogp | M5 | Diff-in-diff MotoGP 2018-2025 |
+| mart_sde_benchmark | M2 | SDE vs 6 provincias pares |
+| mart_nacional_macro | M7 | Receptivo · emisivo · balanza · TCN |
 
 ---
 
 ## Dashboard Streamlit Cloud
 
-| Página | Módulo |
-|--------|--------|
-| app.py | M1 Pulso SDE |
-| 01_MotoGP.py | M5 MotoGP |
-| 02_Señal_Anticipada.py | M4 IBT |
-| 03_Benchmark.py | M2 Pares |
+| Página | Módulo | Datos |
+|--------|--------|-------|
+| app.py | M1 Pulso SDE | data_pulso.csv |
+| 01_MotoGP.py | M5 MotoGP | data_motogp.csv |
+| 02_Señal_Anticipada.py | M4 IBT | data_pulso.csv |
+| 03_Benchmark.py | M2 Pares | data_benchmark.csv |
+| 04_Nacional.py | M7 Macro | data_macro.csv |
 
 ---
 
 ## Pendiente — en orden de prioridad
 
 ### Conectores
-- [ ] ETI — turismo internacional (riesgo: convenio INDEC)
-- [ ] INDEC Balanza de Pagos rubro Viajes
+- [ ] OEDE empleo (servidor cdn.produccion.gob.ar caído — reintentar)
 - [ ] IPC Restaurantes y Hoteles
 - [ ] EVyTH — perfil turista interno
-- [ ] OEDE empleo (servidor caído hoy — reintentar)
 - [ ] IIBB SDE — N2, requiere acuerdo DGR SDE
 
 ### Marts dbt
-- [ ] mart_nacional_macro (M7)
 - [ ] mart_sde_captura_valor (M3)
 - [ ] mart_sde_perfil_turista (M6)
 - [ ] mart_nacional_madurez (M8)
 
 ### Dashboard
-- [ ] Página Nacional — macro M7
 - [ ] Página Captura de valor M3 (gestores)
 - [ ] Página Madurez M8 (gestores)
 
@@ -118,6 +122,9 @@ stg_eoh_viajeros · stg_eoh_pernoctes · stg_trends_sde · stg_bcra_tcn · stg_a
 4. MotoGP 2025 uplift: +13.745 viajeros vs. baseline 2024
 5. TCN febrero 2026: $1.427 ARS/USD
 6. Pasajeros aéreos SDE 2025: 242.599 — casi récord
+7. Balanza turística: déficit en todos los meses 2025-2026
+8. Marzo 2025: peor mes — déficit 894.717 turistas (emisivo 3x el receptivo)
+9. Argentina estructuralmente deficitaria — emisivo supera receptivo en casi todos los meses
 
 ---
 
@@ -127,3 +134,4 @@ stg_eoh_viajeros · stg_eoh_pernoctes · stg_trends_sde · stg_bcra_tcn · stg_a
 - CSVs del dashboard SÍ se suben (bridge para Streamlit Cloud)
 - Nuevo conector: seguir patrón de etl/connectors/sinta_eoh.py
 - dbt corre desde dbt/observatorio/ con dbt run
+- Streamlit Cloud se actualiza automáticamente al hacer push
