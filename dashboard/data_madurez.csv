@@ -1,0 +1,25 @@
+provincia,score_bruto,score_madurez,nivel_label,tiene_eoh,tiene_anac,tiene_oede,tiene_tablero,actualiza_mensual,tiene_n2,mide_eventos,tiene_anticipacion,ciclo_institucional,es_sde,ranking
+Buenos Aires,6.0,5.0,5 — Anticipa y optimiza,1,1,1,1,1,1,1,1,1,0,1
+CABA,6.0,5.0,5 — Anticipa y optimiza,1,1,1,1,1,1,1,1,1,0,1
+Córdoba,4.5,4.0,4 — Decide con datos,1,1,1,1,1,0,1,1,0,0,3
+Santiago del Estero,4.0,3.7,4 — Decide con datos,1,1,0,1,1,0,1,1,0,1,4
+Mendoza,4.0,3.7,4 — Decide con datos,1,1,1,1,1,0,1,0,0,0,4
+Salta,3.5,3.3,3 — Mide e interpreta,1,1,0,1,1,0,1,0,0,0,6
+Neuquén,3.0,3.0,3 — Mide e interpreta,1,1,0,1,0,0,1,0,0,0,7
+Tucumán,2.5,2.7,3 — Mide e interpreta,1,1,0,1,0,0,0,0,0,0,8
+Río Negro,2.5,2.7,3 — Mide e interpreta,1,1,0,1,0,0,0,0,0,0,8
+Misiones,2.5,2.7,3 — Mide e interpreta,1,0,0,1,0,0,1,0,0,0,8
+Santa Fe,2.5,2.7,3 — Mide e interpreta,1,1,0,1,0,0,0,0,0,0,8
+Entre Ríos,2.0,2.3,2 — Mide básico,1,0,0,1,0,0,0,0,0,0,12
+Santa Cruz,1.5,2.0,2 — Mide básico,1,1,0,0,0,0,0,0,0,0,13
+Tierra del Fuego,1.5,2.0,2 — Mide básico,1,1,0,0,0,0,0,0,0,0,13
+Jujuy,1.5,2.0,2 — Mide básico,1,1,0,0,0,0,0,0,0,0,13
+Chubut,1.5,2.0,2 — Mide básico,1,1,0,0,0,0,0,0,0,0,13
+San Luis,1.0,1.7,1 — No mide,1,0,0,0,0,0,0,0,0,0,17
+La Rioja,1.0,1.7,1 — No mide,1,0,0,0,0,0,0,0,0,0,17
+Catamarca,1.0,1.7,1 — No mide,1,0,0,0,0,0,0,0,0,0,17
+San Juan,1.0,1.7,1 — No mide,1,0,0,0,0,0,0,0,0,0,17
+Chaco,1.0,1.7,1 — No mide,1,0,0,0,0,0,0,0,0,0,17
+Corrientes,1.0,1.7,1 — No mide,1,0,0,0,0,0,0,0,0,0,17
+Formosa,1.0,1.7,1 — No mide,1,0,0,0,0,0,0,0,0,0,17
+La Pampa,1.0,1.7,1 — No mide,1,0,0,0,0,0,0,0,0,0,17
