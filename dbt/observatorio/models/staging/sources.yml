@@ -8,3 +8,4 @@ sources:
       - name: raw_eoh_pernoctes_localidad
       - name: raw_trends_sde
       - name: raw_bcra_tcn
+      - name: raw_anac_sde
