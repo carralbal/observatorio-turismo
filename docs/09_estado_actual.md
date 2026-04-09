@@ -1,30 +1,24 @@
-# 09 · ESTADO ACTUAL DEL BUILD
-## Sesión 9 de abril 2026 — checkpoint final
+# OBSERVATORIO DE TURISMO · SDE — Estado al 9 de abril 2026
 
----
+## REPO Y ACCESO
+- GitHub: https://github.com/carralbal/observatorio-turismo (privado)
+- Local: /Users/diegocarralbal/observatorio-turismo
+- Streamlit Cloud: URL pública deployada
 
-## Repo
-
-GitHub: https://github.com/carralbal/observatorio-turismo (privado)
-Local:  /Users/diegocarralbal/observatorio-turismo
-Branch: main
-
-## Para retomar en cualquier Mac
-
+## PARA RETOMAR
     git clone https://github.com/carralbal/observatorio-turismo
     cd observatorio-turismo
-    python3 -m venv .venv
-    source .venv/bin/activate
+    python3 -m venv .venv && source .venv/bin/activate
     pip install -r requirements.txt
     streamlit run dashboard/app.py
 
-## Variables de entorno requeridas (.env — NO sube a GitHub)
+## VARIABLES DE ENTORNO (.env — no sube a GitHub)
+    YOUTUBE_API_KEY=...
+    AIRROI_API_KEY=...
 
-    YOUTUBE_API_KEY=...   # Google Cloud Console
-    AIRROI_API_KEY=...    # airroi.com/api/developer
+---
 
-## Pipeline completo
-
+## PIPELINE COMPLETO
     source .venv/bin/activate
     python3 etl/connectors/sinta_eoh.py
     python3 etl/connectors/google_trends.py
@@ -35,66 +29,94 @@ Branch: main
     python3 etl/connectors/indec_ipc.py
     python3 etl/connectors/youtube_api.py
     python3 etl/connectors/airroi.py
+    python3 etl/connectors/sinta_evyth.py
+    python3 etl/modelo_eoh.py
+    python3 etl/aplicar_modelo_eoh.py
     cd dbt/observatorio && dbt run && cd ../..
     python3 -c "
     import duckdb
     con = duckdb.connect('warehouse/observatorio.duckdb', read_only=True)
-    con.execute('SELECT * FROM mart_sde_pulso').df().to_csv('dashboard/data_pulso.csv', index=False)
-    con.execute('SELECT * FROM mart_sde_motogp').df().to_csv('dashboard/data_motogp.csv', index=False)
-    con.execute('SELECT * FROM mart_sde_benchmark').df().to_csv('dashboard/data_benchmark.csv', index=False)
-    con.execute('SELECT * FROM mart_nacional_macro').df().to_csv('dashboard/data_macro.csv', index=False)
-    con.execute('SELECT * FROM mart_sde_captura_valor').df().to_csv('dashboard/data_captura.csv', index=False)
-    con.execute('SELECT * FROM mart_nacional_madurez').df().to_csv('dashboard/data_madurez.csv', index=False)
-    con.execute('SELECT * FROM mart_sde_youtube').df().to_csv('dashboard/data_youtube.csv', index=False)
-    con.execute('SELECT * FROM mart_sde_pulso_estimado').df().to_csv('dashboard/data_pulso_estimado.csv', index=False)
-    con.execute('SELECT * FROM stg_airdna_sde').df().to_csv('dashboard/data_airdna_sde.csv', index=False)
+    tablas = {
+        'mart_sde_pulso':               'dashboard/data_pulso.csv',
+        'mart_sde_motogp':              'dashboard/data_motogp.csv',
+        'mart_sde_benchmark':           'dashboard/data_benchmark.csv',
+        'mart_nacional_macro':          'dashboard/data_macro.csv',
+        'mart_sde_captura_valor':       'dashboard/data_captura.csv',
+        'mart_nacional_madurez':        'dashboard/data_madurez.csv',
+        'mart_sde_youtube':             'dashboard/data_youtube.csv',
+        'mart_sde_pulso_estimado':      'dashboard/data_pulso_estimado.csv',
+        'stg_airdna_sde':               'dashboard/data_airdna_sde.csv',
+        'mart_sde_perfil_turista':      'dashboard/data_perfil_turista.csv',
+        'mart_infra_aereo':             'dashboard/data_aereo.csv',
+        'mart_infra_terrestre':         'dashboard/data_terrestre.csv',
+        'raw_airdna_base':              'dashboard/data_informal.csv',
+        'mart_infra_informal_termas':   'dashboard/data_informal_termas.csv',
+    }
+    for tabla, csv in tablas.items():
+        con.execute(f'SELECT * FROM {tabla}').df().to_csv(csv, index=False)
+        print(f'{tabla} → {csv}')
     con.close()
     "
-    streamlit run dashboard/app.py
 
 ---
 
-## Conectores activos (9)
+## CONECTORES ACTIVOS (10)
+| Conector | Fuente | Período |
+|----------|--------|---------|
+| sinta_eoh.py | EOH/SINTA | 2004-2025 |
+| google_trends.py | Google Trends | 2014-2025 |
+| bcra_fx.py | BCRA | 2004-2026 |
+| anac_sde.py | ANAC/SINTA | 2017-2026 |
+| cnrt.py | CNRT/SINTA | 2019-2024 |
+| sinta_eti.py | ETI/SINTA | 2015-2026 |
+| indec_ipc.py | INDEC IPC | 2016-2026 |
+| youtube_api.py | YouTube Data API v3 | 2009-2026 |
+| airroi.py | AirROI API | 2023-2026 |
+| sinta_evyth.py | EVyTH/SINTA | 2012-2024 |
 
-| Conector | Fuente | Filas | Período |
-|----------|--------|-------|---------|
-| sinta_eoh.py | EOH/SINTA | 38.740 | 2004-2025 |
-| google_trends.py | Google Trends | 144 | 2014-2025 |
-| bcra_fx.py | BCRA | 135 | 2004-2026 |
-| anac_sde.py | ANAC/SINTA | 12.496 | 2017-2026 |
-| cnrt.py | CNRT/SINTA | 559 | 2019-2024 |
-| sinta_eti.py | ETI/SINTA | 12.048 | 2015-2026 |
-| indec_ipc.py | INDEC IPC | 111 | 2016-2026 |
-| youtube_api.py | YouTube Data API v3 | 517 | 2009-2026 |
-| airroi.py | AirROI API | 36 | 2023-2026 |
+## DATOS MANUALES EN WAREHOUSE
+- AirDNA xlsx — 80 mercados Argentina 2021-2026 (10 tablas)
+- Archivos CSV en data/raw/airdna/ — NO suben a GitHub
 
-## Datos manuales en warehouse
+---
 
-| Tabla | Fuente | Filas |
-|-------|--------|-------|
-| raw_airdna_base | AirDNA xlsx | 4.800 |
-| raw_airdna_occupancy | AirDNA xlsx | 4.800 |
-| raw_airdna_markets | AirDNA xlsx | 80 mercados |
-| raw_airdna_* (8 tablas) | AirDNA xlsx | ~1.920 c/u |
+## WAREHOUSE DUCKDB — MODELOS DBT (22 total)
 
-NOTA: Los CSVs de AirDNA van en data/raw/airdna/ — no suben a GitHub.
-Para regenerarlos usar el Excel original Base_Relacionada_Airdna_2026.xlsx
+### Staging (9)
+stg_eoh_viajeros · stg_eoh_pernoctes · stg_trends_sde · stg_bcra_tcn
+stg_anac_sde · stg_anac_nacional · stg_eti_serie · stg_airdna_sde · stg_ipc
 
-## Marts activos (8)
-
+### Marts SDE (8)
 | Mart | Módulo |
 |------|--------|
-| mart_sde_pulso | M1 Pulso SDE |
-| mart_sde_motogp | M5 MotoGP diff-in-diff |
+| mart_sde_pulso | M1 Pulso mensual |
+| mart_sde_motogp | M5 Diff-in-diff MotoGP |
 | mart_sde_benchmark | M2 Benchmark pares |
-| mart_nacional_macro | M7 Macro Argentina |
-| mart_sde_captura_valor | M3 Captura de valor |
-| mart_nacional_madurez | M8 Madurez provincial |
+| mart_nacional_macro | M7 Receptivo/emisivo/balanza |
+| mart_sde_captura_valor | M3 ICV estimado |
+| mart_nacional_madurez | M8 Ranking 24 provincias |
 | mart_sde_youtube | Imagen de destino |
-| mart_sde_pulso_estimado | EOH estimada 2026 |
+| mart_sde_pulso_estimado | EOH estimada OLS 2026 |
+| mart_sde_perfil_turista | M6 EVyTH perfil turista Norte |
 
-## Dashboard — 9 páginas en producción
+### Marts Infraestructura (3)
+| Mart | Descripción |
+|------|-------------|
+| mart_infra_aereo | Capa aérea nacional · ANAC 2017-2026 |
+| mart_infra_terrestre | Capa terrestre · CNRT 2019-2024 |
+| mart_infra_informal_termas | Informal Termas · AirDNA+AirROI 2021-2026 |
 
+---
+
+## MODELO OLS CALIBRADO
+- Termas: R²=0.865 · MAE=6.570 · Variables: ANAC+Trends+TCN+IPC+AirDNA+estacionalidad
+- Capital: R²=0.804 · MAE=1.738
+- Modelos: models/modelos_eoh.pkl
+- Scripts: etl/modelo_eoh.py · etl/aplicar_modelo_eoh.py
+
+---
+
+## DASHBOARD — 13 PÁGINAS EN PRODUCCIÓN
 | Página | Módulo | Acceso |
 |--------|--------|--------|
 | app.py | M1 Pulso SDE | Público |
@@ -102,260 +124,110 @@ Para regenerarlos usar el Excel original Base_Relacionada_Airdna_2026.xlsx
 | 02_Señal_Anticipada.py | M4 IBT | Público |
 | 03_Benchmark.py | M2 Pares | Público |
 | 04_Nacional.py | M7 Macro | Público |
-| 07_Imagen_Destino.py | YouTube | Público |
-| 08_Pulso_Estimado.py | EOH 2026 | Público |
 | 05_Captura_de_Valor.py | M3 | Gestores |
 | 06_Madurez.py | M8 | Gestores |
+| 07_Imagen_Destino.py | YouTube | Público |
+| 08_Pulso_Estimado.py | EOH 2026 | Público |
+| 09_Perfil_Turista.py | M6 EVyTH | Público |
+| 10_Infraestructura_Aerea.py | Capa aérea | Público |
+| 11_Infraestructura_Terrestre.py | Capa terrestre | Público |
+| 12_Infraestructura_Informal.py | Alquiler temporario | Público |
 
-## Automatización
-
-GitHub Actions: .github/workflows/update_data.yml
-Cron: dia 25 de cada mes 6am UTC
+### Módulos compartidos
+- dashboard/lecturas.py — cuadros azules con interpretación contextual
+- Todas las páginas tienen: lectura prominente + filtro de fecha funcional
 
 ---
 
-## Hallazgos confirmados con datos reales
-
-1. Termas estadia 2.84n — mayor del grupo de pares
-2. Pico termal julio 2025: 87.658 viajeros (3x enero)
-3. IBT julio 49/100 — confirma predictor estacional
+## HALLAZGOS CONFIRMADOS (15)
+1. Termas estadía 2.84n — mayor del grupo de pares
+2. Pico termal julio 2025: 87.658 viajeros (3× enero)
+3. IBT julio 49/100 — predictor estacional confirmado
 4. MotoGP 2025: +13.745 viajeros vs. baseline 2024
 5. TCN feb 2026: $1.427 ARS/USD
-6. Pasajeros aereos SDE 2025: 242.599 — casi record
-7. Deficit turistico en todos los meses 2025-2026
-8. Marzo 2025: deficit 894.717 turistas
-9. SDE 4 en madurez nacional — 1 del NOA
-10. ICV estimado 38% — 14pp bajo Tucuman
+6. Pasajeros aéreos SDE 2025: 242.599 — casi récord
+7. Déficit turístico estructural — todos los meses 2025-2026
+8. Marzo 2025: déficit 894.717 turistas
+9. SDE 4° nacional en madurez — 1° del NOA
+10. ICV estimado 38% — 14pp bajo Tucumán
 11. IPC hoteles NOA supera al nacional desde 2023
-12. YouTube: 517 videos, canal MotoGP domina historico
-13. Sector informal Termas: estadia promedio 10 noches ene 2026
-14. AirROI marzo 2026: occ 16%, ADR $137.131 ARS
+12. YouTube: 517 videos · canal MotoGP domina histórico
+13. Informal Termas: estadía 10 noches ene 2026
+14. EOH estimada dic 2025: Termas 20.632 [9.783-31.482]
+15. Corredor Tucumán-SDE cayó de 278K (2022) a 113K (2024) pasajeros terrestres
+16. Flybondi CABA→SDE feb 2026: load factor 90.7% — ruta con demanda no satisfecha
+17. SDE y Termas: +31% y +38% en asientos aéreos vs 2019 — entre los ganadores nacionales
 
 ---
 
-## Pendiente
-
-- OEDE empleo — reintentar (cdn.produccion.gob.ar caido)
-- EVyTH perfil turista interno
-- Estrategia entrada SDE — acuerdo N2 DGR SDE
-- MotherDuck — warehouse en cloud
-- Boletin PDF Quarto
+## AUTOMATIZACIÓN
+- GitHub Actions: .github/workflows/update_data.yml — cron día 25 cada mes 6am UTC
+- Streamlit Cloud: actualización automática al hacer push
 
 ---
 
-## Notas tecnicas
+## PENDIENTE — PRIORIZADO
 
-- .venv y warehouse/ NO se suben a GitHub
-- data/raw/airdna/ NO sube a GitHub (datos manuales)
-- CSVs del dashboard SI suben (bridge para Streamlit Cloud)
-- dbt corre desde dbt/observatorio/ con dbt run
-- Streamlit Cloud se actualiza automaticamente al hacer push
-- GitHub Actions corre el dia 25 de cada mes
+### EN CURSO (última sesión)
+- [ ] Corregir KeyError listing_count en 12_Infraestructura_Informal.py
+      rename faltó incluir listings → listing_count en el bloque de Termas
+      FIX: agregar "listings": "listing_count" al dict del rename
 
----
+### Alta prioridad
+- [ ] OEDE empleo turístico provincial — cdn.produccion.gob.ar caído, reintentar
+- [ ] Estrategia entrada SDE — documento político para acuerdo N2 DGR SDE
+- [ ] Capa Federal — ampliar ANAC y CNRT a todas las provincias
+      mart_nacional_benchmark_interprovincial
+      Dashboard con selector de provincia + mapa coroplético
 
-## AGENDA PRÓXIMA SESIÓN
+### Media prioridad
+- [ ] Tarifas aéreas — Google Flights / Skyscanner API (pendiente investigación)
+- [ ] AirROI multi-mercado — ampliar connector a otras provincias
+- [ ] MotherDuck — warehouse en cloud
+- [ ] Boletín PDF Quarto mensual
+- [ ] TripAdvisor reviews como variable adicional del modelo OLS
 
-### OEDE Empleo turístico provincial
-- cdn.produccion.gob.ar caído — reintentar mañana
-- URL objetivo: puestos_priv.csv por provincia y clae2
-- CLAE2 55 = alojamiento · 56 = gastronomía
-- Alternativa disponible: infra.datos.gob.ar (nacional sin provincia)
-- Alternativa disponible: SINTA tableros.yvera.tur.ar/empleo.html
+### Baja prioridad
+- [ ] Recalibrar modelo OLS cuando vuelva EOH oficial
+- [ ] Replicar observatorio para otra provincia NOA
+- [ ] EVyTH microdatos (dataset 2 — más granular)
 
-### CAPA NACIONAL / FEDERAL — prioridad alta próxima sesión
-Revisar que todas las fuentes tengan cobertura nacional completa:
+### IDENTIDAD VISUAL FEHGRA — aplicar en próxima sesión
+Replicar al 100% el estilo del informe FEHGRA 2025:
+- Paleta 100% monocromática: negro #0F0F0F · gris #555555 · blanco #FFFFFF
+- Sin color — gráficos en negro y gris oscuro únicamente
+- Tipografía: Inter o Helvetica Neue · títulos 900 · cuerpo 400 · line-height 1.6
+- KPIs grandes: 48-72px bold centrados con label descriptivo debajo
+- Gráficos barras: negro/gris sin bordes · fondo blanco puro · sin grillas llamativas
+- Donut/gauge: número grande al centro
+- Portadas de sección: foto full-bleed oscura + overlay + texto blanco centrado
+- Tablas sin bordes verticales · header negrita
+- Footer fuentes en gris claro pequeño
 
-FUENTES YA NACIONALES (✅ listas para capa federal):
-- EOH — 51 destinos · todas las provincias
-- ETI — total país
-- ANAC — todos los aeropuertos Argentina
-- CNRT — todos los corredores Argentina
-- BCRA — nacional
-- IPC — nacional + regiones (NOA, Pampeana, etc)
-- AirDNA xlsx — 80 mercados Argentina (ya en warehouse)
-- AirROI API — cualquier mercado Argentina
-- YouTube — búsquedas nacionales ampliables
-- mart_nacional_madurez — ya tiene 24 provincias
+### AGENDA CAPA FEDERAL (próxima sesión grande)
+Fuentes ya nacionales listas:
+- EOH 51 destinos · ETI · ANAC (mart_infra_aereo ya nacional)
+- CNRT (mart_infra_terrestre ya tiene 131 pares)
+- BCRA · IPC · AirDNA 80 mercados · AirROI
+- mart_nacional_madurez 24 provincias
 
-FUENTES QUE NECESITAN REVISIÓN PARA CAPA FEDERAL:
-- ANAC microdatos — filtrar por provincia origen/destino (no solo SDE)
-- CNRT — ampliar filtro más allá del NOA
-- Google Trends — agregar queries para otras provincias
-- AirROI — agregar connectors para cada provincia
-
-MARTS A CONSTRUIR PARA CAPA FEDERAL:
-- mart_nacional_benchmark_interprovincial (24 provincias)
-- mart_nacional_empleo_turismo (cuando vuelva OEDE)
-- mart_nacional_conectividad (ANAC + CNRT todas las provincias)
-- mart_nacional_informal (AirDNA 80 mercados)
-
-DASHBOARD FEDERAL:
-- Página nacional con selector de provincia
-- Ranking interprovincial de todos los indicadores
-- Mapa coroplético de madurez + ocupación + viajeros
-
-
----
-
-## AGENDA PRÓXIMA SESIÓN
-
-### OEDE Empleo turístico provincial
-- cdn.produccion.gob.ar caído — reintentar mañana
-- URL objetivo: puestos_priv.csv por provincia y clae2
-- CLAE2 55 = alojamiento · 56 = gastronomía
-- Alternativa disponible: infra.datos.gob.ar (hoteleria_restaurantes nacional)
-- Alternativa disponible: SINTA tableros.yvera.tur.ar/empleo.html (manual)
-
-### CAPA NACIONAL / FEDERAL — prioridad alta próxima sesión
-Revisar cobertura nacional de todas las fuentes:
-
-FUENTES YA NACIONALES (listas):
-- EOH — 51 destinos · todas las provincias
-- ETI — total país receptivo/emisivo
-- ANAC microdatos — todos los aeropuertos Argentina
-- CNRT — todos los corredores Argentina
-- BCRA — nacional
-- IPC — nacional + NOA + regiones
-- AirDNA xlsx — 80 mercados Argentina (en warehouse)
-- AirROI API — cualquier mercado Argentina on demand
-- mart_nacional_madurez — ya tiene 24 provincias
-
-FUENTES A AMPLIAR PARA CAPA FEDERAL:
-- ANAC — hoy filtrado solo SDE, ampliar a todas las provincias
-- CNRT — hoy filtrado NOA+pares, ampliar a todo el país
+Fuentes a ampliar:
+- ANAC — agregar queries por provincia al conector
 - Google Trends — agregar queries por provincia
 - AirROI — connector multi-mercado
 
-MARTS A CONSTRUIR:
+Marts a construir:
 - mart_nacional_benchmark_interprovincial
 - mart_nacional_empleo_turismo (cuando vuelva OEDE)
-- mart_nacional_conectividad (ANAC + CNRT todas las provincias)
-- mart_nacional_informal (AirDNA 80 mercados ya disponibles)
+- mart_nacional_conectividad (ANAC + CNRT consolidado)
 
-DASHBOARD FEDERAL:
-- Selector de provincia interactivo
-- Ranking interprovincial de todos los indicadores
-- Mapa coroplético madurez + ocupación + viajeros
+---
 
-## SESIÓN 9 ABRIL 2026 — RESUMEN FINAL
-
-CONSTRUIDO HOY:
-- Modelo OLS calibrado R²=0.865 Termas / R²=0.804 Capital
-- EOH estimada dic 2025 → mar 2026 con IC 80%
-- AirDNA 80 mercados → warehouse (10 tablas)
-- AirROI conector corregido — 36 meses con percentiles
-- EVyTH + mart_perfil_turista — 2012-2024
-- Gasto turista deflactado a USD por TCN
-- Lecturas prominentes en todas las páginas
-- Filtros de fecha funcionales en todas las páginas
-- Reescritura completa de las 10 páginas del dashboard
-
-PENDIENTE PRÓXIMA SESIÓN:
-- OEDE empleo (reintentar — servidor caído)
-- Capa Nacional / Federal
-- Estrategia entrada SDE (N2)
-- Boletín PDF Quarto
-
-### CAPA DE INFRAESTRUCTURA — agenda futura
-
-Vistas temáticas profundas, cada una como módulo independiente.
-
-#### 1. TRANSPORTE AÉREO
-Fuentes: ANAC microdatos · IATA · Aeropuertos Argentina
-Variables: vuelos, asientos ofrecidos, pasajeros, load factor,
-frecuencias, hubs de origen, rutas, tarifas, cabotaje vs internacional,
-residentes vs no residentes, estacionalidad por ruta
-Filtros: aeropuerto origen/destino, aerolínea, período (día/semana/mes/año),
-tipo de vuelo, tipo de pasajero
-Análisis: conectividad, dependencia de hubs, rutas faltantes,
-comparación con pares, evolución post-COVID
-
-#### 2. TRANSPORTE TERRESTRE
-Fuentes: CNRT microdatos · OpenStreetMap
-Variables: frecuencias, empresas, rutas, pasajeros, tarifas,
-tiempos de viaje, origen/destino, corredores
-Filtros: corredor, empresa, período, origen/destino
-Análisis: accesibilidad terrestre, competencia modal,
-rutas sin servicio, estacionalidad
-
-#### 3. SECTOR INFORMAL / ALQUILER TEMPORARIO
-Fuentes: AirDNA (80 mercados) · AirROI · EVyTH
-Variables: listings activos, ocupación, ADR, RevPAR, LOS,
-lead time, revenue, precio percentiles, estacionalidad,
-comparación mercados, crecimiento del inventario
-Filtros: mercado, período, métrica
-Análisis: tamaño del informal vs formal, perfil del huésped,
-pricing strategy, comparación con EOH
-
-#### 4. PLAZAS HOTELERAS
-Fuentes: EOH (plazas disponibles) · SINTA establecimientos
-Variables: plazas totales, habitaciones, categoría estrella,
-tasa de ocupación plazas, tasa ocupación habitaciones,
-RevPAR, tarifa media diaria, evolución del stock
-Filtros: destino, categoría, período
-Análisis: oferta vs demanda, inversión hotelera,
-brechas de categoría, comparación pares
-
-#### 5. GASTRONOMÍA
-Fuentes: OEDE (CLAE2 56) · AFIP monotributo · OpenStreetMap
-Variables: establecimientos activos, empleo, ventas estimadas,
-densidad gastronómica, categorías (resto/bar/fast food),
-estacionalidad, apertura/cierre de locales
-Filtros: municipio, tipo, período
-Análisis: capacidad gastronómica vs flujo turístico,
-formalización, empleo sectorial
-
-#### 6. CONECTIVIDAD DIGITAL
-Fuentes: ENACOM · ITU
-Variables: cobertura 4G/5G, velocidad banda ancha,
-penetración smartphone, cobertura en destinos turísticos
-Análisis: infraestructura digital para turismo,
-brechas de conectividad en zonas turísticas
-
-IMPLEMENTACIÓN SUGERIDA:
-- Cada tema = una página del dashboard
-- Datos ya disponibles: aéreo (ANAC) + terrestre (CNRT) + informal (AirDNA/AirROI)
-- Datos a conseguir: plazas hoteleras detalle + gastronomía OEDE
-- Prioridad: Aéreo primero (más datos disponibles y más impacto)
-
-### IDENTIDAD VISUAL FEHGRA — REPLICAR EN DASHBOARD
-Prioridad: Alta — próxima sesión de diseño
-
-Objetivo: replicar al 100% el estilo visual del informe FEHGRA 2025
-(PDFs: Informe Hotelería Gastronomía + Empleo + Clase Zero)
-
-PALETA MONOCROMÁTICA:
-- Fondo portadas: #000000 (negro puro)
-- Fondo contenido: #FFFFFF
-- Texto principal: #0F0F0F
-- Texto secundario: #555555
-- Gráficos primarios: #1A1A1A
-- Gráficos secundarios: #4A4A4A
-- Cero color — 100% blanco/negro/gris
-
-TIPOGRAFÍA:
-- Familia: Inter (Google Fonts) o Helvetica Neue
-- Títulos portada: 64-80px · weight 900 · blanco
-- Títulos contenido: 32-40px · weight 700
-- Subtítulos: 20-24px · weight 600
-- Cuerpo: 16px · weight 400 · line-height 1.6
-- KPIs: 48-72px · weight 900
-
-GRÁFICOS:
-- Barras horizontales/verticales negras o gris oscuro
-- Sin grillas · fondo blanco puro
-- Donut/gauge: negro + gris claro · número grande al centro
-- Líneas con puntos marcados
-- Tablas sin bordes verticales · header negrita
-
-LAYOUT:
-- Una columna central · márgenes generosos
-- Portadas sección: foto full-bleed oscura + overlay + texto blanco centrado
-- KPIs en 3-4 columnas
-- Footer fuentes en gris claro pequeño
-
-APLICAR EN:
-- Todas las páginas del dashboard
-- Futura capa de informes PDF Quarto
-- Presentaciones institucionales
+## NOTAS TÉCNICAS
+- .venv y warehouse/ NO suben a GitHub
+- data/raw/airdna/ NO sube a GitHub
+- CSVs del dashboard SÍ suben (bridge Streamlit Cloud)
+- dbt corre desde dbt/observatorio/ con dbt run
+- IBT = nombre propio para Google Trends procesado
+- mart_infra_informal_termas combina AirDNA (occ 2021-2026) + AirROI (adr/rev/los/listings 2023-2026)
+- AirDNA xlsx: occupancy desde 2021 · resto de variables solo desde 2024
