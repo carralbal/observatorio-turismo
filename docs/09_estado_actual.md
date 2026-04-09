@@ -195,3 +195,45 @@ DASHBOARD FEDERAL:
 - Ranking interprovincial de todos los indicadores
 - Mapa coroplético de madurez + ocupación + viajeros
 
+
+---
+
+## AGENDA PRÓXIMA SESIÓN
+
+### OEDE Empleo turístico provincial
+- cdn.produccion.gob.ar caído — reintentar mañana
+- URL objetivo: puestos_priv.csv por provincia y clae2
+- CLAE2 55 = alojamiento · 56 = gastronomía
+- Alternativa disponible: infra.datos.gob.ar (hoteleria_restaurantes nacional)
+- Alternativa disponible: SINTA tableros.yvera.tur.ar/empleo.html (manual)
+
+### CAPA NACIONAL / FEDERAL — prioridad alta próxima sesión
+Revisar cobertura nacional de todas las fuentes:
+
+FUENTES YA NACIONALES (listas):
+- EOH — 51 destinos · todas las provincias
+- ETI — total país receptivo/emisivo
+- ANAC microdatos — todos los aeropuertos Argentina
+- CNRT — todos los corredores Argentina
+- BCRA — nacional
+- IPC — nacional + NOA + regiones
+- AirDNA xlsx — 80 mercados Argentina (en warehouse)
+- AirROI API — cualquier mercado Argentina on demand
+- mart_nacional_madurez — ya tiene 24 provincias
+
+FUENTES A AMPLIAR PARA CAPA FEDERAL:
+- ANAC — hoy filtrado solo SDE, ampliar a todas las provincias
+- CNRT — hoy filtrado NOA+pares, ampliar a todo el país
+- Google Trends — agregar queries por provincia
+- AirROI — connector multi-mercado
+
+MARTS A CONSTRUIR:
+- mart_nacional_benchmark_interprovincial
+- mart_nacional_empleo_turismo (cuando vuelva OEDE)
+- mart_nacional_conectividad (ANAC + CNRT todas las provincias)
+- mart_nacional_informal (AirDNA 80 mercados ya disponibles)
+
+DASHBOARD FEDERAL:
+- Selector de provincia interactivo
+- Ranking interprovincial de todos los indicadores
+- Mapa coroplético madurez + ocupación + viajeros
