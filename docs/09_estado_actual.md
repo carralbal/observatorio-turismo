@@ -151,3 +151,47 @@ Cron: dia 25 de cada mes 6am UTC
 - dbt corre desde dbt/observatorio/ con dbt run
 - Streamlit Cloud se actualiza automaticamente al hacer push
 - GitHub Actions corre el dia 25 de cada mes
+
+---
+
+## AGENDA PRÓXIMA SESIÓN
+
+### OEDE Empleo turístico provincial
+- cdn.produccion.gob.ar caído — reintentar mañana
+- URL objetivo: puestos_priv.csv por provincia y clae2
+- CLAE2 55 = alojamiento · 56 = gastronomía
+- Alternativa disponible: infra.datos.gob.ar (nacional sin provincia)
+- Alternativa disponible: SINTA tableros.yvera.tur.ar/empleo.html
+
+### CAPA NACIONAL / FEDERAL — prioridad alta próxima sesión
+Revisar que todas las fuentes tengan cobertura nacional completa:
+
+FUENTES YA NACIONALES (✅ listas para capa federal):
+- EOH — 51 destinos · todas las provincias
+- ETI — total país
+- ANAC — todos los aeropuertos Argentina
+- CNRT — todos los corredores Argentina
+- BCRA — nacional
+- IPC — nacional + regiones (NOA, Pampeana, etc)
+- AirDNA xlsx — 80 mercados Argentina (ya en warehouse)
+- AirROI API — cualquier mercado Argentina
+- YouTube — búsquedas nacionales ampliables
+- mart_nacional_madurez — ya tiene 24 provincias
+
+FUENTES QUE NECESITAN REVISIÓN PARA CAPA FEDERAL:
+- ANAC microdatos — filtrar por provincia origen/destino (no solo SDE)
+- CNRT — ampliar filtro más allá del NOA
+- Google Trends — agregar queries para otras provincias
+- AirROI — agregar connectors para cada provincia
+
+MARTS A CONSTRUIR PARA CAPA FEDERAL:
+- mart_nacional_benchmark_interprovincial (24 provincias)
+- mart_nacional_empleo_turismo (cuando vuelva OEDE)
+- mart_nacional_conectividad (ANAC + CNRT todas las provincias)
+- mart_nacional_informal (AirDNA 80 mercados)
+
+DASHBOARD FEDERAL:
+- Página nacional con selector de provincia
+- Ranking interprovincial de todos los indicadores
+- Mapa coroplético de madurez + ocupación + viajeros
+
