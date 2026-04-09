@@ -1,10 +1,3 @@
-/*
-  M6 — El turista de SDE
-  Perfil del turista interno que visita la región Norte (NOA+NEA)
-  Fuente: EVyTH — Encuesta de Viajes y Turismo de los Hogares
-  Nota: EVyTH no desagrega hasta localidad — "Norte" es la unidad mínima
-*/
-
 WITH turistas_norte AS (
     SELECT
         CAST(indice_tiempo AS DATE)     AS fecha,
@@ -33,30 +26,28 @@ estadia_norte AS (
 ),
 
 motivo AS (
-    SELECT
-        CAST(indice_tiempo AS DATE)     AS fecha,
-        motivo,
-        turistas
+    SELECT CAST(indice_tiempo AS DATE) AS fecha, motivo, turistas
     FROM {{ source('raw', 'raw_evyth_motivo') }}
 ),
 
 alojamiento AS (
-    SELECT
-        CAST(indice_tiempo AS DATE)     AS fecha,
-        tipo_alojamiento,
-        turistas
+    SELECT CAST(indice_tiempo AS DATE) AS fecha, tipo_alojamiento, turistas
     FROM {{ source('raw', 'raw_evyth_alojamiento') }}
 ),
 
 transporte AS (
-    SELECT
-        CAST(indice_tiempo AS DATE)     AS fecha,
-        tipo_transporte,
-        turistas
+    SELECT CAST(indice_tiempo AS DATE) AS fecha, tipo_transporte, turistas
     FROM {{ source('raw', 'raw_evyth_transporte') }}
 ),
 
--- Pivotear motivo principal
+tcn AS (
+    SELECT
+        DATE_TRUNC('month', fecha)  AS fecha,
+        AVG(tcn_usd)                AS tcn_usd
+    FROM {{ ref('stg_bcra_tcn') }}
+    GROUP BY 1
+),
+
 motivo_pivot AS (
     SELECT
         fecha,
@@ -67,11 +58,9 @@ motivo_pivot AS (
         SUM(CASE WHEN LOWER(motivo) LIKE '%trabajo%' OR LOWER(motivo) LIKE '%negocio%'
                  THEN turistas END) AS turistas_trabajo,
         SUM(turistas)               AS turistas_total_motivo
-    FROM motivo
-    GROUP BY 1
+    FROM motivo GROUP BY 1
 ),
 
--- Pivotear alojamiento
 aloj_pivot AS (
     SELECT
         fecha,
@@ -80,11 +69,9 @@ aloj_pivot AS (
         SUM(CASE WHEN LOWER(tipo_alojamiento) LIKE '%casa%' OR LOWER(tipo_alojamiento) LIKE '%familiar%'
                  THEN turistas END) AS turistas_casa_familiar,
         SUM(turistas)               AS turistas_total_aloj
-    FROM alojamiento
-    GROUP BY 1
+    FROM alojamiento GROUP BY 1
 ),
 
--- Pivotear transporte
 transp_pivot AS (
     SELECT
         fecha,
@@ -95,34 +82,33 @@ transp_pivot AS (
         SUM(CASE WHEN LOWER(tipo_transporte) LIKE '%avi%' OR LOWER(tipo_transporte) LIKE '%aer%'
                  THEN turistas END) AS turistas_avion,
         SUM(turistas)               AS turistas_total_transp
-    FROM transporte
-    GROUP BY 1
+    FROM transporte GROUP BY 1
 )
 
 SELECT
     t.fecha,
     t.anio,
     t.mes,
-    t.turistas                      AS turistas_norte,
+    t.turistas                          AS turistas_norte,
     g.gasto_promedio_ars,
+    c.tcn_usd,
+    ROUND(g.gasto_promedio_ars / NULLIF(c.tcn_usd, 0), 0) AS gasto_promedio_usd,
     e.estadia_media_noches,
-    -- Motivo
     mp.turistas_vacaciones,
     mp.turistas_visita_familiar,
     mp.turistas_trabajo,
     ROUND(mp.turistas_vacaciones / NULLIF(mp.turistas_total_motivo, 0) * 100, 1) AS pct_vacaciones,
-    -- Alojamiento
     ap.turistas_hotel,
     ap.turistas_casa_familiar,
     ROUND(ap.turistas_hotel / NULLIF(ap.turistas_total_aloj, 0) * 100, 1) AS pct_hotel,
-    -- Transporte
     tp.turistas_auto,
     tp.turistas_bus,
     tp.turistas_avion,
     ROUND(tp.turistas_auto / NULLIF(tp.turistas_total_transp, 0) * 100, 1) AS pct_auto
 FROM turistas_norte t
-LEFT JOIN gasto_norte   g USING (fecha)
-LEFT JOIN estadia_norte e USING (fecha)
+LEFT JOIN gasto_norte   g  USING (fecha)
+LEFT JOIN estadia_norte e  USING (fecha)
+LEFT JOIN tcn           c  ON DATE_TRUNC('month', t.fecha) = c.fecha
 LEFT JOIN motivo_pivot  mp USING (fecha)
 LEFT JOIN aloj_pivot    ap USING (fecha)
 LEFT JOIN transp_pivot  tp USING (fecha)
