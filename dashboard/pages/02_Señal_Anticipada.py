@@ -1,4 +1,7 @@
 import streamlit as st
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+import lecturas
 import pandas as pd
 import plotly.graph_objects as go
 from datetime import datetime
@@ -36,6 +39,14 @@ Google Trends predice la ocupación hotelera 4–8 semanas antes · Termas de R�
 """, unsafe_allow_html=True)
 
 st.divider()
+
+
+# ── LECTURA DESTACADA ─────────────────────────────────────────────────────────
+lecturas.senal_anticipada(
+    int(ultimo["ibt_termas"]),
+    anomalia_actual,
+    ultimo["fecha"].strftime("%b %Y")
+)
 
 # ── ALERTA ────────────────────────────────────────────────────────────────────
 if anomalia_actual > 20:

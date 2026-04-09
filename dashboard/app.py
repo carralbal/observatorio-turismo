@@ -1,4 +1,7 @@
 import streamlit as st
+import sys, os
+sys.path.insert(0, os.path.dirname(__file__))
+import lecturas
 import pandas as pd
 import plotly.graph_objects as go
 from pathlib import Path

@@ -1,4 +1,7 @@
 import streamlit as st
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+import lecturas
 import pandas as pd
 import plotly.graph_objects as go
 
@@ -48,6 +51,10 @@ with k4:
     st.metric("Fuga estimada",
               f"USD {fuga_anual/1e6:.1f}M",
               "OTAs + cadenas externas")
+
+
+# ── LECTURA DESTACADA ─────────────────────────────────────────────────────────
+lecturas.captura(38.0, pot_anual, cap_anual, fuga_anual)
 
 st.divider()
 

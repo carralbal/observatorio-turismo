@@ -1,4 +1,7 @@
 import streamlit as st
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+import lecturas
 import pandas as pd
 import plotly.graph_objects as go
 
@@ -37,6 +40,10 @@ with k3:
 with k4:
     st.metric("Nivel NOA", "1° del NOA",
               "sobre Salta, Jujuy, Tucumán, La Rioja, Catamarca")
+
+
+# ── LECTURA DESTACADA ─────────────────────────────────────────────────────────
+lecturas.madurez(sde["score_madurez"], pos, sde["nivel_label"])
 
 st.divider()
 

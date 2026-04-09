@@ -1,4 +1,7 @@
 import streamlit as st
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+import lecturas
 import pandas as pd
 import plotly.graph_objects as go
 
@@ -70,6 +73,13 @@ with k4:
     brecha = round(tucuman.viajeros_avg - sde_cap.viajeros_avg)
     st.metric("Brecha vs. Tucumán", f"{brecha:,} viajeros/mes",
               "Capital SDE vs. Tucumán capital")
+
+
+# ── LECTURA DESTACADA ─────────────────────────────────────────────────────────
+lecturas.benchmark(
+    int(termas.viajeros_avg), int(sde_cap.viajeros_avg),
+    termas.estadia_avg, pos_ter, pos_cap
+)
 
 st.divider()
 

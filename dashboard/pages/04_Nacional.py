@@ -1,4 +1,7 @@
 import streamlit as st
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+import lecturas
 import pandas as pd
 import plotly.graph_objects as go
 
@@ -46,6 +49,15 @@ with k4:
     st.metric("Tipo de cambio",
               f"${ultimo.tcn_usd:,.0f}",
               "ARS/USD oficial")
+
+
+# ── LECTURA DESTACADA ─────────────────────────────────────────────────────────
+lecturas.nacional(
+    int(ultimo.saldo_balanza),
+    ultimo.fecha.strftime("%b %Y"),
+    int(ultimo.receptivo_total),
+    int(ultimo.emisivo_total)
+)
 
 st.divider()
 

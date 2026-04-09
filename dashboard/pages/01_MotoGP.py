@@ -1,4 +1,7 @@
 import streamlit as st
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+import lecturas
 import pandas as pd
 import plotly.graph_objects as go
 
@@ -42,6 +45,10 @@ with k3:
     st.metric("Uplift estimado", f"+{uplift:,}", f"+{uplift_pct}% vs. sin evento")
 with k4:
     st.metric("Impacto económico est.", "~USD 8–12M", "por edición")
+
+
+# ── LECTURA DESTACADA ─────────────────────────────────────────────────────────
+lecturas.motogp(uplift, sin_gp, 0.865)
 
 st.divider()
 

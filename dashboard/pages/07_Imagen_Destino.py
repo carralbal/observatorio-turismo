@@ -1,4 +1,7 @@
 import streamlit as st
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+import lecturas
 import pandas as pd
 import plotly.graph_objects as go
 
@@ -45,6 +48,10 @@ with k3:
     st.metric("Vistas MotoGP", f"{motogp_vistas/1e6:.1f}M", "efecto evento en digital")
 with k4:
     st.metric("Vistas Termas", f"{termas_vistas/1e6:.1f}M", "contenido termal")
+
+
+# ── LECTURA DESTACADA ─────────────────────────────────────────────────────────
+lecturas.youtube(total_vistas, total_videos, "MotoGP")
 
 st.divider()
 
