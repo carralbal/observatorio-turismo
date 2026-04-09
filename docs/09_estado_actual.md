@@ -237,3 +237,22 @@ DASHBOARD FEDERAL:
 - Selector de provincia interactivo
 - Ranking interprovincial de todos los indicadores
 - Mapa coroplético madurez + ocupación + viajeros
+
+## SESIÓN 9 ABRIL 2026 — RESUMEN FINAL
+
+CONSTRUIDO HOY:
+- Modelo OLS calibrado R²=0.865 Termas / R²=0.804 Capital
+- EOH estimada dic 2025 → mar 2026 con IC 80%
+- AirDNA 80 mercados → warehouse (10 tablas)
+- AirROI conector corregido — 36 meses con percentiles
+- EVyTH + mart_perfil_turista — 2012-2024
+- Gasto turista deflactado a USD por TCN
+- Lecturas prominentes en todas las páginas
+- Filtros de fecha funcionales en todas las páginas
+- Reescritura completa de las 10 páginas del dashboard
+
+PENDIENTE PRÓXIMA SESIÓN:
+- OEDE empleo (reintentar — servidor caído)
+- Capa Nacional / Federal
+- Estrategia entrada SDE (N2)
+- Boletín PDF Quarto
