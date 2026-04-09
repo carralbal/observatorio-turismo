@@ -14,3 +14,9 @@ sources:
       - name: raw_youtube_sde
       - name: raw_airdna_base
       - name: raw_estimados_ols
+      - name: raw_evyth_destino
+      - name: raw_evyth_gasto_destino
+      - name: raw_evyth_estadia_destino
+      - name: raw_evyth_motivo
+      - name: raw_evyth_alojamiento
+      - name: raw_evyth_transporte
