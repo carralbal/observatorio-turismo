@@ -1,5 +1,5 @@
 # 09 · ESTADO ACTUAL DEL BUILD
-## Sesión 8 de abril 2026 — checkpoint final 18:30hs
+## Sesión 9 de abril 2026 — checkpoint final
 
 ---
 
@@ -18,7 +18,12 @@ Branch: main
     pip install -r requirements.txt
     streamlit run dashboard/app.py
 
-## Para correr el pipeline completo
+## Variables de entorno requeridas (.env — NO sube a GitHub)
+
+    YOUTUBE_API_KEY=...   # Google Cloud Console
+    AIRROI_API_KEY=...    # airroi.com/api/developer
+
+## Pipeline completo
 
     source .venv/bin/activate
     python3 etl/connectors/sinta_eoh.py
@@ -27,6 +32,9 @@ Branch: main
     python3 etl/connectors/anac_sde.py
     python3 etl/connectors/cnrt.py
     python3 etl/connectors/sinta_eti.py
+    python3 etl/connectors/indec_ipc.py
+    python3 etl/connectors/youtube_api.py
+    python3 etl/connectors/airroi.py
     cd dbt/observatorio && dbt run && cd ../..
     python3 -c "
     import duckdb
@@ -37,98 +45,109 @@ Branch: main
     con.execute('SELECT * FROM mart_nacional_macro').df().to_csv('dashboard/data_macro.csv', index=False)
     con.execute('SELECT * FROM mart_sde_captura_valor').df().to_csv('dashboard/data_captura.csv', index=False)
     con.execute('SELECT * FROM mart_nacional_madurez').df().to_csv('dashboard/data_madurez.csv', index=False)
+    con.execute('SELECT * FROM mart_sde_youtube').df().to_csv('dashboard/data_youtube.csv', index=False)
+    con.execute('SELECT * FROM mart_sde_pulso_estimado').df().to_csv('dashboard/data_pulso_estimado.csv', index=False)
+    con.execute('SELECT * FROM stg_airdna_sde').df().to_csv('dashboard/data_airdna_sde.csv', index=False)
     con.close()
     "
     streamlit run dashboard/app.py
 
 ---
 
-## Warehouse — tablas en DuckDB
+## Conectores activos (9)
 
-### Raw (12 tablas)
-| Tabla | Filas | Período |
-|-------|-------|---------|
-| raw_eoh_viajeros_localidad | 14.064 | 2004-2025 |
-| raw_eoh_pernoctes_localidad | 14.064 | 2004-2025 |
-| raw_eoh_estadia_destino | 4.767 | 2004-2025 |
-| raw_eoh_toh_region_categoria | 5.845 | 2004-2025 |
-| raw_trends_sde | 144 | 2014-2025 |
-| raw_bcra_tcn | 135 | 2004-2026 |
-| raw_anac_sde | 12.496 | 2017-2026 |
-| raw_cnrt_pares | 559 | 2019-2024 |
-| raw_eti_receptivo | 5.238 | 2004-2025 |
-| raw_eti_emisivo | 3.294 | 2004-2025 |
-| raw_eti_balanza | 3.294 | 2004-2025 |
-| raw_eti_serie_mensual | 122 | 2015-2026 |
+| Conector | Fuente | Filas | Período |
+|----------|--------|-------|---------|
+| sinta_eoh.py | EOH/SINTA | 38.740 | 2004-2025 |
+| google_trends.py | Google Trends | 144 | 2014-2025 |
+| bcra_fx.py | BCRA | 135 | 2004-2026 |
+| anac_sde.py | ANAC/SINTA | 12.496 | 2017-2026 |
+| cnrt.py | CNRT/SINTA | 559 | 2019-2024 |
+| sinta_eti.py | ETI/SINTA | 12.048 | 2015-2026 |
+| indec_ipc.py | INDEC IPC | 111 | 2016-2026 |
+| youtube_api.py | YouTube Data API v3 | 517 | 2009-2026 |
+| airroi.py | AirROI API | 36 | 2023-2026 |
 
-### Staging (6 modelos)
-stg_eoh_viajeros · stg_eoh_pernoctes · stg_trends_sde · stg_bcra_tcn · stg_anac_sde · stg_eti_serie
+## Datos manuales en warehouse
 
-### Marts (6 modelos)
-| Mart | Módulo | Descripción |
-|------|--------|-------------|
-| mart_sde_pulso | M1 | Pulso mensual Termas + Capital |
-| mart_sde_motogp | M5 | Diff-in-diff MotoGP 2018-2025 |
-| mart_sde_benchmark | M2 | SDE vs 6 provincias pares |
-| mart_nacional_macro | M7 | Receptivo · emisivo · balanza · TCN |
-| mart_sde_captura_valor | M3 | ICV estimado 38% |
-| mart_nacional_madurez | M8 | Ranking 24 provincias — SDE 4° nacional |
+| Tabla | Fuente | Filas |
+|-------|--------|-------|
+| raw_airdna_base | AirDNA xlsx | 4.800 |
+| raw_airdna_occupancy | AirDNA xlsx | 4.800 |
+| raw_airdna_markets | AirDNA xlsx | 80 mercados |
+| raw_airdna_* (8 tablas) | AirDNA xlsx | ~1.920 c/u |
 
----
+NOTA: Los CSVs de AirDNA van en data/raw/airdna/ — no suben a GitHub.
+Para regenerarlos usar el Excel original Base_Relacionada_Airdna_2026.xlsx
 
-## Dashboard — 7 páginas en producción (Streamlit Cloud)
+## Marts activos (8)
+
+| Mart | Módulo |
+|------|--------|
+| mart_sde_pulso | M1 Pulso SDE |
+| mart_sde_motogp | M5 MotoGP diff-in-diff |
+| mart_sde_benchmark | M2 Benchmark pares |
+| mart_nacional_macro | M7 Macro Argentina |
+| mart_sde_captura_valor | M3 Captura de valor |
+| mart_nacional_madurez | M8 Madurez provincial |
+| mart_sde_youtube | Imagen de destino |
+| mart_sde_pulso_estimado | EOH estimada 2026 |
+
+## Dashboard — 9 páginas en producción
 
 | Página | Módulo | Acceso |
 |--------|--------|--------|
-| app.py — Pulso SDE | M1 | Público |
-| 01_MotoGP.py | M5 | Público |
-| 02_Señal_Anticipada.py | M4 | Público |
-| 03_Benchmark.py | M2 | Público |
-| 04_Nacional.py | M7 | Público |
-| 05_Captura_de_Valor.py | M3 | 🔒 Gestores |
-| 06_Madurez.py | M8 | 🔒 Gestores |
+| app.py | M1 Pulso SDE | Público |
+| 01_MotoGP.py | M5 MotoGP | Público |
+| 02_Señal_Anticipada.py | M4 IBT | Público |
+| 03_Benchmark.py | M2 Pares | Público |
+| 04_Nacional.py | M7 Macro | Público |
+| 07_Imagen_Destino.py | YouTube | Público |
+| 08_Pulso_Estimado.py | EOH 2026 | Público |
+| 05_Captura_de_Valor.py | M3 | Gestores |
+| 06_Madurez.py | M8 | Gestores |
+
+## Automatización
+
+GitHub Actions: .github/workflows/update_data.yml
+Cron: dia 25 de cada mes 6am UTC
 
 ---
 
 ## Hallazgos confirmados con datos reales
 
-1. Termas estadía promedio 2.84 noches — mayor del grupo de pares
+1. Termas estadia 2.84n — mayor del grupo de pares
 2. Pico termal julio 2025: 87.658 viajeros (3x enero)
-3. IBT julio 2025: 49/100 — confirma predictor estacional
-4. MotoGP 2025 uplift: +13.745 viajeros vs. baseline 2024
-5. TCN febrero 2026: $1.427 ARS/USD
-6. Pasajeros aéreos SDE 2025: 242.599 — casi récord
-7. Balanza turística: déficit en todos los meses 2025-2026
-8. Marzo 2025: peor mes — déficit 894.717 turistas
-9. SDE 4° en madurez nacional con 3.7/5 — 1° del NOA
-10. ICV estimado SDE: 38% — 14pp por debajo de Tucumán (52%)
+3. IBT julio 49/100 — confirma predictor estacional
+4. MotoGP 2025: +13.745 viajeros vs. baseline 2024
+5. TCN feb 2026: $1.427 ARS/USD
+6. Pasajeros aereos SDE 2025: 242.599 — casi record
+7. Deficit turistico en todos los meses 2025-2026
+8. Marzo 2025: deficit 894.717 turistas
+9. SDE 4 en madurez nacional — 1 del NOA
+10. ICV estimado 38% — 14pp bajo Tucuman
+11. IPC hoteles NOA supera al nacional desde 2023
+12. YouTube: 517 videos, canal MotoGP domina historico
+13. Sector informal Termas: estadia promedio 10 noches ene 2026
+14. AirROI marzo 2026: occ 16%, ADR $137.131 ARS
 
 ---
 
 ## Pendiente
 
-### Alta prioridad
-- [ ] GitHub Actions — cron mensual automático
-- [ ] MotherDuck — warehouse en cloud
-- [ ] requirements.txt completo
-
-### Media prioridad
-- [ ] OEDE empleo (servidor caído — reintentar)
-- [ ] IPC Restaurantes y Hoteles
-- [ ] EVyTH — perfil turista interno
-- [ ] Boletín PDF Quarto
-
-### N2 — Acuerdo SDE
-- [ ] Estrategia entrada Secretaría de Turismo SDE
-- [ ] Acuerdo DGR SDE — IIBB por rubro
-- [ ] Calendario de eventos SDE
+- OEDE empleo — reintentar (cdn.produccion.gob.ar caido)
+- EVyTH perfil turista interno
+- Estrategia entrada SDE — acuerdo N2 DGR SDE
+- MotherDuck — warehouse en cloud
+- Boletin PDF Quarto
 
 ---
 
-## Notas técnicas
+## Notas tecnicas
 
-- .venv y warehouse/ NO se suben a GitHub (.gitignore)
-- CSVs del dashboard SÍ se suben (bridge para Streamlit Cloud)
-- Nuevo conector: seguir patrón de etl/connectors/sinta_eoh.py
+- .venv y warehouse/ NO se suben a GitHub
+- data/raw/airdna/ NO sube a GitHub (datos manuales)
+- CSVs del dashboard SI suben (bridge para Streamlit Cloud)
 - dbt corre desde dbt/observatorio/ con dbt run
-- Streamlit Cloud se actualiza automáticamente al hacer push
+- Streamlit Cloud se actualiza automaticamente al hacer push
+- GitHub Actions corre el dia 25 de cada mes
