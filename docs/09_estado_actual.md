@@ -256,3 +256,65 @@ PENDIENTE PRÓXIMA SESIÓN:
 - Capa Nacional / Federal
 - Estrategia entrada SDE (N2)
 - Boletín PDF Quarto
+
+### CAPA DE INFRAESTRUCTURA — agenda futura
+
+Vistas temáticas profundas, cada una como módulo independiente.
+
+#### 1. TRANSPORTE AÉREO
+Fuentes: ANAC microdatos · IATA · Aeropuertos Argentina
+Variables: vuelos, asientos ofrecidos, pasajeros, load factor,
+frecuencias, hubs de origen, rutas, tarifas, cabotaje vs internacional,
+residentes vs no residentes, estacionalidad por ruta
+Filtros: aeropuerto origen/destino, aerolínea, período (día/semana/mes/año),
+tipo de vuelo, tipo de pasajero
+Análisis: conectividad, dependencia de hubs, rutas faltantes,
+comparación con pares, evolución post-COVID
+
+#### 2. TRANSPORTE TERRESTRE
+Fuentes: CNRT microdatos · OpenStreetMap
+Variables: frecuencias, empresas, rutas, pasajeros, tarifas,
+tiempos de viaje, origen/destino, corredores
+Filtros: corredor, empresa, período, origen/destino
+Análisis: accesibilidad terrestre, competencia modal,
+rutas sin servicio, estacionalidad
+
+#### 3. SECTOR INFORMAL / ALQUILER TEMPORARIO
+Fuentes: AirDNA (80 mercados) · AirROI · EVyTH
+Variables: listings activos, ocupación, ADR, RevPAR, LOS,
+lead time, revenue, precio percentiles, estacionalidad,
+comparación mercados, crecimiento del inventario
+Filtros: mercado, período, métrica
+Análisis: tamaño del informal vs formal, perfil del huésped,
+pricing strategy, comparación con EOH
+
+#### 4. PLAZAS HOTELERAS
+Fuentes: EOH (plazas disponibles) · SINTA establecimientos
+Variables: plazas totales, habitaciones, categoría estrella,
+tasa de ocupación plazas, tasa ocupación habitaciones,
+RevPAR, tarifa media diaria, evolución del stock
+Filtros: destino, categoría, período
+Análisis: oferta vs demanda, inversión hotelera,
+brechas de categoría, comparación pares
+
+#### 5. GASTRONOMÍA
+Fuentes: OEDE (CLAE2 56) · AFIP monotributo · OpenStreetMap
+Variables: establecimientos activos, empleo, ventas estimadas,
+densidad gastronómica, categorías (resto/bar/fast food),
+estacionalidad, apertura/cierre de locales
+Filtros: municipio, tipo, período
+Análisis: capacidad gastronómica vs flujo turístico,
+formalización, empleo sectorial
+
+#### 6. CONECTIVIDAD DIGITAL
+Fuentes: ENACOM · ITU
+Variables: cobertura 4G/5G, velocidad banda ancha,
+penetración smartphone, cobertura en destinos turísticos
+Análisis: infraestructura digital para turismo,
+brechas de conectividad en zonas turísticas
+
+IMPLEMENTACIÓN SUGERIDA:
+- Cada tema = una página del dashboard
+- Datos ya disponibles: aéreo (ANAC) + terrestre (CNRT) + informal (AirDNA/AirROI)
+- Datos a conseguir: plazas hoteleras detalle + gastronomía OEDE
+- Prioridad: Aéreo primero (más datos disponibles y más impacto)
