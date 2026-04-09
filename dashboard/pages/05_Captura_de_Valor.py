@@ -29,6 +29,15 @@ st.warning("🔒 Módulo interno — datos de elaboración propia. Estimación N
 
 st.divider()
 
+# ── FILTRO DE FECHA ──────────────────────────────────────────────────────────
+col_fecha, _ = st.columns([2,1])
+with col_fecha:
+    anio_min_f = int(df["anio"].min()) if "anio" in df.columns else 2019
+    anio_max_f = int(df["anio"].max()) if "anio" in df.columns else 2025
+    rango_f = st.slider("Período", anio_min_f, anio_max_f, (anio_min_f, anio_max_f), key="rango_captura")
+df = df[(df["anio"] >= rango_f[0]) & (df["anio"] <= rango_f[1])]
+
+
 # ── KPIs ─────────────────────────────────────────────────────────────────────
 anual = df[df["anio"] == int(df["anio"].max())]
 pot_anual  = anual["ingreso_potencial_usd"].sum()

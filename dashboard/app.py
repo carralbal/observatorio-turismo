@@ -1,27 +1,17 @@
 import streamlit as st
+import pandas as pd
+import plotly.graph_objects as go
 import sys, os
 sys.path.insert(0, os.path.dirname(__file__))
 import lecturas
-import pandas as pd
-import plotly.graph_objects as go
-from pathlib import Path
-
-st.set_page_config(
-    page_title="Observatorio de Turismo · Argentina",
-    page_icon="🌎",
-    layout="wide"
-)
 
 @st.cache_data
 def load_pulso():
-    path = Path(__file__).parent / "data_pulso.csv"
-    df = pd.read_csv(path)
+    df = pd.read_csv("dashboard/data_pulso.csv")
     df["fecha"] = pd.to_datetime(df["fecha"])
     return df[df["flag_covid"] == 0]
 
-df = load_pulso()
-termas  = df[df["localidad"] == "Termas"]
-capital = df[df["localidad"] == "Santiago del Estero"]
+df_raw = load_pulso()
 
 # ── HEADER ───────────────────────────────────────────────────────────────────
 st.markdown("""
@@ -33,29 +23,33 @@ Termas de Río Hondo · Santiago del Estero capital · EOH + Google Trends + BCR
 </p>
 """, unsafe_allow_html=True)
 
-st.divider()
-
-# ── LECTURA DESTACADA ─────────────────────────────────────────────────────────
-_ut = termas.sort_values("fecha").iloc[-1]
-_uc = capital.sort_values("fecha").iloc[-1]
-lecturas.pulso(_ut, _uc)
-
-# ── FILTROS ──────────────────────────────────────────────────────────────────
-anio_min, anio_max = int(df["anio"].min()), int(df["anio"].max())
+# ── FILTRO DE FECHA — controla toda la página ─────────────────────────────────
+anio_min = int(df_raw["anio"].min())
+anio_max = int(df_raw["anio"].max())
 rango = st.slider("Período", anio_min, anio_max, (2019, anio_max))
 
-mask = (df["anio"] >= rango[0]) & (df["anio"] <= rango[1])
-df_f      = df[mask]
-termas_f  = df_f[df_f["localidad"] == "Termas"]
-capital_f = df_f[df_f["localidad"] == "Santiago del Estero"]
+df = df_raw[(df_raw["anio"] >= rango[0]) & (df_raw["anio"] <= rango[1])]
+termas  = df[df["localidad"] == "Termas"].sort_values("fecha")
+capital = df[df["localidad"] == "Santiago del Estero"].sort_values("fecha")
 
-ultimo_t = termas_f.sort_values("fecha").iloc[-1]
-ultimo_c = capital_f.sort_values("fecha").iloc[-1]
+# ── LECTURA DESTACADA ─────────────────────────────────────────────────────────
+if len(termas) > 0 and len(capital) > 0:
+    ultimo_t = termas.iloc[-1]
+    ultimo_c = capital.iloc[-1]
+    lecturas.pulso(ultimo_t, ultimo_c)
 
-# ── KPIs ─────────────────────────────────────────────────────────────────────
+st.divider()
+
+# ── KPIs ──────────────────────────────────────────────────────────────────────
+if len(termas) == 0:
+    st.warning("Sin datos para el período seleccionado.")
+    st.stop()
+
+ultimo_t = termas.iloc[-1]
+ultimo_c = capital.iloc[-1]
+
 st.markdown("### Último mes disponible")
 k1, k2, k3, k4 = st.columns(4)
-
 with k1:
     st.metric("Viajeros · Termas",
               f"{int(ultimo_t.viajeros_total):,}",
@@ -79,12 +73,12 @@ st.divider()
 st.markdown("### Viajeros hospedados")
 fig1 = go.Figure()
 fig1.add_trace(go.Scatter(
-    x=termas_f["fecha"], y=termas_f["viajeros_total"],
+    x=termas["fecha"], y=termas["viajeros_total"],
     name="Termas", line=dict(color="#0891B2", width=2),
     fill="tozeroy", fillcolor="rgba(8,145,178,0.08)"
 ))
 fig1.add_trace(go.Scatter(
-    x=capital_f["fecha"], y=capital_f["viajeros_total"],
+    x=capital["fecha"], y=capital["viajeros_total"],
     name="Capital", line=dict(color="#94A3B8", width=2)
 ))
 fig1.update_layout(height=300, margin=dict(l=0,r=0,t=10,b=0),
@@ -98,11 +92,11 @@ st.plotly_chart(fig1, use_container_width=True)
 st.markdown("### Señal anticipada vs. ocupación real")
 fig2 = go.Figure()
 fig2.add_trace(go.Bar(
-    x=termas_f["fecha"], y=termas_f["ibt_termas"],
+    x=termas["fecha"], y=termas["ibt_termas"],
     name="IBT Termas (Trends)", marker_color="rgba(8,145,178,0.2)", yaxis="y2"
 ))
 fig2.add_trace(go.Scatter(
-    x=termas_f["fecha"], y=termas_f["viajeros_total"],
+    x=termas["fecha"], y=termas["viajeros_total"],
     name="Viajeros Termas (EOH)", line=dict(color="#0891B2", width=2)
 ))
 fig2.update_layout(height=300, margin=dict(l=0,r=0,t=10,b=0),
@@ -117,11 +111,11 @@ st.plotly_chart(fig2, use_container_width=True)
 st.markdown("### Estadía promedio — noches")
 fig3 = go.Figure()
 fig3.add_trace(go.Scatter(
-    x=termas_f["fecha"], y=termas_f["estadia_promedio"],
+    x=termas["fecha"], y=termas["estadia_promedio"],
     name="Termas", line=dict(color="#0891B2", width=2)
 ))
 fig3.add_trace(go.Scatter(
-    x=capital_f["fecha"], y=capital_f["estadia_promedio"],
+    x=capital["fecha"], y=capital["estadia_promedio"],
     name="Capital", line=dict(color="#94A3B8", width=2)
 ))
 fig3.update_layout(height=250, margin=dict(l=0,r=0,t=10,b=0),
@@ -131,7 +125,6 @@ fig3.update_layout(height=250, margin=dict(l=0,r=0,t=10,b=0),
     xaxis=dict(gridcolor="#F1F5F9"))
 st.plotly_chart(fig3, use_container_width=True)
 
-# ── FOOTER ────────────────────────────────────────────────────────────────────
 st.divider()
 st.caption(
     f"Fuentes: EOH (INDEC/SINTA) · Google Trends · BCRA · "

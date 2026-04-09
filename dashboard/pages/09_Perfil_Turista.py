@@ -44,6 +44,16 @@ st.caption("⚠️ La EVyTH no desagrega hasta localidad. 'Norte' incluye NOA y 
 
 st.divider()
 
+# ── FILTRO DE FECHA ──────────────────────────────────────────────────────────
+col_fecha, _ = st.columns([2,1])
+with col_fecha:
+    if "anio" not in df.columns: df["anio"] = df["fecha"].dt.year
+    anio_min_f = int(df["anio"].min())
+    anio_max_f = int(df["anio"].max()) if "anio" in df.columns else 2025
+    rango_f = st.slider("Período", anio_min_f, anio_max_f, (anio_min_f, anio_max_f), key="rango_turista")
+df = df[(df["anio"] >= rango_f[0]) & (df["anio"] <= rango_f[1])]
+
+
 # ── KPIs ─────────────────────────────────────────────────────────────────────
 k1, k2, k3, k4 = st.columns(4)
 with k1:
