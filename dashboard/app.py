@@ -35,6 +35,11 @@ Termas de Río Hondo · Santiago del Estero capital · EOH + Google Trends + BCR
 
 st.divider()
 
+# ── LECTURA DESTACADA ─────────────────────────────────────────────────────────
+_ut = termas.sort_values("fecha").iloc[-1]
+_uc = capital.sort_values("fecha").iloc[-1]
+lecturas.pulso(_ut, _uc)
+
 # ── FILTROS ──────────────────────────────────────────────────────────────────
 anio_min, anio_max = int(df["anio"].min()), int(df["anio"].max())
 rango = st.slider("Período", anio_min, anio_max, (2019, anio_max))

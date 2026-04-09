@@ -5,8 +5,8 @@ Genera el cuadro azul con interpretación contextual para cada página.
 import streamlit as st
 
 ESTILO = "background:#F0F9FF;border-left:4px solid #0891B2;padding:16px 20px;border-radius:6px;margin:12px 0"
-TITULO = "font-size:1.05rem;font-weight:700;color:#0F172A;margin:0 0 8px 0"
-TEXTO  = "color:#334155;margin:0;font-size:0.95rem"
+TITULO = "font-size:1.25rem;font-weight:800;color:#0F172A;margin:0 0 10px 0"
+TEXTO  = "color:#1E293B;margin:0;font-size:1.05rem;line-height:1.6"
 
 def lectura(titulo: str, texto: str):
     st.markdown(f"""
