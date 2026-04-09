@@ -17,6 +17,16 @@ def load():
 
 df_raw = load()
 
+@st.cache_data
+def load_termas():
+    df = pd.read_csv("dashboard/data_informal_termas.csv")
+    df["fecha"] = pd.to_datetime(df["fecha"])
+    df["anio"]  = df["fecha"].dt.year
+    return df
+
+df_termas = load_termas()
+
+
 st.markdown("""
 <h1 style='font-size:1.8rem;font-weight:900;color:#0F172A;margin-bottom:4px'>
 🏠 Sector de Alquiler Temporario
@@ -44,11 +54,25 @@ with col3:
     top_n = st.slider("Top N mercados ranking", 5, 20, 10)
 
 # ── FILTRAR ───────────────────────────────────────────────────────────────────
-df = df_raw[
+# Usar mart combinado para Termas (serie completa con AirROI)
+if mercado == "Termas de Rio Hondo":
+    df = df_termas[
+        (df_termas["anio"] >= rango[0]) &
+        (df_termas["anio"] <= rango[1])
+    ].rename(columns={
+        "occ_pct": "occupancy_rate",
+        "adr_usd": "adr",
+        "revenue_usd": "revenue",
+        "los_dias": "days_avg",
+        "listings": "listing_count",
+        "listings": "listing_count",
+    }).sort_values("fecha")
+else:
+    df = df_raw[
     (df_raw["name"] == mercado) &
     (df_raw["anio"] >= rango[0]) &
     (df_raw["anio"] <= rango[1])
-].sort_values("fecha")
+    ].sort_values("fecha")
 
 df_todos = df_raw[
     (df_raw["anio"] >= rango[0]) &
@@ -90,7 +114,7 @@ with k1:
 with k2:
     st.metric("ADR promedio", f"USD {int(adr_prom)}", "tarifa diaria")
 with k3:
-    st.metric("RevPAR prom.", f"USD {int(df['revpar'].mean())}", "revenue/plaza")
+    st.metric("RevPAR prom.", f"USD {int(df['revpar'].mean()) if 'revpar' in df.columns and df['revpar'].notna().any() else 'N/D'}", "revenue/plaza")
 with k4:
     st.metric("Revenue mensual", f"USD {int(rev_prom)}", "por propiedad")
 with k5:
@@ -187,7 +211,7 @@ st.plotly_chart(fig5, use_container_width=True)
 st.divider()
 st.markdown("### Anticipación de reservas — último mes disponible")
 st.caption("¿Con cuánta anticipación reservan los huéspedes?")
-if df["lead_time_0_6"].notna().any():
+if "lead_time_0_6" in df.columns and df["lead_time_0_6"].notna().any():
     ult = df.dropna(subset=["lead_time_0_6"]).iloc[-1]
     lt_labels = ["0-6 días","7-14 días","15-30 días","31-60 días","61-90 días","91+ días"]
     lt_values = [ult.get(c,0) or 0 for c in
