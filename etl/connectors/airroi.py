@@ -20,7 +20,15 @@ MARKET = {
     "locality": "Termas de Río Hondo"
 }
 
-def get_metric(endpoint: str, num_months: int = 36) -> list:
+METRICAS = {
+    "occupancy":          "occ",
+    "average-daily-rate": "adr",
+    "length-of-stay":     "los",
+    "revenue":            "rev",
+    "active-listings":    "listings",
+}
+
+def get_metric(endpoint: str, num_months: int = 36) -> pd.DataFrame:
     r = requests.post(
         f"{BASE_URL}/markets/metrics/{endpoint}",
         headers=HEADERS,
@@ -28,50 +36,38 @@ def get_metric(endpoint: str, num_months: int = 36) -> list:
         timeout=30
     )
     r.raise_for_status()
-    data = r.json()
-    return data.get("data", data.get("entries", []))
+    # La API devuelve los datos en "results", no en "data"
+    results = r.json().get("results", [])
+    return pd.DataFrame(results)
 
 def fetch_airroi():
-    logger.info("Descargando métricas AirROI — Termas de Río Hondo...")
+    logger.info("Descargando AirROI — Termas de Río Hondo...")
     dfs = {}
 
-    metricas = {
-        "occupancy":          "occupancy",
-        "average-daily-rate": "adr",
-        "length-of-stay":     "los",
-        "revenue":            "revenue",
-        "active-listings":    "active_listings",
-    }
-
-    for endpoint, nombre in metricas.items():
+    for endpoint, nombre in METRICAS.items():
         try:
-            data = get_metric(endpoint, num_months=36)
-            df = pd.DataFrame(data)
-            dfs[nombre] = df
-            logger.success(f"  {nombre} → {len(df)} meses · cols: {df.columns.tolist()}")
+            df = get_metric(endpoint, num_months=36)
+            if not df.empty:
+                # Renombrar columnas con prefijo
+                df = df.rename(columns={
+                    c: f"{nombre}_{c}" if c != "date" else "fecha"
+                    for c in df.columns
+                })
+                dfs[nombre] = df
+                logger.success(f"  {nombre} → {len(df)} meses · {df.columns.tolist()}")
+            else:
+                logger.warning(f"  {nombre} → vacío")
         except Exception as e:
             logger.warning(f"  {nombre} error: {e}")
 
     if not dfs:
-        logger.error("No se obtuvieron datos")
+        logger.error("Sin datos")
         return None
 
-    # Combinar en un solo DataFrame usando la primera como base
-    base_key = list(dfs.keys())[0]
-    df_final = dfs[base_key].copy()
-    date_col = [c for c in df_final.columns if "date" in c.lower() or "month" in c.lower()][0]
-    df_final = df_final.rename(columns={date_col: "fecha"})
-
-    for nombre, df in dfs.items():
-        if nombre == base_key:
-            continue
-        date_col_other = [c for c in df.columns if "date" in c.lower() or "month" in c.lower()][0]
-        df = df.rename(columns={date_col_other: "fecha"})
-        metric_col = [c for c in df.columns if c != "fecha"][0]
-        df_final = df_final.merge(
-            df[["fecha", metric_col]].rename(columns={metric_col: nombre}),
-            on="fecha", how="left"
-        )
+    # Merge todo usando fecha como clave
+    df_final = list(dfs.values())[0]
+    for nombre, df in list(dfs.items())[1:]:
+        df_final = df_final.merge(df, on="fecha", how="outer")
 
     df_final["fecha"] = pd.to_datetime(df_final["fecha"])
     df_final["mercado"] = "Termas de Río Hondo"
@@ -95,5 +91,5 @@ if __name__ == "__main__":
     df = fetch_airroi()
     if df is not None:
         print(f"\nColumnas: {df.columns.tolist()}")
-        print(f"Período: {df['fecha'].min()} → {df['fecha'].max()}")
-        print(df.tail(8).to_string())
+        print(f"Período: {df['fecha'].min().strftime('%Y-%m')} → {df['fecha'].max().strftime('%Y-%m')}")
+        print(df[["fecha","occ_avg","adr_avg","los_avg"]].tail(8).to_string())
