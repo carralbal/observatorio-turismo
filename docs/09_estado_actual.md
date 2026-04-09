@@ -318,3 +318,44 @@ IMPLEMENTACIÓN SUGERIDA:
 - Datos ya disponibles: aéreo (ANAC) + terrestre (CNRT) + informal (AirDNA/AirROI)
 - Datos a conseguir: plazas hoteleras detalle + gastronomía OEDE
 - Prioridad: Aéreo primero (más datos disponibles y más impacto)
+
+### IDENTIDAD VISUAL FEHGRA — REPLICAR EN DASHBOARD
+Prioridad: Alta — próxima sesión de diseño
+
+Objetivo: replicar al 100% el estilo visual del informe FEHGRA 2025
+(PDFs: Informe Hotelería Gastronomía + Empleo + Clase Zero)
+
+PALETA MONOCROMÁTICA:
+- Fondo portadas: #000000 (negro puro)
+- Fondo contenido: #FFFFFF
+- Texto principal: #0F0F0F
+- Texto secundario: #555555
+- Gráficos primarios: #1A1A1A
+- Gráficos secundarios: #4A4A4A
+- Cero color — 100% blanco/negro/gris
+
+TIPOGRAFÍA:
+- Familia: Inter (Google Fonts) o Helvetica Neue
+- Títulos portada: 64-80px · weight 900 · blanco
+- Títulos contenido: 32-40px · weight 700
+- Subtítulos: 20-24px · weight 600
+- Cuerpo: 16px · weight 400 · line-height 1.6
+- KPIs: 48-72px · weight 900
+
+GRÁFICOS:
+- Barras horizontales/verticales negras o gris oscuro
+- Sin grillas · fondo blanco puro
+- Donut/gauge: negro + gris claro · número grande al centro
+- Líneas con puntos marcados
+- Tablas sin bordes verticales · header negrita
+
+LAYOUT:
+- Una columna central · márgenes generosos
+- Portadas sección: foto full-bleed oscura + overlay + texto blanco centrado
+- KPIs en 3-4 columnas
+- Footer fuentes en gris claro pequeño
+
+APLICAR EN:
+- Todas las páginas del dashboard
+- Futura capa de informes PDF Quarto
+- Presentaciones institucionales
