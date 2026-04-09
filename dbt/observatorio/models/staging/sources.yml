@@ -20,3 +20,4 @@ sources:
       - name: raw_evyth_motivo
       - name: raw_evyth_alojamiento
       - name: raw_evyth_transporte
+      - name: raw_airroi_termas
