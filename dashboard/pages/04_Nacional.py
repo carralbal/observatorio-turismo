@@ -4,6 +4,7 @@ import plotly.graph_objects as go
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 import lecturas
+import style
 
 st.set_page_config(page_title="Macro · Observatorio", page_icon="🌎", layout="wide")
 
@@ -14,6 +15,8 @@ def load():
     return df
 
 df_raw = load()
+
+style.aplicar_estilo()
 
 st.markdown("""
 <h1 style='font-size:1.8rem;font-weight:900;color:#0F172A;margin-bottom:4px'>
@@ -56,10 +59,10 @@ st.divider()
 st.markdown("### Receptivo vs. Emisivo — turistas por mes")
 fig1 = go.Figure()
 fig1.add_trace(go.Scatter(x=df_limpio["fecha"], y=df_limpio["receptivo_total"],
-    name="Receptivo", line=dict(color="#059669", width=2),
+    name="Receptivo", line=dict(color=style.BAR_COLOR, width=2),
     fill="tozeroy", fillcolor="rgba(5,150,105,0.07)"))
 fig1.add_trace(go.Scatter(x=df_limpio["fecha"], y=df_limpio["emisivo_total"],
-    name="Emisivo", line=dict(color="#DC2626", width=2),
+    name="Emisivo", line=dict(color=style.BAR_COLOR_2, width=2),
     fill="tozeroy", fillcolor="rgba(220,38,38,0.07)"))
 fig1.update_layout(height=320, margin=dict(l=0,r=0,t=10,b=0),
     legend=dict(orientation="h", y=1.1),
@@ -72,7 +75,7 @@ st.plotly_chart(fig1, use_container_width=True)
 st.markdown("### Saldo de la balanza turística")
 fig2 = go.Figure()
 fig2.add_trace(go.Bar(x=df_limpio["fecha"], y=df_limpio["saldo_balanza"],
-    marker_color=["#059669" if v >= 0 else "#DC2626" for v in df_limpio["saldo_balanza"]]))
+    marker_color=[style.BAR_COLOR if v >= 0 else style.BAR_COLOR_2 for v in df_limpio["saldo_balanza"]]))
 fig2.add_hline(y=0, line_color="#0F172A", line_width=1)
 fig2.update_layout(height=280, margin=dict(l=0,r=0,t=10,b=0),
     plot_bgcolor="white", paper_bgcolor="white",
@@ -84,9 +87,9 @@ st.plotly_chart(fig2, use_container_width=True)
 st.markdown("### Tipo de cambio → Receptivo")
 fig3 = go.Figure()
 fig3.add_trace(go.Scatter(x=df_limpio["fecha"], y=df_limpio["receptivo_total"],
-    name="Receptivo", line=dict(color="#0891B2", width=2)))
+    name="Receptivo", line=dict(color=style.LINE_COLOR, width=2)))
 fig3.add_trace(go.Scatter(x=df_limpio["fecha"], y=df_limpio["tcn_usd"],
-    name="TCN ARS/USD", line=dict(color="#D97706", width=2), yaxis="y2"))
+    name="TCN ARS/USD", line=dict(color=style.LINE_COLOR_2, width=2), yaxis="y2"))
 fig3.update_layout(height=300, margin=dict(l=0,r=0,t=10,b=0),
     legend=dict(orientation="h", y=1.1),
     plot_bgcolor="white", paper_bgcolor="white",

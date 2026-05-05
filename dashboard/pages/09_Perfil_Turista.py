@@ -13,6 +13,8 @@ def load():
 df = load()
 ultimo = df.dropna(subset=["gasto_promedio_usd"]).sort_values("fecha").iloc[-1]
 
+style.aplicar_estilo()
+
 st.markdown("""
 <h1 style='font-size:1.8rem;font-weight:900;color:#0F172A;margin-bottom:4px'>
 🧳 El Turista que Viene al Norte
@@ -88,8 +90,8 @@ df_usd = df.dropna(subset=["gasto_promedio_usd"])
 fig1 = go.Figure()
 fig1.add_trace(go.Scatter(
     x=df_usd["fecha"], y=df_usd["gasto_promedio_usd"],
-    line=dict(color="#0891B2", width=2.5),
-    fill="tozeroy", fillcolor="rgba(8,145,178,0.08)",
+    line=dict(color=style.LINE_COLOR, width=2.5),
+    fill="tozeroy", fillcolor=style.FILL_COLOR,
     mode="lines+markers", marker=dict(size=5)
 ))
 fig1.add_hline(y=df_usd["gasto_promedio_usd"].mean(),
@@ -113,7 +115,7 @@ with col1:
     fig2 = go.Figure()
     fig2.add_trace(go.Bar(
         x=df["fecha"], y=df["turistas_norte"],
-        marker_color="#0891B2",
+        marker_color=style.LINE_COLOR,
     ))
     fig2.update_layout(
         height=240, margin=dict(l=0,r=0,t=10,b=0),
@@ -129,8 +131,8 @@ with col2:
     fig3 = go.Figure()
     fig3.add_trace(go.Scatter(
         x=df["fecha"], y=df["estadia_media_noches"],
-        line=dict(color="#0E7490", width=2),
-        fill="tozeroy", fillcolor="rgba(14,116,144,0.08)"
+        line=dict(color=style.LINE_COLOR_2, width=2),
+        fill="tozeroy", fillcolor=style.FILL_COLOR
     ))
     fig3.update_layout(
         height=240, margin=dict(l=0,r=0,t=10,b=0),

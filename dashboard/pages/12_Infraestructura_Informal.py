@@ -4,6 +4,7 @@ import plotly.graph_objects as go
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 import lecturas
+import style
 
 st.set_page_config(page_title="Alquiler Temporario · Observatorio", page_icon="🏠", layout="wide")
 
@@ -26,6 +27,8 @@ def load_termas():
 
 df_termas = load_termas()
 
+
+style.aplicar_estilo()
 
 st.markdown("""
 <h1 style='font-size:1.8rem;font-weight:900;color:#0F172A;margin-bottom:4px'>
@@ -127,8 +130,8 @@ st.markdown("### Ocupación mensual")
 fig1 = go.Figure()
 fig1.add_trace(go.Scatter(
     x=df["fecha"], y=df["occupancy_rate"],
-    line=dict(color="#0891B2", width=2.5),
-    fill="tozeroy", fillcolor="rgba(8,145,178,0.08)",
+    line=dict(color=style.LINE_COLOR, width=2.5),
+    fill="tozeroy", fillcolor=style.FILL_COLOR,
     mode="lines+markers", marker=dict(size=5)
 ))
 fig1.add_hline(y=df["occupancy_rate"].mean(),
@@ -147,8 +150,8 @@ with col1:
     fig2 = go.Figure()
     fig2.add_trace(go.Scatter(
         x=df["fecha"], y=df["adr"],
-        line=dict(color="#0E7490", width=2),
-        fill="tozeroy", fillcolor="rgba(14,116,144,0.08)"
+        line=dict(color=style.LINE_COLOR_2, width=2),
+        fill="tozeroy", fillcolor=style.FILL_COLOR
     ))
     fig2.update_layout(height=240, margin=dict(l=0,r=0,t=10,b=0),
         plot_bgcolor="white", paper_bgcolor="white",
@@ -161,7 +164,7 @@ with col2:
     fig3 = go.Figure()
     fig3.add_trace(go.Bar(
         x=df["fecha"], y=df["revenue"],
-        marker_color="#0891B2"
+        marker_color=style.LINE_COLOR
     ))
     fig3.update_layout(height=240, margin=dict(l=0,r=0,t=10,b=0),
         plot_bgcolor="white", paper_bgcolor="white",
@@ -175,7 +178,7 @@ if df["days_avg"].notna().any():
     fig4 = go.Figure()
     fig4.add_trace(go.Scatter(
         x=df["fecha"], y=df["days_avg"],
-        line=dict(color="#0891B2", width=2),
+        line=dict(color=style.LINE_COLOR, width=2),
         mode="lines+markers", marker=dict(size=5)
     ))
     fig4.update_layout(height=240, margin=dict(l=0,r=0,t=10,b=0),

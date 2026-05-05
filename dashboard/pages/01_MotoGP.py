@@ -4,6 +4,7 @@ import plotly.graph_objects as go
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 import lecturas
+import style
 
 st.set_page_config(page_title="MotoGP · Observatorio", page_icon="🏍", layout="wide")
 
@@ -14,6 +15,8 @@ def load():
     return df
 
 df_raw = load()
+
+style.aplicar_estilo()
 
 st.markdown("""
 <h1 style='font-size:1.8rem;font-weight:900;color:#0F172A;margin-bottom:4px'>
@@ -85,9 +88,9 @@ comp = vt.merge(vc, on="anio")
 
 fig2 = go.Figure()
 fig2.add_trace(go.Scatter(x=comp["anio"], y=comp["termas"],
-    name="Termas", line=dict(color="#0891B2", width=2.5), mode="lines+markers"))
+    name="Termas", line=dict(color=style.LINE_COLOR, width=2.5), mode="lines+markers"))
 fig2.add_trace(go.Scatter(x=comp["anio"], y=comp["capital"],
-    name="Capital", line=dict(color="#94A3B8", width=2), mode="lines+markers"))
+    name="Capital", line=dict(color=style.BAR_COLOR_ALT, width=2), mode="lines+markers"))
 fig2.update_layout(height=300, margin=dict(l=0,r=0,t=10,b=0),
     legend=dict(orientation="h", y=1.1),
     plot_bgcolor="white", paper_bgcolor="white",
@@ -103,7 +106,7 @@ uplift_gp = uplift_anio[uplift_anio["tiene_motogp"] == 1]
 fig3 = go.Figure()
 fig3.add_trace(go.Bar(
     x=uplift_gp["anio"], y=uplift_gp["uplift_vs_baseline"],
-    marker_color="#0891B2",
+    marker_color=style.LINE_COLOR,
     text=[f"+{int(v):,}" if v > 0 else f"{int(v):,}" for v in uplift_gp["uplift_vs_baseline"]],
     textposition="outside"
 ))

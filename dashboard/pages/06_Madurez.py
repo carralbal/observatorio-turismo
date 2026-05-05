@@ -4,6 +4,7 @@ import plotly.graph_objects as go
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 import lecturas
+import style
 
 st.set_page_config(page_title="Madurez · Observatorio", page_icon="🏆", layout="wide")
 
@@ -16,6 +17,8 @@ df = load()
 sde = df[df["provincia"] == "Santiago del Estero"].iloc[0]
 pos = df.sort_values("score_madurez", ascending=False).reset_index(drop=True)
 pos_sde = pos[pos["provincia"] == "Santiago del Estero"].index[0] + 1
+
+style.aplicar_estilo()
 
 st.markdown("""
 <h1 style='font-size:1.8rem;font-weight:900;color:#0F172A;margin-bottom:4px'>

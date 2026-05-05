@@ -77,6 +77,18 @@ hr { border-color: #E5E5E5 !important; margin: 24px 0 !important; }
     text-transform: uppercase !important;
     letter-spacing: 0.04em !important;
 }
+
+/* Slider forzar negro */
+.stSlider [data-baseweb="slider"] div { color: #0F0F0F !important; }
+.stSlider [data-baseweb="slider"] [role="slider"] { background: #0F0F0F !important; border-color: #0F0F0F !important; }
+.stSlider [data-baseweb="slider"] [role="slider"]::before { background: #0F0F0F !important; }
+div[data-baseweb="slider"] > div { background: transparent !important; }
+div[data-baseweb="slider"] > div > div:nth-child(3) { background: #0F0F0F !important; }
+div[data-baseweb="slider"] > div > div:nth-child(4) { background: #0F0F0F !important; }
+div[data-baseweb="slider"] > div > div:nth-child(5) { background: #0F0F0F !important; }
+div[data-baseweb="slider"] > div > div > div { background: #0F0F0F !important; }
+span[data-testid="stSliderTickBarMin"], span[data-testid="stSliderTickBarMax"] { color: #0F0F0F !important; }
+
 </style>
 """
 
@@ -120,3 +132,61 @@ def apply_layout(fig, height=300, **kwargs):
     fig.update_yaxes(gridcolor="#F0F0F0", linecolor="#E5E5E5",
                      tickfont=dict(color="#555555", family="Inter"))
     return fig
+
+
+PLOTLY_LAYOUT_DARK = dict(
+    font=dict(family="Inter", color="#FFFFFF"),
+    plot_bgcolor="#0F0F0F",
+    paper_bgcolor="#0F0F0F",
+    colorway=["#FFFFFF", "#888888", "#555555", "#BBBBBB"],
+    xaxis=dict(gridcolor="#333333", linecolor="#333333", tickfont=dict(color="#888888")),
+    yaxis=dict(gridcolor="#333333", linecolor="#333333", tickfont=dict(color="#888888")),
+    legend=dict(font=dict(color="#FFFFFF")),
+    margin=dict(l=0, r=0, t=20, b=0),
+)
+
+
+def apply_layout_dark(fig, height=300, **kwargs):
+    """Layout monocromático sobre fondo negro #0F0F0F"""
+    layout = {**PLOTLY_LAYOUT_DARK, "height": height, **kwargs}
+    fig.update_layout(**layout)
+    fig.update_xaxes(gridcolor="#333333", linecolor="#333333",
+                     tickfont=dict(color="#888888", family="Inter"))
+    fig.update_yaxes(gridcolor="#333333", linecolor="#333333",
+                     tickfont=dict(color="#888888", family="Inter"))
+    return fig
+
+
+# Slider negro
+import streamlit as st
+_SLIDER_CSS = """
+<style>
+.stSlider [data-baseweb="slider"] div[role="slider"] {
+    background-color: #0F0F0F !important;
+}
+.stSlider [data-baseweb="slider"] div[data-testid="stTickBar"] {
+    background: #0F0F0F !important;
+}
+.stSlider [data-baseweb="slider"] div {
+    color: #0F0F0F !important;
+}
+div[data-baseweb="slider"] > div > div {
+    background: #0F0F0F !important;
+}
+div[data-baseweb="slider"] > div > div > div {
+    background: #0F0F0F !important;
+}
+
+/* Slider forzar negro */
+.stSlider [data-baseweb="slider"] div { color: #0F0F0F !important; }
+.stSlider [data-baseweb="slider"] [role="slider"] { background: #0F0F0F !important; border-color: #0F0F0F !important; }
+.stSlider [data-baseweb="slider"] [role="slider"]::before { background: #0F0F0F !important; }
+div[data-baseweb="slider"] > div { background: transparent !important; }
+div[data-baseweb="slider"] > div > div:nth-child(3) { background: #0F0F0F !important; }
+div[data-baseweb="slider"] > div > div:nth-child(4) { background: #0F0F0F !important; }
+div[data-baseweb="slider"] > div > div:nth-child(5) { background: #0F0F0F !important; }
+div[data-baseweb="slider"] > div > div > div { background: #0F0F0F !important; }
+span[data-testid="stSliderTickBarMin"], span[data-testid="stSliderTickBarMax"] { color: #0F0F0F !important; }
+
+</style>
+"""

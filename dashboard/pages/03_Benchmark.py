@@ -4,6 +4,7 @@ import plotly.graph_objects as go
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 import lecturas
+import style
 
 st.set_page_config(page_title="Benchmark · Observatorio", page_icon="📊", layout="wide")
 
@@ -18,6 +19,8 @@ df_raw = load()
 COLORES = {"Termas":"#0891B2","Santiago del Estero":"#0E7490",
            "Tucumán":"#94A3B8","Jujuy":"#94A3B8","San Luis":"#94A3B8",
            "Catamarca":"#94A3B8","La Rioja":"#94A3B8"}
+
+style.aplicar_estilo()
 
 st.markdown("""
 <h1 style='font-size:1.8rem;font-weight:900;color:#0F172A;margin-bottom:4px'>

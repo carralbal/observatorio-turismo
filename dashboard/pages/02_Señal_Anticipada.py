@@ -4,6 +4,7 @@ import plotly.graph_objects as go
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 import lecturas
+import style
 
 st.set_page_config(page_title="Señal Anticipada · Observatorio", page_icon="🔮", layout="wide")
 
@@ -20,6 +21,8 @@ estacional = termas_raw.groupby("mes")["ibt_termas"].mean().reset_index()
 estacional.columns = ["mes", "ibt_estacional"]
 termas_raw = termas_raw.merge(estacional, on="mes", how="left")
 termas_raw["anomalia"] = ((termas_raw["ibt_termas"] / termas_raw["ibt_estacional"]) - 1) * 100
+
+style.aplicar_estilo()
 
 st.markdown("""
 <h1 style='font-size:1.8rem;font-weight:900;color:#0F172A;margin-bottom:4px'>
@@ -72,10 +75,10 @@ fig1 = go.Figure()
 fig1.add_trace(go.Scatter(x=termas["fecha"], y=termas["ibt_estacional"],
     name="Promedio estacional", line=dict(color="#CBD5E1", width=1.5, dash="dash")))
 fig1.add_trace(go.Scatter(x=termas["fecha"], y=termas["ibt_termas"],
-    name="IBT Termas (real)", line=dict(color="#0891B2", width=2),
-    fill="tonexty", fillcolor="rgba(8,145,178,0.08)"))
+    name="IBT Termas (real)", line=dict(color=style.LINE_COLOR, width=2),
+    fill="tonexty", fillcolor=style.FILL_COLOR))
 fig1.add_trace(go.Scatter(x=termas["fecha"], y=termas["ibt_motogp"],
-    name="IBT MotoGP", line=dict(color="#BE185D", width=1.5)))
+    name="IBT MotoGP", line=dict(color=style.LINE_COLOR, width=1.5)))
 fig1.update_layout(height=320, margin=dict(l=0,r=0,t=10,b=0),
     legend=dict(orientation="h", y=1.1),
     plot_bgcolor="white", paper_bgcolor="white",
@@ -90,7 +93,7 @@ est = estacional.sort_values("mes")
 fig2 = go.Figure()
 fig2.add_trace(go.Bar(
     x=[MESES[m-1] for m in est["mes"]], y=est["ibt_estacional"].round(1),
-    marker_color=["#BE185D" if m in [3,4] else "#0891B2" if m in [5,6,7,8,9] else "#CBD5E1" for m in est["mes"]],
+    marker_color=[style.LINE_COLOR if m in [3,4] else "#0891B2" if m in [5,6,7,8,9] else "#CBD5E1" for m in est["mes"]],
     text=est["ibt_estacional"].round(0).astype(int), textposition="outside"
 ))
 fig2.update_layout(height=280, margin=dict(l=0,r=0,t=30,b=0),
@@ -107,7 +110,7 @@ fig3.add_trace(go.Bar(
     marker_color=["#0891B2" if a >= 0 else "#94A3B8" for a in ult24["anomalia"]],
     text=[f"{v:+.0f}%" for v in ult24["anomalia"]], textposition="outside"
 ))
-fig3.add_hline(y=20, line_dash="dash", line_color="#DC2626", annotation_text="Umbral alerta (+20%)")
+fig3.add_hline(y=20, line_dash="dash", line_color=style.BAR_COLOR_2, annotation_text="Umbral alerta (+20%)")
 fig3.add_hline(y=0, line_color="#0F172A", line_width=1)
 fig3.update_layout(height=280, margin=dict(l=0,r=0,t=30,b=0),
     plot_bgcolor="white", paper_bgcolor="white",

@@ -4,6 +4,7 @@ import plotly.graph_objects as go
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 import lecturas
+import style
 
 st.set_page_config(page_title="Imagen Destino · Observatorio", page_icon="📺", layout="wide")
 
@@ -15,6 +16,8 @@ def load():
 
 df_raw = load()
 df_raw["anio"] = df_raw["fecha"].dt.year
+
+style.aplicar_estilo()
 
 st.markdown("""
 <h1 style='font-size:1.8rem;font-weight:900;color:#0F172A;margin-bottom:4px'>
@@ -58,7 +61,7 @@ st.markdown("### Vistas acumuladas por año")
 anual = df.groupby("anio")["view_count"].sum().reset_index()
 fig1 = go.Figure()
 fig1.add_trace(go.Bar(x=anual["anio"], y=anual["view_count"],
-    marker_color="#0891B2",
+    marker_color=style.LINE_COLOR,
     text=[f"{v/1e6:.1f}M" if v > 1e6 else f"{v/1e3:.0f}K" for v in anual["view_count"]],
     textposition="outside"))
 fig1.update_layout(height=300, margin=dict(l=0,r=0,t=10,b=0),

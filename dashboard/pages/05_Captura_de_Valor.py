@@ -4,6 +4,7 @@ import plotly.graph_objects as go
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 import lecturas
+import style
 
 st.set_page_config(page_title="Captura de Valor · Observatorio", page_icon="💰", layout="wide")
 
@@ -14,6 +15,8 @@ def load():
     return df
 
 df_raw = load()
+
+style.aplicar_estilo()
 
 st.markdown("""
 <h1 style='font-size:1.8rem;font-weight:900;color:#0F172A;margin-bottom:4px'>
@@ -57,9 +60,9 @@ st.divider()
 st.markdown("### Ingreso potencial vs. capturado — mensual")
 fig1 = go.Figure()
 fig1.add_trace(go.Bar(x=df["fecha"], y=df["ingreso_potencial_usd"],
-    name="Potencial", marker_color="#CBD5E1"))
+    name="Potencial", marker_color=style.BAR_COLOR_ALT))
 fig1.add_trace(go.Bar(x=df["fecha"], y=df["ingreso_capturado_usd"],
-    name="Capturado", marker_color="#0891B2"))
+    name="Capturado", marker_color=style.LINE_COLOR))
 fig1.update_layout(height=320, margin=dict(l=0,r=0,t=10,b=0), barmode="overlay",
     legend=dict(orientation="h", y=1.1),
     plot_bgcolor="white", paper_bgcolor="white",
@@ -71,11 +74,11 @@ st.plotly_chart(fig1, use_container_width=True)
 st.markdown("### Índice de Captura de Valor — evolución mensual")
 fig2 = go.Figure()
 fig2.add_trace(go.Scatter(x=df["fecha"], y=df["icv_pct"],
-    line=dict(color="#0891B2", width=2.5),
-    fill="tozeroy", fillcolor="rgba(8,145,178,0.08)"))
+    line=dict(color=style.LINE_COLOR, width=2.5),
+    fill="tozeroy", fillcolor=style.FILL_COLOR))
 fig2.add_hline(y=52, line_dash="dash", line_color="#94A3B8",
     annotation_text="Tucumán (52%)")
-fig2.add_hline(y=38, line_dash="dot", line_color="#0891B2",
+fig2.add_hline(y=38, line_dash="dot", line_color=style.LINE_COLOR,
     annotation_text="SDE (38%)")
 fig2.update_layout(height=280, margin=dict(l=0,r=0,t=10,b=0),
     plot_bgcolor="white", paper_bgcolor="white",

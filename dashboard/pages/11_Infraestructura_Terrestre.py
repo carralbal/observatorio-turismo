@@ -4,6 +4,7 @@ import plotly.graph_objects as go
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 import lecturas
+import style
 
 st.set_page_config(page_title="Infraestructura Terrestre · Observatorio", page_icon="🚌", layout="wide")
 
@@ -13,6 +14,8 @@ def load():
     return df
 
 df_raw = load()
+
+style.aplicar_estilo()
 
 st.markdown("""
 <h1 style='font-size:1.8rem;font-weight:900;color:#0F172A;margin-bottom:4px'>
@@ -125,11 +128,11 @@ evol_anual["load_factor"] = (evol_anual["pasajeros"] / evol_anual["asientos"] * 
 fig2 = go.Figure()
 fig2.add_trace(go.Bar(
     x=evol_anual["anio"], y=evol_anual["pasajeros"],
-    name="Pasajeros", marker_color="#0891B2"
+    name="Pasajeros", marker_color=style.LINE_COLOR
 ))
 fig2.add_trace(go.Scatter(
     x=evol_anual["anio"], y=evol_anual["load_factor"],
-    name="Load factor %", line=dict(color="#D97706", width=2),
+    name="Load factor %", line=dict(color=style.LINE_COLOR_2, width=2),
     yaxis="y2", mode="lines+markers"
 ))
 fig2.update_layout(height=300, margin=dict(l=0,r=0,t=10,b=0),
@@ -179,7 +182,7 @@ comp = comp.sort_values("var_pct").head(15)
 fig4 = go.Figure()
 fig4.add_trace(go.Bar(
     x=comp["var_pct"], y=comp.index, orientation="h",
-    marker_color=["#059669" if v >= 0 else "#DC2626" for v in comp["var_pct"]],
+    marker_color=[style.BAR_COLOR if v >= 0 else style.BAR_COLOR_2 for v in comp["var_pct"]],
     text=[f"{v:+.0f}%" for v in comp["var_pct"]], textposition="outside"
 ))
 fig4.add_vline(x=0, line_color="#0F172A", line_width=1)

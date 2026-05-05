@@ -15,6 +15,8 @@ def load():
 
 df_raw = load()
 
+style.aplicar_estilo()
+
 st.markdown("""
 <h1 style='font-size:1.8rem;font-weight:900;color:#0F172A;margin-bottom:4px'>
 👷 Empleo en Hotelería y Gastronomía
@@ -91,8 +93,8 @@ st.markdown("### Evolución mensual del empleo registrado")
 fig1 = go.Figure()
 fig1.add_trace(go.Scatter(
     x=df["fecha"], y=df["empleo_registrado"],
-    line=dict(color="#0891B2", width=2.5),
-    fill="tozeroy", fillcolor="rgba(8,145,178,0.08)",
+    line=dict(color=style.LINE_COLOR, width=2.5),
+    fill="tozeroy", fillcolor=style.FILL_COLOR,
     mode="lines"
 ))
 fig1.update_layout(height=300, margin=dict(l=0,r=0,t=10,b=0),
@@ -128,7 +130,7 @@ fig3 = go.Figure()
 fig3.add_trace(go.Bar(
     x=comp["var_pct"], y=comp.index, orientation="h",
     marker_color=["#0891B2" if p == provincia else
-                  "#059669" if v >= 0 else "#DC2626"
+                  style.BAR_COLOR if v >= 0 else style.BAR_COLOR_2
                   for p, v in zip(comp.index, comp["var_pct"])],
     text=[f"{v:+.0f}%" for v in comp["var_pct"]], textposition="outside"
 ))

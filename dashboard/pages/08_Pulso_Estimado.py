@@ -4,6 +4,7 @@ import plotly.graph_objects as go
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 import lecturas
+import style
 
 st.set_page_config(page_title="Pulso Estimado · Observatorio", page_icon="🔬", layout="wide")
 
@@ -23,6 +24,8 @@ df_raw    = load_est()
 df_inf_raw = load_inf()
 df_raw["anio"] = df_raw["fecha"].dt.year
 df_inf_raw["anio"] = df_inf_raw["fecha"].dt.year
+
+style.aplicar_estilo()
 
 st.markdown("""
 <h1 style='font-size:1.8rem;font-weight:900;color:#0F172A;margin-bottom:4px'>
@@ -98,10 +101,10 @@ if len(t_est) > 0:
         fill="toself", fillcolor="rgba(148,163,184,0.15)",
         line=dict(color="rgba(0,0,0,0)"), name="Rango estimado"))
 fig1.add_trace(go.Scatter(x=t_real["fecha"], y=t_real["viajeros"],
-    name="Dato real (EOH)", line=dict(color="#0891B2", width=2.5)))
+    name="Dato real (EOH)", line=dict(color=style.LINE_COLOR, width=2.5)))
 if len(t_est) > 0:
     fig1.add_trace(go.Scatter(x=t_est["fecha"], y=t_est["viajeros"],
-        name="Estimación OLS", line=dict(color="#0891B2", width=2.5, dash="dash"),
+        name="Estimación OLS", line=dict(color=style.LINE_COLOR, width=2.5, dash="dash"),
         mode="lines+markers", marker=dict(symbol="diamond", size=8)))
 fig1.update_layout(height=320, margin=dict(l=0,r=0,t=10,b=0),
     legend=dict(orientation="h", y=1.1), plot_bgcolor="white", paper_bgcolor="white",
@@ -120,10 +123,10 @@ if len(c_est) > 0:
         fill="toself", fillcolor="rgba(148,163,184,0.15)",
         line=dict(color="rgba(0,0,0,0)"), name="Rango estimado"))
 fig2.add_trace(go.Scatter(x=c_real["fecha"], y=c_real["viajeros"],
-    name="Dato real (EOH)", line=dict(color="#0E7490", width=2.5)))
+    name="Dato real (EOH)", line=dict(color=style.LINE_COLOR_2, width=2.5)))
 if len(c_est) > 0:
     fig2.add_trace(go.Scatter(x=c_est["fecha"], y=c_est["viajeros"],
-        name="Estimación OLS", line=dict(color="#0E7490", width=2.5, dash="dash"),
+        name="Estimación OLS", line=dict(color=style.LINE_COLOR_2, width=2.5, dash="dash"),
         mode="lines+markers", marker=dict(symbol="diamond", size=8)))
 fig2.update_layout(height=300, margin=dict(l=0,r=0,t=10,b=0),
     legend=dict(orientation="h", y=1.1), plot_bgcolor="white", paper_bgcolor="white",
@@ -136,9 +139,9 @@ if len(t_inf) > 0:
     st.markdown("### Ocupación del sector de alquiler temporario")
     fig3 = go.Figure()
     fig3.add_trace(go.Scatter(x=t_inf["fecha"], y=t_inf["occ_informal_pct"],
-        name="Termas", line=dict(color="#0891B2", width=2), mode="lines+markers", marker=dict(size=5)))
+        name="Termas", line=dict(color=style.LINE_COLOR, width=2), mode="lines+markers", marker=dict(size=5)))
     fig3.add_trace(go.Scatter(x=c_inf["fecha"], y=c_inf["occ_informal_pct"],
-        name="Capital", line=dict(color="#0E7490", width=2), mode="lines+markers", marker=dict(size=5)))
+        name="Capital", line=dict(color=style.LINE_COLOR_2, width=2), mode="lines+markers", marker=dict(size=5)))
     fig3.update_layout(height=260, margin=dict(l=0,r=0,t=10,b=0),
         legend=dict(orientation="h", y=1.1), plot_bgcolor="white", paper_bgcolor="white",
         yaxis=dict(title="Ocupación (%)", gridcolor="#F1F5F9", range=[0,100]),
