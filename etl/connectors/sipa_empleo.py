@@ -14,17 +14,17 @@ RAW_DIR   = Path("data/raw/sipa")
 WAREHOUSE = "warehouse/observatorio.duckdb"
 
 ARCHIVOS = {
-    "sipa_empleo_mensual":    "fehgra_empleo_mensual.csv",
-    "sipa_empleo_trimestral": "fehgra_empleo_trimestral.csv",
-    "sipa_panel_provincias":  "fehgra_panel_provincias.csv",
-    "sipa_eoh_provincia":     "fehgra_eoh_provincia.csv",
-    "sipa_cabotaje_provincia":"fehgra_cabotaje_provincia.csv",
-    "sipa_terrestre_prov":    "fehgra_terrestre_prov.csv",
-    "sipa_gastro_provincia":  "fehgra_gastro_provincia.csv",
-    "sipa_establecimientos":  "fehgra_establecimientos.csv",
-    "sipa_pbi":               "fehgra_pbi.csv",
-    "sipa_exportaciones":     "fehgra_exportaciones.csv",
-    "sipa_empleo_tipos":      "fehgra_empleo_tipos.csv",
+    "sipa_empleo_mensual":    "sipa_empleo_mensual.csv",
+    "sipa_empleo_trimestral": "sipa_empleo_trimestral.csv",
+    "sipa_panel_provincias":  "sipa_panel_provincias.csv",
+    "sipa_eoh_provincia":     "sipa_eoh_provincia.csv",
+    "sipa_cabotaje_provincia":"sipa_cabotaje_provincia.csv",
+    "sipa_terrestre_prov":    "sipa_terrestre_prov.csv",
+    "sipa_gastro_provincia":  "sipa_gastro_provincia.csv",
+    "sipa_establecimientos":  "sipa_establecimientos.csv",
+    "sipa_pbi":               "sipa_pbi.csv",
+    "sipa_exportaciones":     "sipa_exportaciones.csv",
+    "sipa_empleo_tipos":      "sipa_empleo_tipos.csv",
 }
 
 def load_sipa():

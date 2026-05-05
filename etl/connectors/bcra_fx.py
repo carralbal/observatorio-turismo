@@ -13,12 +13,10 @@ def fetch_bcra_fx():
 
     url = "https://apis.datos.gob.ar/series/api/series/"
     params = {
-        "ids":                    "168.1_T_CAMBIOR_D_0_0_26",
-        "collapse":               "month",
-        "collapse_aggregation":   "avg",
-        "start_date":             "2004-01-01",
-        "limit":                  500,
-        "format":                 "json",
+        "ids":        "168.1_T_CAMBIOR_D_0_0_26",
+        "start_date": "2004-01-01",
+        "limit":      5000,
+        "format":     "json",
     }
 
     r = requests.get(url, params=params, timeout=30)
@@ -28,6 +26,9 @@ def fetch_bcra_fx():
     df = pd.DataFrame(data, columns=["fecha", "tcn_usd"])
     df["fecha"] = pd.to_datetime(df["fecha"])
     df = df.dropna()
+    # Agregamos diario → mensual manualmente (captura meses parciales)
+    df["fecha"] = df["fecha"].dt.to_period("M").dt.to_timestamp()
+    df = df.groupby("fecha", as_index=False)["tcn_usd"].mean()
 
     path = RAW_DIR / "bcra_tcn.parquet"
     df.to_parquet(path, index=False)
