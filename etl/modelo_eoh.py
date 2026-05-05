@@ -38,12 +38,18 @@ def cargar_datos():
         airdna AS (
             SELECT fecha, mercado, occ_informal_pct
             FROM stg_airdna_sde
+        ),
+        sipa AS (
+            SELECT anio, trimestre, empleo_hyg
+            FROM raw_sipa_empleo_trimestral_hyg
+            WHERE provincia = 'Santiago del Estero'
         )
         SELECT e.fecha, e.localidad, e.viajeros_total, e.anio, e.mes,
                a.pasajeros_anac, t.ibt_compuesto, c.tcn_usd,
                i.ipc_restaurantes_hoteles_noa, d.occ_informal_pct,
                SIN(2*3.14159*e.mes/12.0) AS mes_sin,
-               COS(2*3.14159*e.mes/12.0) AS mes_cos
+               COS(2*3.14159*e.mes/12.0) AS mes_cos,
+               sp.empleo_hyg
         FROM eoh e
         LEFT JOIN anac   a USING (fecha)
         LEFT JOIN trends t USING (fecha)
@@ -52,6 +58,8 @@ def cargar_datos():
         LEFT JOIN airdna d ON e.fecha = d.fecha
             AND ((e.localidad = 'Termas' AND d.mercado = 'Termas de Rio Hondo')
               OR (e.localidad = 'Santiago del Estero' AND d.mercado = 'Santiago del Estero'))
+        LEFT JOIN sipa sp ON e.anio = sp.anio
+            AND CAST(CEIL(CAST(e.mes AS FLOAT)/3) AS INTEGER) = sp.trimestre
         ORDER BY e.fecha, e.localidad
     """).df()
     con.close()
@@ -61,7 +69,7 @@ def entrenar(df, localidad):
     logger.info(f"Entrenando {localidad}...")
     d = df[df["localidad"] == localidad].copy()
     FEATURES = ["pasajeros_anac","ibt_compuesto","tcn_usd",
-                "ipc_restaurantes_hoteles_noa","mes_sin","mes_cos"]
+                "ipc_restaurantes_hoteles_noa","mes_sin","mes_cos","empleo_hyg"]
     if d["occ_informal_pct"].notna().sum() > 5:
         FEATURES.append("occ_informal_pct")
     d = d[FEATURES + ["viajeros_total"]].dropna()

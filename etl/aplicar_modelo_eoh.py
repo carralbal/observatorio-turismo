@@ -40,7 +40,12 @@ def generar_estimados():
                    ipc_restaurantes_hoteles_noa
             FROM raw_ipc_capitulos
         ),
-        airdna AS (SELECT fecha, mercado, occ_informal_pct FROM stg_airdna_sde)
+        airdna AS (SELECT fecha, mercado, occ_informal_pct FROM stg_airdna_sde),
+        sipa AS (
+            SELECT anio, trimestre, empleo_hyg
+            FROM raw_sipa_empleo_trimestral_hyg
+            WHERE provincia = 'Santiago del Estero'
+        )
 
         SELECT c.fecha, c.localidad,
                a.pasajeros_anac, t.ibt_compuesto, tc.tcn_usd,
@@ -48,7 +53,8 @@ def generar_estimados():
                SIN(2*3.14159*EXTRACT(MONTH FROM c.fecha)/12.0) AS mes_sin,
                COS(2*3.14159*EXTRACT(MONTH FROM c.fecha)/12.0) AS mes_cos,
                EXTRACT(YEAR  FROM c.fecha) AS anio,
-               EXTRACT(MONTH FROM c.fecha) AS mes
+               EXTRACT(MONTH FROM c.fecha) AS mes,
+               sp.empleo_hyg
         FROM combos c
         LEFT JOIN anac   a  USING (fecha)
         LEFT JOIN trends t  USING (fecha)
@@ -57,6 +63,8 @@ def generar_estimados():
         LEFT JOIN airdna d  ON c.fecha = d.fecha
             AND ((c.localidad = 'Termas' AND d.mercado = 'Termas de Rio Hondo')
               OR (c.localidad = 'Santiago del Estero' AND d.mercado = 'Santiago del Estero'))
+        LEFT JOIN sipa sp ON EXTRACT(YEAR FROM c.fecha) = sp.anio
+            AND CAST(CEIL(CAST(EXTRACT(MONTH FROM c.fecha) AS FLOAT)/3) AS INTEGER) = sp.trimestre
         ORDER BY c.fecha, c.localidad
     """).df()
     con.close()
@@ -68,7 +76,7 @@ def generar_estimados():
         m = modelos[loc]
         features = m["metricas"]["features"]
         d = df_pred[df_pred["localidad"] == loc].copy()
-        X = d[features].fillna(d[features].median())
+        X = d[features].ffill().bfill().fillna(0)
         Xs = m["scaler"].transform(X)
         yp = m["modelo"].predict(Xs)
         rmse = m["metricas"]["rmse"]
