@@ -1,4 +1,4 @@
-# OBSERVATORIO DE TURISMO · SDE — Estado al 9 de abril 2026 — HANDOFF
+# OBSERVATORIO DE TURISMO · SDE — Estado al 5 de mayo 2026
 
 ## REPO Y ACCESO
 - GitHub: https://github.com/carralbal/observatorio-turismo (privado)
@@ -19,7 +19,7 @@
 ## LO QUE HAY HOY
 
 ### DASHBOARD — 14 PÁGINAS EN PRODUCCIÓN
-- app.py — Pulso SDE (EN REDISEÑO — identidad visual monocromática)
+- app.py — Pulso SDE (REDISEÑADA: hero, donuts, deltas interanuales)
 - 01_MotoGP.py
 - 02_Señal_Anticipada.py
 - 03_Benchmark.py
@@ -29,23 +29,31 @@
 - 07_Imagen_Destino.py
 - 08_Pulso_Estimado.py
 - 09_Perfil_Turista.py
-- 10_Infraestructura_Aerea.py
+- 10_Infraestructura_Aerea.py (REDISEÑADA: donuts KPI, barras progreso, hero)
 - 11_Infraestructura_Terrestre.py
 - 12_Infraestructura_Informal.py
 - 13_Empleo_HyG.py
 
 ### MÓDULOS COMPARTIDOS
-- dashboard/style.py — identidad visual monocromática (EN DESARROLLO)
-- dashboard/lecturas.py — cuadros azules interpretación contextual
+- dashboard/style.py — CSS Inter, PLOTLY_LAYOUT, apply_layout(), apply_layout_dark(),
+  lectura_destacada(), slider negro, constantes BAR_COLOR/LINE_COLOR/FILL_COLOR
+- dashboard/lecturas.py — cuadros interpretación (legacy, no usado en páginas rediseñadas)
 
 ### CONECTORES (11)
 sinta_eoh · google_trends · bcra_fx · anac_sde · cnrt · sinta_eti
 indec_ipc · youtube_api · airroi · sinta_evyth · sipa_empleo
 
-### DATOS EN WAREHOUSE
+### DATOS EN WAREHOUSE (DuckDB local)
 - AirDNA xlsx — 80 mercados · data/raw/airdna/
 - SIPA/OEDE — 11 tablas · data/raw/sipa/
-(estos directorios NO suben a GitHub — regenerar con los conectores)
+- Argendata TURISM — 6 tablas · data/raw/argendata/ (NUEVO 5-may-2026)
+  raw_argendata_empleo_provincial (25 filas)
+  raw_argendata_pernoctes_provincia (24 filas)
+  raw_argendata_pib_turismo_comparado (1243 filas)
+  raw_argendata_pasajeros_avion (276 filas)
+  raw_argendata_turismo_interno_receptivo (28 filas)
+  raw_argendata_balanza_turistica (147 filas)
+(data/ es gitignored — regenerar con conectores o script de descarga)
 
 ### MODELOS DBT (23)
 Staging: stg_eoh_viajeros · stg_eoh_pernoctes · stg_trends_sde
@@ -64,50 +72,72 @@ mart_infra_informal_termas · mart_infra_empleo_hyg
 
 ---
 
-## EN CURSO AL MOMENTO DEL HANDOFF
+## IDENTIDAD VISUAL — ESTADO
 
-### IDENTIDAD VISUAL — PRIORIDAD 1
-Replicar estilo PDF monocromático al 100%:
-- Paleta: negro #0F0F0F · gris #555555 · blanco #FFFFFF
-- Sin color en gráficos — todo negro/gris
-- Tipografía: Inter · títulos 900 · cuerpo 400 · TODO 50% más grande
-- Portadas: foto full-bleed oscura + overlay negro + texto blanco
-- KPIs: número grande bold en caja gris (#F5F5F5)
-- Gráficos donuts para indicadores circulares
-- Secciones con fondo negro (#0F0F0F) y texto blanco
-- Iconos flat (emojis estilizados)
-- Imágenes Unsplash libres (hoteles, gastronomía, transporte, destinos)
+Estilo monocromático editorial (referencia: PDF Informe HyG 2019-2025):
+- Paleta: #0F0F0F · #555555 · #FFFFFF
+- Tipografía: Inter 900/400, tamaños grandes (4rem títulos hero)
+- Hero: foto full-bleed + overlay + texto blanco (#hero-aerea con CSS scoped)
+- KPIs: donuts SVG con número centrado + barras de progreso horizontales
+- Gráficos: barras negro/gris, sin color, apply_layout() estándar
+- Secciones fondo gris #F5F5F5 para encabezados de gráficos
+- Slider: CSS forzado negro (pendiente: no toma en todas las versiones de Streamlit)
 
-ESTADO: app.py tiene una primera versión del rediseño.
-style.py tiene la base CSS + PLOTLY_LAYOUT + apply_layout() + lectura_destacada()
-TAREA: revisar app.py, aprobar el look, y extender a las otras 13 páginas.
+COMPLETADO:
+- style.py: base completa con apply_layout, apply_layout_dark, slider CSS
+- app.py: rediseñada (hero, lectura_destacada, KPIs con deltas, donut IBT)
+- 10_Infraestructura_Aerea.py: rediseñada (donuts, barras progreso, hero con #hero-aerea)
 
-REGLA IMPORTANTE — FUENTES PROHIBIDAS:
-- NUNCA mencionar "FEHGRA" — los datos se atribuyen a INDEC/SIPA-AFIP/ANAC/CNRT
+PENDIENTE VISUAL:
+- Hero de app.py: texto aparece negro por CSS global !important (mismo bug que Aerea tenía)
+- Slider rojo: el CSS inyectado no toma en todas las instancias de Streamlit
+- 12 páginas restantes sin rediseñar (01 a 09, 11, 12, 13)
 
 ---
 
-## PENDIENTE
+## PENDIENTE — PRIORIZADO
 
-### Alta prioridad
-1. Completar identidad visual en las 14 páginas (continuar desde app.py)
-2. Capa Federal — mart_nacional_benchmark_interprovincial
-   - Dashboard con selector de provincia
-   - Mapa coroplético 24 provincias
-   - Datos ya en warehouse: sipa_panel_provincias · sipa_eoh_provincia
-     sipa_cabotaje_provincia · sipa_terrestre_prov · mart_infra_empleo_hyg
-3. Estrategia entrada SDE (N2) — documento político DGR SDE
+### P0 — Bugs visuales activos
+1. Hero app.py: aplicar fix #hero-pulso con CSS scoped (igual que #hero-aerea)
+2. Slider rojo: investigar override CSS de Streamlit 1.x theme config (config.toml)
 
-### Media prioridad
+### P1 — Rediseño visual (12 páginas restantes)
+3. Extender identidad a páginas 01-09, 11, 12, 13
+   Patrón: hero + lectura_destacada + donuts/KPIs + apply_layout + caption fuentes
+   Orden sugerido: 11_Terrestre → 12_Informal → 13_Empleo → 01-09
+
+### P2 — Capa Federal + Argendata
+4. Modelos dbt para raw_argendata_* (staging + mart)
+5. mart_nacional_benchmark_interprovincial
+   - Combinar: sipa_panel_provincias + sipa_eoh_provincia + argendata empleo/pernoctes
+   - Dashboard con selector de provincia + mapa coroplético 24 provincias
+6. Exportar nuevos marts a dashboard/*.csv
+
+### P3 — Presentación Smart City Expo (20-21 mayo 2026)
+7. Localizar proyecto React/Vite en Mac
+8. Incorporar slide comparativa: Observatorio SDE vs otras iniciativas AR
+   (Argendata, SINTA/Yvera, SIT Buenos Aires, Obs. Chubut, datos.gob.ar)
+9. Incorporar datos Argendata como evidencia (PIB turístico comparado)
+10. Construir panel de presenter notes
+
+### P4 — Estrategia política
+11. Documento N2 para acuerdo DGR SDE
+
+### P5 — Media prioridad
 - Tarifas aéreas (Google Flights / Skyscanner)
 - AirROI multi-mercado
 - MotherDuck warehouse en cloud
 - Boletín PDF Quarto mensual
 
-### Baja prioridad
+### P6 — Baja prioridad
 - Recalibrar OLS cuando vuelva EOH
 - Replicar para otra provincia NOA
 - EVyTH microdatos
+
+---
+
+## REGLA CRÍTICA
+NUNCA mencionar "FEHGRA" — datos se atribuyen a INDEC/SIPA-AFIP/ANAC/CNRT
 
 ---
 
@@ -127,6 +157,7 @@ REGLA IMPORTANTE — FUENTES PROHIBIDAS:
     python3 etl/modelo_eoh.py
     python3 etl/aplicar_modelo_eoh.py
     cd dbt/observatorio && dbt run && cd ../..
+    python3 /tmp/load_argendata.py
     python3 -c "
     import duckdb
     con = duckdb.connect('warehouse/observatorio.duckdb', read_only=True)
