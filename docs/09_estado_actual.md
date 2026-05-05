@@ -183,3 +183,49 @@ NUNCA mencionar "FEHGRA" — datos se atribuyen a INDEC/SIPA-AFIP/ANAC/CNRT
         print(f'{tabla} → {csv}')
     con.close()
     "
+
+---
+
+## ACTUALIZACIÓN — 5 MAYO 2026
+
+### FRONTEND REACT (REEMPLAZA STREAMLIT)
+- Stack: React 18 + Vite + Recharts + Papaparse + Lucide React
+- Directorio: observatorio-turismo/frontend/
+- Deploy: pendiente (Vercel o Netlify)
+- Datos: frontend/public/data/*.csv (exportados desde DuckDB)
+- Design system: ADDFISH (Plus Jakarta Sans, Ink/Paper/Slate/Stone/Volt)
+- Documentacion visual: docs/DESIGN_SYSTEM.md
+
+### PAGINAS COMPLETADAS (React)
+- / (Home · Pulso SDE): hero video+escudo, KPIs, chart, donut IBT, dark metrics, CTA volt
+- /aerea (Infraestructura Aerea): KPIs, trend cabotaje/intl, aerolineas, rutas, load factor
+
+### PAGINAS PENDIENTES (stubs activos en src/pages/Stubs.jsx)
+- /terrestre, /informal, /empleo, /nacional, /motogp, /senal, /benchmark
+- /captura, /madurez, /imagen, /estimado, /perfil
+
+### ARQUITECTURA FRONTEND
+- PeriodoContext: selector temporal global (anio + mes) — TODO por defecto
+- PeriodBar: barra fija bajo el nav, pills clickeables por año y mes
+- Layout: nav fijo con blur + footer ticker fuentes
+- Atoms.jsx: design system completo (SectionTitle, KPICard, Interpretacion, ICONS, Loading, PageStub)
+- useCSV.js: hook papaparse para carga de CSVs desde public/data/
+
+### ESTADO DE DATOS — 5 MAY 2026
+- EOH viajeros (SINTA): NOV 2025 — DISCONTINUADA por INDEC
+- Pasajeros aereos (ANAC): FEB 2026 — falta Mar-Abr
+- Empleo HyG (SIPA-AFIP): MAR 2025 — gap de 13 meses
+- Alquiler informal (AirDNA): MAR 2026 — falta Abr
+- Google Trends (IBT): DIC 2025 — falta Ene-Abr 2026
+- BCRA / ETI: FEB 2026 — falta Mar-Abr
+- YouTube: ABR 2026 — al dia
+- Pulso estimado OLS: MAR 2026 — falta Abr
+
+### CONNECTORS PENDIENTES DE CORRER
+Orden: google_trends → anac_sde → sipa_empleo → bcra_fx → airroi → cnrt → indec_ipc → sinta_eti
+Luego: dbt run → re-exportar CSVs a frontend/public/data/
+
+### PENDIENTE SMART CITY (21 mayo, con Florencia Landivar)
+Slide: plazas hoteleras vs asientos de avion + plazas vs asientos de omnibus
+Datos disponibles: mart_infra_aereo (asientos) + mart_infra_terrestre (asientos)
+Falta: numero de plazas hoteleras registradas (cruzar con SIPA establecimientos)
