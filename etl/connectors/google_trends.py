@@ -21,7 +21,7 @@ def fetch_trends():
 
     pytrends.build_payload(
         TERMINOS,
-        timeframe="2014-01-01 2025-12-31",
+        timeframe="2014-01-01 " + __import__("datetime").date.today().strftime("%Y-%m-%d"),
         geo="AR"
     )
 
