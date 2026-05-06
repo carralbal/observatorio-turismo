@@ -12,7 +12,7 @@ const CAPAS = [
     { to: '/motogp',    label: 'MotoGP'    },
   ]},
   { label: 'Señales', num: '02', items: [
-    { to: '/senal',    label: 'Señal IBT'     },
+    { to: '/señal',    label: 'Señal IBT'     },
     { to: '/informal', label: 'Informal'      },
     { to: '/imagen',   label: 'Imagen Destino'},
   ]},

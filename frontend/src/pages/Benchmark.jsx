@@ -4,7 +4,7 @@ import { useCSV, fmt } from '../hooks/useCSV'
 import { usePeriodo } from '../context/PeriodoContext'
 import { C, Paralelo, VoltLine, Eyebrow, SectionTitle, Interpretacion, Loading, ICONS } from '../components/Atoms'
 
-const VIDEO_URL = 'https://www.pexels.com/download/video/36865241/'
+const VIDEO_URL = 'https://www.pexels.com/download/video/9590940/'
 
 const Tip = ({ active, payload, label }) => {
   if (!active || !payload?.length) return null
@@ -59,7 +59,6 @@ export default function Benchmark() {
           <source src={VIDEO_URL} type="video/mp4" />
         </video>
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.93) 0%, rgba(10,10,10,0.78) 35%, rgba(10,10,10,0.38) 65%, rgba(10,10,10,0.10) 100%)' }} />
-        <div style={{ position: 'absolute', top: '8%', right: 'var(--pad)', zIndex: 2, fontSize: 'clamp(7rem,18vw,16rem)', fontWeight: 200, color: C.paper, opacity: 0.05, letterSpacing: '-0.06em', lineHeight: 1, userSelect: 'none', pointerEvents: 'none' }}>BENCHMARK</div>
         <div style={{ position: 'relative', zIndex: 3 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 28 }}>
             <Paralelo /><Eyebrow light>EOH · Capa 3 · Estructura y Valor</Eyebrow>
@@ -137,6 +136,19 @@ export default function Benchmark() {
         </div>
         <Interpretacion texto={'La trayectoria de SDE muestra la recuperacion post-COVID y el impacto de la discontinuacion de la EOH en 2025. Para un benchmark robusto con datos actualizados se requiere el acuerdo con el sector hotelero para recepcion directa de estadisticas provinciales.'} />
       </section>
+      <section style={{ background: 'var(--paper, #FAFAF7)', padding: 'clamp(40px,5vw,64px) var(--pad)' }}>
+        <Interpretacion>
+        En noviembre 2025, Termas de Río Hondo registra 13.760 viajeros con estadía media
+        de 2,05 noches — la más alta del NOA. Santiago del Estero Capital suma 10.527
+        viajeros (estadía 1,51). Juntos, SDE lidera la región sobre Jujuy (10.400),
+        San Luis (9.829), Catamarca (7.051) y La Rioja (3.245). La ventaja competitiva
+        de SDE no es solo volumen — es la estadía larga de Termas, que multiplica el gasto
+        per cápita y la captura de valor. Cada décima adicional de estadía media equivale
+        a +1.376 pernoctes mensuales en Termas. El benchmark interprovincial confirma que
+        la brecha de conectividad aérea es el principal limitante para ampliar esa ventaja.
+          </Interpretacion>
+      </section>
+
     </>
   )
 }

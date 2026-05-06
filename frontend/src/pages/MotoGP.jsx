@@ -4,7 +4,7 @@ import { useCSV, fmt } from '../hooks/useCSV'
 import { usePeriodo } from '../context/PeriodoContext'
 import { C, Paralelo, VoltLine, Eyebrow, SectionTitle, Interpretacion, Loading, ICONS } from '../components/Atoms'
 
-const VIDEO_URL = 'https://www.pexels.com/es-es/download/video/13277310/'
+const VIDEO_URL = 'https://www.pexels.com/es-es/download/video/30323199/'
 
 function KPICard({ icon: Icon, value, label, delta, dark }) {
   const color = dark ? C.paper : C.ink
@@ -78,7 +78,6 @@ export default function MotoGP() {
           <source src={VIDEO_URL} type="video/mp4" />
         </video>
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.93) 0%, rgba(10,10,10,0.78) 35%, rgba(10,10,10,0.38) 65%, rgba(10,10,10,0.10) 100%)' }} />
-        <div style={{ position: 'absolute', top: '8%', right: 'var(--pad)', zIndex: 2, fontSize: 'clamp(7rem,18vw,16rem)', fontWeight: 200, color: C.paper, opacity: 0.05, letterSpacing: '-0.06em', lineHeight: 1, userSelect: 'none', pointerEvents: 'none' }}>MOTOGP</div>
         <div style={{ position: 'relative', zIndex: 3 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 28 }}>
             <Paralelo /><Eyebrow light>EOH · ANAC · Capa 1 · Actividad</Eyebrow>
@@ -143,6 +142,19 @@ export default function MotoGP() {
         </div>
         <Interpretacion texto={'El uplift positivo en anos con MotoGP confirma el efecto causal del evento sobre la demanda hotelera. El metodo DiD controla por estacionalidad y tendencia usando Santiago Capital como grupo de control. Fuente: EOH INDEC + ANAC, calculo propio.'} />
       </section>
+      <section style={{ background: 'var(--paper, #FAFAF7)', padding: 'clamp(40px,5vw,64px) var(--pad)' }}>
+        <Interpretacion>
+        El modelo DiD estima que MotoGP 2025 generó un uplift de +13.745 viajeros en Termas
+        sobre el baseline de 28.405 (+48%). En abril 2025 el efecto se mantuvo: +12.143
+        viajeros adicionales (+43%). Para comparar, sin MotoGP en 2024, Termas registró
+        24.882 viajeros en marzo — un 41% menos. A estadía media de 2,6 noches, cada edición
+        MotoGP equivale a ~36.000 pernoctes adicionales y un multiplicador estimado de
+        $2.800M ARS sobre la economía local. El evento es el mayor multiplicador de demanda
+        medible del destino y justifica por sí solo la inversión en conectividad aérea
+        temporal para los meses de marzo y abril.
+          </Interpretacion>
+      </section>
+
     </>
   )
 }

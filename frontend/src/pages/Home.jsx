@@ -52,7 +52,7 @@ function KPICardHome({ icon: Icon, value, label, delta, light = false, volt = fa
 function Hero({ termasLast, capitalLast, periodoStr }) {
   return (
     <section className="grain" style={{
-      position: 'relative', minHeight: '100vh',
+      position: 'relative', minHeight: '42vh',
       padding: '48px var(--pad) 0', overflow: 'hidden',
       display: 'flex', flexDirection: 'column', justifyContent: 'center',
     }}>
@@ -89,28 +89,7 @@ function Hero({ termasLast, capitalLast, periodoStr }) {
         }}>
           El sistema de indicadores turísticos de Santiago del Estero. Datos oficiales actualizados mensualmente.
         </p>
-        <div style={{
-          borderTop: `0.5px solid rgba(250,250,247,0.12)`,
-          paddingTop: 26, paddingBottom: 40,
-          display: 'flex', gap: 48, flexWrap: 'wrap', alignItems: 'flex-end',
-          animation: 'fadeUp 0.8s 0.3s ease both',
-        }}>
-          {[
-            { v: termasLast ? fmt(termasLast.viajeros_total) : '—', l: 'viajeros · Termas' },
-            { v: capitalLast ? fmt(capitalLast.viajeros_total) : '—', l: 'viajeros · Capital' },
-          ].map((s, i) => (
-            <div key={i} style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-              <span style={{ fontSize: 'clamp(1.3rem, 2vw, 1.8rem)', fontWeight: 200, color: C.paper, letterSpacing: '-0.04em', lineHeight: 1 }}>{s.v}</span>
-              <Eyebrow light style={{ opacity: 0.45 }}>{s.l}</Eyebrow>
-            </div>
-          ))}
-          <div style={{ marginLeft: 'auto' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
-              <MapPin size={11} style={{ color: C.volt, opacity: 0.8 }} />
-              <Eyebrow light style={{ opacity: 0.5, fontSize: 9.5 }}>{periodoStr}</Eyebrow>
-            </div>
-          </div>
-        </div>
+
       </div>
     </section>
   )
@@ -301,6 +280,70 @@ function DarkMetrics({ termasLast, capitalLast, periodoStr }) {
   )
 }
 
+
+// ─── BRECHA ──────────────────────────────────────────────────────────────────
+function BrechaSection() {
+  const plazas    = 13055
+  const aereo2025 = 455
+  const aereo2017 = 4045
+  const cobertura = Math.round((aereo2025 / plazas) * 100)
+
+  const items = [
+    { label: 'Plazas hoteleras',      sub: 'PUNA 2024 · 7° lugar nacional · Termas de Río Hondo',  value: plazas,   pct: 100 },
+    { label: 'Asientos aéreos 2025',  sub: 'Aerolíneas Argentinas · 2 vuelos/semana',               value: aereo2025, pct: Math.round((aereo2025 / plazas) * 100) },
+    { label: 'Asientos aéreos 2017',  sub: 'pico histórico · antes del colapso',                    value: aereo2017, pct: Math.round((aereo2017 / plazas) * 100) },
+  ]
+
+  return (
+    <section style={{ background: C.paper, padding: 'clamp(56px, 7vw, 88px) var(--pad)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+        <Paralelo />
+        <Eyebrow>Paradoja estructural</Eyebrow>
+      </div>
+      <SectionTitle>Capacidad sin<br />conectividad.</SectionTitle>
+      <p style={{ fontSize: '0.9rem', color: C.slate, maxWidth: 560, margin: '0 0 52px', lineHeight: 1.7 }}>
+        Termas de Río Hondo tiene <strong style={{ color: C.ink }}>13.055 plazas hoteleras</strong> — el 7° stock más grande del país.
+        Pero la conectividad aérea semanal alcanza apenas <strong style={{ color: C.ink }}>{aereo2025} asientos</strong>: el {cobertura}% de su capacidad.
+        En 2017 eran 4.045 asientos semanales. Una decisión política en 2019
+        recortó el 89% de esa conectividad — y nunca se recuperó.
+      </p>
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 32, maxWidth: 640 }}>
+        {items.map((item, i) => (
+          <div key={i}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 10 }}>
+              <div>
+                <span style={{ fontSize: 13, fontWeight: 600, color: C.ink, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{item.label}</span>
+                <span style={{ fontSize: 11, color: C.stone, marginLeft: 12 }}>{item.sub}</span>
+              </div>
+              <span style={{ fontSize: 'clamp(1.2rem, 2vw, 1.6rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.03em' }}>{fmt(item.value)}</span>
+            </div>
+            <div style={{ height: 5, background: C.paper2 }}>
+              <div style={{ height: '100%', width: `${item.pct}%`, background: i === 0 ? C.slate : C.volt }} />
+            </div>
+            <div style={{ fontSize: 11, color: C.stone, marginTop: 6 }}>{item.pct}% de la capacidad hotelera</div>
+          </div>
+        ))}
+      </div>
+
+      <div style={{ marginTop: 52, paddingTop: 32, borderTop: `0.5px solid ${C.stone}40`, display: 'flex', alignItems: 'baseline', gap: 20 }}>
+        <span style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.05em', lineHeight: 1 }}>−89%</span>
+        <div>
+          <div style={{ fontSize: 13, fontWeight: 600, color: C.ink, textTransform: 'uppercase', letterSpacing: '0.06em' }}>caída de conectividad aérea 2017→2025</div>
+          <div style={{ fontSize: 12, color: C.slate, marginTop: 4 }}>de 4.045 a {fmt(aereo2025)} asientos semanales · {cobertura}% de cobertura actual</div>
+        </div>
+      </div>
+
+      <Interpretacion>
+        Con 13.055 plazas, Termas es el centro termal más grande de Sudamérica en oferta hotelera.
+        Pero solo 2 vuelos semanales desde Buenos Aires limitan estructuralmente la demanda lejana.
+        Recuperar el nivel de conectividad de 2017 implicaría multiplicar por 9 el flujo aéreo
+        actual — y con ello, la ocupación, la estadía media y la captura de valor del destino.
+      </Interpretacion>
+    </section>
+  )
+}
+
 // ─── CTA ─────────────────────────────────────────────────────────────────────
 function CTAVolt() {
   return (
@@ -360,6 +403,7 @@ export default function Home() {
       <ChartSection trend={trend} termasLast={termasLast} capitalLast={capitalLast} />
       <DonutSection termasLast={termasLast} />
       <DarkMetrics termasLast={termasLast} capitalLast={capitalLast} periodoStr={periodoStr} />
+      <BrechaSection />
       <CTAVolt />
     </>
   )

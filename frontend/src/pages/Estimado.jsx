@@ -4,7 +4,7 @@ import { useCSV, fmt } from '../hooks/useCSV'
 import { usePeriodo } from '../context/PeriodoContext'
 import { C, Paralelo, VoltLine, Eyebrow, SectionTitle, Interpretacion, Loading, ICONS } from '../components/Atoms'
 
-const VIDEO_URL = 'https://www.pexels.com/es-es/download/video/13277310/'
+const VIDEO_URL = 'https://www.pexels.com/es-es/download/video/9365669/'
 
 function KPICard({ icon: Icon, value, label, delta, dark }) {
   const color = dark ? C.paper : C.ink
@@ -91,7 +91,6 @@ export default function Estimado() {
           <source src={VIDEO_URL} type="video/mp4" />
         </video>
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.93) 0%, rgba(10,10,10,0.78) 35%, rgba(10,10,10,0.38) 65%, rgba(10,10,10,0.10) 100%)' }} />
-        <div style={{ position: 'absolute', top: '8%', right: 'var(--pad)', zIndex: 2, fontSize: 'clamp(7rem,18vw,16rem)', fontWeight: 200, color: C.paper, opacity: 0.05, letterSpacing: '-0.06em', lineHeight: 1, userSelect: 'none', pointerEvents: 'none' }}>ESTIMADO</div>
         <div style={{ position: 'relative', zIndex: 3 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 28 }}>
             <Paralelo /><Eyebrow light>Modelo OLS · Capa 4 · Decision</Eyebrow>
@@ -163,6 +162,18 @@ export default function Estimado() {
           ))}
         </div>
       </section>
+      <section style={{ background: 'var(--paper, #FAFAF7)', padding: 'clamp(40px,5vw,64px) var(--pad)' }}>
+        <Interpretacion>
+        El modelo OLS estima para Termas en marzo 2026: 19.449 viajeros (IC 8.600–30.298).
+        El intervalo de confianza de ±55% refleja la alta variabilidad del destino termal —
+        más sensible a eventos, clima y estacionalidad que la Capital, cuyo IC es de ±18%
+        (15.224 viajeros, IC 12.457–17.991). El modelo opera con R²=0.868 sobre datos
+        históricos EOH 2018–2025. La incertidumbre se reduce con más fuentes: incorporar
+        N2 fiscal y encuesta directa en terminales podría acotar el IC de Termas a ±20–25%.
+        La estimación es el único indicador que cubre el período post-EOH (desde dic 2025).
+          </Interpretacion>
+      </section>
+
     </>
   )
 }

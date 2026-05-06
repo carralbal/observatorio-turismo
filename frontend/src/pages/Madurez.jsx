@@ -3,7 +3,7 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 
 import { useCSV, fmt } from '../hooks/useCSV'
 import { C, Paralelo, VoltLine, Eyebrow, SectionTitle, Interpretacion, Loading, ICONS } from '../components/Atoms'
 
-const VIDEO_URL = 'https://www.pexels.com/download/video/36865241/'
+const VIDEO_URL = 'https://www.pexels.com/download/video/36878094/'
 
 const NIVELES = [
   { n: 1, label: 'Sin sistema', color: 'rgba(250,250,247,0.15)' },
@@ -46,7 +46,6 @@ export default function Madurez() {
           <source src={VIDEO_URL} type="video/mp4" />
         </video>
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.93) 0%, rgba(10,10,10,0.78) 35%, rgba(10,10,10,0.38) 65%, rgba(10,10,10,0.10) 100%)' }} />
-        <div style={{ position: 'absolute', top: '8%', right: 'var(--pad)', zIndex: 2, fontSize: 'clamp(7rem,18vw,16rem)', fontWeight: 200, color: C.paper, opacity: 0.05, letterSpacing: '-0.06em', lineHeight: 1, userSelect: 'none', pointerEvents: 'none' }}>MADUREZ</div>
         <div style={{ position: 'relative', zIndex: 3 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 28 }}>
             <Paralelo /><Eyebrow light>ISTP · Capa 4 · Decision</Eyebrow>
@@ -125,6 +124,19 @@ export default function Madurez() {
         </div>
         <Interpretacion texto={'Las dimensiones marcadas son capacidades ya instaladas en SDE. Las pendientes representan la hoja de ruta del observatorio: fuente fiscal propia (N2) via DGR, medicion de eventos y ciclo institucional son las proximas prioridades.'} />
       </section>
+      <section style={{ background: 'var(--paper, #FAFAF7)', padding: 'clamp(40px,5vw,64px) var(--pad)' }}>
+        <Interpretacion>
+        Santiago del Estero ocupa el puesto 4° entre 24 provincias en el ISTP, con un score
+        de 3,7/5 — nivel "Decide con datos". Tiene activos 6 de 9 indicadores: EOH propia,
+        datos ANAC, tablero público, actualización mensual, medición de eventos y señales
+        anticipadas. Le faltan tres dimensiones: OEDE (empleo sectorial, en proceso), N2
+        fiscal (convenio DGR pendiente) y ciclo institucional formalizado. Cerrar esos tres
+        gaps elevaría el score a 5/5 y llevaría a SDE al nivel de Buenos Aires y CABA — las
+        únicas dos provincias que hoy operan en "Anticipa y optimiza". En el NOA, SDE ya
+        supera a Salta (3.3), Neuquén (3.0) y Tucumán (2.7).
+          </Interpretacion>
+      </section>
+
     </>
   )
 }

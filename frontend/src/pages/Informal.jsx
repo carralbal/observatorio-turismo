@@ -70,7 +70,6 @@ export default function Informal() {
           <source src={VIDEO_URL} type="video/mp4" />
         </video>
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.93) 0%, rgba(10,10,10,0.78) 35%, rgba(10,10,10,0.38) 65%, rgba(10,10,10,0.10) 100%)' }} />
-        <div style={{ position: 'absolute', top: '8%', right: 'var(--pad)', zIndex: 2, fontSize: 'clamp(7rem,18vw,16rem)', fontWeight: 200, color: C.paper, opacity: 0.05, letterSpacing: '-0.06em', lineHeight: 1, userSelect: 'none', pointerEvents: 'none' }}>INFORMAL</div>
         <div style={{ position: 'relative', zIndex: 3 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 28 }}>
             <Paralelo /><Eyebrow light>AirDNA + AirROI · Capa 2 · Señales</Eyebrow>
@@ -205,6 +204,19 @@ export default function Informal() {
         </div>
         <Interpretacion light texto="Comparativa de los dos principales mercados de alquiler temporario de Santiago del Estero segun AirDNA. Termas de Rio Hondo domina en volumen de listings por su perfil termal y estacional. Santiago Capital muestra mayor estabilidad de demanda." />
       </section>
+      <section style={{ background: 'var(--paper, #FAFAF7)', padding: 'clamp(40px,5vw,64px) var(--pad)' }}>
+        <Interpretacion>
+        El mercado de alquiler temporario en Termas registra entre 20 y 34 propiedades activas
+        (AirDNA, mar 2026), con tarifa media de $97.109 ARS/noche y ocupación del 15% en
+        verano — subiendo al 28% en temporada media (octubre). El bajo volumen de listings
+        confirma que Termas no es un destino de alquiler informal masivo: el turismo termal
+        se canaliza principalmente por el sector hotelero formal. El dato vale como señal
+        anticipada: cuando la ocupación AirROI sube, la demanda hotelera lo sigue en 2–4
+        semanas. Una ocupación informal superior al 35% en temporada alta es umbral de
+        alerta para sobrecarga del destino.
+          </Interpretacion>
+      </section>
+
     </>
   )
 }

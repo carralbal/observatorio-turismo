@@ -142,12 +142,6 @@ export default function Aerea() {
           <source src="https://www.pexels.com/es-es/download/video/11044451/" type="video/mp4" />
         </video>
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.93) 0%, rgba(10,10,10,0.78) 35%, rgba(10,10,10,0.38) 65%, rgba(10,10,10,0.10) 100%)' }} />
-        <div style={{
-          position: 'absolute', top: '8%', right: 'var(--pad)', zIndex: 2, pointerEvents: 'none',
-          fontSize: 'clamp(7rem, 18vw, 16rem)', fontWeight: 200,
-          color: C.paper, opacity: 0.022, letterSpacing: '-0.06em',
-          lineHeight: 1, userSelect: 'none', pointerEvents: 'none',
-        }}>AÉREA</div>
 
         <div style={{ position: 'relative', zIndex: 3 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 28 }}>
@@ -326,6 +320,18 @@ export default function Aerea() {
           } />
         </div>
       </section>
+      <section style={{ background: 'var(--paper, #FAFAF7)', padding: 'clamp(40px,5vw,64px) var(--pad)' }}>
+        <Interpretacion>
+        En 2025, el aeropuerto de Termas operó con un load factor del 80,6% — la demanda
+        supera la oferta de frecuencias. Aun así, con 19.822 pasajeros anuales, el destino
+        opera al 9% de su capacidad histórica: en 2017 llegaban 210.000 pasajeros por año.
+        La salida de Aerolíneas Argentinas en 2019 recortó el 89% de esa conectividad y nunca
+        se recuperó. Hoy, 2 vuelos semanales desde Buenos Aires son el principal cuello de
+        botella del turismo termal. Un LF del 80% en Termas no es señal de salud — es señal
+        de mercado reprimido: hay demanda para más frecuencias que no se están operando.
+          </Interpretacion>
+      </section>
+
     </>
   )
 }

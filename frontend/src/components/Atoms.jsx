@@ -128,7 +128,7 @@ export const KPICard = ({ icon: Icon, value, label, delta, light = false, volt =
 )
 
 // ── INTERPRETACIÓN ────────────────────────────────────────────────────────────
-export const Interpretacion = ({ texto, light = false }) => (
+export const Interpretacion = ({ texto, children, light = false }) => (
   <p style={{
     fontSize: '0.85rem', fontWeight: 400,
     color: light ? C.paper : C.slate,
@@ -137,7 +137,7 @@ export const Interpretacion = ({ texto, light = false }) => (
     maxWidth: 640,
     borderLeft: `2px solid ${light ? 'rgba(250,250,247,0.2)' : C.stone}`,
     paddingLeft: 16,
-  }}>{texto}</p>
+  }}>{texto ?? children}</p>
 )
 
 // ── PAGE STUB ─────────────────────────────────────────────────────────────────

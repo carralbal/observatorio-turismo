@@ -86,7 +86,6 @@ export default function Terrestre() {
           <source src={VIDEO_URL} type="video/mp4" />
         </video>
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.93) 0%, rgba(10,10,10,0.78) 35%, rgba(10,10,10,0.38) 65%, rgba(10,10,10,0.10) 100%)' }} />
-        <div style={{ position: 'absolute', top: '8%', right: 'var(--pad)', zIndex: 2, fontSize: 'clamp(7rem,18vw,16rem)', fontWeight: 200, color: C.paper, opacity: 0.05, letterSpacing: '-0.06em', lineHeight: 1, userSelect: 'none', pointerEvents: 'none' }}>TERRESTRE</div>
         <div style={{ position: 'relative', zIndex: 3 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 28 }}>
             <Paralelo /><Eyebrow light>CNRT · Capa 1 · Actividad básica</Eyebrow>
@@ -183,6 +182,18 @@ export default function Terrestre() {
           <Interpretacion light texto={`El load factor del ${lf}% indica que por cada 100 asientos de ómnibus disponibles, ${lf} fueron ocupados en ${anioSel}. `+(lf>=70?'Un LF alto sugiere que la demanda terrestre es sólida.':lf>=50?'Un LF moderado indica equilibrio oferta-demanda.':'Un LF bajo puede reflejar exceso de oferta respecto al mercado.')+' Fuente: CNRT.'} />
         </div>
       </section>
+      <section style={{ background: 'var(--paper, #FAFAF7)', padding: 'clamp(40px,5vw,64px) var(--pad)' }}>
+        <Interpretacion>
+        En 2024, el transporte terrestre hacia SDE transportó 246.334 pasajeros con un load
+        factor del 54,9% — muy por debajo del 66% de 2022. La caída del 39% en pasajeros
+        entre 2023 y 2024 contrasta con el crecimiento aéreo del 6,6% en el mismo período.
+        El bus sigue siendo el modal dominante para el turismo regional NOA, pero pierde
+        volumen año a año. Un LF del 55% indica capacidad ociosa estructural: hay asientos
+        pero no demanda suficiente para llenarlos. La reconversión del perfil de turista
+        — más largo plazo y mayor ingreso — favorece el modo aéreo sobre el terrestre.
+          </Interpretacion>
+      </section>
+
     </>
   )
 }

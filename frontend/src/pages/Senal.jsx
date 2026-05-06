@@ -3,7 +3,7 @@ import { ComposedChart, Area, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, 
 import { useCSV, fmt } from '../hooks/useCSV'
 import { C, Paralelo, VoltLine, Eyebrow, SectionTitle, Interpretacion, Loading, ICONS } from '../components/Atoms'
 
-const VIDEO_URL = 'https://www.pexels.com/es-es/download/video/13277310/'
+const VIDEO_URL = 'https://www.pexels.com/es-es/download/video/17599627/'
 
 function KPICard({ value, label, delta, accent }) {
   return (
@@ -63,7 +63,6 @@ export default function Senal() {
           <source src={VIDEO_URL} type="video/mp4" />
         </video>
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.93) 0%, rgba(10,10,10,0.78) 35%, rgba(10,10,10,0.38) 65%, rgba(10,10,10,0.10) 100%)' }} />
-        <div style={{ position: 'absolute', top: '8%', right: 'var(--pad)', zIndex: 2, fontSize: 'clamp(7rem,18vw,16rem)', fontWeight: 200, color: C.paper, opacity: 0.05, letterSpacing: '-0.06em', lineHeight: 1, userSelect: 'none', pointerEvents: 'none' }}>SEÑAL</div>
         <div style={{ position: 'relative', zIndex: 3 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 28 }}>
             <Paralelo /><Eyebrow light>Google Trends + AirROI · Capa 2 · Senales</Eyebrow>

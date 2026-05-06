@@ -7,7 +7,7 @@ import { C, Paralelo, VoltLine, Eyebrow, SectionTitle, Interpretacion, Loading, 
 const VIDEO_URL = 'https://www.pexels.com/download/video/36865241/'
 
 function KPICard({ value, label, delta, positive }) {
-  const color = positive === undefined ? C.ink : positive ? '#22c55e' : '#ef4444'
+  const color = positive === undefined ? C.ink : positive ? C.volt : C.slate
   return (
     <div style={{ borderLeft: '1px solid '+C.stone, paddingLeft: 'clamp(14px,2vw,24px)' }}>
       <div style={{ fontSize: 'clamp(1.7rem,3vw,3rem)', fontWeight: 200, color, letterSpacing: '-0.045em', lineHeight: 1, marginBottom: 10 }}>{value}</div>
@@ -70,7 +70,6 @@ export default function Nacional() {
           <source src={VIDEO_URL} type="video/mp4" />
         </video>
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.93) 0%, rgba(10,10,10,0.78) 35%, rgba(10,10,10,0.38) 65%, rgba(10,10,10,0.10) 100%)' }} />
-        <div style={{ position: 'absolute', top: '8%', right: 'var(--pad)', zIndex: 2, fontSize: 'clamp(7rem,18vw,16rem)', fontWeight: 200, color: C.paper, opacity: 0.05, letterSpacing: '-0.06em', lineHeight: 1, userSelect: 'none', pointerEvents: 'none' }}>NACIONAL</div>
         <div style={{ position: 'relative', zIndex: 3 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 28 }}>
             <Paralelo /><Eyebrow light>ETI + BCRA · Capa 4 · Decision</Eyebrow>
@@ -134,13 +133,26 @@ export default function Nacional() {
               <ReferenceLine y={0} stroke={C.stone} strokeOpacity={0.3} />
               <Bar dataKey="receptivo" name="Receptivo" fill={C.ink} fillOpacity={0.6} radius={[2,2,0,0]} />
               <Bar dataKey="saldo" name="Saldo balanza" radius={[2,2,0,0]}>
-                {serieAnual.map((s,i) => <Bar key={i} fill={s.saldo >= 0 ? '#22c55e' : '#ef4444'} />)}
+                {serieAnual.map((s,i) => <Bar key={i} fill={s.saldo >= 0 ? C.volt : C.slate} />)}
               </Bar>
             </ComposedChart>
           </ResponsiveContainer>
         </div>
         <Interpretacion texto={'La balanza turistica mide el saldo entre lo que gastan los turistas extranjeros en Argentina (ingresos) y lo que gastan los argentinos en el exterior (egresos). Un saldo negativo sistematico indica que Argentina pierde divisas por turismo — contexto relevante para entender el valor estrategico del turismo interno y la necesidad de aumentar el receptivo internacional. Fuente: ETI INDEC.'} />
       </section>
+      <section style={{ background: 'var(--paper, #FAFAF7)', padding: 'clamp(40px,5vw,64px) var(--pad)' }}>
+        <Interpretacion>
+        La balanza turística nacional muestra el contexto macroeconómico en el que opera
+        el turismo de SDE. La variación del tipo de cambio afecta directamente la
+        competitividad del destino frente al turismo emisivo: cuando el TCN se atrasa,
+        los argentinos prefieren viajar al exterior, reduciendo la demanda interna.
+        El turismo receptivo internacional (ETI) es marginal para SDE — el destino
+        es predominantemente doméstico y regional. La fortaleza del observatorio provincial
+        es precisamente esa: independencia del ciclo internacional y enfoque en la demanda
+        interna NOA y Buenos Aires como principales mercados emisores.
+          </Interpretacion>
+      </section>
+
     </>
   )
 }

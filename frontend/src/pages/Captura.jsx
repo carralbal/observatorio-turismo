@@ -4,7 +4,7 @@ import { useCSV, fmt } from '../hooks/useCSV'
 import { usePeriodo } from '../context/PeriodoContext'
 import { C, Paralelo, VoltLine, Eyebrow, SectionTitle, Interpretacion, Loading, ICONS } from '../components/Atoms'
 
-const VIDEO_URL = 'https://www.pexels.com/es-es/download/video/36865241/'
+const VIDEO_URL = 'https://www.pexels.com/es-es/download/video/5651781/'
 
 function KPICard({ icon: Icon, value, label, delta }) {
   return (
@@ -67,7 +67,6 @@ export default function Captura() {
           <source src={VIDEO_URL} type="video/mp4" />
         </video>
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.93) 0%, rgba(10,10,10,0.78) 35%, rgba(10,10,10,0.38) 65%, rgba(10,10,10,0.10) 100%)' }} />
-        <div style={{ position: 'absolute', top: '8%', right: 'var(--pad)', zIndex: 2, fontSize: 'clamp(7rem,18vw,16rem)', fontWeight: 200, color: C.paper, opacity: 0.05, letterSpacing: '-0.06em', lineHeight: 1, userSelect: 'none', pointerEvents: 'none' }}>CAPTURA</div>
         <div style={{ position: 'relative', zIndex: 3 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 28 }}>
             <Paralelo /><Eyebrow light>EOH + IIBB · Capa 3 · Estructura y Valor</Eyebrow>
@@ -148,6 +147,20 @@ export default function Captura() {
           </div>
         </div>
       </section>
+      <section style={{ background: 'var(--paper, #FAFAF7)', padding: 'clamp(40px,5vw,64px) var(--pad)' }}>
+        <Interpretacion>
+        El ICV del 38% es estable a lo largo de toda la serie disponible — lo que significa
+        que no hubo cambios en la política de formalización: el número no mejora solo.
+        De cada $100 de gasto potencial que genera el turismo en SDE, $38 quedan en el
+        circuito formal y $62 se reparten entre economía informal, consumo fuera del destino
+        y alojamiento no habilitado. Para subirlo, el camino es el N2: un convenio con la
+        DGR-SDE para acceder a datos de IIBB del sector reduciría el error de estimación
+        del 20–35% actual al 8–15%, y daría base para una política activa de formalización
+        sectorial. Cada punto adicional de ICV equivale a mayor recaudación provincial y
+        mayor empleo registrado en el sector.
+          </Interpretacion>
+      </section>
+
     </>
   )
 }

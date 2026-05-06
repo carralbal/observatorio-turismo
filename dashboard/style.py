@@ -200,7 +200,7 @@ def kpi_card(valor: str, label: str, delta: str = ""):
         f"opacity:0.8;margin:3px 0 0 0'>{delta}</p>"
     ) if delta else ""
     st.markdown(
-        f"<div style='padding-right:12px'>"
+        f"<div style='background:#F2F2EE;border-radius:6px;padding:18px 16px 20px 16px'>"
         f"<div style='font-size:2.4rem;font-weight:200;color:#0A0A0A;"
         f"line-height:1;letter-spacing:-0.025em'>{valor}</div>"
         f"<div style='width:32px;height:2px;background:#FFFF00;margin:10px 0'></div>"

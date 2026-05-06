@@ -77,7 +77,6 @@ export default function Empleo() {
           <source src={VIDEO_URL} type="video/mp4" />
         </video>
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.93) 0%, rgba(10,10,10,0.78) 35%, rgba(10,10,10,0.38) 65%, rgba(10,10,10,0.10) 100%)' }} />
-        <div style={{ position: 'absolute', top: '8%', right: 'var(--pad)', zIndex: 2, fontSize: 'clamp(7rem,18vw,16rem)', fontWeight: 200, color: C.paper, opacity: 0.05, letterSpacing: '-0.06em', lineHeight: 1, userSelect: 'none', pointerEvents: 'none' }}>EMPLEO</div>
         <div style={{ position: 'relative', zIndex: 3 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 28 }}>
             <Paralelo /><Eyebrow light>SIPA-AFIP / OEDE · Capa 3 · Estructura y Valor</Eyebrow>
@@ -180,6 +179,19 @@ export default function Empleo() {
         </div>
         <Interpretacion light texto={'El indice de empleo HyG (base 100 = promedio 2019) permite visualizar la recuperacion post-pandemia. Un valor por encima de 100 indica superacion del nivel prepandemia. SDE alcanza indice '+Math.round((empActual/emp2019)*100)+' en '+fechaActual+'. Fuente: SIPA-AFIP.'} />
       </section>
+      <section style={{ background: 'var(--paper, #FAFAF7)', padding: 'clamp(40px,5vw,64px) var(--pad)' }}>
+        <Interpretacion>
+        Al primer trimestre 2025, el sector Hotelería y Gastronomía de SDE registra 3.008
+        empleos formales (SIPA-AFIP). El pico reciente fue septiembre 2024 con 3.370 puestos
+        — una caída estacional del 10,7% hacia el verano, consistente con la baja demanda
+        termal en meses cálidos. En contexto NOA, Tucumán lidera con 5.197 empleos HyG:
+        SDE representa el 58% de ese stock pese a tener el mayor destino termal de la región.
+        La diferencia refleja el peso de la informalidad laboral: los empleos no registrados
+        no aparecen aquí. Una estrategia de formalización ampliaría tanto el stock medible
+        como la recaudación provincial vía contribuciones patronales.
+          </Interpretacion>
+      </section>
+
     </>
   )
 }
