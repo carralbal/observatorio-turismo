@@ -134,13 +134,16 @@ export default function Aerea() {
     <>
       {/* ── HERO ── */}
       <section style={{
-        background: C.ink, minHeight: '42vh',
+        position: 'relative', minHeight: '42vh', overflow: 'hidden',
         padding: 'clamp(64px, 8vw, 96px) var(--pad) clamp(48px, 6vw, 72px)',
         display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
-        position: 'relative', overflow: 'hidden',
       }}>
+        <video autoPlay loop muted playsInline style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }}>
+          <source src="https://www.pexels.com/es-es/download/video/11044451/" type="video/mp4" />
+        </video>
+        <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.93) 0%, rgba(10,10,10,0.78) 35%, rgba(10,10,10,0.38) 65%, rgba(10,10,10,0.10) 100%)' }} />
         <div style={{
-          position: 'absolute', top: '8%', right: 'var(--pad)',
+          position: 'absolute', top: '8%', right: 'var(--pad)', zIndex: 2,
           fontSize: 'clamp(7rem, 18vw, 16rem)', fontWeight: 200,
           color: C.paper, opacity: 0.022, letterSpacing: '-0.06em',
           lineHeight: 1, userSelect: 'none', pointerEvents: 'none',
