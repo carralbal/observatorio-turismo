@@ -59,7 +59,7 @@ function Hero({ termasLast, capitalLast, periodoStr }) {
       <video autoPlay loop muted playsInline style={{
         position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0,
       }}>
-        <source src="https://www.pexels.com/download/video/36119068/" type="video/mp4" />
+        <source src="https://www.pexels.com/es-es/download/video/13277310/" type="video/mp4" />
       </video>
       <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.94) 0%, rgba(10,10,10,0.80) 30%, rgba(10,10,10,0.42) 58%, rgba(10,10,10,0.14) 100%)' }} />
       <img src={ESCUDO} alt="" aria-hidden="true" style={{
