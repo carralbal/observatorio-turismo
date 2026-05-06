@@ -136,3 +136,12 @@ app.py (Pulso SDE):       hero_video, kpi_card x4, donut SVG, lectura_destacada,
 - Volt como fondo completo: solo cta_volt(), max 1 vez por página
 - Volt en paralelogramos: max 3 por página
 - Peso 800: reservado para cta_volt() y wordmarks exclusivamente
+
+---
+
+## 9. Navegación por capas (4 capas)
+
+CAPA 1 · ACTIVIDAD       → Pulso SDE · Aérea · Terrestre · MotoGP
+CAPA 2 · SEÑALES          → Señal IBT · Informal · Imagen Destino
+CAPA 3 · ESTRUCTURA Y VALOR → Empleo · Captura · Perfil · Benchmark
+CAPA 4 · DECISIÓN         → Estimado OLS · Madurez · Nacional
