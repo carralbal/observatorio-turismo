@@ -7,6 +7,7 @@ import EmpleoP from './pages/Empleo'
 import InformalP from './pages/Informal'
 import ImagenP from './pages/Imagen'
 import EstimadoP from './pages/Estimado'
+import MotoGPP from './pages/MotoGP'
 import {
  Nacional,
   MotoGP, Señal, Benchmark, Captura, Madurez,
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
       { path: 'informal',     element: <InformalP /> },
       { path: 'empleo',       element: <EmpleoP /> },
       { path: 'nacional',     element: <Nacional /> },
-      { path: 'motogp',       element: <MotoGP /> },
+      { path: 'motogp',       element: <MotoGPP /> },
       { path: 'señal',        element: <Señal /> },
       { path: 'benchmark',    element: <Benchmark /> },
       { path: 'captura',      element: <Captura /> },
