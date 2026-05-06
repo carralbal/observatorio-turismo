@@ -3,8 +3,9 @@ import Layout from './components/Layout'
 import Home from './pages/Home'
 import Aerea from './pages/Aerea'
 import TerrestreP from './pages/Terrestre'
+import EmpleoP from './pages/Empleo'
 import {
-  Informal, Empleo, Nacional,
+  Informal, Nacional,
   MotoGP, Señal, Benchmark, Captura, Madurez,
   Imagen, Estimado, Perfil,
 } from './pages/Stubs'
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
       { path: 'aerea',        element: <Aerea /> },
       { path: 'terrestre',    element: <TerrestreP /> },
       { path: 'informal',     element: <Informal /> },
-      { path: 'empleo',       element: <Empleo /> },
+      { path: 'empleo',       element: <EmpleoP /> },
       { path: 'nacional',     element: <Nacional /> },
       { path: 'motogp',       element: <MotoGP /> },
       { path: 'señal',        element: <Señal /> },
