@@ -2,8 +2,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Layout from './components/Layout'
 import Home from './pages/Home'
 import Aerea from './pages/Aerea'
+import TerrestreP from './pages/Terrestre'
 import {
-  Terrestre, Informal, Empleo, Nacional,
+  Informal, Empleo, Nacional,
   MotoGP, Señal, Benchmark, Captura, Madurez,
   Imagen, Estimado, Perfil,
 } from './pages/Stubs'
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
     children: [
       { index: true,          element: <Home /> },
       { path: 'aerea',        element: <Aerea /> },
-      { path: 'terrestre',    element: <Terrestre /> },
+      { path: 'terrestre',    element: <TerrestreP /> },
       { path: 'informal',     element: <Informal /> },
       { path: 'empleo',       element: <Empleo /> },
       { path: 'nacional',     element: <Nacional /> },

@@ -143,22 +143,24 @@ export default function Aerea() {
         </video>
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.93) 0%, rgba(10,10,10,0.78) 35%, rgba(10,10,10,0.38) 65%, rgba(10,10,10,0.10) 100%)' }} />
         <div style={{
-          position: 'absolute', top: '8%', right: 'var(--pad)', zIndex: 2,
+          position: 'absolute', top: '8%', right: 'var(--pad)', zIndex: 2, pointerEvents: 'none',
           fontSize: 'clamp(7rem, 18vw, 16rem)', fontWeight: 200,
           color: C.paper, opacity: 0.022, letterSpacing: '-0.06em',
           lineHeight: 1, userSelect: 'none', pointerEvents: 'none',
         }}>AÉREA</div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 28 }}>
-          <Paralelo />
-          <Eyebrow light>ANAC · Capa 1 · Actividad básica</Eyebrow>
+        <div style={{ position: 'relative', zIndex: 3 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 28 }}>
+            <Paralelo />
+            <Eyebrow light>ANAC · Capa 1 · Actividad básica</Eyebrow>
+          </div>
+          <h1 style={{ fontSize: 'clamp(2.4rem, 5vw, 5rem)', fontWeight: 200, color: C.paper, letterSpacing: '-0.04em', lineHeight: 1, margin: '0 0 16px' }}>
+            Infraestructura<br />Aérea.
+          </h1>
+          <p style={{ fontSize: '0.9rem', fontWeight: 300, color: C.paper, opacity: 0.6, maxWidth: 400, lineHeight: 1.65, margin: 0 }}>
+            Pasajeros, vuelos y load factor en el aeropuerto de Santiago del Estero. Datos por ruta y aerolínea.
+          </p>
         </div>
-        <h1 style={{ fontSize: 'clamp(2.4rem, 5vw, 5rem)', fontWeight: 200, color: C.paper, letterSpacing: '-0.04em', lineHeight: 1, margin: '0 0 16px' }}>
-          Infraestructura<br />Aérea.
-        </h1>
-        <p style={{ fontSize: '0.9rem', fontWeight: 300, color: C.paper, opacity: 0.6, maxWidth: 400, lineHeight: 1.65, margin: 0 }}>
-          Pasajeros, vuelos y load factor en el aeropuerto de Santiago del Estero. Datos por ruta y aerolínea.
-        </p>
       </section>
 
       {/* ── KPIS ── */}
@@ -217,56 +219,73 @@ export default function Aerea() {
         } />
       </section>
 
-      {/* ── AEROLÍNEAS + RUTAS ── */}
+      {/* ── AEROLÍNEAS ── */}
       <section style={{ background: C.paper, padding: 'clamp(56px, 7vw, 80px) var(--pad)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(32px, 5vw, 72px)', alignItems: 'flex-start' }}>
-
-          <div>
-            <SectionTitle icon={ICONS.aereo} context={periodoStr} main="Por aerolínea" style={{ marginBottom: 36 }} />
-            <div style={{ height: 'clamp(180px, 22vw, 260px)' }}>
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart layout="vertical" data={aereolineas} margin={{ top: 0, right: 40, left: 0, bottom: 0 }}>
-                  <XAxis type="number" tick={{ fill: C.stone, fontSize: 9.5, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} tickFormatter={v => fmt(v)} />
-                  <YAxis type="category" dataKey="aerolinea" tick={{ fill: C.slate, fontSize: 10.5, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} width={86} />
-                  <Tooltip content={<BarTip />} cursor={{ fill: 'rgba(10,10,10,0.04)' }} />
-                  <Bar dataKey="pasajeros" radius={[0, 2, 2, 0]}>
-                    {aereolineas.map((_, i) => <Cell key={i} fill={i === 0 ? C.ink : C.stone} />)}
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-
-          <div>
-            <SectionTitle icon={ICONS.aereo} context={periodoStr} main="Rutas principales" style={{ marginBottom: 36 }} />
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-              {rutas.map((r, i) => {
-                const maxPax = rutas[0]?.pasajeros || 1
-                const pct    = Math.round((r.pasajeros / maxPax) * 100)
-                const parts  = r.ruta.split('↔').map(s => s.trim())
-                const label  = parts.find(p => !p.includes('Santiago del Estero')) || r.ruta
-                const lfRuta = r.asientos > 0 ? Math.round((r.pasajeros / r.asientos) * 100) : 0
-                return (
-                  <div key={i} style={{ padding: '12px 0', borderBottom: `0.5px solid ${C.stone}` }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                      <span style={{ fontSize: 12, fontWeight: 400, color: C.ink }}>{label}</span>
-                      <span style={{ fontSize: 12, fontWeight: 200, color: C.ink, letterSpacing: '-0.02em' }}>{fmt(r.pasajeros)}</span>
-                    </div>
-                    <div style={{ height: 2, background: C.stone, borderRadius: 1, overflow: 'hidden' }}>
-                      <div style={{ height: '100%', width: `${pct}%`, background: i === 0 ? C.ink : C.stone, opacity: i === 0 ? 1 : 0.5 }} />
-                    </div>
-                    <div style={{ display: 'flex', gap: 16, marginTop: 5 }}>
-                      <span style={{ fontSize: 10, color: C.slate, opacity: 0.65 }}>{fmt(r.vuelos, 0)} vuelos</span>
-                      <span style={{ fontSize: 10, color: C.slate, opacity: 0.65 }}>LF: {lfRuta}%</span>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 48, flexWrap: 'wrap', gap: 16 }}>
+          <SectionTitle icon={ICONS.aereo} context={periodoStr} main="Por aerolínea" />
+          <Eyebrow style={{ opacity: 0.5 }}>{aereolineas.length} empresas activas · {periodoStr}</Eyebrow>
         </div>
+        <div style={{ height: 'clamp(240px, 30vw, 360px)' }}>
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart layout="vertical" data={aereolineas} margin={{ top: 0, right: 100, left: 0, bottom: 0 }}>
+              <XAxis type="number" tick={{ fill: C.stone, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} tickFormatter={v => fmt(v)} />
+              <YAxis type="category" dataKey="aerolinea" tick={{ fill: C.ink, fontSize: 13, fontFamily: 'Plus Jakarta Sans', fontWeight: 400 }} tickLine={false} axisLine={false} width={120} />
+              <Tooltip content={<BarTip />} cursor={{ fill: 'rgba(10,10,10,0.04)' }} />
+              <Bar dataKey="pasajeros" name="Pasajeros" radius={[0, 3, 3, 0]}>
+                {aereolineas.map((_, i) => <Cell key={i} fill={i === 0 ? C.ink : i === 1 ? C.slate : C.stone} fillOpacity={i === 0 ? 1 : 0.55} />)}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+        <Interpretacion texto={aereolineas.length > 0 ? `${aereolineas[0].aerolinea} lidera el mercado con ${fmt(aereolineas[0].pasajeros)} pasajeros en ${periodoStr}. Operan ${aereolineas.length} aerolíneas con servicios a Santiago del Estero.` : 'Sin datos.'} />
       </section>
 
+      {/* ── RUTAS PREMIUM ── */}
+      <section style={{ background: C.ink, padding: 'clamp(56px, 7vw, 80px) var(--pad)' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 48, flexWrap: 'wrap', gap: 16 }}>
+          <SectionTitle icon={ICONS.aereo} context={periodoStr} main="Rutas principales" light />
+          <Eyebrow light style={{ opacity: 0.4 }}>Pasajeros por ruta · {periodoStr}</Eyebrow>
+        </div>
+        <div>
+          {(() => {
+            const totalPax = rutas.reduce((a, b) => a + b.pasajeros, 0)
+            return rutas.map((r, i) => {
+              const maxPax = rutas[0]?.pasajeros || 1
+              const pct    = Math.round((r.pasajeros / maxPax) * 100)
+              const parts  = r.ruta.split('↔').map(s => s.trim())
+              const label  = parts.find(p => !p.includes('Santiago del Estero')) || r.ruta
+              const lfRuta = r.asientos > 0 ? Math.round((r.pasajeros / r.asientos) * 100) : 0
+              const pctTot = totalPax > 0 ? Math.round((r.pasajeros / totalPax) * 100) : 0
+              return (
+                <div key={i} style={{ display: 'grid', gridTemplateColumns: 'clamp(32px,4vw,56px) 1fr clamp(80px,12vw,160px)', gap: 'clamp(16px,3vw,40px)', alignItems: 'center', padding: 'clamp(18px,2.5vw,28px) 0', borderBottom: '0.5px solid rgba(250,250,247,0.1)' }}>
+                  <div style={{ fontSize: 'clamp(2rem,3.5vw,4rem)', fontWeight: 200, color: i === 0 ? C.paper : C.stone, letterSpacing: '-0.05em', lineHeight: 1, opacity: i === 0 ? 1 : 0.28 }}>
+                    {String(i + 1).padStart(2, '0')}
+                  </div>
+                  <div>
+                    <div style={{ fontSize: 'clamp(0.9rem,1.3vw,1.15rem)', fontWeight: 400, color: C.paper, marginBottom: 10, lineHeight: 1.3 }}>{label}</div>
+                    <div style={{ display: 'flex', gap: 'clamp(12px,2vw,24px)', marginBottom: 12, flexWrap: 'wrap' }}>
+                      <span style={{ fontSize: 11, color: C.stone, opacity: 0.7 }}>{fmt(r.vuelos, 0)} vuelos</span>
+                      <span style={{ fontSize: 11, color: C.stone, opacity: 0.7 }}>LF: {lfRuta}%</span>
+                      <span style={{ fontSize: 11, color: C.stone, opacity: 0.7 }}>{fmt(r.asientos)} asientos</span>
+                    </div>
+                    <div style={{ height: 2, background: 'rgba(250,250,247,0.08)', borderRadius: 2, overflow: 'hidden' }}>
+                      <div style={{ height: '100%', width: pct + '%', background: i === 0 ? C.paper : C.stone, opacity: i === 0 ? 1 : 0.4 }} />
+                    </div>
+                  </div>
+                  <div style={{ textAlign: 'right' }}>
+                    <div style={{ fontSize: 'clamp(1.4rem,2.5vw,2.5rem)', fontWeight: 200, color: C.paper, letterSpacing: '-0.04em', lineHeight: 1, marginBottom: 6 }}>{fmt(r.pasajeros)}</div>
+                    <div style={{ fontSize: 10, color: C.stone, opacity: 0.55, marginBottom: 8 }}>pasajeros</div>
+                    <div style={{ display: 'inline-block', padding: '4px 10px', background: i === 0 ? C.paper : 'rgba(250,250,247,0.08)', borderRadius: 2 }}>
+                      <span style={{ fontSize: 10, fontWeight: 500, color: i === 0 ? C.ink : C.stone, letterSpacing: '0.05em' }}>{pctTot}%</span>
+                    </div>
+                  </div>
+                </div>
+              )
+            })
+          })()}
+        </div>
+        <Interpretacion light texto={rutas.length > 0 ? `La ruta hacia ${rutas[0]?.ruta.split('\u2194').find(s => !s.includes('Santiago del Estero'))?.trim() ?? rutas[0]?.ruta} lidera el tráfico aéreo de SDE. Fuente: ANAC — datos de vuelos regulares de cabotaje e internacionales.` : 'Sin datos de rutas para el período.'} />
+      </section>
       {/* ── LOAD FACTOR ── */}
       <section style={{
         background: C.ink, padding: 'clamp(56px, 7vw, 80px) var(--pad)',
