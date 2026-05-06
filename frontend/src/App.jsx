@@ -6,6 +6,7 @@ import TerrestreP from './pages/Terrestre'
 import EmpleoP from './pages/Empleo'
 import InformalP from './pages/Informal'
 import ImagenP from './pages/Imagen'
+import EstimadoP from './pages/Estimado'
 import {
  Nacional,
   MotoGP, Señal, Benchmark, Captura, Madurez,
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
       { path: 'captura',      element: <Captura /> },
       { path: 'madurez',      element: <Madurez /> },
       { path: 'imagen',       element: <ImagenP /> },
-      { path: 'estimado',     element: <Estimado /> },
+      { path: 'estimado',     element: <EstimadoP /> },
       { path: 'perfil',       element: <Perfil /> },
     ],
   },
