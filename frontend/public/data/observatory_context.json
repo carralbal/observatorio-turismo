@@ -1,0 +1,732 @@
+{
+  "pulso": [
+    {
+      "localidad": "Santiago del Estero",
+      "anio": 2025,
+      "mes": 11,
+      "viajeros_total": 20774.0,
+      "pernoctes_total": 31297.0,
+      "estadia_promedio": 1.5099999904632568
+    },
+    {
+      "localidad": "Termas",
+      "anio": 2025,
+      "mes": 11,
+      "viajeros_total": 27520.0,
+      "pernoctes_total": 56530.0,
+      "estadia_promedio": 2.049999952316284
+    },
+    {
+      "localidad": "Santiago del Estero",
+      "anio": 2025,
+      "mes": 10,
+      "viajeros_total": 20764.0,
+      "pernoctes_total": 35378.0,
+      "estadia_promedio": 1.7000000476837158
+    },
+    {
+      "localidad": "Termas",
+      "anio": 2025,
+      "mes": 10,
+      "viajeros_total": 34194.0,
+      "pernoctes_total": 73224.0,
+      "estadia_promedio": 2.140000104904175
+    },
+    {
+      "localidad": "Santiago del Estero",
+      "anio": 2025,
+      "mes": 9,
+      "viajeros_total": 21695.0,
+      "pernoctes_total": 35179.0,
+      "estadia_promedio": 1.6200000047683716
+    },
+    {
+      "localidad": "Termas",
+      "anio": 2025,
+      "mes": 9,
+      "viajeros_total": 49412.0,
+      "pernoctes_total": 113136.0,
+      "estadia_promedio": 2.2899999618530273
+    },
+    {
+      "localidad": "Santiago del Estero",
+      "anio": 2025,
+      "mes": 8,
+      "viajeros_total": 24850.0,
+      "pernoctes_total": 37356.0,
+      "estadia_promedio": 1.5
+    },
+    {
+      "localidad": "Termas",
+      "anio": 2025,
+      "mes": 8,
+      "viajeros_total": 56678.0,
+      "pernoctes_total": 132040.0,
+      "estadia_promedio": 2.3299999237060547
+    },
+    {
+      "localidad": "Santiago del Estero",
+      "anio": 2025,
+      "mes": 7,
+      "viajeros_total": 30087.0,
+      "pernoctes_total": 51373.0,
+      "estadia_promedio": 1.7100000381469727
+    },
+    {
+      "localidad": "Termas",
+      "anio": 2025,
+      "mes": 7,
+      "viajeros_total": 87658.0,
+      "pernoctes_total": 242071.0,
+      "estadia_promedio": 2.759999990463257
+    },
+    {
+      "localidad": "Santiago del Estero",
+      "anio": 2025,
+      "mes": 6,
+      "viajeros_total": 24993.0,
+      "pernoctes_total": 36738.0,
+      "estadia_promedio": 1.4700000286102295
+    },
+    {
+      "localidad": "Termas",
+      "anio": 2025,
+      "mes": 6,
+      "viajeros_total": 51866.0,
+      "pernoctes_total": 119987.0,
+      "estadia_promedio": 2.309999942779541
+    },
+    {
+      "localidad": "Santiago del Estero",
+      "anio": 2025,
+      "mes": 5,
+      "viajeros_total": 24426.0,
+      "pernoctes_total": 38728.0,
+      "estadia_promedio": 1.590000033378601
+    },
+    {
+      "localidad": "Termas",
+      "anio": 2025,
+      "mes": 5,
+      "viajeros_total": 49558.0,
+      "pernoctes_total": 129732.0,
+      "estadia_promedio": 2.619999885559082
+    },
+    {
+      "localidad": "Santiago del Estero",
+      "anio": 2025,
+      "mes": 4,
+      "viajeros_total": 21906.0,
+      "pernoctes_total": 36118.0,
+      "estadia_promedio": 1.649999976158142
+    },
+    {
+      "localidad": "Termas",
+      "anio": 2025,
+      "mes": 4,
+      "viajeros_total": 40548.0,
+      "pernoctes_total": 100844.0,
+      "estadia_promedio": 2.490000009536743
+    },
+    {
+      "localidad": "Santiago del Estero",
+      "anio": 2025,
+      "mes": 3,
+      "viajeros_total": 21136.0,
+      "pernoctes_total": 35934.0,
+      "estadia_promedio": 1.7000000476837158
+    },
+    {
+      "localidad": "Termas",
+      "anio": 2025,
+      "mes": 3,
+      "viajeros_total": 42150.0,
+      "pernoctes_total": 109354.0,
+      "estadia_promedio": 2.5899999141693115
+    },
+    {
+      "localidad": "Santiago del Estero",
+      "anio": 2025,
+      "mes": 2,
+      "viajeros_total": 16566.0,
+      "pernoctes_total": 30099.0,
+      "estadia_promedio": 1.8200000524520874
+    },
+    {
+      "localidad": "Termas",
+      "anio": 2025,
+      "mes": 2,
+      "viajeros_total": 16120.0,
+      "pernoctes_total": 38274.0,
+      "estadia_promedio": 2.369999885559082
+    },
+    {
+      "localidad": "Santiago del Estero",
+      "anio": 2025,
+      "mes": 1,
+      "viajeros_total": 16335.0,
+      "pernoctes_total": 26859.0,
+      "estadia_promedio": 1.6399999856948853
+    },
+    {
+      "localidad": "Termas",
+      "anio": 2025,
+      "mes": 1,
+      "viajeros_total": 16780.0,
+      "pernoctes_total": 41512.0,
+      "estadia_promedio": 2.4700000286102295
+    },
+    {
+      "localidad": "Santiago del Estero",
+      "anio": 2024,
+      "mes": 12,
+      "viajeros_total": 20244.0,
+      "pernoctes_total": 36744.0,
+      "estadia_promedio": 1.8200000524520874
+    },
+    {
+      "localidad": "Termas",
+      "anio": 2024,
+      "mes": 12,
+      "viajeros_total": 17885.0,
+      "pernoctes_total": 42433.0,
+      "estadia_promedio": 2.369999885559082
+    }
+  ],
+  "aereo_anual": [
+    {
+      "anio": 2026,
+      "pasajeros": 47896.0,
+      "asientos": 55806.0,
+      "vuelos": 446.0
+    },
+    {
+      "anio": 2025,
+      "pasajeros": 242599.0,
+      "asientos": 284370.0,
+      "vuelos": 2226.0
+    },
+    {
+      "anio": 2024,
+      "pasajeros": 227580.0,
+      "asientos": 269726.0,
+      "vuelos": 2070.0
+    },
+    {
+      "anio": 2023,
+      "pasajeros": 249387.0,
+      "asientos": 287958.0,
+      "vuelos": 2089.0
+    },
+    {
+      "anio": 2022,
+      "pasajeros": 197365.0,
+      "asientos": 230388.0,
+      "vuelos": 1722.0
+    },
+    {
+      "anio": 2021,
+      "pasajeros": 77288.0,
+      "asientos": 95905.0,
+      "vuelos": 982.0
+    },
+    {
+      "anio": 2020,
+      "pasajeros": 26826.0,
+      "asientos": 33172.0,
+      "vuelos": 318.0
+    },
+    {
+      "anio": 2019,
+      "pasajeros": 153825.0,
+      "asientos": 193174.0,
+      "vuelos": 1641.0
+    }
+  ],
+  "terrestre_anual": [
+    {
+      "anio": 2024,
+      "pasajeros": 246334.0,
+      "asientos": 699488.0,
+      "viajes": 12005.0
+    },
+    {
+      "anio": 2023,
+      "pasajeros": 407465.0,
+      "asientos": 1010836.0,
+      "viajes": 17267.0
+    },
+    {
+      "anio": 2022,
+      "pasajeros": 561703.0,
+      "asientos": 929672.0,
+      "viajes": 16020.0
+    },
+    {
+      "anio": 2021,
+      "pasajeros": 272516.0,
+      "asientos": 475729.0,
+      "viajes": 8182.0
+    },
+    {
+      "anio": 2020,
+      "pasajeros": 132448.0,
+      "asientos": 213504.0,
+      "viajes": 3888.0
+    },
+    {
+      "anio": 2019,
+      "pasajeros": 567727.0,
+      "asientos": 1078636.0,
+      "viajes": 19635.0
+    }
+  ],
+  "empleo": [
+    {
+      "provincia": "CABA",
+      "fecha": "2025-03-01 00:00:00",
+      "empleo_registrado": 100457
+    },
+    {
+      "provincia": "Buenos Aires",
+      "fecha": "2025-03-01 00:00:00",
+      "empleo_registrado": 98088
+    },
+    {
+      "provincia": "Córdoba",
+      "fecha": "2025-03-01 00:00:00",
+      "empleo_registrado": 24717
+    },
+    {
+      "provincia": "Santa Fe",
+      "fecha": "2025-03-01 00:00:00",
+      "empleo_registrado": 15148
+    },
+    {
+      "provincia": "Mendoza",
+      "fecha": "2025-03-01 00:00:00",
+      "empleo_registrado": 13533
+    },
+    {
+      "provincia": "Río Negro",
+      "fecha": "2025-03-01 00:00:00",
+      "empleo_registrado": 10414
+    },
+    {
+      "provincia": "Neuquén",
+      "fecha": "2025-03-01 00:00:00",
+      "empleo_registrado": 10110
+    },
+    {
+      "provincia": "Tucumán",
+      "fecha": "2025-03-01 00:00:00",
+      "empleo_registrado": 5197
+    },
+    {
+      "provincia": "Santa Cruz",
+      "fecha": "2025-03-01 00:00:00",
+      "empleo_registrado": 5181
+    },
+    {
+      "provincia": "Misiones",
+      "fecha": "2025-03-01 00:00:00",
+      "empleo_registrado": 4846
+    }
+  ],
+  "informal": [
+    {
+      "fecha": "2026-03-01 00:00:00",
+      "occ_pct_airroi": 15.0,
+      "adr_ars": 97109.6,
+      "listings": 20.0,
+      "los_dias": 5.48
+    },
+    {
+      "fecha": "2026-02-01 00:00:00",
+      "occ_pct_airroi": 25.0,
+      "adr_ars": 74178.4,
+      "listings": 20.0,
+      "los_dias": 5.51
+    },
+    {
+      "fecha": "2026-01-01 00:00:00",
+      "occ_pct_airroi": 18.0,
+      "adr_ars": 73033.0,
+      "listings": 34.0,
+      "los_dias": 10.04
+    },
+    {
+      "fecha": "2025-12-01 00:00:00",
+      "occ_pct_airroi": 9.0,
+      "adr_ars": 74051.3,
+      "listings": 35.0,
+      "los_dias": 2.32
+    },
+    {
+      "fecha": "2025-11-01 00:00:00",
+      "occ_pct_airroi": 21.0,
+      "adr_ars": 49092.3,
+      "listings": 24.0,
+      "los_dias": 3.56
+    },
+    {
+      "fecha": "2025-10-01 00:00:00",
+      "occ_pct_airroi": 28.000000000000004,
+      "adr_ars": 54120.3,
+      "listings": 30.0,
+      "los_dias": 4.8
+    },
+    {
+      "fecha": "2025-09-01 00:00:00",
+      "occ_pct_airroi": 28.999999999999996,
+      "adr_ars": 91158.4,
+      "listings": 30.0,
+      "los_dias": 4.91
+    },
+    {
+      "fecha": "2025-08-01 00:00:00",
+      "occ_pct_airroi": 22.0,
+      "adr_ars": 92240.7,
+      "listings": 37.0,
+      "los_dias": 2.29
+    },
+    {
+      "fecha": "2025-07-01 00:00:00",
+      "occ_pct_airroi": 33.0,
+      "adr_ars": 110523.5,
+      "listings": 34.0,
+      "los_dias": 2.98
+    },
+    {
+      "fecha": "2025-06-01 00:00:00",
+      "occ_pct_airroi": 12.0,
+      "adr_ars": 112917.4,
+      "listings": 23.0,
+      "los_dias": 9.78
+    },
+    {
+      "fecha": "2025-05-01 00:00:00",
+      "occ_pct_airroi": 11.0,
+      "adr_ars": 137029.4,
+      "listings": 32.0,
+      "los_dias": 4.02
+    },
+    {
+      "fecha": "2025-04-01 00:00:00",
+      "occ_pct_airroi": 21.0,
+      "adr_ars": 76021.6,
+      "listings": 49.0,
+      "los_dias": 2.3
+    }
+  ],
+  "captura": [
+    {
+      "fecha": "2025-11-01 00:00:00",
+      "anio": 2025,
+      "viajeros_total": 24287.0,
+      "icv_pct": 38.0,
+      "ingreso_potencial_usd": 456111.0,
+      "ingreso_capturado_ars": 251953338.0
+    },
+    {
+      "fecha": "2025-10-01 00:00:00",
+      "anio": 2025,
+      "viajeros_total": 27583.0,
+      "icv_pct": 38.0,
+      "ingreso_potencial_usd": 559806.0,
+      "ingreso_capturado_ars": 311301738.0
+    },
+    {
+      "fecha": "2025-09-01 00:00:00",
+      "anio": 2025,
+      "viajeros_total": 35645.0,
+      "icv_pct": 38.0,
+      "ingreso_potencial_usd": 786674.0,
+      "ingreso_capturado_ars": 424638885.0
+    },
+    {
+      "fecha": "2025-08-01 00:00:00",
+      "anio": 2025,
+      "viajeros_total": 40861.0,
+      "icv_pct": 38.0,
+      "ingreso_potencial_usd": 950929.0,
+      "ingreso_capturado_ars": 484448016.0
+    },
+    {
+      "fecha": "2025-07-01 00:00:00",
+      "anio": 2025,
+      "viajeros_total": 59037.0,
+      "icv_pct": 38.0,
+      "ingreso_potencial_usd": 1717274.0,
+      "ingreso_capturado_ars": 837912141.0
+    },
+    {
+      "fecha": "2025-06-01 00:00:00",
+      "anio": 2025,
+      "viajeros_total": 38740.0,
+      "icv_pct": 38.0,
+      "ingreso_potencial_usd": 990901.0,
+      "ingreso_capturado_ars": 450468720.0
+    },
+    {
+      "fecha": "2025-05-01 00:00:00",
+      "anio": 2025,
+      "viajeros_total": 37090.0,
+      "icv_pct": 38.0,
+      "ingreso_potencial_usd": 1087320.0,
+      "ingreso_capturado_ars": 482021640.0
+    },
+    {
+      "fecha": "2025-04-01 00:00:00",
+      "anio": 2025,
+      "viajeros_total": 31403.0,
+      "icv_pct": 38.0,
+      "ingreso_potencial_usd": 904188.0,
+      "ingreso_capturado_ars": 392003649.0
+    },
+    {
+      "fecha": "2025-03-01 00:00:00",
+      "anio": 2025,
+      "viajeros_total": 31842.0,
+      "icv_pct": 38.0,
+      "ingreso_potencial_usd": 1009343.0,
+      "ingreso_capturado_ars": 417448620.0
+    },
+    {
+      "fecha": "2025-02-01 00:00:00",
+      "anio": 2025,
+      "viajeros_total": 16510.0,
+      "icv_pct": 38.0,
+      "ingreso_potencial_usd": 489436.0,
+      "ingreso_capturado_ars": 200447910.0
+    },
+    {
+      "fecha": "2025-01-01 00:00:00",
+      "anio": 2025,
+      "viajeros_total": 16701.0,
+      "icv_pct": 38.0,
+      "ingreso_potencial_usd": 488071.0,
+      "ingreso_capturado_ars": 197055099.0
+    },
+    {
+      "fecha": "2024-12-01 00:00:00",
+      "anio": 2024,
+      "viajeros_total": 19105.0,
+      "icv_pct": 38.0,
+      "ingreso_potencial_usd": 569546.0,
+      "ingreso_capturado_ars": 225419895.0
+    }
+  ],
+  "estimado": [
+    {
+      "fecha": "2026-03-01 00:00:00",
+      "localidad": "Santiago del Estero",
+      "viajeros": 15224.0,
+      "viajeros_ic_low": 12457.0,
+      "viajeros_ic_high": 17991.0,
+      "fuente": "ESTIMADO_OLS"
+    },
+    {
+      "fecha": "2026-03-01 00:00:00",
+      "localidad": "Termas",
+      "viajeros": 19449.0,
+      "viajeros_ic_low": 8600.0,
+      "viajeros_ic_high": 30298.0,
+      "fuente": "ESTIMADO_OLS"
+    },
+    {
+      "fecha": "2026-02-01 00:00:00",
+      "localidad": "Santiago del Estero",
+      "viajeros": 16122.0,
+      "viajeros_ic_low": 13355.0,
+      "viajeros_ic_high": 18890.0,
+      "fuente": "ESTIMADO_OLS"
+    },
+    {
+      "fecha": "2026-02-01 00:00:00",
+      "localidad": "Termas",
+      "viajeros": 15283.0,
+      "viajeros_ic_low": 4433.0,
+      "viajeros_ic_high": 26132.0,
+      "fuente": "ESTIMADO_OLS"
+    },
+    {
+      "fecha": "2026-01-01 00:00:00",
+      "localidad": "Santiago del Estero",
+      "viajeros": 16101.0,
+      "viajeros_ic_low": 13333.0,
+      "viajeros_ic_high": 18868.0,
+      "fuente": "ESTIMADO_OLS"
+    },
+    {
+      "fecha": "2026-01-01 00:00:00",
+      "localidad": "Termas",
+      "viajeros": 17451.0,
+      "viajeros_ic_low": 6601.0,
+      "viajeros_ic_high": 28300.0,
+      "fuente": "ESTIMADO_OLS"
+    },
+    {
+      "fecha": "2025-12-01 00:00:00",
+      "localidad": "Santiago del Estero",
+      "viajeros": 16549.0,
+      "viajeros_ic_low": 13782.0,
+      "viajeros_ic_high": 19317.0,
+      "fuente": "ESTIMADO_OLS"
+    },
+    {
+      "fecha": "2025-12-01 00:00:00",
+      "localidad": "Termas",
+      "viajeros": 20632.0,
+      "viajeros_ic_low": 9783.0,
+      "viajeros_ic_high": 31482.0,
+      "fuente": "ESTIMADO_OLS"
+    }
+  ],
+  "madurez": [
+    {
+      "provincia": "Buenos Aires",
+      "score_madurez": 5.0,
+      "nivel_label": "5 — Anticipa y optimiza",
+      "ranking": 1
+    },
+    {
+      "provincia": "CABA",
+      "score_madurez": 5.0,
+      "nivel_label": "5 — Anticipa y optimiza",
+      "ranking": 1
+    },
+    {
+      "provincia": "Córdoba",
+      "score_madurez": 4.0,
+      "nivel_label": "4 — Decide con datos",
+      "ranking": 3
+    },
+    {
+      "provincia": "Santiago del Estero",
+      "score_madurez": 3.7,
+      "nivel_label": "4 — Decide con datos",
+      "ranking": 4
+    },
+    {
+      "provincia": "Mendoza",
+      "score_madurez": 3.7,
+      "nivel_label": "4 — Decide con datos",
+      "ranking": 4
+    },
+    {
+      "provincia": "Salta",
+      "score_madurez": 3.3,
+      "nivel_label": "3 — Mide e interpreta",
+      "ranking": 6
+    },
+    {
+      "provincia": "Neuquén",
+      "score_madurez": 3.0,
+      "nivel_label": "3 — Mide e interpreta",
+      "ranking": 7
+    },
+    {
+      "provincia": "Tucumán",
+      "score_madurez": 2.7,
+      "nivel_label": "3 — Mide e interpreta",
+      "ranking": 8
+    },
+    {
+      "provincia": "Río Negro",
+      "score_madurez": 2.7,
+      "nivel_label": "3 — Mide e interpreta",
+      "ranking": 8
+    },
+    {
+      "provincia": "Misiones",
+      "score_madurez": 2.7,
+      "nivel_label": "3 — Mide e interpreta",
+      "ranking": 8
+    },
+    {
+      "provincia": "Santa Fe",
+      "score_madurez": 2.7,
+      "nivel_label": "3 — Mide e interpreta",
+      "ranking": 8
+    },
+    {
+      "provincia": "Entre Ríos",
+      "score_madurez": 2.3,
+      "nivel_label": "2 — Mide básico",
+      "ranking": 12
+    },
+    {
+      "provincia": "Santa Cruz",
+      "score_madurez": 2.0,
+      "nivel_label": "2 — Mide básico",
+      "ranking": 13
+    },
+    {
+      "provincia": "Tierra del Fuego",
+      "score_madurez": 2.0,
+      "nivel_label": "2 — Mide básico",
+      "ranking": 13
+    },
+    {
+      "provincia": "Jujuy",
+      "score_madurez": 2.0,
+      "nivel_label": "2 — Mide básico",
+      "ranking": 13
+    },
+    {
+      "provincia": "Chubut",
+      "score_madurez": 2.0,
+      "nivel_label": "2 — Mide básico",
+      "ranking": 13
+    },
+    {
+      "provincia": "San Luis",
+      "score_madurez": 1.7,
+      "nivel_label": "1 — No mide",
+      "ranking": 17
+    },
+    {
+      "provincia": "La Rioja",
+      "score_madurez": 1.7,
+      "nivel_label": "1 — No mide",
+      "ranking": 17
+    },
+    {
+      "provincia": "Catamarca",
+      "score_madurez": 1.7,
+      "nivel_label": "1 — No mide",
+      "ranking": 17
+    },
+    {
+      "provincia": "San Juan",
+      "score_madurez": 1.7,
+      "nivel_label": "1 — No mide",
+      "ranking": 17
+    },
+    {
+      "provincia": "Chaco",
+      "score_madurez": 1.7,
+      "nivel_label": "1 — No mide",
+      "ranking": 17
+    },
+    {
+      "provincia": "Corrientes",
+      "score_madurez": 1.7,
+      "nivel_label": "1 — No mide",
+      "ranking": 17
+    },
+    {
+      "provincia": "Formosa",
+      "score_madurez": 1.7,
+      "nivel_label": "1 — No mide",
+      "ranking": 17
+    },
+    {
+      "provincia": "La Pampa",
+      "score_madurez": 1.7,
+      "nivel_label": "1 — No mide",
+      "ranking": 17
+    }
+  ]
+}

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import { C, Paralelo, Eyebrow } from './Atoms'
 import PeriodBar from './PeriodBar'
+import BotToggle from './BotToggle'
 
 const CAPAS = [
   { label: 'Actividad', num: '01', items: [
@@ -109,6 +110,7 @@ export default function Layout() {
       </nav>
 
       <PeriodBar />
+      <BotToggle />
 
       <main style={{ paddingTop: 98 }}>
         <Outlet />
