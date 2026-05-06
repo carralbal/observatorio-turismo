@@ -8,6 +8,12 @@ import InformalP from './pages/Informal'
 import ImagenP from './pages/Imagen'
 import EstimadoP from './pages/Estimado'
 import MotoGPP from './pages/MotoGP'
+import SenalP from './pages/Senal'
+import BenchmarkP from './pages/Benchmark'
+import NacionalP from './pages/Nacional'
+import SenalP from './pages/Senal'
+import BenchmarkP from './pages/Benchmark'
+import NacionalP from './pages/Nacional'
 import CapturaP from './pages/Captura'
 import MadurezP from './pages/Madurez'
 import PerfilP from './pages/Perfil'
@@ -27,10 +33,10 @@ const router = createBrowserRouter([
       { path: 'terrestre',    element: <TerrestreP /> },
       { path: 'informal',     element: <InformalP /> },
       { path: 'empleo',       element: <EmpleoP /> },
-      { path: 'nacional',     element: <Nacional /> },
+      { path: 'nacional',     element: <NacionalP /> },
       { path: 'motogp',       element: <MotoGPP /> },
-      { path: 'señal',        element: <Señal /> },
-      { path: 'benchmark',    element: <Benchmark /> },
+      { path: 'señal',        element: <SenalP /> },
+      { path: 'benchmark',    element: <BenchmarkP /> },
       { path: 'captura',      element: <CapturaP /> },
       { path: 'madurez',      element: <MadurezP /> },
       { path: 'imagen',       element: <ImagenP /> },
