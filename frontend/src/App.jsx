@@ -5,6 +5,7 @@ import Aerea from './pages/Aerea'
 import TerrestreP from './pages/Terrestre'
 import EmpleoP from './pages/Empleo'
 import InformalP from './pages/Informal'
+import ImagenP from './pages/Imagen'
 import {
  Nacional,
   MotoGP, Señal, Benchmark, Captura, Madurez,
@@ -27,7 +28,7 @@ const router = createBrowserRouter([
       { path: 'benchmark',    element: <Benchmark /> },
       { path: 'captura',      element: <Captura /> },
       { path: 'madurez',      element: <Madurez /> },
-      { path: 'imagen',       element: <Imagen /> },
+      { path: 'imagen',       element: <ImagenP /> },
       { path: 'estimado',     element: <Estimado /> },
       { path: 'perfil',       element: <Perfil /> },
     ],
