@@ -35,7 +35,15 @@ export default function MapaISTP({ datos2025 = [] }) {
     svg.selectAll('*').remove()
     const W = svgRef.current.clientWidth || 360
     const H = W * 1.2
-    const proj = d3.geoMercator().fitSize([W, H], geo)
+    // Filtrar Antártida para proyección continental
+    const geoContinent = {
+      ...geo,
+      features: geo.features.filter(f => {
+        const n = f.properties.nombre || ''
+        return !n.includes('Antárt') && !n.includes('Malvinas')
+      })
+    }
+    const proj = d3.geoMercator().fitSize([W, H], geoContinent)
     const path = d3.geoPath().projection(proj)
     const col = d3.scaleLinear().domain([minS, maxS]).range(['rgba(200,200,191,0.15)', 'rgba(200,200,191,0.65)'])
 
