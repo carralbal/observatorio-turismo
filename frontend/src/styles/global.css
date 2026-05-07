@@ -9,6 +9,29 @@
   --volt:   #FFFF00;
   --font:   'Plus Jakarta Sans', system-ui, sans-serif;
   --pad:    clamp(24px, 8vw, 96px);
+
+  /* ── Font scale ── */
+  --fs-2xs:  9px;    /* números de capa, dots, micro-labels       */
+  --fs-xs:   10.5px; /* eyebrow, nav labels, ticker, footer        */
+  --fs-sm:   12px;   /* notas al pie, sub-labels                   */
+  --fs-base: 13px;   /* body estándar, items de lista, table cells */
+  --fs-md:   14px;   /* labels de gráficos, leyendas               */
+  --fs-lg:   16px;   /* subtítulos de sección, KPI labels          */
+  --fs-xl:   20px;   /* KPI números medianos                       */
+  --fs-2xl:  28px;   /* KPI números grandes                        */
+}
+
+@media (max-width: 768px) {
+  :root {
+    --fs-2xs:  11px;
+    --fs-xs:   13px;
+    --fs-sm:   14px;
+    --fs-base: 15px;
+    --fs-md:   16px;
+    --fs-lg:   18px;
+    --fs-xl:   22px;
+    --fs-2xl:  32px;
+  }
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
