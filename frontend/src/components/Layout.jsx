@@ -24,9 +24,10 @@ const CAPAS = [
     { to: '/benchmark', label: 'Benchmark' },
   ]},
   { label: 'Decisión', num: '04', items: [
-    { to: '/estimado', label: 'Estimado OLS' },
-    { to: '/madurez',  label: 'Madurez'      },
-    { to: '/nacional', label: 'Nacional'     },
+    { to: '/estimado', label: 'Estimado OLS'       },
+    { to: '/salud',    label: 'Salud Turística'  },
+    { to: '/madurez',  label: 'Madurez Obs.'     },
+    { to: '/nacional', label: 'Nacional'          },
   ]},
 ]
 
@@ -216,7 +217,7 @@ export default function Layout() {
       <PeriodBar />
       <BotToggle />
 
-      <main style={{ paddingTop: 128 }}>
+      <main style={{ paddingTop: 98 }}>
         <Outlet />
       </main>
 
