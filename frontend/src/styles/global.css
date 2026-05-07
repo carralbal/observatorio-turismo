@@ -151,3 +151,15 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* ── Period bar scroll ── */
+.period-bar-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.period-bar-scroll::-webkit-scrollbar {
+  display: none;
+}
