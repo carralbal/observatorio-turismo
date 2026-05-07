@@ -76,6 +76,12 @@ export default function PeriodBar() {
           flexShrink: 0, marginRight: 4,
         }}>Año</span>
         <Sep />
+        <Pill
+          label="Todo"
+          active={!anio && !mes}
+          onClick={() => { setAnio(null); setMes(null) }}
+        />
+        <Sep />
         {AÑOS.map((a, i) => (
           <Pill
             key={a}
@@ -85,12 +91,6 @@ export default function PeriodBar() {
             onClick={() => { setAnio(anio === a ? null : a); setMes(null) }}
           />
         ))}
-        <Sep />
-        <Pill
-          label="Todo"
-          active={!anio && !mes}
-          onClick={() => { setAnio(null); setMes(null) }}
-        />
       </div>
 
       {/* ── Fila 2: Meses ── */}

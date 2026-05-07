@@ -71,7 +71,7 @@ export default function ObservatoryBot({ onClose }) {
               background: m.role === 'user' ? C.ink : '#F2F2EE',
               border: m.role === 'user' ? 'none' : '0.5px solid '+C.stone,
               borderRadius: m.role === 'user' ? '14px 14px 2px 14px' : '14px 14px 14px 2px',
-              fontSize: 13.5, fontWeight: 300, color: m.role === 'user' ? C.paper : C.ink,
+              fontSize: 18, fontWeight: 300, color: m.role === 'user' ? C.paper : C.ink,
               lineHeight: 1.6, fontFamily: 'Plus Jakarta Sans, sans-serif',
               whiteSpace: 'pre-wrap',
             }}>{m.content}</div>
@@ -92,7 +92,7 @@ export default function ObservatoryBot({ onClose }) {
           {SUGERENCIAS.map((s, i) => (
             <button key={i} onClick={() => send(s)} style={{
               background: 'none', border: '0.5px solid '+C.stone, borderRadius: 20, padding: '6px 12px',
-              fontSize: 11, color: C.slate, cursor: 'pointer', fontFamily: 'Plus Jakarta Sans, sans-serif',
+              fontSize: 15, color: C.slate, cursor: 'pointer', fontFamily: 'Plus Jakarta Sans, sans-serif',
             }}>{s}</button>
           ))}
         </div>
@@ -107,7 +107,7 @@ export default function ObservatoryBot({ onClose }) {
           disabled={loading}
           style={{
             flex: 1, padding: '10px 14px', border: '0.5px solid '+C.stone,
-            background: C.paper, color: C.ink, fontSize: 13.5,
+            background: C.paper, color: C.ink, fontSize: 18,
             fontFamily: 'Plus Jakarta Sans, sans-serif', outline: 'none', borderRadius: 2,
           }}
         />
