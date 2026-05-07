@@ -1,13 +1,12 @@
 import { useMemo } from 'react'
 import { ComposedChart, Area, Bar, Line, Cell, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts'
 import { useCSV, fmt } from '../hooks/useCSV'
-import { usePeriodo } from '../context/PeriodoContext'
 import { C, Paralelo, VoltLine, Eyebrow, SectionTitle, Interpretacion, Loading, ICONS } from '../components/Atoms'
 
 const VIDEO_URL = 'https://www.pexels.com/download/video/36865241/'
 
 function KPICard({ value, label, delta, positive }) {
-  const color = positive === undefined ? C.ink : positive ? C.volt : C.slate
+  const color = positive === undefined ? C.ink : positive ? '#22c55e' : '#ef4444'
   return (
     <div style={{ borderLeft: '1px solid '+C.stone, paddingLeft: 'clamp(14px,2vw,24px)' }}>
       <div style={{ fontSize: 'clamp(1.7rem,3vw,3rem)', fontWeight: 200, color, letterSpacing: '-0.045em', lineHeight: 1, marginBottom: 10 }}>{value}</div>
@@ -41,7 +40,6 @@ export default function Nacional() {
       emisivo: Number(r.emisivo_total) || 0,
       saldo: Number(r.saldo_balanza) || 0,
       tcn: Number(r.tcn_usd) || 0,
-      var_rec: Number(r.var_receptivo_ia) || null,
     }))
     .sort((a,b) => a.fecha > b.fecha ? 1 : -1)
   , [raw])
@@ -72,27 +70,33 @@ export default function Nacional() {
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.93) 0%, rgba(10,10,10,0.78) 35%, rgba(10,10,10,0.38) 65%, rgba(10,10,10,0.10) 100%)' }} />
         <div style={{ position: 'relative', zIndex: 3 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 28 }}>
-            <Paralelo /><Eyebrow light>ETI + BCRA · Capa 4 · Decision</Eyebrow>
+            <Paralelo /><Eyebrow light>ETI + BCRA · Capa 4 · Decisión</Eyebrow>
           </div>
           <h1 style={{ fontSize: 'clamp(2.4rem,5vw,5rem)', fontWeight: 200, color: C.paper, letterSpacing: '-0.04em', lineHeight: 1, margin: '0 0 16px' }}>Contexto<br />Nacional.</h1>
-          <p style={{ fontSize: '0.9rem', fontWeight: 300, color: C.paper, opacity: 0.6, maxWidth: 480, lineHeight: 1.65, margin: 0 }}>Turismo receptivo y emisivo de Argentina. Balanza turistica, tipo de cambio y contexto macro. Fuentes: ETI INDEC + BCRA.</p>
+          <p style={{ fontSize: '0.9rem', fontWeight: 300, color: C.paper, opacity: 0.6, maxWidth: 480, lineHeight: 1.65, margin: 0 }}>Turismo receptivo y emisivo de Argentina. Balanza turística, tipo de cambio y contexto macro. Fuentes: ETI INDEC + BCRA.</p>
         </div>
       </section>
 
       <section style={{ background: C.paper, padding: 'clamp(56px,7vw,80px) var(--pad)' }}>
         <Eyebrow style={{ marginBottom: 52 }}>Contexto macro · {fechaActual}</Eyebrow>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '0 clamp(14px,4vw,56px)' }}>
+        <div className="grid-kpi">
           <KPICard value={fmt(ultimo.receptivo)} label="Turistas receptivos" delta={'extranjeros que entran · '+fechaActual} />
           <KPICard value={fmt(ultimo.emisivo)} label="Turistas emisivos" delta={'argentinos que salen · '+fechaActual} />
-          <KPICard value={(ultimo.saldo < 0 ? '−' : '') + fmt(Math.abs(ultimo.saldo||0))} label={'Balanza '+(saldoPositivo?'superavitaria':'deficitaria')} delta={'saldo '+(saldoPositivo?'positivo':'negativo')+' de divisas turisticas'} positive={saldoPositivo} />
+          <KPICard
+            value={(ultimo.saldo < 0 ? '−' : '+') + fmt(Math.abs(ultimo.saldo||0))}
+            label={'Balanza '+(saldoPositivo?'superavitaria':'deficitaria')}
+            delta={'saldo '+(saldoPositivo?'positivo':'negativo')+' de divisas'}
+            positive={saldoPositivo}
+          />
           <KPICard value={'$'+fmt(ultimo.tcn||0)} label="Tipo de cambio oficial" delta={'ARS/USD · '+fechaActual} />
         </div>
-        <Interpretacion texto={'En '+fechaActual+', Argentina recibe '+fmt(ultimo.receptivo)+' turistas internacionales y '+fmt(ultimo.emisivo)+' argentinos viajan al exterior. La balanza turistica es '+(saldoPositivo?'superavitaria (mas ingresos que egresos de divisas)':'deficitaria (mas egresos que ingresos de divisas)')+'. El tipo de cambio oficial es $'+fmt(ultimo.tcn)+' ARS/USD. Fuente: ETI INDEC + BCRA.'} />
+        <Interpretacion texto={'En '+fechaActual+', Argentina recibe '+fmt(ultimo.receptivo)+' turistas internacionales y '+fmt(ultimo.emisivo)+' argentinos viajan al exterior. La balanza turística es '+(saldoPositivo?'superavitaria':'deficitaria')+'. El tipo de cambio oficial es $'+fmt(ultimo.tcn)+' ARS/USD. Fuente: ETI INDEC + BCRA.'} />
       </section>
 
+      {/* RECEPTIVO VS EMISIVO */}
       <section style={{ background: C.ink, padding: 'clamp(56px,7vw,80px) var(--pad)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 48, flexWrap: 'wrap', gap: 20 }}>
-          <SectionTitle icon={ICONS.viajeros} context="Serie mensual ETI · 2016-2026" main="Receptivo vs Emisivo" light />
+          <SectionTitle icon={ICONS.viajeros} context="Serie mensual ETI · 2016–2026" main="Receptivo vs Emisivo" light />
           <div style={{ display: 'flex', gap: 20, paddingTop: 4 }}>
             {[{c:C.paper,l:'Receptivo'},{c:C.stone,l:'Emisivo',dash:true}].map((x,i)=>(
               <div key={i} style={{ display:'flex', gap:6, alignItems:'center' }}>
@@ -119,39 +123,49 @@ export default function Nacional() {
             </ComposedChart>
           </ResponsiveContainer>
         </div>
-        <Interpretacion light texto="El turismo receptivo internacional es un indicador de competitividad del destino Argentina. Su evolucion esta fuertemente correlacionada con el tipo de cambio real: cuando Argentina es barata en dolares, aumenta el receptivo y cae el emisivo. Esta dinamica define el entorno macro en el que opera el turismo interno de SDE." />
+        <Interpretacion light texto="El turismo receptivo internacional es un indicador de competitividad de Argentina. Cuando el peso se deprecia, Argentina se vuelve barata en dólares y aumenta el receptivo. Esta dinámica define el entorno macro en el que opera el turismo interno de SDE." />
       </section>
 
-      <section style={{ background: C.paper, padding: 'clamp(56px,7vw,80px) var(--pad)' }}>
-        <SectionTitle icon={ICONS.ibt} context="Balanza turistica anual" main="Saldo divisas turisticas" style={{ marginBottom: 40 }} />
-        <div style={{ height: 'clamp(180px,22vw,260px)' }}>
+      {/* SALDO DIVISAS — dark, barras positivas/negativas con eje en 0 */}
+      <section style={{ background: C.ink, padding: 'clamp(56px,7vw,80px) var(--pad)' }}>
+        <SectionTitle icon={ICONS.ibt} context="Balanza turística anual" main="Saldo divisas turísticas" light style={{ marginBottom: 40 }} />
+        <div style={{ height: 'clamp(200px,26vw,300px)' }}>
           <ResponsiveContainer width="100%" height="100%">
-            <ComposedChart data={serieAnual} margin={{ top: 4, right: 0, left: 0, bottom: 0 }}>
+            <ComposedChart data={serieAnual} margin={{ top: 8, right: 0, left: 0, bottom: 0 }}>
               <XAxis dataKey="label" tick={{ fill: C.stone, fontSize: 11, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} />
               <YAxis tick={{ fill: C.stone, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} tickFormatter={v=>fmt(v)} width={60} />
-              <Tooltip content={<Tip />} cursor={{ fill: 'rgba(10,10,10,0.04)' }} />
-              <ReferenceLine y={0} stroke={C.stone} strokeOpacity={0.3} />
-              <Bar dataKey="receptivo" name="Receptivo" fill="rgba(250,250,247,0.08)" radius={[2,2,0,0]} />
-              <Bar dataKey="emisivo" name="Emisivo" fill="rgba(250,250,247,0.04)" radius={[2,2,0,0]} />
-              <Line type="monotone" dataKey="saldo" name="Saldo" stroke={C.volt} strokeWidth={2} dot={false} connectNulls />
+              <Tooltip content={<Tip />} cursor={{ fill: 'rgba(250,250,247,0.04)' }} />
+              <ReferenceLine y={0} stroke="rgba(250,250,247,0.4)" strokeWidth={1.5} />
+              <Bar dataKey="saldo" name="Saldo" radius={[3,3,0,0]}>
+                {serieAnual.map((entry, i) => (
+                  <Cell key={i} fill={entry.saldo >= 0 ? 'rgba(250,250,247,0.5)' : '#ef4444'} fillOpacity={0.85} />
+                ))}
+              </Bar>
             </ComposedChart>
           </ResponsiveContainer>
         </div>
-        <Interpretacion texto={'La balanza turistica mide el saldo entre lo que gastan los turistas extranjeros en Argentina (ingresos) y lo que gastan los argentinos en el exterior (egresos). Un saldo negativo sistematico indica que Argentina pierde divisas por turismo — contexto relevante para entender el valor estrategico del turismo interno y la necesidad de aumentar el receptivo internacional. Fuente: ETI INDEC.'} />
-      </section>
-      <section style={{ background: 'var(--paper, #FAFAF7)', padding: 'clamp(40px,5vw,64px) var(--pad)' }}>
-        <Interpretacion>
-        La balanza turística nacional muestra el contexto macroeconómico en el que opera
-        el turismo de SDE. La variación del tipo de cambio afecta directamente la
-        competitividad del destino frente al turismo emisivo: cuando el TCN se atrasa,
-        los argentinos prefieren viajar al exterior, reduciendo la demanda interna.
-        El turismo receptivo internacional (ETI) es marginal para SDE — el destino
-        es predominantemente doméstico y regional. La fortaleza del observatorio provincial
-        es precisamente esa: independencia del ciclo internacional y enfoque en la demanda
-        interna NOA y Buenos Aires como principales mercados emisores.
-          </Interpretacion>
+        <div style={{ display: 'flex', gap: 20, marginTop: 16 }}>
+          {[{c:'rgba(250,250,247,0.5)',l:'Superávit'},{c:'#ef4444',l:'Déficit'}].map((x,i)=>(
+            <div key={i} style={{ display:'flex', gap:6, alignItems:'center' }}>
+              <div style={{ width:10, height:10, background:x.c, borderRadius:2 }} />
+              <Eyebrow light style={{ opacity:0.55 }}>{x.l}</Eyebrow>
+            </div>
+          ))}
+        </div>
+        <Interpretacion light texto={'La balanza turística mide el saldo entre lo que gastan los turistas extranjeros en Argentina (ingresos) y lo que gastan los argentinos en el exterior (egresos). Las barras rojas indican años deficitarios. Un déficit sistémico indica que Argentina pierde divisas por turismo — contexto relevante para el turismo interno de SDE. Fuente: ETI INDEC.'} />
       </section>
 
+      <section style={{ background: C.paper, padding: 'clamp(40px,5vw,64px) var(--pad)' }}>
+        <Interpretacion>
+          La balanza turística nacional muestra el contexto macroeconómico en el que opera
+          el turismo de SDE. La variación del tipo de cambio afecta directamente la
+          competitividad del destino frente al turismo emisivo: cuando el TCN se atrasa,
+          los argentinos prefieren viajar al exterior. El turismo receptivo internacional
+          es marginal para SDE — el destino es predominantemente doméstico y regional.
+          La fortaleza del observatorio provincial es precisamente esa: independencia del
+          ciclo internacional y enfoque en la demanda interna NOA y Buenos Aires.
+        </Interpretacion>
+      </section>
     </>
   )
 }

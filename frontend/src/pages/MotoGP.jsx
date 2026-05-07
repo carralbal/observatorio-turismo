@@ -1,7 +1,6 @@
 import { useMemo } from 'react'
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, ReferenceLine } from 'recharts'
 import { useCSV, fmt } from '../hooks/useCSV'
-import { usePeriodo } from '../context/PeriodoContext'
 import { C, Paralelo, VoltLine, Eyebrow, SectionTitle, Interpretacion, Loading, ICONS } from '../components/Atoms'
 
 const VIDEO_URL = 'https://www.pexels.com/es-es/download/video/30323199/'
@@ -30,7 +29,15 @@ const Tip = ({ active, payload, label }) => {
   )
 }
 
-const ANOS_MOTOGP = [2014,2015,2016,2017,2018,2019,2023,2024,2025]
+const TipPaper = ({ active, payload, label }) => {
+  if (!active || !payload?.length) return null
+  return (
+    <div style={{ background: C.paper, border: '1px solid '+C.stone, padding: '10px 14px', fontFamily: 'Plus Jakarta Sans' }}>
+      <Eyebrow style={{ marginBottom: 6 }}>{label}</Eyebrow>
+      {payload.map((p,i) => <div key={i} style={{ fontSize: 'var(--fs-sm)', color: C.ink, fontWeight: 300 }}>{p.name}: {fmt(p.value)}</div>)}
+    </div>
+  )
+}
 
 export default function MotoGP() {
   const { data: raw, loading } = useCSV('/data/data_motogp.csv')
@@ -40,10 +47,8 @@ export default function MotoGP() {
   const porAnio = useMemo(() => termas
     .map(r => ({
       anio: Number(r.anio),
-      mes: Number(r.mes),
-      fecha: r.fecha,
+      label: String(r.anio),
       viajeros: Number(r.viajeros_total) || 0,
-      pernoctes: Number(r.pernoctes_total) || 0,
       estadia: Number(r.estadia_promedio) || 0,
       tiene_motogp: Number(r.tiene_motogp) === 1,
       uplift: Number(r.uplift_vs_baseline) || 0,
@@ -54,25 +59,17 @@ export default function MotoGP() {
   , [termas])
 
   const motogpAnios = porAnio.filter(r => r.tiene_motogp)
-  const sinMotogp = porAnio.filter(r => !r.tiene_motogp)
-
   const promBaseline = porAnio.length ? Math.round(porAnio.reduce((a,b) => a + b.baseline, 0) / porAnio.length) : 0
   const upliftPromedio = motogpAnios.length ? Math.round(motogpAnios.reduce((a,b) => a + b.uplift, 0) / motogpAnios.length) : 0
   const upliftPct = promBaseline > 0 ? Math.round((upliftPromedio / promBaseline) * 100) : 0
   const mejorAnio = motogpAnios.reduce((a,b) => b.viajeros > a.viajeros ? b : a, motogpAnios[0] || {})
   const totalViajerosMotoGP = motogpAnios.reduce((a,b) => a + b.viajeros, 0)
 
-  const barData = porAnio.map(r => ({
-    label: String(r.anio),
-    viajeros: r.viajeros,
-    uplift: r.uplift > 0 ? r.uplift : 0,
-    tiene_motogp: r.tiene_motogp,
-  }))
-
   if (loading) return <Loading />
 
   return (
     <>
+      {/* HERO */}
       <section style={{ position: 'relative', minHeight: '42vh', overflow: 'hidden', padding: 'clamp(64px,8vw,96px) var(--pad) clamp(48px,6vw,72px)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
         <video autoPlay loop muted playsInline style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }}>
           <source src={VIDEO_URL} type="video/mp4" />
@@ -83,79 +80,86 @@ export default function MotoGP() {
             <Paralelo /><Eyebrow light>EOH · ANAC · Capa 1 · Actividad</Eyebrow>
           </div>
           <h1 style={{ fontSize: 'clamp(2.4rem,5vw,5rem)', fontWeight: 200, color: C.paper, letterSpacing: '-0.04em', lineHeight: 1, margin: '0 0 16px' }}>MotoGP<br />como Evento.</h1>
-          <p style={{ fontSize: '0.9rem', fontWeight: 300, color: C.paper, opacity: 0.6, maxWidth: 480, lineHeight: 1.65, margin: 0 }}>Impacto del Gran Premio de Argentina en la demanda turistica de Termas de Rio Hondo. Metodo de diferencias en diferencias (DiD) 2014-2025.</p>
+          <p style={{ fontSize: '0.9rem', fontWeight: 300, color: C.paper, opacity: 0.6, maxWidth: 480, lineHeight: 1.65, margin: 0 }}>Impacto del Gran Premio de Argentina en la demanda turística de Termas de Río Hondo. Método de diferencias en diferencias (DiD) 2014–2025.</p>
         </div>
       </section>
 
+      {/* KPIs */}
       <section style={{ background: C.paper, padding: 'clamp(56px,7vw,80px) var(--pad)' }}>
-        <Eyebrow style={{ marginBottom: 52 }}>Impacto acumulado · {motogpAnios.length} ediciones · 2014-2025</Eyebrow>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '0 clamp(14px,4vw,56px)' }}>
-          <KPICard icon={ICONS.viajeros} value={fmt(totalViajerosMotoGP)} label="Viajeros en ediciones MotoGP" delta={'promedio '+fmt(Math.round(totalViajerosMotoGP/motogpAnios.length))+'/edicion'} />
+        <Eyebrow style={{ marginBottom: 52 }}>Impacto acumulado · {motogpAnios.length} ediciones · 2014–2025</Eyebrow>
+        <div className="grid-kpi">
+          <KPICard icon={ICONS.viajeros} value={fmt(totalViajerosMotoGP)} label="Viajeros en ediciones MotoGP" delta={'promedio '+fmt(Math.round(totalViajerosMotoGP/Math.max(motogpAnios.length,1)))+'/edición'} />
           <KPICard icon={ICONS.viajeros} value={'+'+upliftPct+'%'} label="Uplift vs baseline" delta={'promedio '+fmt(upliftPromedio)+' viajeros extra'} />
-          <KPICard icon={ICONS.aereo} value={mejorAnio.anio || '—'} label="Mejor edicion" delta={mejorAnio.viajeros ? fmt(mejorAnio.viajeros)+' viajeros' : '—'} />
-          <KPICard icon={ICONS.pernoctaciones} value={motogpAnios.length > 0 ? motogpAnios[motogpAnios.length-1].estadia.toFixed(1)+' noches' : '—'} label="Estadia media ultima ed." delta="vs 1.8 promedio anual SDE" />
+          <KPICard icon={ICONS.aereo} value={mejorAnio.anio || '—'} label="Mejor edición" delta={mejorAnio.viajeros ? fmt(mejorAnio.viajeros)+' viajeros' : '—'} />
+          <KPICard icon={ICONS.pernoctaciones} value={motogpAnios.length > 0 ? motogpAnios[motogpAnios.length-1].estadia.toFixed(1)+' noches' : '—'} label="Estadía media última ed." delta="vs 1.8 promedio anual SDE" />
         </div>
-        <Interpretacion texto={'En los '+motogpAnios.length+' anos con MotoGP (2014-2019, 2023-2025), Termas registro un uplift promedio del '+upliftPct+'% respecto al baseline estimado sin evento. La mejor edicion fue '+mejorAnio.anio+' con '+fmt(mejorAnio.viajeros)+' viajeros. Fuente: EOH INDEC + ANAC, metodo DiD.'} />
+        <Interpretacion texto={'En los '+motogpAnios.length+' años con MotoGP (2014–2019, 2023–2025), Termas registró un uplift promedio del '+upliftPct+'% respecto al baseline estimado sin evento. La mejor edición fue '+mejorAnio.anio+' con '+fmt(mejorAnio.viajeros)+' viajeros. Fuente: EOH INDEC + ANAC, método DiD.'} />
       </section>
 
+      {/* IMPACTO POR EDICIÓN — BarChart */}
       <section style={{ background: C.ink, padding: 'clamp(56px,7vw,80px) var(--pad)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 48, flexWrap: 'wrap', gap: 20 }}>
-          <SectionTitle icon={ICONS.viajeros} context="Viajeros en marzo por año" main="Impacto por edicion" light />
+          <SectionTitle icon={ICONS.viajeros} context="Viajeros en marzo por año" main="Impacto por edición" light />
           <div style={{ display: 'flex', gap: 20, paddingTop: 4 }}>
-            {[{c:C.volt,l:'Con MotoGP'},{c:'rgba(250,250,247,0.3)',l:'Sin MotoGP'}].map((x,i) => (
+            {[{c:C.volt,l:'Con MotoGP'},{c:'rgba(250,250,247,0.25)',l:'Sin MotoGP'}].map((x,i) => (
               <div key={i} style={{ display:'flex', gap:7, alignItems:'center' }}>
                 <div style={{ width:12, height:12, background:x.c, borderRadius:2 }} />
-                <Eyebrow light style={{ opacity:0.5 }}>{x.l}</Eyebrow>
+                <Eyebrow light style={{ opacity:0.55 }}>{x.l}</Eyebrow>
               </div>
             ))}
           </div>
         </div>
         <div style={{ height: 'clamp(220px,28vw,340px)' }}>
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={barData} margin={{ top: 8, right: 0, left: 0, bottom: 0 }}>
+            <BarChart data={porAnio} margin={{ top: 8, right: 0, left: 0, bottom: 0 }}>
               <XAxis dataKey="label" tick={{ fill: C.stone, fontSize: 11, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} />
               <YAxis tick={{ fill: C.stone, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} tickFormatter={v => fmt(v)} width={56} />
-              <Tooltip content={<Tip />} cursor={{ stroke: 'rgba(250,250,247,0.07)', strokeWidth: 1 }} />
-              <ReferenceLine y={promBaseline} stroke="rgba(250,250,247,0.2)" strokeDasharray="4 3" label={{ value: 'baseline', fill: C.stone, fontSize: 'var(--fs-2xs)' }} />
-              <Line type="monotone" dataKey="viajeros" name="Viajeros" stroke="rgba(250,250,247,0.4)" strokeWidth={1.5} connectNulls
-                dot={(props) => { const {cx,cy,payload} = props; return payload.tiene_motogp ? <circle key={cx} cx={cx} cy={cy} r={6} fill={C.volt} stroke="none"/> : <circle key={cx} cx={cx} cy={cy} r={3} fill="rgba(250,250,247,0.3)" stroke="none"/> }}
-                activeDot={{ r: 5, fill: C.volt }} />
-            </LineChart>
+              <Tooltip content={<Tip />} cursor={{ fill: 'rgba(250,250,247,0.04)' }} />
+              <ReferenceLine y={promBaseline} stroke="rgba(250,250,247,0.3)" strokeDasharray="4 3"
+                label={{ value: 'baseline sin evento', fill: C.stone, fontSize: 9, fontFamily: 'Plus Jakarta Sans' }} />
+              <Bar dataKey="viajeros" name="Viajeros" radius={[3,3,0,0]}>
+                {porAnio.map((entry, i) => (
+                  <Cell key={i} fill={entry.tiene_motogp ? C.volt : 'rgba(250,250,247,0.2)'} />
+                ))}
+              </Bar>
+            </BarChart>
           </ResponsiveContainer>
         </div>
-        <Interpretacion light texto={'La linea punteada representa el baseline (demanda esperada sin MotoGP, estimada por DiD). Las barras amarillas muestran el exceso de demanda atribuible al evento. Ediciones canceladas: 2020-2022 (COVID). Fuente: EOH INDEC, calculo propio.'} />
+        <Interpretacion light texto={'Las barras amarillas corresponden a ediciones con MotoGP — todas superan el baseline estimado (línea punteada). Las barras grises son años sin evento. La diferencia entre la barra y la línea de baseline es el uplift atribuible al evento. Ediciones canceladas: 2020–2022 (COVID). Fuente: EOH INDEC, cálculo propio.'} />
       </section>
 
+      {/* PASAJEROS ANAC */}
       <section style={{ background: C.paper, padding: 'clamp(56px,7vw,80px) var(--pad)' }}>
-        <SectionTitle icon={ICONS.aereo} context="Conectividad aerea en ediciones MotoGP" main="Pasajeros ANAC en año del evento" style={{ marginBottom: 40 }} />
+        <SectionTitle icon={ICONS.aereo} context="Conectividad aérea · año del evento" main="Pasajeros ANAC por edición" style={{ marginBottom: 40 }} />
         <div style={{ height: 'clamp(180px,22vw,260px)' }}>
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={barData} margin={{ top: 4, right: 0, left: 0, bottom: 0 }}>
-              <XAxis dataKey="label" tick={{ fill: C.stone, fontSize: 11, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} />
-              <YAxis tick={{ fill: C.ink, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} tickFormatter={v => fmt(v)} width={56} />
-              <Tooltip content={<Tip />} cursor={{ stroke: 'rgba(10,10,10,0.1)', strokeWidth: 1 }} />
-              <ReferenceLine y={0} stroke="rgba(10,10,10,0.2)" />
-              <Line type="monotone" dataKey="uplift" name="Uplift" stroke={C.ink} strokeWidth={1.5} connectNulls
-                dot={(props) => { const {cx,cy,payload} = props; return payload.tiene_motogp ? <circle key={cx} cx={cx} cy={cy} r={5} fill={C.ink} stroke="none"/> : <circle key={cx} cx={cx} cy={cy} r={2} fill={C.stone} stroke="none"/> }}
-                activeDot={{ r: 4 }} />
-            </LineChart>
+            <BarChart data={porAnio} margin={{ top: 4, right: 0, left: 0, bottom: 0 }}>
+              <XAxis dataKey="label" tick={{ fill: C.slate, fontSize: 11, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} />
+              <YAxis tick={{ fill: C.slate, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} tickFormatter={v => fmt(v)} width={60} />
+              <Tooltip content={<TipPaper />} cursor={{ fill: 'rgba(10,10,10,0.04)' }} />
+              <Bar dataKey="pasajeros_sde" name="Pasajeros aéreos" radius={[3,3,0,0]}>
+                {porAnio.map((entry, i) => (
+                  <Cell key={i} fill={entry.tiene_motogp ? C.ink : C.stone} fillOpacity={entry.tiene_motogp ? 0.9 : 0.35} />
+                ))}
+              </Bar>
+            </BarChart>
           </ResponsiveContainer>
         </div>
-        <Interpretacion texto={'El uplift positivo en años con MotoGP confirma el efecto causal del evento sobre la demanda hotelera. El metodo DiD controla por estacionalidad y tendencia usando Santiago Capital como grupo de control. Fuente: EOH INDEC + ANAC, calculo propio.'} />
-      </section>
-      <section style={{ background: 'var(--paper, #FAFAF7)', padding: 'clamp(40px,5vw,64px) var(--pad)' }}>
-        <Interpretacion>
-        El modelo DiD estima que MotoGP 2025 generó un uplift de +13.745 viajeros en Termas
-        sobre el baseline de 28.405 (+48%). En abril 2025 el efecto se mantuvo: +12.143
-        viajeros adicionales (+43%). Para comparar, sin MotoGP en 2024, Termas registró
-        24.882 viajeros en marzo — un 41% menos. A estadía media de 2,6 noches, cada edición
-        MotoGP equivale a ~36.000 pernoctes adicionales y un multiplicador estimado de
-        $2.800M ARS sobre la economía local. El evento es el mayor multiplicador de demanda
-        medible del destino y justifica por sí solo la inversión en conectividad aérea
-        temporal para los meses de marzo y abril.
-          </Interpretacion>
+        <Interpretacion texto={'Pasajeros aéreos anuales en el aeropuerto de SDE. Las barras oscuras corresponden a años con MotoGP — el evento genera un pico de conectividad medible. La caída de 2019–2022 refleja la salida de Aerolíneas Argentinas y la pandemia. Fuente: ANAC.'} />
       </section>
 
+      <section style={{ background: C.paper, padding: 'clamp(40px,5vw,64px) var(--pad)' }}>
+        <Interpretacion>
+          El modelo DiD estima que MotoGP 2025 generó un uplift de +13.745 viajeros en Termas
+          sobre el baseline de 28.405 (+48%). En abril 2025 el efecto se mantuvo: +12.143
+          viajeros adicionales (+43%). Para comparar, sin MotoGP en 2024, Termas registró
+          24.882 viajeros en marzo — un 41% menos. A estadía media de 2,6 noches, cada edición
+          MotoGP equivale a ~36.000 pernoctes adicionales y un multiplicador estimado de
+          $2.800M ARS sobre la economía local. El evento es el mayor multiplicador de demanda
+          medible del destino y justifica por sí solo la inversión en conectividad aérea
+          temporal para los meses de marzo y abril.
+        </Interpretacion>
+      </section>
     </>
   )
 }
