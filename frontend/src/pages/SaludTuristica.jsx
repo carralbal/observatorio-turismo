@@ -3,7 +3,7 @@ import { ScatterChart, Scatter, LineChart, Line, XAxis, YAxis, ZAxis, Tooltip, R
 import { useCSV, fmt } from '../hooks/useCSV'
 import { C, Paralelo, VoltLine, Eyebrow, SectionTitle, Interpretacion, Loading, ICONS } from '../components/Atoms'
 
-const VIDEO_URL = 'https://www.pexels.com/download/video/36878094/'
+const VIDEO_URL = 'https://www.pexels.com/download/video/853889/'
 
 const CUADRANTES = {
   'I':   { label: 'Alto nivel + Alta trayectoria',     sub: 'Consolidación con recuperación' },
