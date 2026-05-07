@@ -49,8 +49,7 @@ function Hero() {
       <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.94) 0%, rgba(10,10,10,0.80) 30%, rgba(10,10,10,0.42) 58%, rgba(10,10,10,0.14) 100%)' }} />
       <div style={{ position: 'relative', zIndex: 3 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 44, animation: 'fadeUp 0.7s ease both' }}>
-          <Paralelo />
-          <Eyebrow light>Observatorio de Turismo · Santiago del Estero</Eyebrow>
+          <Paralelo /><Eyebrow light>Observatorio de Turismo · Santiago del Estero</Eyebrow>
         </div>
         <h1 style={{ fontSize: 'clamp(3rem,7.5vw,7rem)', fontWeight: 200, color: C.paper, lineHeight: 0.92, letterSpacing: '-0.045em', margin: '0 0 28px', maxWidth: 780, animation: 'fadeUp 0.8s 0.08s ease both' }}>
           Pulso Santiago<br />del Estero.
@@ -66,17 +65,19 @@ function Hero() {
   )
 }
 
-function KPIStrip({ termasLast, capitalLast, periodoStr, isEstimated }) {
+function KPIStrip({ termasLast, capitalLast, periodoStr, isEstimated, lastEOHEstadia }) {
   if (!termasLast) return null
   const viajeros_termas  = termasLast.viajeros_total ?? termasLast.viajeros ?? 0
   const viajeros_capital = capitalLast?.viajeros_total ?? capitalLast?.viajeros ?? 0
-  const estadia = termasLast.estadia_promedio
+  // Estadía: use EOH value when estimated (OLS doesn't produce estadía)
+  const estadia = isEstimated ? lastEOHEstadia : termasLast.estadia_promedio
+  const estadiaDelta = isEstimated ? 'último EOH · nov 2025' : 'Termas · EOH'
   const ibt = termasLast.ibt_compuesto
 
   const kpis = [
-    { icon: ICONS.viajeros, value: fmt(viajeros_termas),    label: 'Viajeros · Termas',   delta: periodoStr,          estimated: isEstimated },
-    { icon: ICONS.viajeros, value: fmt(viajeros_capital),   label: 'Viajeros · Capital',  delta: periodoStr,          estimated: isEstimated },
-    { icon: ICONS.estadia,  value: estadia ? `${Number(estadia).toFixed(2)}n` : '—', label: 'Estadía media', delta: 'Termas · EOH', estimated: false },
+    { icon: ICONS.viajeros, value: fmt(viajeros_termas),    label: 'Viajeros · Termas',   delta: periodoStr,    estimated: isEstimated },
+    { icon: ICONS.viajeros, value: fmt(viajeros_capital),   label: 'Viajeros · Capital',  delta: periodoStr,    estimated: isEstimated },
+    { icon: ICONS.estadia,  value: estadia ? `${Number(estadia).toFixed(2)}n` : '—', label: 'Estadía media', delta: estadiaDelta, estimated: false },
     { icon: ICONS.ibt,      value: `${ibt ?? '—'}/100`,    label: 'IBT · Señal digital',  delta: 'índice de búsqueda', estimated: false },
   ]
   return (
@@ -95,21 +96,17 @@ function KPIStrip({ termasLast, capitalLast, periodoStr, isEstimated }) {
       <Interpretacion texto={
         `En ${periodoStr}, Termas de Río Hondo ${isEstimated ? 'estimó' : 'registró'} ${fmt(viajeros_termas)} viajeros${isEstimated ? ' (modelo OLS)' : ''}. ` +
         `La Capital sumó ${fmt(viajeros_capital)} viajeros. ` +
-        (estadia ? `Estadía media: ${Number(estadia).toFixed(2)} noches (último EOH disponible). ` : '') +
+        (estadia ? `Estadía media: ${Number(estadia).toFixed(2)} noches${isEstimated ? ' (último EOH disponible, nov 2025)' : ''}. ` : '') +
         (ibt ? `IBT: ${ibt}/100 — ${ibt < 25 ? 'señal baja.' : ibt > 40 ? 'señal alta.' : 'señal media.'}` : '')
       } />
     </section>
   )
 }
 
-function ChartSection({ trendEOH, trendEst }) {
-  const allTermas = [...trendEOH, ...trendEst].map(r => r.termas ?? r.termasEst ?? 0).filter(Boolean)
+function ChartSection({ trend }) {
+  const allTermas = trend.map(r => r.termas ?? r.termasEst ?? 0).filter(Boolean)
   const maxTermas = allTermas.length ? Math.max(...allTermas) : 0
-  const maxRow = [...trendEOH, ...trendEst].find(r => (r.termas ?? r.termasEst) === maxTermas)
-
-  // Merge EOH and Est into single array for chart
-  const allLabels = [...new Map([...trendEOH, ...trendEst].map(r => [r.label, r])).values()]
-    .sort((a, b) => (a.fecha > b.fecha ? 1 : -1))
+  const maxRow = trend.find(r => (r.termas ?? r.termasEst) === maxTermas)
 
   return (
     <section style={{ background: C.ink, padding: 'clamp(56px,7vw,80px) var(--pad)' }}>
@@ -117,12 +114,13 @@ function ChartSection({ trendEOH, trendEst }) {
         <SectionTitle icon={ICONS.viajeros} context="Termas vs. Capital · EOH + estimado" main="Viajeros hospedados" light />
         <div style={{ display: 'flex', gap: 20, paddingTop: 4, flexWrap: 'wrap' }}>
           {[
-            { c: C.paper,  l: 'Termas · EOH',     dash: false },
-            { c: C.stone,  l: 'Capital · EOH',     dash: true  },
-            { c: C.volt,   l: 'Termas · estimado', dash: true  },
+            { c: C.paper,  l: 'Termas · EOH'     },
+            { c: C.stone,  l: 'Capital · EOH'     },
+            { c: C.volt,   l: 'Termas · est.',  dash: true },
+            { c: 'rgba(200,200,191,0.6)', l: 'Capital · est.', dash: true },
           ].map((x, i) => (
             <div key={i} style={{ display: 'flex', gap: 7, alignItems: 'center' }}>
-              <div style={{ width: 16, height: 1.5, background: x.c, opacity: x.dash ? 0.7 : 1 }} />
+              <div style={{ width: 16, height: x.dash ? 0 : 1.5, borderTop: x.dash ? `1.5px dashed ${x.c}` : 'none', background: x.dash ? 'none' : x.c }} />
               <Eyebrow light style={{ opacity: 0.42 }}>{x.l}</Eyebrow>
             </div>
           ))}
@@ -130,7 +128,7 @@ function ChartSection({ trendEOH, trendEst }) {
       </div>
       <div style={{ height: 'clamp(200px,26vw,320px)' }}>
         <ResponsiveContainer width="100%" height="100%">
-          <ComposedChart data={allLabels} margin={{ top: 8, right: 0, left: 0, bottom: 0 }}>
+          <ComposedChart data={trend} margin={{ top: 8, right: 0, left: 0, bottom: 0 }}>
             <defs>
               <linearGradient id="gT" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor={C.paper} stopOpacity={0.12} />
@@ -143,13 +141,16 @@ function ChartSection({ trendEOH, trendEst }) {
             </defs>
             <XAxis dataKey="label" tick={{ fill: C.stone, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} interval={5} />
             <Tooltip content={<ChartTooltip />} cursor={{ stroke: 'rgba(250,250,247,0.07)', strokeWidth: 1 }} />
-            <Area type="monotone" dataKey="termas"    name="Termas · EOH"     stroke={C.paper} strokeWidth={2}   fill="url(#gT)" dot={false} activeDot={{ r:3, fill:C.volt, strokeWidth:0 }} connectNulls={false} />
-            <Area type="monotone" dataKey="capital"   name="Capital · EOH"    stroke={C.stone} strokeWidth={1.5} strokeDasharray="5 4" strokeOpacity={0.5} fill="url(#gC)" dot={false} connectNulls={false} />
-            <Line  type="monotone" dataKey="termasEst" name="Termas · est."   stroke={C.volt}  strokeWidth={2}   strokeDasharray="6 3" dot={false} activeDot={{ r:3, fill:C.volt, strokeWidth:0 }} connectNulls />
+            {/* EOH observed lines */}
+            <Area type="monotone" dataKey="termas"    name="Termas · EOH"    stroke={C.paper} strokeWidth={2}   fill="url(#gT)" dot={false} activeDot={{ r:3, fill:C.volt, strokeWidth:0 }} connectNulls={false} />
+            <Area type="monotone" dataKey="capital"   name="Capital · EOH"   stroke={C.stone} strokeWidth={1.5} strokeDasharray="5 4" strokeOpacity={0.5} fill="url(#gC)" dot={false} connectNulls={false} />
+            {/* OLS estimated lines — only post-cutoff */}
+            <Line  type="monotone" dataKey="termasEst"  name="Termas · est."   stroke={C.volt}  strokeWidth={2}   strokeDasharray="6 3" dot={false} activeDot={{ r:3, fill:C.volt,  strokeWidth:0 }} connectNulls />
+            <Line  type="monotone" dataKey="capitalEst" name="Capital · est."  stroke="rgba(200,200,191,0.7)" strokeWidth={1.5} strokeDasharray="6 3" dot={false} activeDot={{ r:3, fill:C.stone, strokeWidth:0 }} connectNulls />
           </ComposedChart>
         </ResponsiveContainer>
       </div>
-      <Interpretacion light texto={`Termas supera sistemáticamente a la Capital. Pico histórico: ${fmt(maxTermas)} viajeros en ${maxRow?.label ?? '—'}. La línea volt punteada extiende la serie con estimaciones OLS desde dic 2025 — permite ver la continuidad del pulso turístico más allá del corte de la EOH.`} />
+      <Interpretacion light texto={`Termas supera sistemáticamente a la Capital. Pico histórico: ${fmt(maxTermas)} viajeros en ${maxRow?.label ?? '—'}. Las líneas punteadas extienden la serie con estimaciones OLS desde dic 2025 — permiten ver la continuidad del pulso turístico más allá del corte de la EOH.`} />
     </section>
   )
 }
@@ -190,7 +191,7 @@ function DonutSection({ termasLast }) {
       <div>
         <SectionTitle icon={ICONS.ibt} context="Google Trends · señal anticipada"
           main={señal === 'baja' ? 'Demanda digital en zona baja.' : señal === 'alta' ? 'Demanda digital en zona alta.' : 'Demanda digital en zona media.'} />
-        <Interpretacion texto={`El Índice de Búsqueda Turística (IBT) mide el interés de búsqueda online por alojamiento en Termas de Río Hondo. En este período se ubica en ${ibt}/100, ${señal === 'baja' ? 'por debajo del umbral de señal activa (40/100). Anticipa demanda moderada.' : señal === 'alta' ? 'por encima del umbral activo (40/100). Anticipa alta demanda.' : 'en zona media. Señal moderada.'}`} />
+        <Interpretacion texto={`El Índice de Búsqueda Turística (IBT) mide el interés de búsqueda online por alojamiento en Termas de Río Hondo. En este período se ubica en ${ibt}/100, ${señal === 'baja' ? 'por debajo del umbral de señal activa (40/100).' : señal === 'alta' ? 'por encima del umbral activo (40/100). Anticipa alta demanda.' : 'en zona media. Señal moderada.'}`} />
       </div>
     </section>
   )
@@ -241,7 +242,6 @@ function BrechaSection() {
       </div>
       <Interpretacion>
         Con 13.055 plazas, Termas es el centro termal más grande de Sudamérica en oferta hotelera.
-        Pero solo 2 vuelos semanales desde Buenos Aires limitan estructuralmente la demanda lejana.
         Recuperar el nivel de 2017 implicaría multiplicar por 9 el flujo aéreo actual.
       </Interpretacion>
     </section>
@@ -263,27 +263,28 @@ function CTAVolt() {
 
 export default function Home() {
   const { anio, mes } = usePeriodo()
-
-  // EOH real data (hasta nov 2025)
-  const { data: pulso, loading: l1 } = useCSV('/data/data_pulso.csv', { filter: r => r.flag_covid === 0 })
-  // OLS estimado (dic 2025 en adelante flag_estimado=1, también incluye datos reales flag=0)
+  const { data: pulso,    loading: l1 } = useCSV('/data/data_pulso.csv', { filter: r => r.flag_covid === 0 })
   const { data: estimado, loading: l2 } = useCSV('/data/data_pulso_estimado.csv')
 
-  const termasEOH  = pulso.filter(r => r.localidad === 'Termas').sort((a,b) => new Date(a.fecha) - new Date(b.fecha))
-  const capitalEOH = pulso.filter(r => r.localidad === 'Santiago del Estero').sort((a,b) => new Date(a.fecha) - new Date(b.fecha))
-  const termasOLS  = estimado.filter(r => r.localidad === 'Termas' && Number(r.flag_estimado) === 1).sort((a,b) => new Date(a.fecha) - new Date(b.fecha))
+  const termasEOH   = pulso.filter(r => r.localidad === 'Termas').sort((a,b) => new Date(a.fecha) - new Date(b.fecha))
+  const capitalEOH  = pulso.filter(r => r.localidad === 'Santiago del Estero').sort((a,b) => new Date(a.fecha) - new Date(b.fecha))
+  const termasOLS   = estimado.filter(r => r.localidad === 'Termas'                && Number(r.flag_estimado) === 1).sort((a,b) => new Date(a.fecha) - new Date(b.fecha))
+  const capitalOLS  = estimado.filter(r => r.localidad === 'Santiago del Estero'   && Number(r.flag_estimado) === 1).sort((a,b) => new Date(a.fecha) - new Date(b.fecha))
 
-  // KPI: last EOH or last OLS estimate
-  const eohCutoff = termasEOH.length ? termasEOH[termasEOH.length-1].fecha : null
+  // Last EOH estadía for when showing estimates
+  const lastEOHEstadia = termasEOH[termasEOH.length - 1]?.estadia_promedio
+
+  // EOH cutoff
+  const corte = termasEOH.length ? termasEOH[termasEOH.length - 1].fecha : null
 
   const termasFilt  = (anio || mes) ? filterByPeriodo(termasEOH, anio, mes) : termasEOH
   const capitalFilt = (anio || mes) ? filterByPeriodo(capitalEOH, anio, mes) : capitalEOH
 
-  // For KPI: if no period selected or future, use latest (EOH or OLS)
   const lastEOH = termasFilt[termasFilt.length - 1]
   const lastOLS = (!anio && !mes) ? termasOLS[termasOLS.length - 1] : null
   const termasLast   = lastOLS ?? lastEOH
-  const capitalLast  = capitalFilt[capitalFilt.length - 1]
+  const capitalLastOLS = (!anio && !mes) ? capitalOLS[capitalOLS.length - 1] : null
+  const capitalLast  = capitalLastOLS ?? capitalFilt[capitalFilt.length - 1]
   const isEstimated  = !!lastOLS
 
   const periodoStr = (() => {
@@ -292,35 +293,39 @@ export default function Home() {
     return (anio || mes) ? fecha : `Último disponible · ${fecha}`
   })()
 
-  // Trend chart data
-  const trendEOH = termasEOH.map(t => {
+  // Build merged trend array
+  const eohMap = {}
+  termasEOH.forEach(t => {
     const d = new Date(t.fecha)
     const cap = capitalEOH.find(c => c.fecha === t.fecha)
-    return {
+    eohMap[t.fecha] = {
       fecha: t.fecha,
       label: d.toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
       year: d.getFullYear(),
       termas: Number(t.viajeros_total) || null,
       capital: cap ? Number(cap.viajeros_total) || null : null,
       termasEst: null,
+      capitalEst: null,
     }
   })
 
-  const trendEst = termasOLS.map(t => {
-    const d = new Date(t.fecha)
-    return {
-      fecha: t.fecha,
-      label: d.toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
-      year: d.getFullYear(),
-      termas: null,
-      capital: null,
-      termasEst: Number(t.viajeros) || null,
+  // Add OLS estimates — only after cutoff
+  termasOLS.forEach(t => {
+    if (!eohMap[t.fecha]) {
+      const d = new Date(t.fecha)
+      eohMap[t.fecha] = { fecha: t.fecha, label: d.toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }), year: d.getFullYear(), termas: null, capital: null, termasEst: null, capitalEst: null }
     }
+    if (!corte || t.fecha > corte) eohMap[t.fecha].termasEst = Number(t.viajeros) || null
+  })
+  capitalOLS.forEach(t => {
+    if (!eohMap[t.fecha]) {
+      const d = new Date(t.fecha)
+      eohMap[t.fecha] = { fecha: t.fecha, label: d.toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }), year: d.getFullYear(), termas: null, capital: null, termasEst: null, capitalEst: null }
+    }
+    if (!corte || t.fecha > corte) eohMap[t.fecha].capitalEst = Number(t.viajeros) || null
   })
 
-  // Merge and filter by selected year
-  const allTrend = [...new Map([...trendEOH, ...trendEst].map(r => [r.fecha, r])).values()]
-    .sort((a,b) => a.fecha > b.fecha ? 1 : -1)
+  const allTrend = Object.values(eohMap).sort((a,b) => a.fecha > b.fecha ? 1 : -1)
   const trend = anio ? allTrend.filter(r => r.year === anio) : allTrend
 
   if (l1 || l2) return <Loading />
@@ -328,8 +333,8 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <KPIStrip termasLast={termasLast} capitalLast={capitalLast} periodoStr={periodoStr} isEstimated={isEstimated} />
-      <ChartSection trendEOH={trend} trendEst={[]} />
+      <KPIStrip termasLast={termasLast} capitalLast={capitalLast} periodoStr={periodoStr} isEstimated={isEstimated} lastEOHEstadia={lastEOHEstadia} />
+      <ChartSection trend={trend} />
       <DonutSection termasLast={termasLast} />
       <BrechaSection />
       <CTAVolt />

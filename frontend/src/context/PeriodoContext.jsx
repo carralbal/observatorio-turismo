@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from 'react'
 const PeriodoCtx = createContext()
 
 export const MESES = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic']
-export const AÑOS  = [2019, 2020, 2021, 2022, 2023, 2024, 2025]
+export const AÑOS  = [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026]
 
 export function PeriodoProvider({ children }) {
   const [anio, setAnio] = useState(null)
