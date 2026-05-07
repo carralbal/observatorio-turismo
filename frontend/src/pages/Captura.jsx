@@ -137,11 +137,11 @@ export default function Captura() {
             ].map((item, i) => (
               <div key={i} style={{ padding: 'clamp(14px,2vw,20px)', marginBottom: 8, border: '0.5px solid '+C.stone, borderLeft: '2px solid '+(item.active ? C.volt : C.stone), background: item.active ? 'rgba(255,255,0,0.02)' : 'transparent' }}>
                 <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 6 }}>
-                  <span style={{ fontSize: 11, fontWeight: 600, color: item.active ? C.volt : C.stone, letterSpacing: '0.1em' }}>{item.n}</span>
-                  <span style={{ fontSize: 12, fontWeight: 500, color: C.ink }}>{item.label}</span>
+                  <span style={{ fontSize: 14, fontWeight: 600, color: item.active ? C.volt : C.stone, letterSpacing: '0.1em' }}>{item.n}</span>
+                  <span style={{ fontSize: 15, fontWeight: 500, color: C.ink }}>{item.label}</span>
                   {item.active && <span style={{ fontSize: 9, padding: '2px 6px', background: C.volt, color: C.ink, fontWeight: 600, letterSpacing: '0.1em' }}>ACTIVO</span>}
                 </div>
-                <p style={{ fontSize: 11, color: C.slate, margin: 0, lineHeight: 1.5 }}>{item.desc}</p>
+                <p style={{ fontSize: 13, color: C.slate, margin: 0, lineHeight: 1.6 }}>{item.desc}</p>
               </div>
             ))}
           </div>

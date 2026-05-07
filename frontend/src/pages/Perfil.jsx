@@ -12,7 +12,7 @@ function KPICard({ value, label, delta }) {
       <div style={{ fontSize: 'clamp(1.7rem,3vw,3rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.045em', lineHeight: 1, marginBottom: 10 }}>{value}</div>
       <VoltLine w={20} />
       <div style={{ fontSize: 12.5, fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>{label}</div>
-      {delta && <div style={{ fontSize: 11, color: C.slate, opacity: 0.65 }}>{delta}</div>}
+      {delta && <div style={{ fontSize: 13, color: C.slate, opacity: 0.65 }}>{delta}</div>}
     </div>
   )
 }
@@ -130,7 +130,7 @@ export default function Perfil() {
                   <YAxis tick={{ fill: C.stone, fontSize: 9, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} tickFormatter={v => 'USD'+v} width={52} />
                   <Tooltip content={({ active, payload, label: l }) => active && payload?.length ? (
                     <div style={{ background: C.paper, border: '0.5px solid '+C.stone, padding: '6px 10px', fontFamily: 'Plus Jakarta Sans' }}>
-                      <div style={{ fontSize: 11, color: C.ink }}>{l}: USD {payload[0].value}</div>
+                      <div style={{ fontSize: 13, color: C.ink }}>{l}: USD {payload[0].value}</div>
                     </div>
                   ) : null} />
                   <Bar dataKey="gasto" radius={[2,2,0,0]}>
@@ -149,7 +149,7 @@ export default function Perfil() {
                   <YAxis tick={{ fill: C.stone, fontSize: 9, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} width={32} />
                   <Tooltip content={({ active, payload, label: l }) => active && payload?.length ? (
                     <div style={{ background: C.paper, border: '0.5px solid '+C.stone, padding: '6px 10px', fontFamily: 'Plus Jakarta Sans' }}>
-                      <div style={{ fontSize: 11, color: C.ink }}>{l}: {payload[0].value} noches</div>
+                      <div style={{ fontSize: 13, color: C.ink }}>{l}: {payload[0].value} noches</div>
                     </div>
                   ) : null} />
                   <Bar dataKey="estadia" radius={[2,2,0,0]}>

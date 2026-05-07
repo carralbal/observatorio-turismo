@@ -37,8 +37,11 @@ def get_schema():
         ).fetchall()
         schema = {}
         for (t,) in tables:
-            cols = con.execute(f"DESCRIBE {t}").fetchall()
-            schema[t] = [c[0] for c in cols]
+            try:
+                cols = con.execute(f"DESCRIBE {t}").fetchall()
+                schema[t] = [c[0] for c in cols]
+            except Exception:
+                schema[t] = ["(columnas no disponibles)"]
         con.close()
         return schema
     except Exception as e:

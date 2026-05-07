@@ -62,25 +62,25 @@ export default function Madurez() {
             <div style={{ fontSize: 'clamp(1.7rem,3vw,3rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.045em', lineHeight: 1, marginBottom: 10 }}>{sde.score_madurez || '—'} / 5</div>
             <VoltLine w={20} />
             <div style={{ fontSize: 12.5, fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>Score de madurez SDE</div>
-            <div style={{ fontSize: 11, color: C.slate, opacity: 0.65 }}>{sde.nivel_label || '—'}</div>
+            <div style={{ fontSize: 13, color: C.slate, opacity: 0.65 }}>{sde.nivel_label || '—'}</div>
           </div>
           <div style={{ borderLeft: '1px solid '+C.stone, paddingLeft: 'clamp(14px,2vw,24px)' }}>
             <div style={{ fontSize: 'clamp(1.7rem,3vw,3rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.045em', lineHeight: 1, marginBottom: 10 }}>{rankingSde}° / {datos.length}</div>
             <VoltLine w={20} />
             <div style={{ fontSize: 12.5, fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>Ranking nacional</div>
-            <div style={{ fontSize: 11, color: C.slate, opacity: 0.65 }}>entre 24 jurisdicciones</div>
+            <div style={{ fontSize: 13, color: C.slate, opacity: 0.65 }}>entre 24 jurisdicciones</div>
           </div>
           <div style={{ borderLeft: '1px solid '+C.stone, paddingLeft: 'clamp(14px,2vw,24px)' }}>
             <div style={{ fontSize: 'clamp(1.7rem,3vw,3rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.045em', lineHeight: 1, marginBottom: 10 }}>{promedio}</div>
             <VoltLine w={20} />
             <div style={{ fontSize: 12.5, fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>Promedio nacional</div>
-            <div style={{ fontSize: 11, color: C.slate, opacity: 0.65 }}>score medio 24 provincias</div>
+            <div style={{ fontSize: 13, color: C.slate, opacity: 0.65 }}>score medio 24 provincias</div>
           </div>
           <div style={{ borderLeft: '1px solid '+C.stone, paddingLeft: 'clamp(14px,2vw,24px)' }}>
             <div style={{ fontSize: 'clamp(1.7rem,3vw,3rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.045em', lineHeight: 1, marginBottom: 10 }}>{DIMENSIONES.filter(d => Number(sde[d.key]) === 1).length} / {DIMENSIONES.length}</div>
             <VoltLine w={20} />
             <div style={{ fontSize: 12.5, fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>Dimensiones activas</div>
-            <div style={{ fontSize: 11, color: C.slate, opacity: 0.65 }}>capacidades instaladas</div>
+            <div style={{ fontSize: 13, color: C.slate, opacity: 0.65 }}>capacidades instaladas</div>
           </div>
         </div>
       </section>
@@ -94,8 +94,8 @@ export default function Madurez() {
               <YAxis type="category" dataKey="provincia" tick={{ fill: C.stone, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} width={120} />
               <Tooltip content={({ active, payload }) => active && payload?.length ? (
                 <div style={{ background: '#111', border: '1px solid rgba(250,250,247,0.1)', padding: '8px 12px', fontFamily: 'Plus Jakarta Sans' }}>
-                  <div style={{ fontSize: 12, color: C.paper }}>{payload[0]?.payload?.provincia}: {payload[0]?.value} / 5</div>
-                  <div style={{ fontSize: 11, color: C.stone }}>{payload[0]?.payload?.nivel_label}</div>
+                  <div style={{ fontSize: 14, color: C.paper }}>{payload[0]?.payload?.provincia}: {payload[0]?.value} / 5</div>
+                  <div style={{ fontSize: 13, color: C.stone }}>{payload[0]?.payload?.nivel_label}</div>
                 </div>
               ) : null} cursor={{ fill: 'rgba(250,250,247,0.04)' }} />
               <Bar dataKey="score" radius={[0,2,2,0]}>
@@ -116,7 +116,7 @@ export default function Madurez() {
               <div key={i} style={{ padding: 'clamp(14px,2vw,20px)', border: '0.5px solid '+C.stone, borderLeft: '2px solid '+(tiene ? C.volt : C.stone), background: tiene ? 'rgba(255,255,0,0.02)' : 'transparent' }}>
                 <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
                   <div style={{ width: 6, height: 6, borderRadius: '50%', background: tiene ? C.volt : C.stone, flexShrink: 0 }} />
-                  <span style={{ fontSize: 11, fontWeight: tiene ? 500 : 400, color: tiene ? C.ink : C.slate }}>{dim.label}</span>
+                  <span style={{ fontSize: 13, fontWeight: tiene ? 500 : 400, color: tiene ? C.ink : C.slate }}>{dim.label}</span>
                 </div>
               </div>
             )

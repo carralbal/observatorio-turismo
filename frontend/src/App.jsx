@@ -11,6 +11,7 @@ import MotoGPP from './pages/MotoGP'
 import SenalP from './pages/Senal'
 import BenchmarkP from './pages/Benchmark'
 import NacionalP from './pages/Nacional'
+import FuentesP from './pages/Fuentes'
 import CapturaP from './pages/Captura'
 import MadurezP from './pages/Madurez'
 import PerfilP from './pages/Perfil'
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
       { path: 'terrestre',    element: <TerrestreP /> },
       { path: 'informal',     element: <InformalP /> },
       { path: 'empleo',       element: <EmpleoP /> },
+      { path: 'fuentes',       element: <FuentesP /> },
       { path: 'nacional',     element: <NacionalP /> },
       { path: 'motogp',       element: <MotoGPP /> },
       { path: 'señal',        element: <SenalP /> },

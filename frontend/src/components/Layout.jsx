@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import { C, Paralelo, Eyebrow } from './Atoms'
+import { Database } from 'lucide-react'
 import PeriodBar from './PeriodBar'
 import BotToggle from './BotToggle'
 
@@ -82,7 +83,7 @@ export default function Layout() {
                 </button>
                 {openCapa === capa.label && (
                   <div style={{
-                    position: 'absolute', top: '100%', right: 0,
+                    position: 'absolute', top: '100%', left: 0,
                     background: 'rgba(10,10,10,0.97)',
                     border: '0.5px solid rgba(250,250,247,0.12)',
                     borderTop: `1.5px solid ${C.volt}`,
@@ -106,6 +107,17 @@ export default function Layout() {
               </div>
             )
           })}
+          <NavLink to="/fuentes" style={({ isActive }) => ({
+            display: 'flex', alignItems: 'center', gap: 6,
+            padding: '6px 12px', textDecoration: 'none',
+            borderBottom: isActive ? `1.5px solid ${C.volt}` : '1.5px solid transparent',
+            paddingBottom: 4, marginLeft: 8,
+          })}>
+            <Database size={13} style={{ color: C.volt }} />
+            <span style={{ fontSize: 10, fontWeight: 500, color: C.volt, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+              Fuentes
+            </span>
+          </NavLink>
         </div>
       </nav>
 

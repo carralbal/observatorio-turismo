@@ -127,9 +127,9 @@ export default function Senal() {
           ].map((item,i) => (
             <div key={i} style={{ padding: 'clamp(20px,2.5vw,32px)', border: '0.5px solid '+C.stone, borderTop: '2px solid '+item.color }}>
               <div style={{ fontSize: 'clamp(1.5rem,2.5vw,3rem)', fontWeight: 200, color: C.stone, letterSpacing: '-0.05em', opacity: 0.2, marginBottom: 12 }}>{item.n}</div>
-              <div style={{ fontSize: '0.95rem', fontWeight: 500, color: C.ink, marginBottom: 8 }}>{item.titulo}</div>
-              <div style={{ fontSize: 11, color: C.slate, marginBottom: 12, lineHeight: 1.5 }}>{item.señal}</div>
-              <div style={{ fontSize: 11, color: C.ink, lineHeight: 1.5, borderLeft: '2px solid '+item.color, paddingLeft: 10 }}>{item.accion}</div>
+              <div style={{ fontSize: '1.05rem', fontWeight: 500, color: C.ink, marginBottom: 10 }}>{item.titulo}</div>
+              <div style={{ fontSize: 13, color: C.slate, marginBottom: 14, lineHeight: 1.6 }}>{item.señal}</div>
+              <div style={{ fontSize: 13, color: C.ink, lineHeight: 1.6, borderLeft: '2px solid '+item.color, paddingLeft: 10 }}>{item.accion}</div>
             </div>
           ))}
         </div>

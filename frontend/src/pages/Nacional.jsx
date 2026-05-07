@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { ComposedChart, Area, Bar, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts'
+import { ComposedChart, Area, Bar, Line, Cell, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts'
 import { useCSV, fmt } from '../hooks/useCSV'
 import { usePeriodo } from '../context/PeriodoContext'
 import { C, Paralelo, VoltLine, Eyebrow, SectionTitle, Interpretacion, Loading, ICONS } from '../components/Atoms'
@@ -84,7 +84,7 @@ export default function Nacional() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '0 clamp(14px,4vw,56px)' }}>
           <KPICard value={fmt(ultimo.receptivo)} label="Turistas receptivos" delta={'extranjeros que entran · '+fechaActual} />
           <KPICard value={fmt(ultimo.emisivo)} label="Turistas emisivos" delta={'argentinos que salen · '+fechaActual} />
-          <KPICard value={fmt(Math.abs(ultimo.saldo||0))} label={'Balanza '+(saldoPositivo?'superavitaria':'deficitaria')} delta={'saldo '+(saldoPositivo?'positivo':'negativo')+' de divisas turisticas'} positive={saldoPositivo} />
+          <KPICard value={(ultimo.saldo < 0 ? '−' : '') + fmt(Math.abs(ultimo.saldo||0))} label={'Balanza '+(saldoPositivo?'superavitaria':'deficitaria')} delta={'saldo '+(saldoPositivo?'positivo':'negativo')+' de divisas turisticas'} positive={saldoPositivo} />
           <KPICard value={'$'+fmt(ultimo.tcn||0)} label="Tipo de cambio oficial" delta={'ARS/USD · '+fechaActual} />
         </div>
         <Interpretacion texto={'En '+fechaActual+', Argentina recibe '+fmt(ultimo.receptivo)+' turistas internacionales y '+fmt(ultimo.emisivo)+' argentinos viajan al exterior. La balanza turistica es '+(saldoPositivo?'superavitaria (mas ingresos que egresos de divisas)':'deficitaria (mas egresos que ingresos de divisas)')+'. El tipo de cambio oficial es $'+fmt(ultimo.tcn)+' ARS/USD. Fuente: ETI INDEC + BCRA.'} />
@@ -131,10 +131,9 @@ export default function Nacional() {
               <YAxis tick={{ fill: C.stone, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} tickFormatter={v=>fmt(v)} width={60} />
               <Tooltip content={<Tip />} cursor={{ fill: 'rgba(10,10,10,0.04)' }} />
               <ReferenceLine y={0} stroke={C.stone} strokeOpacity={0.3} />
-              <Bar dataKey="receptivo" name="Receptivo" fill={C.ink} fillOpacity={0.6} radius={[2,2,0,0]} />
-              <Bar dataKey="saldo" name="Saldo balanza" radius={[2,2,0,0]}>
-                {serieAnual.map((s,i) => <Bar key={i} fill={s.saldo >= 0 ? C.volt : C.slate} />)}
-              </Bar>
+              <Bar dataKey="receptivo" name="Receptivo" fill="rgba(250,250,247,0.08)" radius={[2,2,0,0]} />
+              <Bar dataKey="emisivo" name="Emisivo" fill="rgba(250,250,247,0.04)" radius={[2,2,0,0]} />
+              <Line type="monotone" dataKey="saldo" name="Saldo" stroke={C.volt} strokeWidth={2} dot={false} connectNulls />
             </ComposedChart>
           </ResponsiveContainer>
         </div>

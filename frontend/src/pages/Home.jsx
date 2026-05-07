@@ -59,17 +59,10 @@ function Hero({ termasLast, capitalLast, periodoStr }) {
       <video autoPlay loop muted playsInline style={{
         position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0,
       }}>
-        <source src="https://www.pexels.com/es-es/download/video/13277310/" type="video/mp4" />
+        <source src="https://www.pexels.com/es-es/download/video/36017152/" type="video/mp4" />
       </video>
       <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.94) 0%, rgba(10,10,10,0.80) 30%, rgba(10,10,10,0.42) 58%, rgba(10,10,10,0.14) 100%)' }} />
-      <img src={ESCUDO} alt="" aria-hidden="true" style={{
-        position: 'absolute', right: 'clamp(32px, 8vw, 96px)', top: '50%',
-        transform: 'translateY(-50%)',
-        height: 'clamp(160px, 26vw, 320px)',
-        filter: 'grayscale(1) brightness(8) contrast(0.25)',
-        opacity: 0.07, zIndex: 2,
-        userSelect: 'none', pointerEvents: 'none', objectFit: 'contain',
-      }} />
+
 
       <div style={{ position: 'relative', zIndex: 3 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 44, animation: 'fadeUp 0.7s ease both' }}>
@@ -80,15 +73,21 @@ function Hero({ termasLast, capitalLast, periodoStr }) {
           fontSize: 'clamp(3rem, 7.5vw, 7rem)', fontWeight: 200, color: C.paper,
           lineHeight: 0.92, letterSpacing: '-0.045em', margin: '0 0 28px', maxWidth: 780,
           animation: 'fadeUp 0.8s 0.08s ease both',
-        }}>Termas<br />y Capital.</h1>
-        <div style={{ width: 44, height: 2, background: C.volt, marginBottom: 24, animation: 'slideRight 0.8s 0.18s ease both', transformOrigin: 'left' }} />
-        <p style={{
-          fontSize: 'clamp(0.85rem, 1.3vw, 1rem)', fontWeight: 300, color: C.paper, opacity: 0.62,
-          maxWidth: 400, lineHeight: 1.72, margin: '0 0 72px',
-          animation: 'fadeUp 0.8s 0.22s ease both',
-        }}>
-          El sistema de indicadores turísticos de Santiago del Estero. Datos oficiales actualizados mensualmente.
-        </p>
+        }}>Pulso Santiago<br />del Estero.</h1>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 20, margin: '0 0 72px' }}>
+          <p style={{
+            fontSize: 'clamp(0.85rem, 1.3vw, 1rem)', fontWeight: 300, color: C.paper, opacity: 0.62,
+            maxWidth: 400, lineHeight: 1.72, margin: 0,
+            animation: 'fadeUp 0.8s 0.22s ease both',
+          }}>
+            El sistema de indicadores turísticos de Santiago del Estero. Datos oficiales actualizados mensualmente.
+          </p>
+          <img src={ESCUDO} alt="Escudo Santiago del Estero" style={{
+            height: 'clamp(48px,6.4vw,72px)', width: 'auto',
+            objectFit: 'contain', flexShrink: 0,
+            filter: 'brightness(0) invert(1)',
+          }} />
+        </div>
 
       </div>
     </section>
@@ -301,7 +300,7 @@ function BrechaSection() {
         <Eyebrow>Paradoja estructural</Eyebrow>
       </div>
       <SectionTitle>Capacidad sin<br />conectividad.</SectionTitle>
-      <p style={{ fontSize: '0.9rem', color: C.slate, maxWidth: 560, margin: '0 0 52px', lineHeight: 1.7 }}>
+      <p style={{ fontSize: '1rem', color: C.slate, maxWidth: 560, margin: '0 0 52px', lineHeight: 1.7 }}>
         Termas de Río Hondo tiene <strong style={{ color: C.ink }}>13.055 plazas hoteleras</strong> — el 7° stock más grande del país.
         Pero la conectividad aérea semanal alcanza apenas <strong style={{ color: C.ink }}>{aereo2025} asientos</strong>: el {cobertura}% de su capacidad.
         En 2017 eran 4.045 asientos semanales. Una decisión política en 2019
@@ -313,15 +312,15 @@ function BrechaSection() {
           <div key={i}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 10 }}>
               <div>
-                <span style={{ fontSize: 13, fontWeight: 600, color: C.ink, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{item.label}</span>
-                <span style={{ fontSize: 11, color: C.stone, marginLeft: 12 }}>{item.sub}</span>
+                <span style={{ fontSize: 15, fontWeight: 600, color: C.ink, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{item.label}</span>
+                <span style={{ fontSize: 13, color: C.slate, marginLeft: 12 }}>{item.sub}</span>
               </div>
               <span style={{ fontSize: 'clamp(1.2rem, 2vw, 1.6rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.03em' }}>{fmt(item.value)}</span>
             </div>
             <div style={{ height: 5, background: C.paper2 }}>
               <div style={{ height: '100%', width: `${item.pct}%`, background: i === 0 ? C.slate : C.volt }} />
             </div>
-            <div style={{ fontSize: 11, color: C.stone, marginTop: 6 }}>{item.pct}% de la capacidad hotelera</div>
+            <div style={{ fontSize: 13, color: C.slate, marginTop: 6 }}>{item.pct}% de la capacidad hotelera</div>
           </div>
         ))}
       </div>
@@ -329,7 +328,7 @@ function BrechaSection() {
       <div style={{ marginTop: 52, paddingTop: 32, borderTop: `0.5px solid ${C.stone}40`, display: 'flex', alignItems: 'baseline', gap: 20 }}>
         <span style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.05em', lineHeight: 1 }}>−89%</span>
         <div>
-          <div style={{ fontSize: 13, fontWeight: 600, color: C.ink, textTransform: 'uppercase', letterSpacing: '0.06em' }}>caída de conectividad aérea 2017→2025</div>
+          <div style={{ fontSize: 15, fontWeight: 600, color: C.ink, textTransform: 'uppercase', letterSpacing: '0.06em' }}>caída de conectividad aérea 2017→2025</div>
           <div style={{ fontSize: 12, color: C.slate, marginTop: 4 }}>de 4.045 a {fmt(aereo2025)} asientos semanales · {cobertura}% de cobertura actual</div>
         </div>
       </div>
@@ -348,7 +347,7 @@ function BrechaSection() {
 function CTAVolt() {
   return (
     <section style={{ background: C.volt, padding: 'clamp(52px, 8vw, 96px) var(--pad)', textAlign: 'center' }}>
-      <h2 style={{ fontSize: 'clamp(1.7rem, 4.5vw, 4rem)', fontWeight: 800, color: C.ink, letterSpacing: '-0.04em', lineHeight: 0.92, textTransform: 'uppercase', margin: '0 0 16px' }}>
+      <h2 style={{ fontSize: 'clamp(1rem, 2.7vw, 2.4rem)', fontWeight: 300, color: C.ink, letterSpacing: '-0.04em', lineHeight: 0.92, textTransform: 'uppercase', margin: '0 0 16px' }}>
         Explorá<br />las dimensiones.
       </h2>
       <p style={{ fontSize: '0.88rem', fontWeight: 400, color: C.ink, opacity: 0.7, maxWidth: 340, margin: '0 auto', lineHeight: 1.65 }}>

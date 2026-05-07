@@ -138,8 +138,8 @@ export default function Estimado() {
               {corte && <ReferenceLine x={new Date(corte).toLocaleDateString('es-AR', { month: 'short', year: '2-digit' })} stroke="rgba(250,250,247,0.2)" strokeDasharray="4 3" label={{ value: 'EOH off', fill: C.stone, fontSize: 9, fontFamily: 'Plus Jakarta Sans' }} />}
               <Area type="monotone" dataKey="ic_high" fill="url(#gIC)" stroke="none" name="IC alto" legendType="none" />
               <Area type="monotone" dataKey="ic_low" fill={C.ink} stroke="none" name="IC bajo" legendType="none" />
-              <Line type="monotone" dataKey="viajeros_obs" stroke={C.paper} strokeWidth={2} dot={false} name="Observado" connectNulls={false} activeDot={{ r: 3, fill: C.paper, strokeWidth: 0 }} />
-              <Line type="monotone" dataKey="viajeros_est" stroke={C.volt} strokeWidth={1.5} dot={false} strokeDasharray="6 3" name="Estimado" connectNulls activeDot={{ r: 3, fill: C.volt, strokeWidth: 0 }} />
+              <Line type="monotone" dataKey="viajeros_obs" stroke={C.paper} strokeWidth={2.5} dot={false} name="Observado" connectNulls={false} activeDot={{ r: 3, fill: C.paper, strokeWidth: 0 }} />
+              <Line type="monotone" dataKey="viajeros_est" stroke={C.volt} strokeWidth={2} dot={false} strokeDasharray="4 2" name="Estimado" connectNulls activeDot={{ r: 3, fill: C.volt, strokeWidth: 0 }} />
             </ComposedChart>
           </ResponsiveContainer>
         </div>
