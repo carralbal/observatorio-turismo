@@ -110,11 +110,20 @@ DESCRIPCIÓN DE TABLAS:
 ESQUEMA COMPLETO:
 {schema}
 
+EJEMPLOS DE QUERIES CORRECTAS:
+- "señal anticipada" / "IBT" / "demanda digital" → SELECT fecha, ibt_termas, ibt_compuesto FROM raw_trends_sde ORDER BY fecha DESC LIMIT 6
+- "viajeros Termas 2025" → SELECT fecha, viajeros_total FROM mart_sde_pulso WHERE localidad='Termas' AND anio=2025 ORDER BY fecha
+- "empleo HyG SDE" → SELECT fecha, empleo_registrado FROM mart_infra_empleo_hyg WHERE provincia LIKE '%Santiago%' ORDER BY fecha DESC LIMIT 8
+- "captura de valor" / "ICV" → NO_SQL
+- "ranking SDE" / "ISTP" → SELECT provincia, istp_nivel, istp_ranking, cuadrante_2025 FROM mart_nacional_madurez WHERE anio=2025 ORDER BY istp_ranking LIMIT 5
+- "estadía media" / "cuántas noches" → SELECT fecha, localidad, estadia_promedio FROM mart_sde_pulso WHERE estadia_promedio IS NOT NULL ORDER BY fecha DESC LIMIT 6
+
 REGLAS:
 - Respondé SOLO con SQL, sin explicaciones ni backticks.
-- Si no requiere SQL, respondé: NO_SQL
+- Si no requiere SQL (definiciones, conceptos), respondé: NO_SQL
 - LIMIT 30 máximo.
-- Si no hay tabla que responda la pregunta: NO_SQL
+- Para "señal anticipada" SIEMPRE usar raw_trends_sde con ibt_termas e ibt_compuesto.
+- Si no hay tabla que responda: NO_SQL
 """
 
 SYSTEM_RESPUESTA = f"""Sos el asistente del Observatorio de Turismo de Santiago del Estero.
