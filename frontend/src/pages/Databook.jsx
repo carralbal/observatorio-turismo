@@ -212,6 +212,11 @@ export default function Databook() {
             )
           })}
         </div>
+        <div style={{ marginTop: 32, paddingTop: 24, borderTop: `0.5px solid ${C.stone}40` }}>
+          <a href="/fuentes" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, textDecoration: 'none', color: C.ink, fontSize: 'var(--fs-sm)', fontWeight: 500, borderBottom: `1.5px solid ${C.ink}`, paddingBottom: 2 }}>
+            Ver ficha técnica completa por fuente →
+          </a>
+        </div>
       </section>
 
       {/* METODOLOGÍA */}

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import { C, Paralelo, Eyebrow } from './Atoms'
-import { Database, Layers, Info, Menu, X } from 'lucide-react'
+import { Layers, Info, Menu, X } from 'lucide-react'
 import PeriodBar from './PeriodBar'
 import BotToggle from './BotToggle'
 
@@ -99,7 +99,6 @@ export default function Layout() {
           {[
             { to: '/madurez',  Icon: Layers,   label: 'Madurez'  },
             { to: '/databook', Icon: Info,      label: 'DataBook' },
-            { to: '/fuentes',  Icon: Database,  label: 'Fuentes'  },
           ].map(({ to, Icon, label }) => (
             <NavLink key={to} to={to} onClick={close} style={({ isActive }) => ({
               display: 'flex', alignItems: 'center', gap: 6,
