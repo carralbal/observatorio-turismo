@@ -1,7 +1,7 @@
 import { C, Paralelo, VoltLine, Eyebrow, SectionTitle, Interpretacion, ICONS } from '../components/Atoms'
 import { CheckCircle, Circle, Clock } from 'lucide-react'
 
-const VIDEO_URL = 'https://www.pexels.com/download/video/36878094/'
+const VIDEO_URL = 'https://www.pexels.com/es-es/download/video/6804654/'
 
 const NIVELES = [
   {
