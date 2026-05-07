@@ -61,7 +61,7 @@ mart_sde_benchmark: comparativa interprovincial NOA. Viajeros, pernoctes, estad�
 mart_sde_motogp: impacto MotoGP por edición.
 mart_sde_youtube: imagen destino. Vistas, videos YouTube SDE.
 mart_sde_perfil_turista: perfil EVyTH. Motivo, transporte, gasto del turista interno.
-raw_trends_sde: IBT señal anticipada Google Trends mensual para Termas de Río Hondo. Columnas: fecha, ibt_termas, ibt_sde, ibt_motogp, ibt_compuesto. Escala 0-100. IBT>60 = alta demanda anticipada.
+raw_trends_sde: IBT señal anticipada Google Trends mensual. Columnas: fecha, ibt_termas (Termas de Río Hondo 0-100), ibt_santiago (Capital 0-100), ibt_motogp (MotoGP 0-100), anio, mes. IBT>60 = alta demanda anticipada.
 stg_airdna_sde: datos AirDNA por zona para Termas y Capital.
 """
 
@@ -111,7 +111,7 @@ ESQUEMA COMPLETO:
 {schema}
 
 EJEMPLOS DE QUERIES CORRECTAS:
-- "señal anticipada" / "IBT" / "demanda digital" → SELECT fecha, ibt_termas, ibt_compuesto FROM raw_trends_sde ORDER BY fecha DESC LIMIT 6
+- "señal anticipada" / "IBT" / "demanda digital" → SELECT fecha, ibt_termas, ibt_santiago, ibt_motogp FROM raw_trends_sde ORDER BY fecha DESC LIMIT 6
 - "viajeros Termas 2025" → SELECT fecha, viajeros_total FROM mart_sde_pulso WHERE localidad='Termas' AND anio=2025 ORDER BY fecha
 - "empleo HyG SDE" → SELECT fecha, empleo_registrado FROM mart_infra_empleo_hyg WHERE provincia LIKE '%Santiago%' ORDER BY fecha DESC LIMIT 8
 - "captura de valor" / "ICV" → NO_SQL
