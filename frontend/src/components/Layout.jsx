@@ -216,7 +216,7 @@ export default function Layout() {
       <PeriodBar />
       <BotToggle />
 
-      <main style={{ paddingTop: 98 }}>
+      <main style={{ paddingTop: 128 }}>
         <Outlet />
       </main>
 

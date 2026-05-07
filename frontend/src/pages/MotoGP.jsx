@@ -100,7 +100,7 @@ export default function MotoGP() {
 
       <section style={{ background: C.ink, padding: 'clamp(56px,7vw,80px) var(--pad)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 48, flexWrap: 'wrap', gap: 20 }}>
-          <SectionTitle icon={ICONS.viajeros} context="Viajeros en marzo por ano" main="Impacto por edicion" light />
+          <SectionTitle icon={ICONS.viajeros} context="Viajeros en marzo por año" main="Impacto por edicion" light />
           <div style={{ display: 'flex', gap: 20, paddingTop: 4 }}>
             {[{c:C.volt,l:'Con MotoGP'},{c:'rgba(250,250,247,0.3)',l:'Sin MotoGP'}].map((x,i) => (
               <div key={i} style={{ display:'flex', gap:7, alignItems:'center' }}>
@@ -127,7 +127,7 @@ export default function MotoGP() {
       </section>
 
       <section style={{ background: C.paper, padding: 'clamp(56px,7vw,80px) var(--pad)' }}>
-        <SectionTitle icon={ICONS.aereo} context="Conectividad aerea en ediciones MotoGP" main="Pasajeros ANAC en ano del evento" style={{ marginBottom: 40 }} />
+        <SectionTitle icon={ICONS.aereo} context="Conectividad aerea en ediciones MotoGP" main="Pasajeros ANAC en año del evento" style={{ marginBottom: 40 }} />
         <div style={{ height: 'clamp(180px,22vw,260px)' }}>
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={barData} margin={{ top: 4, right: 0, left: 0, bottom: 0 }}>
@@ -141,7 +141,7 @@ export default function MotoGP() {
             </LineChart>
           </ResponsiveContainer>
         </div>
-        <Interpretacion texto={'El uplift positivo en anos con MotoGP confirma el efecto causal del evento sobre la demanda hotelera. El metodo DiD controla por estacionalidad y tendencia usando Santiago Capital como grupo de control. Fuente: EOH INDEC + ANAC, calculo propio.'} />
+        <Interpretacion texto={'El uplift positivo en años con MotoGP confirma el efecto causal del evento sobre la demanda hotelera. El metodo DiD controla por estacionalidad y tendencia usando Santiago Capital como grupo de control. Fuente: EOH INDEC + ANAC, calculo propio.'} />
       </section>
       <section style={{ background: 'var(--paper, #FAFAF7)', padding: 'clamp(40px,5vw,64px) var(--pad)' }}>
         <Interpretacion>
