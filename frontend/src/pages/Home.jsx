@@ -59,7 +59,7 @@ function Hero({ termasLast, capitalLast, periodoStr }) {
       <video autoPlay loop muted playsInline style={{
         position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0,
       }}>
-        <source src="https://www.pexels.com/es-es/download/video/36017152/" type="video/mp4" />
+        <source src="https://www.pexels.com/es-es/download/video/35840960/" type="video/mp4" />
       </video>
       <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.94) 0%, rgba(10,10,10,0.80) 30%, rgba(10,10,10,0.42) 58%, rgba(10,10,10,0.14) 100%)' }} />
 
@@ -245,41 +245,6 @@ function DonutSection({ termasLast }) {
   )
 }
 
-// ─── DARK METRICS ────────────────────────────────────────────────────────────
-function DarkMetrics({ termasLast, capitalLast, periodoStr }) {
-  if (!termasLast) return null
-  const metrics = [
-    { icon: ICONS.ibt,       value: `${termasLast.ibt_compuesto ?? '—'}/100`,           label: 'IBT',             desc: 'señal digital Google Trends' },
-    { icon: ICONS.estadia,   value: `${termasLast.estadia_promedio?.toFixed(1) ?? '—'}n`, label: 'Estadía media',   desc: 'noches · Termas' },
-    { icon: ICONS.viajeros,  value: fmt(termasLast.viajeros_total),                      label: 'Viajeros',        desc: 'Termas de Río Hondo' },
-    { icon: ICONS.viajeros,  value: fmt(capitalLast?.viajeros_total ?? 0),               label: 'Viajeros',        desc: 'Capital · Santiago del Estero' },
-  ]
-
-  return (
-    <section style={{ background: C.ink, padding: 'clamp(56px, 7vw, 80px) var(--pad)' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 52 }}>
-        <Paralelo />
-        <Eyebrow light>Resumen · {periodoStr}</Eyebrow>
-      </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0 clamp(12px, 3vw, 44px)' }}>
-        {metrics.map((m, i) => (
-          <div key={i} style={{ borderTop: `0.5px solid rgba(250,250,247,0.1)`, paddingTop: 24 }}>
-            {/* Ícono grande y visible */}
-            <m.icon size={24} strokeWidth={1.5} style={{ color: C.volt, opacity: 0.8, marginBottom: 14, display: 'block' }} />
-            <div style={{ fontSize: 'clamp(1.6rem, 2.8vw, 2.8rem)', fontWeight: 200, color: C.volt, letterSpacing: '-0.04em', lineHeight: 1, marginBottom: 10 }}>{m.value}</div>
-            <div style={{ width: 14, height: 1, background: C.volt, opacity: 0.4, marginBottom: 10 }} />
-            <div style={{ fontSize: 12, fontWeight: 400, color: C.paper, opacity: 0.8, lineHeight: 1.4 }}>
-              {m.label}<br />
-              <span style={{ opacity: 0.55, fontSize: 11, fontWeight: 300 }}>{m.desc}</span>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  )
-}
-
-
 // ─── BRECHA ──────────────────────────────────────────────────────────────────
 function BrechaSection() {
   const plazas    = 13055
@@ -347,7 +312,7 @@ function BrechaSection() {
 function CTAVolt() {
   return (
     <section style={{ background: C.volt, padding: 'clamp(52px, 8vw, 96px) var(--pad)', textAlign: 'center' }}>
-      <h2 style={{ fontSize: 'clamp(1rem, 2.7vw, 2.4rem)', fontWeight: 300, color: C.ink, letterSpacing: '-0.04em', lineHeight: 0.92, textTransform: 'uppercase', margin: '0 0 16px' }}>
+      <h2 style={{ fontSize: 'clamp(1rem, 2.7vw, 2.4rem)', fontWeight: 100, color: C.ink, letterSpacing: '-0.04em', lineHeight: 0.92, textTransform: 'uppercase', margin: '0 0 16px' }}>
         Explorá<br />las dimensiones.
       </h2>
       <p style={{ fontSize: '0.88rem', fontWeight: 400, color: C.ink, opacity: 0.7, maxWidth: 340, margin: '0 auto', lineHeight: 1.65 }}>
@@ -401,7 +366,6 @@ export default function Home() {
       <KPIStrip termasLast={termasLast} capitalLast={capitalLast} periodoStr={periodoStr} />
       <ChartSection trend={trend} termasLast={termasLast} capitalLast={capitalLast} />
       <DonutSection termasLast={termasLast} />
-      <DarkMetrics termasLast={termasLast} capitalLast={capitalLast} periodoStr={periodoStr} />
       <BrechaSection />
       <CTAVolt />
     </>
