@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { ComposedChart, Area, Line, XAxis, Tooltip, ResponsiveContainer } from 'recharts'
+import { ComposedChart, Area, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
 import { useCSV, fmt } from '../hooks/useCSV'
 import { usePeriodo, filterByPeriodo } from '../context/PeriodoContext'
 import { C, Paralelo, VoltLine, Eyebrow, SectionTitle, Interpretacion, Loading, ICONS } from '../components/Atoms'
