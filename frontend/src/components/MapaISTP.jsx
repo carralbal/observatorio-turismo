@@ -59,7 +59,7 @@ export default function MapaISTP({ datos2025 = [] }) {
         const d = scoreMap[n]
         if (!d) return 'rgba(200,200,191,0.06)'
         if (+d.es_sde === 1 || n === 'Santiago del Estero') return C.volt
-        return col(+d.istp_nivel || 0)
+        return col(+d.nivel || 0)
       })
       .attr('stroke', 'rgba(10,10,10,0.4)')
       .attr('stroke-width', 0.5)
@@ -79,9 +79,9 @@ export default function MapaISTP({ datos2025 = [] }) {
       {tooltip && (
         <div style={{ position: 'absolute', left: tooltip.x + 12, top: Math.max(0, tooltip.y - 10), background: C.ink, border: '1px solid rgba(250,250,247,0.12)', padding: '10px 14px', pointerEvents: 'none', minWidth: 170, fontFamily: 'Plus Jakarta Sans', zIndex: 10 }}>
           <div style={{ fontSize: 'var(--fs-sm)', fontWeight: 500, color: +tooltip.d.es_sde === 1 ? C.volt : C.paper, marginBottom: 6 }}>{tooltip.n}</div>
-          <div style={{ fontSize: 'var(--fs-xs)', color: C.stone, marginBottom: 2 }}>Score: <span style={{ color: C.paper }}>{(+tooltip.d.istp_nivel).toFixed(1)}/100</span></div>
-          <div style={{ fontSize: 'var(--fs-xs)', color: C.stone, marginBottom: 2 }}>Ranking: <span style={{ color: C.paper }}>{tooltip.d.istp_ranking}° / 24</span></div>
-          <div style={{ fontSize: 'var(--fs-xs)', color: C.stone }}>Cuadrante: <span style={{ color: C.paper }}>{tooltip.d.cuadrante_2025}</span></div>
+          <div style={{ fontSize: 'var(--fs-xs)', color: C.stone, marginBottom: 2 }}>Score: <span style={{ color: C.paper }}>{(+tooltip.d.nivel).toFixed(1)}/100</span></div>
+          <div style={{ fontSize: 'var(--fs-xs)', color: C.stone, marginBottom: 2 }}>Ranking: <span style={{ color: C.paper }}>{tooltip.d.ranking}° / 24</span></div>
+          <div style={{ fontSize: 'var(--fs-xs)', color: C.stone }}>Cuadrante: <span style={{ color: C.paper }}>{tooltip.d.cuad}</span></div>
         </div>
       )}
     </div>

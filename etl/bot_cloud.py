@@ -61,7 +61,7 @@ mart_sde_benchmark: comparativa interprovincial NOA. Viajeros, pernoctes, estad�
 mart_sde_motogp: impacto MotoGP por edición.
 mart_sde_youtube: imagen destino. Vistas, videos YouTube SDE.
 mart_sde_perfil_turista: perfil EVyTH. Motivo, transporte, gasto del turista interno.
-raw_trends_sde: IBT Google Trends mensual para Termas. Escala 0-100.
+raw_trends_sde: IBT señal anticipada Google Trends mensual para Termas de Río Hondo. Columnas: fecha, ibt_termas, ibt_sde, ibt_motogp, ibt_compuesto. Escala 0-100. IBT>60 = alta demanda anticipada.
 stg_airdna_sde: datos AirDNA por zona para Termas y Capital.
 """
 

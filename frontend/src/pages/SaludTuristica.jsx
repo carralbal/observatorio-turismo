@@ -82,7 +82,7 @@ export default function Madurez() {
             <Paralelo /><Eyebrow light>ISTP · TFM D. Carralbal · Capa 4 · Decisión</Eyebrow>
           </div>
           <h1 style={{ fontSize: 'clamp(2.4rem,5vw,5rem)', fontWeight: 200, color: C.paper, letterSpacing: '-0.04em', lineHeight: 1, margin: '0 0 16px' }}>Salud Turística<br />Provincial.</h1>
-          <p style={{ fontSize: '0.9rem', fontWeight: 300, color: C.paper, opacity: 0.6, maxWidth: 520, lineHeight: 1.65, margin: 0 }}>Índice de Salud Turística Provincial (ISTP). Comparación de las 24 jurisdicciones argentinas por nivel y trayectoria. Escala 0-100. Fuente: TFM — D. Carralbal, MBA UBA 2025.</p>
+          <p style={{ fontSize: '0.9rem', fontWeight: 300, color: C.paper, opacity: 0.6, maxWidth: 520, lineHeight: 1.65, margin: 0 }}>Índice de Salud Turística Provincial (ISTP). Comparación de las 24 jurisdicciones argentinas por nivel y trayectoria. Escala 0-100. Elaboración propia.</p>
         </div>
       </section>
 
