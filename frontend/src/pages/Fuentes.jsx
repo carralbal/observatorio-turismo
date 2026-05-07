@@ -38,7 +38,7 @@ const FUENTES = [
     cobertura: 'Termas de Río Hondo · Capital',
     provee: 'Ocupación, tarifa diaria promedio (ADR), estadía media y cantidad de listings activos del mercado informal.',
     desde: 'Abr 2021',
-    hasta: 'Mar 2026',
+    hasta: 'Abr 2026',
     estado: 'activo',
     paginas: ['/informal'],
   },
@@ -98,15 +98,15 @@ const FUENTES = [
     id: 'trends',
     nombre: 'Índice de Búsqueda Turística',
     entidad: 'Google Trends',
-    entidad_full: 'Google LLC · Trends API',
+    entidad_full: 'Google LLC · Trends (importación manual mensual)',
     frecuencia: 'Mensual',
     cobertura: 'Argentina · "Termas de Río Hondo"',
     provee: 'IBT: índice de interés de búsqueda relativo al pico histórico (escala 0-100). Anticipa demanda hotelera 4-8 semanas.',
     desde: 'Ene 2014',
-    hasta: 'Dic 2025',
-    estado: 'alerta',
-    nota: 'Rate limit frecuente · cron 3am',
-    paginas: ['/señal'],
+    hasta: 'May 2026',
+    estado: 'activo',
+    nota: 'Importación manual mensual — rate limit en automatización nocturna',
+    paginas: ['/señal', '/estimado'],
   },
   {
     id: 'youtube',
@@ -146,7 +146,7 @@ const FUENTES = [
     desde: 'Ene 2018',
     hasta: 'Nov 2025',
     estado: 'discontinuado',
-    nota: 'Discontinuada dic 2025 — reemplazada por modelo OLS',
+    nota: 'Discontinuada dic 2025 · reemplazada por modelo OLS',
     paginas: ['/estimado'],
   },
   {
@@ -180,10 +180,10 @@ const FUENTES = [
 ]
 
 const ESTADO_CONFIG = {
-  activo:       { label: 'Activo',        color: C.volt,  textColor: C.ink  },
-  alerta:       { label: 'Con alertas',   color: C.stone, textColor: C.ink  },
-  discontinuado:{ label: 'Discontinuado', color: C.slate, textColor: C.paper},
-  pendiente:    { label: 'Pendiente',     color: C.paper2,textColor: C.slate },
+  activo:       { label: 'Activo',            color: C.volt,   textColor: C.ink  },
+  alerta:       { label: 'Con alertas',       color: C.stone,  textColor: C.ink  },
+  discontinuado:{ label: 'Discontinuado',     color: C.slate,  textColor: C.paper},
+  pendiente:    { label: 'Pendiente',         color: C.paper2, textColor: C.slate },
   convenio:     { label: 'Requiere convenio', color: C.paper2, textColor: C.slate },
 }
 
@@ -191,15 +191,9 @@ function EstadoBadge({ estado }) {
   const cfg = ESTADO_CONFIG[estado] || ESTADO_CONFIG.activo
   return (
     <span style={{
-      display: 'inline-block',
-      padding: '3px 10px',
-      fontSize: 'var(--fs-xs)',
-      fontWeight: 600,
-      letterSpacing: '0.08em',
-      textTransform: 'uppercase',
-      background: cfg.color,
-      color: cfg.textColor,
-      borderRadius: 0,
+      display: 'inline-block', padding: '3px 10px',
+      fontSize: 10, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase',
+      background: cfg.color, color: cfg.textColor, borderRadius: 0,
     }}>
       {cfg.label}
     </span>
@@ -222,69 +216,44 @@ function FuenteCard({ f, index }) {
       gap: 'clamp(24px,3vw,48px)',
       alignItems: 'start',
     }}>
-      {/* Col 1: Nombre + entidad */}
       <div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
           <EstadoBadge estado={f.estado} />
-          {f.nota && (
-            <span style={{ fontSize: 'var(--fs-xs)', color: fgDim, fontWeight: 400 }}>{f.nota}</span>
-          )}
+          {f.nota && <span style={{ fontSize: 10, color: fgDim }}>{f.nota}</span>}
         </div>
-        <div style={{
-          fontSize: 'clamp(1.4rem,2.2vw,2rem)',
-          fontWeight: 200,
-          color: fg,
-          letterSpacing: '-0.03em',
-          lineHeight: 1.1,
-          marginBottom: 10,
-        }}>
+        <div style={{ fontSize: 'clamp(1.4rem,2.2vw,2rem)', fontWeight: 200, color: fg, letterSpacing: '-0.03em', lineHeight: 1.1, marginBottom: 10 }}>
           {f.nombre}
         </div>
         <VoltLine w={20} style={{ marginBottom: 12 }} />
-        <div style={{ fontSize: 'var(--fs-base)', fontWeight: 600, color: dark ? C.volt : C.ink, marginBottom: 4 }}>
-          {f.entidad}
-        </div>
-        <div style={{ fontSize: 'var(--fs-xs)', color: fgDim, lineHeight: 1.5 }}>
-          {f.entidad_full}
-        </div>
+        <div style={{ fontSize: 13, fontWeight: 600, color: dark ? C.volt : C.ink, marginBottom: 4 }}>{f.entidad}</div>
+        <div style={{ fontSize: 11, color: fgDim, lineHeight: 1.5 }}>{f.entidad_full}</div>
       </div>
-
-      {/* Col 2: Qué provee */}
       <div>
-        <div style={{ fontSize: 'var(--fs-xs)', fontWeight: 600, color: fgDim, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 12 }}>
-          Qué provee
-        </div>
-        <div style={{ fontSize: '0.88rem', color: fg, lineHeight: 1.7, opacity: 0.85 }}>
-          {f.provee}
-        </div>
-        <div style={{ marginTop: 16, fontSize: 'var(--fs-xs)', color: fgDim, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-          Cobertura · {f.cobertura}
-        </div>
+        <div style={{ fontSize: 10, fontWeight: 600, color: fgDim, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 12 }}>Qué provee</div>
+        <div style={{ fontSize: '0.88rem', color: fg, lineHeight: 1.7, opacity: 0.85 }}>{f.provee}</div>
+        <div style={{ marginTop: 16, fontSize: 10, color: fgDim, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Cobertura · {f.cobertura}</div>
       </div>
-
-      {/* Col 3: Metadatos */}
       <div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 24 }}>
-          <div>
-            <div style={{ fontSize: 'var(--fs-xs)', fontWeight: 600, color: fgDim, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 6 }}>Frecuencia</div>
-            <div style={{ fontSize: '1rem', fontWeight: 300, color: fg }}>{f.frecuencia}</div>
-          </div>
-          <div>
-            <div style={{ fontSize: 'var(--fs-xs)', fontWeight: 600, color: fgDim, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 6 }}>Desde</div>
-            <div style={{ fontSize: '1rem', fontWeight: 300, color: fg }}>{f.desde}</div>
-          </div>
-          <div>
-            <div style={{ fontSize: 'var(--fs-xs)', fontWeight: 600, color: fgDim, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 6 }}>Último dato</div>
-            <div style={{ fontSize: '1rem', fontWeight: 300, color: dark ? C.volt : C.ink }}>{f.hasta}</div>
-          </div>
-          <div>
-            <div style={{ fontSize: 'var(--fs-xs)', fontWeight: 600, color: fgDim, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 6 }}>Páginas</div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
-              {f.paginas.map(p => (
-                <span key={p} style={{ fontSize: 'var(--fs-xs)', color: fgDim, background: dark ? 'rgba(250,250,247,0.06)' : C.paper2, padding: '2px 8px' }}>{p}</span>
-              ))}
+          {[
+            { l: 'Frecuencia', v: f.frecuencia },
+            { l: 'Desde',      v: f.desde },
+            { l: 'Último dato',v: f.hasta, volt: true },
+            { l: 'Páginas',    v: null },
+          ].map((m, i) => (
+            <div key={i}>
+              <div style={{ fontSize: 10, fontWeight: 600, color: fgDim, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 6 }}>{m.l}</div>
+              {m.v ? (
+                <div style={{ fontSize: '1rem', fontWeight: 300, color: m.volt ? (dark ? C.volt : C.ink) : fg }}>{m.v}</div>
+              ) : (
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
+                  {f.paginas.map(p => (
+                    <span key={p} style={{ fontSize: 10, color: fgDim, background: dark ? 'rgba(250,250,247,0.06)' : C.paper2, padding: '2px 8px' }}>{p}</span>
+                  ))}
+                </div>
+              )}
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
@@ -292,10 +261,10 @@ function FuenteCard({ f, index }) {
 }
 
 export default function Fuentes() {
-  const activas = FUENTES.filter(f => f.estado === 'activo').length
-  const alertas = FUENTES.filter(f => f.estado === 'alerta').length
+  const activas        = FUENTES.filter(f => f.estado === 'activo').length
+  const alertas        = FUENTES.filter(f => f.estado === 'alerta').length
   const discontinuadas = FUENTES.filter(f => f.estado === 'discontinuado').length
-  const pendientes = FUENTES.filter(f => ['pendiente','convenio'].includes(f.estado)).length
+  const pendientes     = FUENTES.filter(f => ['pendiente','convenio'].includes(f.estado)).length
 
   return (
     <>
@@ -305,70 +274,42 @@ export default function Fuentes() {
         </video>
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.93) 0%, rgba(10,10,10,0.78) 35%, rgba(10,10,10,0.38) 65%, rgba(10,10,10,0.10) 100%)' }} />
         <div style={{ position: 'relative', zIndex: 2 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 28 }}>
-          <Paralelo />
-          <Eyebrow light>Infraestructura de datos · Observatorio SDE</Eyebrow>
-        </div>
-        <h1 style={{
-          fontSize: 'clamp(2.4rem,5vw,5rem)',
-          fontWeight: 200,
-          color: C.paper,
-          letterSpacing: '-0.04em',
-          lineHeight: 1,
-          margin: '0 0 24px',
-        }}>
-          Fuentes<br />de datos.
-        </h1>
-        <p style={{
-          fontSize: '0.9rem',
-          color: C.paper,
-          opacity: 0.55,
-          maxWidth: 480,
-          lineHeight: 1.7,
-          margin: '0 0 52px',
-        }}>
-          {FUENTES.length} fuentes integradas. Cada indicador del observatorio tiene trazabilidad completa hasta su origen oficial.
-        </p>
-
-        {/* KPIs */}
-        <div style={{ display: 'flex', gap: 'clamp(24px,4vw,56px)', flexWrap: 'wrap' }}>
-          {[
-            { v: activas,       l: 'Fuentes activas'     },
-            { v: alertas,       l: 'Con alertas'         },
-            { v: discontinuadas,l: 'Discontinuadas'      },
-            { v: pendientes,    l: 'Pendientes'          },
-          ].map((k, i) => (
-            <div key={i} style={{ borderLeft: `2px solid ${i === 0 ? C.volt : 'rgba(250,250,247,0.15)'}`, paddingLeft: 20 }}>
-              <div style={{ fontSize: 'clamp(2rem,3vw,2.8rem)', fontWeight: 200, color: i === 0 ? C.volt : C.paper, letterSpacing: '-0.04em', lineHeight: 1, marginBottom: 6 }}>
-                {k.v}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 28 }}>
+            <Paralelo />
+            <Eyebrow light>Infraestructura de datos · Observatorio SDE</Eyebrow>
+          </div>
+          <h1 style={{ fontSize: 'clamp(2.4rem,5vw,5rem)', fontWeight: 200, color: C.paper, letterSpacing: '-0.04em', lineHeight: 1, margin: '0 0 24px' }}>
+            Fuentes<br />de datos.
+          </h1>
+          <p style={{ fontSize: '0.9rem', color: C.paper, opacity: 0.55, maxWidth: 480, lineHeight: 1.7, margin: '0 0 52px' }}>
+            {FUENTES.length} fuentes integradas. Cada indicador del observatorio tiene trazabilidad completa hasta su origen oficial.
+          </p>
+          <div style={{ display: 'flex', gap: 'clamp(24px,4vw,56px)', flexWrap: 'wrap' }}>
+            {[
+              { v: activas,        l: 'Fuentes activas'  },
+              { v: alertas,        l: 'Con alertas'      },
+              { v: discontinuadas, l: 'Discontinuadas'   },
+              { v: pendientes,     l: 'Pendientes'       },
+            ].map((k, i) => (
+              <div key={i} style={{ borderLeft: `2px solid ${i === 0 ? C.volt : 'rgba(250,250,247,0.15)'}`, paddingLeft: 20 }}>
+                <div style={{ fontSize: 'clamp(2rem,3vw,2.8rem)', fontWeight: 200, color: i === 0 ? C.volt : C.paper, letterSpacing: '-0.04em', lineHeight: 1, marginBottom: 6 }}>{k.v}</div>
+                <div style={{ fontSize: 11, color: C.paper, opacity: 0.45, fontWeight: 400, letterSpacing: '0.06em', textTransform: 'uppercase' }}>{k.l}</div>
               </div>
-              <div style={{ fontSize: 'var(--fs-xs)', color: C.paper, opacity: 0.45, fontWeight: 400, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
-                {k.l}
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
         </div>
       </section>
-
-      {/* Lista de fuentes */}
       <div>
-        {FUENTES.map((f, i) => (
-          <FuenteCard key={f.id} f={f} index={i} />
-        ))}
+        {FUENTES.map((f, i) => <FuenteCard key={f.id} f={f} index={i} />)}
       </div>
-
-      {/* Footer note */}
       <section style={{ background: C.paper, padding: 'clamp(40px,5vw,64px) var(--pad)' }}>
         <div style={{ maxWidth: 640 }}>
-          <div style={{ fontSize: 'var(--fs-xs)', fontWeight: 600, color: C.stone, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 16 }}>
-            Nota metodológica
-          </div>
+          <div style={{ fontSize: 10, fontWeight: 600, color: C.stone, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 16 }}>Nota metodológica · actualizado may 2026</div>
           <p style={{ fontSize: '0.85rem', color: C.slate, lineHeight: 1.75, margin: 0 }}>
             Todos los datos provienen de fuentes oficiales públicas o contratos de datos privados (AirDNA/AirROI).
             Los marts del warehouse son transformaciones reproducibles sobre los datos crudos mediante dbt.
-            El modelo OLS de estimación de viajeros reemplaza la EOH desde diciembre 2025, fecha en que INDEC
-            discontinuó la encuesta sin anuncio de reemplazo.
+            El modelo OLS de estimación de viajeros reemplaza la EOH desde diciembre 2025.
+            Google Trends se actualiza manualmente cada mes debido a rate limits en la automatización nocturna.
           </p>
         </div>
       </section>

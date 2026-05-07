@@ -267,6 +267,84 @@ function CTAVolt() {
   )
 }
 
+
+function ChartEstadia({ termasEOH, airdnaTermas, corte }) {
+  const eohSerie = termasEOH
+    .filter(r => r.estadia_promedio && Number(r.estadia_promedio) > 0)
+    .map(r => ({
+      fecha: r.fecha,
+      label: new Date(r.fecha).toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
+      year: new Date(r.fecha).getFullYear(),
+      estadia_eoh:      Number(r.estadia_promedio),
+      estadia_informal: null,
+    }))
+
+  const airMap = {}
+  airdnaTermas.forEach(r => {
+    airMap[r.fecha] = Number(r.estadia_informal) || null
+  })
+
+  // Merge: add informal to existing dates or create new ones post-cutoff
+  const merged = {}
+  eohSerie.forEach(r => { merged[r.fecha] = { ...r } })
+  Object.entries(airMap).forEach(([fecha, val]) => {
+    if (!merged[fecha]) {
+      const d = new Date(fecha)
+      merged[fecha] = { fecha, label: d.toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }), year: d.getFullYear(), estadia_eoh: null, estadia_informal: null }
+    }
+    // Only show informal after EOH cutoff
+    if (!corte || fecha > corte) merged[fecha].estadia_informal = val
+  })
+
+  const serie = Object.values(merged).sort((a, b) => a.fecha > b.fecha ? 1 : -1).filter(r => r.year >= 2019)
+
+  const ChartTip = ({ active, payload }) => {
+    if (!active || !payload?.length) return null
+    return (
+      <div style={{ background: '#111', border: '1px solid rgba(250,250,247,0.1)', padding: '10px 14px', fontFamily: 'Plus Jakarta Sans' }}>
+        <Eyebrow light style={{ marginBottom: 8 }}>{payload[0]?.payload.label}</Eyebrow>
+        {payload.filter(p => p.value != null).map((p, i) => (
+          <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 3 }}>
+            <div style={{ width: 8, height: 2, background: p.color }} />
+            <span style={{ fontSize: 'var(--fs-sm)', color: C.paper, fontWeight: 300 }}>{p.name}: {Number(p.value).toFixed(1)}n</span>
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+  return (
+    <section style={{ background: C.paper, padding: 'clamp(56px,7vw,80px) var(--pad)' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 48, flexWrap: 'wrap', gap: 24 }}>
+        <SectionTitle icon={ICONS.estadia} context="Termas · EOH + AirROI" main="Estadía media" />
+        <div style={{ display: 'flex', gap: 20, paddingTop: 4, flexWrap: 'wrap' }}>
+          {[
+            { c: C.ink,   l: 'Formal · EOH' },
+            { c: C.stone, l: 'Informal · AirROI', dash: true },
+          ].map((x, i) => (
+            <div key={i} style={{ display: 'flex', gap: 7, alignItems: 'center' }}>
+              <div style={{ width: 16, height: x.dash ? 0 : 1.5, borderTop: x.dash ? `1.5px dashed ${x.c}` : 'none', background: x.dash ? 'none' : x.c }} />
+              <Eyebrow style={{ opacity: 0.55 }}>{x.l}</Eyebrow>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div style={{ height: 'clamp(180px,22vw,260px)' }}>
+        <ResponsiveContainer width="100%" height="100%">
+          <ComposedChart data={serie} margin={{ top: 8, right: 0, left: 0, bottom: 0 }}>
+            <XAxis dataKey="label" tick={{ fill: C.slate, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} interval={5} />
+            <YAxis tick={{ fill: C.slate, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} tickFormatter={v => v.toFixed(1)+'n'} width={42} domain={[0, 'auto']} />
+            <Tooltip content={<ChartTip />} cursor={{ stroke: 'rgba(10,10,10,0.08)', strokeWidth: 1 }} />
+            <Line type="monotone" dataKey="estadia_eoh"      name="Formal · EOH"    stroke={C.ink}   strokeWidth={2}   dot={false} activeDot={{ r:3, fill:C.ink,   strokeWidth:0 }} connectNulls={false} />
+            <Line type="monotone" dataKey="estadia_informal" name="Informal · AirROI" stroke={C.slate} strokeWidth={1.5} dot={false} strokeDasharray="5 3" activeDot={{ r:3, fill:C.slate, strokeWidth:0 }} connectNulls />
+          </ComposedChart>
+        </ResponsiveContainer>
+      </div>
+      <Interpretacion texto="La estadía formal (EOH) mide noches promedio en hoteles y establecimientos relevados — disponible hasta nov 2025. La estadía informal (AirROI) refleja el sector de alquiler temporario y se extiende hasta abr 2026. Termas muestra estadías formales más largas que la Capital, confirmando su perfil termal de descanso prolongado." />
+    </section>
+  )
+}
+
 export default function Home() {
   const { anio, mes } = usePeriodo()
   const { data: pulso,    loading: l1 } = useCSV('/data/data_pulso.csv', { filter: r => r.flag_covid === 0 })
@@ -351,6 +429,7 @@ export default function Home() {
       <KPIStrip termasLast={termasLast} capitalLast={capitalLast} periodoStr={periodoStr} isEstimated={isEstimated} lastEOHEstadia={lastEOHEstadia} estadiaInformal={estadiaInformal} estadiaInformalPeriodo={estadiaInformalPeriodo} />
       <ChartSection trend={trend} />
       <DonutSection termasLast={termasLast} />
+      <ChartEstadia termasEOH={termasEOH} airdnaTermas={airdnaTermas} corte={corte} />
       <BrechaSection />
       <CTAVolt />
     </>
