@@ -158,9 +158,17 @@ class Handler(BaseHTTPRequestHandler):
         pregunta = ("Historial:\n"+ctx_str+"\n\nPREGUNTA: "+ultima) if ctx_str else ultima
         try:
             con     = build_con()
-            sql_raw = gpt([{"role":"system","content":SYSTEM_SQL.format(schema=SCHEMA_STR)},{"role":"user","content":pregunta}], 300)
-            sql     = re.sub(r"```sql|```","",sql_raw.strip()).strip()
-            datos   = "(sin datos — pregunta conceptual)" if sql == "NO_SQL" or not sql else run_query(con, sql)
+            # Shortcuts para preguntas predefinidas
+            if any(k in ultima.lower() for k in ["señal anticipada","ibt","búsqueda turística","demanda digital"]):
+                datos = run_query(con, "SELECT fecha, ibt_termas, ibt_santiago, ibt_motogp FROM raw_trends_sde ORDER BY fecha DESC LIMIT 6")
+            elif any(k in ultima.lower() for k in ["estadía","noches","pernocte"]):
+                datos = run_query(con, "SELECT fecha, localidad, estadia_promedio FROM mart_sde_pulso WHERE estadia_promedio IS NOT NULL ORDER BY fecha DESC LIMIT 8")
+            elif any(k in ultima.lower() for k in ["empleo","trabajadores","hyg"]):
+                datos = run_query(con, "SELECT fecha, empleo_registrado FROM mart_infra_empleo_hyg WHERE provincia LIKE '%Santiago%' ORDER BY fecha DESC LIMIT 8")
+            else:
+                sql_raw = gpt([{"role":"system","content":SYSTEM_SQL.format(schema=SCHEMA_STR)},{"role":"user","content":pregunta}], 300)
+                sql     = re.sub(r"```sql|```","",sql_raw.strip()).strip()
+                datos   = "(sin datos — pregunta conceptual)" if sql == "NO_SQL" or not sql else run_query(con, sql)
             answer  = gpt([{"role":"system","content":SYSTEM_RESPUESTA},{"role":"user","content":f"Pregunta: {ultima}\n\nResultado:\n{datos}"}], 600)
         except Exception as e:
             answer = f"Error: {e}"
