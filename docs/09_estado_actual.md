@@ -1,59 +1,77 @@
-# OBSERVATORIO DE TURISMO · SDE — Estado al 5 de mayo 2026
+# OBSERVATORIO DE TURISMO · SDE — Estado al 6 de mayo 2026
 
 ## REPO Y ACCESO
 - GitHub: https://github.com/carralbal/observatorio-turismo (privado)
 - Local: /Users/diegocarralbal/observatorio-turismo
-- Streamlit Cloud: share.streamlit.io
+- Frontend: cd frontend && npm run dev → localhost:5173
+- Streamlit legacy: streamlit run dashboard/app.py
 
 ## PARA RETOMAR
     cd /Users/diegocarralbal/observatorio-turismo
     source .venv/bin/activate
-    streamlit run dashboard/app.py
+    cd frontend && npm run dev
 
 ## VARIABLES DE ENTORNO (.env)
     YOUTUBE_API_KEY=...
     AIRROI_API_KEY=...
+    OPENAI_API_KEY=...  ← bot proxy
 
 ---
 
-## LO QUE HAY HOY
+## FRONTEND REACT — ESTADO ACTUAL
 
-### DASHBOARD — 14 PÁGINAS EN PRODUCCIÓN
-- app.py — Pulso SDE (REDISEÑADA: hero, donuts, deltas interanuales)
-- 01_MotoGP.py
-- 02_Señal_Anticipada.py
-- 03_Benchmark.py
-- 04_Nacional.py
-- 05_Captura_de_Valor.py
-- 06_Madurez.py
-- 07_Imagen_Destino.py
-- 08_Pulso_Estimado.py
-- 09_Perfil_Turista.py
-- 10_Infraestructura_Aerea.py (REDISEÑADA: donuts KPI, barras progreso, hero)
-- 11_Infraestructura_Terrestre.py
-- 12_Infraestructura_Informal.py
-- 13_Empleo_HyG.py
+### STACK
+- React 18 + Vite + Recharts + Papaparse + Lucide React
+- Design system: ADDFISH — Plus Jakarta Sans · Ink #0A0A0A · Paper #FAFAF7 · Slate #3A3A36 · Stone #C8C8BF · Volt #FFFF00
+- Datos: frontend/public/data/*.csv (exportados desde DuckDB)
+- Deploy: PENDIENTE — Vercel o Netlify (no hay URL pública)
 
-### MÓDULOS COMPARTIDOS
-- dashboard/style.py — CSS Inter, PLOTLY_LAYOUT, apply_layout(), apply_layout_dark(),
-  lectura_destacada(), slider negro, constantes BAR_COLOR/LINE_COLOR/FILL_COLOR
-- dashboard/lecturas.py — cuadros interpretación (legacy, no usado en páginas rediseñadas)
+### PÁGINAS — 15 COMPLETADAS ✅
+| Ruta | Archivo | Estado |
+|------|---------|--------|
+| / | Home.jsx | ✅ hero video+escudo, KPIs, BrechaSection, donut IBT, dark metrics, CTA volt |
+| /aerea | Aerea.jsx | ✅ KPIs, trend, aerolíneas, rutas, load factor |
+| /terrestre | Terrestre.jsx | ✅ KPIs, barras anuales, rutas, load factor |
+| /empleo | Empleo.jsx | ✅ |
+| /informal | Informal.jsx | ✅ |
+| /imagen | Imagen.jsx | ✅ YouTube vistas, categorías, top contenido |
+| /estimado | Estimado.jsx | ✅ OLS, serie obs+estimada, IC, metodología |
+| /motogp | MotoGP.jsx | ✅ diff-in-diff, uplift por edición |
+| /señal | Senal.jsx | ✅ IBT Google Trends |
+| /benchmark | Benchmark.jsx | ✅ |
+| /captura | Captura.jsx | ✅ ICV, brecha de valor, hoja de ruta |
+| /madurez | Madurez.jsx | ✅ ISTP ranking 24 provincias |
+| /perfil | Perfil.jsx | ✅ EVyTH perfil turista NOA |
+| /nacional | Nacional.jsx | ✅ macro, balanza turística |
+| /fuentes | Fuentes.jsx | ✅ 377 líneas — página premium de fuentes |
 
-### CONECTORES (11)
-sinta_eoh · google_trends · bcra_fx · anac_sde · cnrt · sinta_eti
-indec_ipc · youtube_api · airroi · sinta_evyth · sipa_empleo
+### BOT NLP
+- Proxy Python: etl/bot_proxy.py (puerto 8765)
+- Modelo: OpenAI gpt-4o-mini
+- Definiciones hardcodeadas: IBT, ICV, ISTP, OLS
+- Ícono: robot negro sobre volt
+- Estado: funcional — pendiente enriquecer knowledge base
 
-### DATOS EN WAREHOUSE (DuckDB local)
-- AirDNA xlsx — 80 mercados · data/raw/airdna/
-- SIPA/OEDE — 11 tablas · data/raw/sipa/
-- Argendata TURISM — 6 tablas · data/raw/argendata/ (NUEVO 5-may-2026)
-  raw_argendata_empleo_provincial (25 filas)
-  raw_argendata_pernoctes_provincia (24 filas)
-  raw_argendata_pib_turismo_comparado (1243 filas)
-  raw_argendata_pasajeros_avion (276 filas)
-  raw_argendata_turismo_interno_receptivo (28 filas)
-  raw_argendata_balanza_turistica (147 filas)
-(data/ es gitignored — regenerar con conectores o script de descarga)
+### ARQUITECTURA CLAVE
+- Atoms.jsx: C={ink,paper,paper2,slate,stone,volt}, Paralelo, VoltLine, Eyebrow, SectionTitle, Interpretacion, Loading, ICONS
+- Layout.jsx: nav fijo con blur + dropdown capas + footer ticker
+- PeriodoContext.jsx: selector anio/mes global, default TODO
+- useCSV.js: hook papaparse → {data, loading}
+- App.jsx: router con todas las rutas activas
+
+### NAV — 4 CAPAS
+- CAPA 1 ACTIVIDAD: Pulso SDE, Aérea, Terrestre, MotoGP
+- CAPA 2 SEÑALES: Señal IBT, Informal, Imagen Destino
+- CAPA 3 ESTRUCTURA Y VALOR: Empleo, Captura, Perfil, Benchmark
+- CAPA 4 DECISIÓN: Estimado OLS, Madurez, Nacional
+
+---
+
+## BACKEND — WAREHOUSE
+
+### CONECTORES ACTIVOS (11)
+sinta_eoh · google_trends · bcra_fx · anac_sde · cnrt
+sinta_eti · indec_ipc · youtube_api · airroi · sinta_evyth · sipa_empleo
 
 ### MODELOS DBT (23)
 Staging: stg_eoh_viajeros · stg_eoh_pernoctes · stg_trends_sde
@@ -63,169 +81,189 @@ Marts SDE: mart_sde_pulso · mart_sde_motogp · mart_sde_benchmark
 mart_nacional_macro · mart_sde_captura_valor · mart_nacional_madurez
 mart_sde_youtube · mart_sde_pulso_estimado · mart_sde_perfil_turista
 
-Marts Infraestructura: mart_infra_aereo · mart_infra_terrestre
+Marts Infra: mart_infra_aereo · mart_infra_terrestre
 mart_infra_informal_termas · mart_infra_empleo_hyg
 
 ### MODELO OLS
 - Termas: R²=0.865 · Capital: R²=0.804
 - models/modelos_eoh.pkl
 
----
-
-## IDENTIDAD VISUAL — ESTADO
-
-Estilo monocromático editorial (referencia: PDF Informe HyG 2019-2025):
-- Paleta: #0F0F0F · #555555 · #FFFFFF
-- Tipografía: Inter 900/400, tamaños grandes (4rem títulos hero)
-- Hero: foto full-bleed + overlay + texto blanco (#hero-aerea con CSS scoped)
-- KPIs: donuts SVG con número centrado + barras de progreso horizontales
-- Gráficos: barras negro/gris, sin color, apply_layout() estándar
-- Secciones fondo gris #F5F5F5 para encabezados de gráficos
-- Slider: CSS forzado negro (pendiente: no toma en todas las versiones de Streamlit)
-
-COMPLETADO:
-- style.py: base completa con apply_layout, apply_layout_dark, slider CSS
-- app.py: rediseñada (hero, lectura_destacada, KPIs con deltas, donut IBT)
-- 10_Infraestructura_Aerea.py: rediseñada (donuts, barras progreso, hero con #hero-aerea)
-
-PENDIENTE VISUAL:
-- Hero de app.py: texto aparece negro por CSS global !important (mismo bug que Aerea tenía)
-- Slider rojo: el CSS inyectado no toma en todas las instancias de Streamlit
-- 12 páginas restantes sin rediseñar (01 a 09, 11, 12, 13)
+### DATOS EN WAREHOUSE
+- AirDNA xlsx — 80 mercados · data/raw/airdna/
+- SIPA/OEDE — 11 tablas · data/raw/sipa/
+- Argendata TURISM — 6 tablas · data/raw/argendata/
+  raw_argendata_empleo_provincial (25 filas)
+  raw_argendata_pernoctes_provincia (24 filas)
+  raw_argendata_pib_turismo_comparado (1243 filas)
+  raw_argendata_pasajeros_avion (276 filas)
+  raw_argendata_turismo_interno_receptivo (28 filas)
+  raw_argendata_balanza_turistica (147 filas)
 
 ---
 
-## PENDIENTE — PRIORIZADO
+## ESTADO DE FUENTES — 6 MAY 2026
 
-### P0 — Bugs visuales activos
-1. Hero app.py: aplicar fix #hero-pulso con CSS scoped (igual que #hero-aerea)
-2. Slider rojo: investigar override CSS de Streamlit 1.x theme config (config.toml)
+### CAPA 1 · ACTIVIDAD
+| Fuente | Tabla | Desde | Hasta | Estado |
+|--------|-------|-------|-------|--------|
+| EOH viajeros (SINTA) | mart_sde_pulso | ene 2018 | nov 2025 | DISCONTINUADA — definitivo |
+| Pasajeros aéreos (ANAC) | mart_infra_aereo | ene 2017 | mar 2026 | OK |
+| Tráfico terrestre (CNRT) | mart_infra_terrestre | 2019 | 2024 | anual — CNRT no publica mensual por ruta |
+| Alquiler informal (AirROI) | mart_infra_informal_termas | abr 2021 | abr 2026 | OK — al día |
+| Google Trends IBT | stg_trends_sde | ene 2014 | dic 2025 | RATE LIMIT — correr de madrugada |
+| Pulso estimado OLS | mart_sde_pulso_estimado | ene 2018 | mar 2026 | OK — 1 mes de gap |
 
-### P1 — Rediseño visual (12 páginas restantes)
-3. Extender identidad a páginas 01-09, 11, 12, 13
-   Patrón: hero + lectura_destacada + donuts/KPIs + apply_layout + caption fuentes
-   Orden sugerido: 11_Terrestre → 12_Informal → 13_Empleo → 01-09
+### CAPA 2 · ESTRUCTURA Y VALOR
+| Fuente | Tabla | Desde | Hasta | Estado |
+|--------|-------|-------|-------|--------|
+| Empleo HyG (SIPA-AFIP) | mart_infra_empleo_hyg | ene 2019 | Q3 2025 | OK |
+| Macro BCRA / IPC | mart_nacional_macro | dic 2014 | mar 2026 | OK |
+| ETI turismo intl | stg_eti_serie | ene 2016 | mar 2026 | OK |
+| EVyTH perfil turista | mart_sde_perfil_turista | — | abr 2024 | OK — lag normal |
+| Imagen destino (YouTube) | mart_sde_youtube | 2009 | may 2026 | OK — 521 videos |
 
-### P2 — Capa Federal + Argendata
-4. Modelos dbt para raw_argendata_* (staging + mart)
-5. mart_nacional_benchmark_interprovincial
-   - Combinar: sipa_panel_provincias + sipa_eoh_provincia + argendata empleo/pernoctes
-   - Dashboard con selector de provincia + mapa coroplético 24 provincias
-6. Exportar nuevos marts a dashboard/*.csv
+### CAPA 3 · DECISIÓN Y BENCHMARK
+| Fuente | Tabla | Desde | Hasta | Estado |
+|--------|-------|-------|-------|--------|
+| Benchmark interprovincial | mart_sde_benchmark | 2018 | nov 2025 | BLOQUEADO — depende EOH |
+| Argendata empleo | raw_argendata_empleo_provincial | — | 2022 | MANUAL — 3 años de gap |
+| Argendata pernoctes | raw_argendata_pernoctes_provincia | — | 2024 | MANUAL — falta 2025 |
 
-### P3 — Presentación Smart City Expo (20-21 mayo 2026)
-7. Localizar proyecto React/Vite en Mac
-8. Incorporar slide comparativa: Observatorio SDE vs otras iniciativas AR
-   (Argendata, SINTA/Yvera, SIT Buenos Aires, Obs. Chubut, datos.gob.ar)
-9. Incorporar datos Argendata como evidencia (PIB turístico comparado)
-10. Construir panel de presenter notes
+---
 
-### P4 — Estrategia política
-11. Documento N2 para acuerdo DGR SDE
+## FUENTES POTENCIALES — IDENTIFICADAS, NO CONECTADAS
 
-### P5 — Media prioridad
-- Tarifas aéreas (Google Flights / Skyscanner)
-- AirROI multi-mercado
+### BLOQUE A · Demanda
+| Fuente | Qué mide | Acceso | Frecuencia | Prioridad |
+|--------|----------|--------|-----------|-----------|
+| PUNA (SINTA) | Plazas hoteleras formales por provincia/categoría | datos.yvera.gob.ar CSV | Estático 2020 | 🔴 URGENTE — slide Smart City |
+| Inside Airbnb | Listings, precios, reviews BsAs | insideairbnb.com CSV libre | Trimestral | 🟡 |
+| TripAdvisor Content API | Reseñas, ratings, atracciones | API REST gratuita con clave | Continuo | 🟡 |
+| Google Destination Insights | Búsquedas de vuelos/alojamiento por destino | Web gratuita, sin API | Real time | 🟡 Manual |
+| Parques Nacionales (APN) | Visitas 35 parques por residencia | API REST + CSV SINTA | Mensual | 🔵 SDE no tiene parques |
+
+### BLOQUE B · Macro adicional
+| Fuente | Qué mide | Acceso | Frecuencia | Prioridad |
+|--------|----------|--------|-----------|-----------|
+| BCRA MULC Turismo | Ingresos/egresos divisas por turismo en mercado oficial | tableros.yvera.tur.ar | Mensual | 🟡 |
+| INDEC Balanza de Pagos rubro Viajes | Turismo receptivo/emisivo en USD | indec.gob.ar trimestral | Trimestral | 🟡 |
+| Ferroviario | Pasajeros larga distancia | argentina.gob.ar | Mensual | 🔵 Baja prioridad SDE |
+
+### BLOQUE C · Oferta / Pricing
+| Fuente | Qué mide | Acceso | Frecuencia | Prioridad |
+|--------|----------|--------|-----------|-----------|
+| Booking.com scraping | Pricing diario, disponibilidad, ocupación proxy | Scraping (sin API pública) | Diario | 🟡 |
+| Google Flights / Skyscanner | Tarifas aéreas SDE | Scraping / API paga | Diario | 🟡 |
+| SACT | Establecimientos con certificación de calidad | datos.yvera.gob.ar CSV | Variable | 🔵 |
+
+### BLOQUE D · Señales digitales adicionales
+| Fuente | Qué mide | Acceso | Frecuencia | Prioridad |
+|--------|----------|--------|-----------|-----------|
+| Mobile positioning (Telco) | Origen de visitantes, estadía, movilidad interna | Acuerdo comercial telco | Mensual | 🔵 Requiere convenio |
+| Instagram / TikTok mentions | Volumen de contenido generado sobre destino | API (limitada) | Semanal | 🔵 |
+
+---
+
+## PENDIENTES — PRIORIZADOS
+
+### 🔴 URGENTE — Smart City Expo 20-21 mayo
+1. Deploy frontend en Vercel o Netlify — no hay URL pública
+2. PUNA: descargar plazas hoteleras SDE para slide brecha conectividad/alojamiento
+3. Google Trends: correr de madrugada — python3 etl/connectors/google_trends.py
+4. Actualizar conectores: anac_sde · bcra_fx · airroi · sinta_eti
+
+### 🟡 BACKLOG UI/UX — PULSO SDE
+- Título hero → "Pulso Santiago del Estero"
+- PARADOJA ESTRUCTURAL: textos más grandes
+- CTA "EXPLORÁ LAS DIMENSIONES": font light, 40% más pequeña
+- Escudo: 50% más pequeño, relleno 100% sin transparencia, al lado del título hero
+
+### 🟡 BACKLOG UI/UX — AÉREA
+- Reemplazar gráfico barras aerolíneas → logos flat gris transparente
+
+### 🟡 BACKLOG UI/UX — TERRESTRE
+- Rediseñar gráfico barras pasajeros por año — evaluar datos mensuales 2019-2026
+
+### 🟡 BACKLOG UI/UX — MOTOGP
+- Rediseñar gráfico impacto por edición y gráfico pasajeros ANAC — sin barras ni colores actuales
+
+### 🟡 BACKLOG UI/UX — SEÑAL IBT
+- Textos cajas "Guía de interpretación": incrementar tamaño
+
+### 🟡 BACKLOG UI/UX — INFORMAL
+- No mostrar períodos en 0 antes de mar 2023 — arrancar desde primer dato real
+
+### 🟡 BACKLOG UI/UX — EMPLEO
+- Video hero muy oscuro — incrementar brillo +20%
+
+### 🟡 BACKLOG UI/UX — CAPTURA
+- ICV 38% constante — evaluar línea plana vs solo mostrar número
+- Hoja de ruta N1-N3: letra muy pequeña
+- Agregar párrafo explicativo a "La brecha de valor"
+
+### 🟡 BACKLOG UI/UX — PERFIL
+- Modo transporte y motivo del viaje: incrementar font + ícono flat blanco por item
+
+### 🟡 BACKLOG UI/UX — BENCHMARK
+- Rediseñar gráfico trayectoria histórica — sin barras gruesas ni colores actuales
+
+### 🟡 BACKLOG UI/UX — ESTIMADO
+- Extender estimación a abril 2026
+- Solucionar superposición líneas observado vs estimado
+
+### 🟡 BACKLOG UI/UX — MADUREZ
+- Reemplazar gráfico ranking ISTP — evaluar mapa, cuadrantes u otro
+- Agregar fecha de cálculo ISTP
+- Agregar evolución 2019-2026 por provincia
+- Hoja de ruta: cajas y textos muy pequeños
+- Agregar explicación de cómo se calcula el ISTP
+
+### 🟡 BACKLOG UI/UX — NACIONAL
+- Balanza deficitaria mostrar en negativo
+- Datos solo hasta feb 2026 — buscar más actualizados
+- Rediseñar gráfico saldo divisas
+
+### 🟡 BACKLOG UI/UX — GENERAL
+- Íconos flat blanco/volt en todas las secciones
+- Carrusel fuentes: logos entidad gris flat en vez de texto
+- Contraste textos: usar C.slate mínimo para texto secundario sobre paper
+- Agregar sección ALOJAMIENTO FORMAL (plazas hoteleras PUNA)
+
+### 🟡 BACKLOG CONTENIDO
+- Interpretaciones profundas por indicador: composición del valor + benchmark + implicancia
+  Ejemplo: ICV 38% — ¿qué es? ¿bueno/malo vs otras provincias? ¿qué acción implica?
+- Bot NLP: enriquecer knowledge base con benchmarks interprovinciales
+
+### 🔵 PENDIENTE ESTRATÉGICO
+- Toggle HISTÓRICO / HOY por página
+- Nav capas: rediseñar dropdown — no es forma definitiva
+- Deploy frontend URL pública (Vercel/Netlify)
+- Benchmarks interprovinciales + mapa coroplético (sipa_panel_provincias disponible)
+- Documento N2 — acuerdo DGR SDE para IIBB HyG
 - MotherDuck warehouse en cloud
+- Bot NLP v2: RAG sobre knowledge base expandido
 - Boletín PDF Quarto mensual
-
-### P6 — Baja prioridad
-- Recalibrar OLS cuando vuelva EOH
-- Replicar para otra provincia NOA
-- EVyTH microdatos
+- Nueva página /alojamiento (PUNA)
 
 ---
 
 ## REGLA CRÍTICA
-NUNCA mencionar "FEHGRA" — datos se atribuyen a INDEC/SIPA-AFIP/ANAC/CNRT
+NUNCA mencionar "FEHGRA" — datos se atribuyen a INDEC/SIPA-AFIP/ANAC/CNRT/AirDNA/OEDE
 
 ---
 
-## PIPELINE COMPLETO PARA REGENERAR TODO
-    source .venv/bin/activate
-    python3 etl/connectors/sinta_eoh.py
-    python3 etl/connectors/google_trends.py
-    python3 etl/connectors/bcra_fx.py
+## PIPELINE COMPLETO PARA ACTUALIZAR
+    cd /Users/diegocarralbal/observatorio-turismo && source .venv/bin/activate
+    python3 etl/connectors/google_trends.py   # solo de madrugada — rate limit
     python3 etl/connectors/anac_sde.py
-    python3 etl/connectors/cnrt.py
-    python3 etl/connectors/sinta_eti.py
-    python3 etl/connectors/indec_ipc.py
-    python3 etl/connectors/youtube_api.py
+    python3 etl/connectors/bcra_fx.py
     python3 etl/connectors/airroi.py
+    python3 etl/connectors/cnrt.py
+    python3 etl/connectors/indec_ipc.py
+    python3 etl/connectors/sinta_eti.py
+    python3 etl/connectors/youtube_api.py
     python3 etl/connectors/sinta_evyth.py
+    python3 etl/connectors/sinta_eoh.py
     python3 etl/connectors/sipa_empleo.py
-    python3 etl/modelo_eoh.py
-    python3 etl/aplicar_modelo_eoh.py
     cd dbt/observatorio && dbt run && cd ../..
-    python3 /tmp/load_argendata.py
-    python3 -c "
-    import duckdb
-    con = duckdb.connect('warehouse/observatorio.duckdb', read_only=True)
-    exports = {
-        'mart_sde_pulso':             'dashboard/data_pulso.csv',
-        'mart_sde_motogp':            'dashboard/data_motogp.csv',
-        'mart_sde_benchmark':         'dashboard/data_benchmark.csv',
-        'mart_nacional_macro':        'dashboard/data_macro.csv',
-        'mart_sde_captura_valor':     'dashboard/data_captura.csv',
-        'mart_nacional_madurez':      'dashboard/data_madurez.csv',
-        'mart_sde_youtube':           'dashboard/data_youtube.csv',
-        'mart_sde_pulso_estimado':    'dashboard/data_pulso_estimado.csv',
-        'stg_airdna_sde':             'dashboard/data_airdna_sde.csv',
-        'mart_sde_perfil_turista':    'dashboard/data_perfil_turista.csv',
-        'mart_infra_aereo':           'dashboard/data_aereo.csv',
-        'mart_infra_terrestre':       'dashboard/data_terrestre.csv',
-        'raw_airdna_base':            'dashboard/data_informal.csv',
-        'mart_infra_informal_termas': 'dashboard/data_informal_termas.csv',
-        'mart_infra_empleo_hyg':      'dashboard/data_empleo_hyg.csv',
-    }
-    for tabla, csv in exports.items():
-        con.execute(f'SELECT * FROM {tabla}').df().to_csv(csv, index=False)
-        print(f'{tabla} → {csv}')
-    con.close()
-    "
-
----
-
-## ACTUALIZACIÓN — 5 MAYO 2026
-
-### FRONTEND REACT (REEMPLAZA STREAMLIT)
-- Stack: React 18 + Vite + Recharts + Papaparse + Lucide React
-- Directorio: observatorio-turismo/frontend/
-- Deploy: pendiente (Vercel o Netlify)
-- Datos: frontend/public/data/*.csv (exportados desde DuckDB)
-- Design system: ADDFISH (Plus Jakarta Sans, Ink/Paper/Slate/Stone/Volt)
-- Documentacion visual: docs/DESIGN_SYSTEM.md
-
-### PAGINAS COMPLETADAS (React)
-- / (Home · Pulso SDE): hero video+escudo, KPIs, chart, donut IBT, dark metrics, CTA volt
-- /aerea (Infraestructura Aerea): KPIs, trend cabotaje/intl, aerolineas, rutas, load factor
-
-### PAGINAS PENDIENTES (stubs activos en src/pages/Stubs.jsx)
-- /terrestre, /informal, /empleo, /nacional, /motogp, /senal, /benchmark
-- /captura, /madurez, /imagen, /estimado, /perfil
-
-### ARQUITECTURA FRONTEND
-- PeriodoContext: selector temporal global (anio + mes) — TODO por defecto
-- PeriodBar: barra fija bajo el nav, pills clickeables por año y mes
-- Layout: nav fijo con blur + footer ticker fuentes
-- Atoms.jsx: design system completo (SectionTitle, KPICard, Interpretacion, ICONS, Loading, PageStub)
-- useCSV.js: hook papaparse para carga de CSVs desde public/data/
-
-### ESTADO DE DATOS — 5 MAY 2026
-- EOH viajeros (SINTA): NOV 2025 — DISCONTINUADA por INDEC
-- Pasajeros aereos (ANAC): FEB 2026 — falta Mar-Abr
-- Empleo HyG (SIPA-AFIP): MAR 2025 — gap de 13 meses
-- Alquiler informal (AirDNA): MAR 2026 — falta Abr
-- Google Trends (IBT): DIC 2025 — falta Ene-Abr 2026
-- BCRA / ETI: FEB 2026 — falta Mar-Abr
-- YouTube: ABR 2026 — al dia
-- Pulso estimado OLS: MAR 2026 — falta Abr
-
-### CONNECTORS PENDIENTES DE CORRER
-Orden: google_trends → anac_sde → sipa_empleo → bcra_fx → airroi → cnrt → indec_ipc → sinta_eti
-Luego: dbt run → re-exportar CSVs a frontend/public/data/
-
-### PENDIENTE SMART CITY (21 mayo, con Florencia Landivar)
-Slide: plazas hoteleras vs asientos de avion + plazas vs asientos de omnibus
-Datos disponibles: mart_infra_aereo (asientos) + mart_infra_terrestre (asientos)
-Falta: numero de plazas hoteleras registradas (cruzar con SIPA establecimientos)
+    # re-exportar CSVs a frontend/public/data/
