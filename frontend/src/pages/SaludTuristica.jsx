@@ -88,6 +88,7 @@ export default function Madurez() {
 
       {/* KPIs */}
       <section style={{ background: C.paper, padding: 'clamp(56px,7vw,80px) var(--pad)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 'clamp(32px,4vw,56px)', alignItems: 'start' }}><div>
         <Eyebrow style={{ marginBottom: 52 }}>SDE vs 24 jurisdicciones · ISTP 2025</Eyebrow>
         <div className="grid-kpi">
           {[
@@ -104,7 +105,7 @@ export default function Madurez() {
             </div>
           ))}
         </div>
-        <Interpretacion texto={`Santiago del Estero obtiene un ISTP de nivel de ${sde.nivel?.toFixed(1)}/100 en 2025, ocupando el puesto ${sde.ranking}° de 24 jurisdicciones. Su trayectoria respecto a 2019 es ${sde.tray?.toFixed(1)} (base 100). Se ubica en el Cuadrante I: alto nivel relativo + recuperación por encima de la mediana. Promedio nacional: ${promedio}/100. Fuente: ISTP, TFM D. Carralbal MBA UBA, diciembre 2025.`} />
+        <Interpretacion texto={`Santiago del Estero obtiene un ISTP de nivel de ${sde.nivel?.toFixed(1)}/100 en 2025, ocupando el puesto ${sde.ranking}° de 24 jurisdicciones. Su trayectoria respecto a 2019 es ${sde.tray?.toFixed(1)} (base 100). Se ubica en el Cuadrante I: alto nivel relativo + recuperación por encima de la mediana. Promedio nacional: ${promedio}/100. Fuente: ISTP · elaboración propia.`} />
       </section>
 
       {/* RANKING */}
