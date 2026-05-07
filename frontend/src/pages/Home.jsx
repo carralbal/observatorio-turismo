@@ -19,7 +19,7 @@ const ChartTooltip = ({ active, payload }) => {
       {payload.map((p, i) => (
         <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 3 }}>
           <div style={{ width: 8, height: 2, background: p.color }} />
-          <span style={{ fontSize: 12, color: C.paper, fontWeight: 300 }}>{p.name}: {fmt(p.value)}</span>
+          <span style={{ fontSize: 'var(--fs-sm)', color: C.paper, fontWeight: 300 }}>{p.name}: {fmt(p.value)}</span>
         </div>
       ))}
     </div>
@@ -42,8 +42,8 @@ function KPICardHome({ icon: Icon, value, label, delta, light = false, volt = fa
         letterSpacing: '-0.045em', lineHeight: 1, marginBottom: 10,
       }}>{value}</div>
       <VoltLine w={20} />
-      <div style={{ fontSize: 12.5, fontWeight: 400, color: light ? C.paper : C.ink, marginTop: 10, marginBottom: 4, lineHeight: 1.3 }}>{label}</div>
-      {delta && <div style={{ fontSize: 11, fontWeight: 400, color: light ? C.stone : C.slate, opacity: 0.65 }}>{delta}</div>}
+      <div style={{ fontSize: 'var(--fs-sm)', fontWeight: 400, color: light ? C.paper : C.ink, marginTop: 10, marginBottom: 4, lineHeight: 1.3 }}>{label}</div>
+      {delta && <div style={{ fontSize: 'var(--fs-xs)', fontWeight: 400, color: light ? C.stone : C.slate, opacity: 0.65 }}>{delta}</div>}
     </div>
   )
 }
@@ -62,7 +62,6 @@ function Hero({ termasLast, capitalLast, periodoStr }) {
         <source src="https://www.pexels.com/es-es/download/video/35840960/" type="video/mp4" />
       </video>
       <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.94) 0%, rgba(10,10,10,0.80) 30%, rgba(10,10,10,0.42) 58%, rgba(10,10,10,0.14) 100%)' }} />
-
 
       <div style={{ position: 'relative', zIndex: 3 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 44, animation: 'fadeUp 0.7s ease both' }}>
@@ -88,7 +87,6 @@ function Hero({ termasLast, capitalLast, periodoStr }) {
             filter: 'brightness(0) invert(1)',
           }} />
         </div>
-
       </div>
     </section>
   )
@@ -194,7 +192,6 @@ function DonutSection({ termasLast }) {
       display: 'grid', gridTemplateColumns: 'minmax(150px, 200px) 1fr',
       gap: 'clamp(36px, 5vw, 88px)', alignItems: 'center',
     }}>
-      {/* Donut con número perfectamente centrado */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 16 }}>
         <svg viewBox="0 0 180 180" width="100%" style={{ maxWidth: 190 }}>
           <circle cx={cx} cy={cy} r={r} fill="none" stroke={C.stone} strokeWidth={5} />
@@ -205,7 +202,6 @@ function DonutSection({ termasLast }) {
             strokeDasharray={`${filled} ${circ - filled}`}
             transform={`rotate(-90 ${cx} ${cy})`}
           />
-          {/* Grupo centrado verticalmente: número + /100 */}
           <g transform={`translate(${cx}, ${cy})`}>
             <text
               textAnchor="middle" dominantBaseline="middle"
@@ -225,7 +221,7 @@ function DonutSection({ termasLast }) {
           <VoltLine w={18} />
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 8 }}>
             <ICONS.ibt size={12} style={{ color: C.slate, opacity: 0.65 }} />
-            <Eyebrow style={{ fontSize: 9.5 }}>IBT · Señal {señal}</Eyebrow>
+            <Eyebrow style={{ fontSize: 'var(--fs-2xs)' }}>IBT · Señal {señal}</Eyebrow>
           </div>
         </div>
       </div>
@@ -277,15 +273,15 @@ function BrechaSection() {
           <div key={i}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 10 }}>
               <div>
-                <span style={{ fontSize: 15, fontWeight: 600, color: C.ink, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{item.label}</span>
-                <span style={{ fontSize: 13, color: C.slate, marginLeft: 12 }}>{item.sub}</span>
+                <span style={{ fontSize: 'var(--fs-lg)', fontWeight: 600, color: C.ink, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{item.label}</span>
+                <span style={{ fontSize: 'var(--fs-base)', color: C.slate, marginLeft: 12 }}>{item.sub}</span>
               </div>
               <span style={{ fontSize: 'clamp(1.2rem, 2vw, 1.6rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.03em' }}>{fmt(item.value)}</span>
             </div>
             <div style={{ height: 5, background: C.paper2 }}>
               <div style={{ height: '100%', width: `${item.pct}%`, background: i === 0 ? C.slate : C.volt }} />
             </div>
-            <div style={{ fontSize: 13, color: C.slate, marginTop: 6 }}>{item.pct}% de la capacidad hotelera</div>
+            <div style={{ fontSize: 'var(--fs-base)', color: C.slate, marginTop: 6 }}>{item.pct}% de la capacidad hotelera</div>
           </div>
         ))}
       </div>
@@ -293,8 +289,8 @@ function BrechaSection() {
       <div style={{ marginTop: 52, paddingTop: 32, borderTop: `0.5px solid ${C.stone}40`, display: 'flex', alignItems: 'baseline', gap: 20 }}>
         <span style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.05em', lineHeight: 1 }}>−89%</span>
         <div>
-          <div style={{ fontSize: 15, fontWeight: 600, color: C.ink, textTransform: 'uppercase', letterSpacing: '0.06em' }}>caída de conectividad aérea 2017→2025</div>
-          <div style={{ fontSize: 12, color: C.slate, marginTop: 4 }}>de 4.045 a {fmt(aereo2025)} asientos semanales · {cobertura}% de cobertura actual</div>
+          <div style={{ fontSize: 'var(--fs-lg)', fontWeight: 600, color: C.ink, textTransform: 'uppercase', letterSpacing: '0.06em' }}>caída de conectividad aérea 2017→2025</div>
+          <div style={{ fontSize: 'var(--fs-sm)', color: C.slate, marginTop: 4 }}>de 4.045 a {fmt(aereo2025)} asientos semanales · {cobertura}% de cobertura actual</div>
         </div>
       </div>
 
@@ -331,7 +327,6 @@ export default function Home() {
   const termas  = pulso.filter(r => r.localidad === 'Termas').sort((a, b) => new Date(a.fecha) - new Date(b.fecha))
   const capital = pulso.filter(r => r.localidad === 'Santiago del Estero').sort((a, b) => new Date(a.fecha) - new Date(b.fecha))
 
-  // Si hay período seleccionado, filtrar; si no, usar último disponible
   const termasFilt  = (anio || mes) ? filterByPeriodo(termas, anio, mes) : termas
   const capitalFilt = (anio || mes) ? filterByPeriodo(capital, anio, mes) : capital
 
@@ -355,7 +350,6 @@ export default function Home() {
       capital: cap?.viajeros_total ?? null,
     }
   })
-  // Chart: filtra por año seleccionado; si TODO → serie completa
   const trend = anio ? trendAll.filter(t => t.year === anio) : trendAll
 
   if (loading) return <Loading />
