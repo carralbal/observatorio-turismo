@@ -21,7 +21,7 @@ const ChartTooltip = ({ active, payload }) => {
   )
 }
 
-function KPICardHome({ icon: Icon, value, label, delta, light = false, volt = false, estimated = false }) {
+function KPICardHome({ icon: Icon, value, label, delta, light = false, volt = false, estimated = false, subValue = null, subLabel = null }) {
   return (
     <div style={{ borderLeft: `1px solid ${light ? 'rgba(250,250,247,0.15)' : C.stone}`, paddingLeft: 'clamp(14px,2vw,24px)' }}>
       {Icon && <Icon size={23} strokeWidth={1.4} style={{ color: volt ? C.volt : (light ? C.paper : C.slate), opacity: 0.6, marginBottom: 12, display: 'block' }} />}
@@ -36,6 +36,12 @@ function KPICardHome({ icon: Icon, value, label, delta, light = false, volt = fa
       <VoltLine w={20} />
       <div style={{ fontSize: 'var(--fs-sm)', fontWeight: 400, color: light ? C.paper : C.ink, marginTop: 10, marginBottom: 4, lineHeight: 1.3 }}>{label}</div>
       {delta && <div style={{ fontSize: 'var(--fs-xs)', color: light ? C.stone : C.slate, opacity: 0.65 }}>{delta}</div>}
+      {subValue && (
+        <div style={{ marginTop: 10, paddingTop: 10, borderTop: `0.5px solid ${light ? 'rgba(250,250,247,0.12)' : C.stone+'40'}` }}>
+          <div style={{ fontSize: 'var(--fs-sm)', fontWeight: 300, color: light ? C.stone : C.slate }}>{subValue}</div>
+          {subLabel && <div style={{ fontSize: 'var(--fs-xs)', color: light ? C.stone : C.slate, opacity: 0.55, marginTop: 2 }}>{subLabel}</div>}
+        </div>
+      )}
     </div>
   )
 }
@@ -65,7 +71,7 @@ function Hero() {
   )
 }
 
-function KPIStrip({ termasLast, capitalLast, periodoStr, isEstimated, lastEOHEstadia }) {
+function KPIStrip({ termasLast, capitalLast, periodoStr, isEstimated, lastEOHEstadia, estadiaInformal, estadiaInformalPeriodo }) {
   if (!termasLast) return null
   const viajeros_termas  = termasLast.viajeros_total ?? termasLast.viajeros ?? 0
   const viajeros_capital = capitalLast?.viajeros_total ?? capitalLast?.viajeros ?? 0
@@ -77,7 +83,7 @@ function KPIStrip({ termasLast, capitalLast, periodoStr, isEstimated, lastEOHEst
   const kpis = [
     { icon: ICONS.viajeros, value: fmt(viajeros_termas),    label: 'Viajeros · Termas',   delta: periodoStr,    estimated: isEstimated },
     { icon: ICONS.viajeros, value: fmt(viajeros_capital),   label: 'Viajeros · Capital',  delta: periodoStr,    estimated: isEstimated },
-    { icon: ICONS.estadia,  value: estadia ? `${Number(estadia).toFixed(2)}n` : '—', label: 'Estadía media', delta: estadiaDelta, estimated: false },
+    { icon: ICONS.estadia,  value: estadia ? `${Number(estadia).toFixed(2)}n` : '—', label: 'Estadía media · EOH', delta: estadiaDelta, estimated: false, subValue: estadiaInformal ? `${estadiaInformal.toFixed(1)}n informal` : null, subLabel: estadiaInformal ? `AirROI · ${estadiaInformalPeriodo}` : null },
     { icon: ICONS.ibt,      value: `${ibt ?? '—'}/100`,    label: 'IBT · Señal digital',  delta: 'índice de búsqueda', estimated: false },
   ]
   return (
@@ -265,6 +271,7 @@ export default function Home() {
   const { anio, mes } = usePeriodo()
   const { data: pulso,    loading: l1 } = useCSV('/data/data_pulso.csv', { filter: r => r.flag_covid === 0 })
   const { data: estimado, loading: l2 } = useCSV('/data/data_pulso_estimado.csv')
+  const { data: airdna } = useCSV('/data/data_airdna_sde.csv')
 
   const termasEOH   = pulso.filter(r => r.localidad === 'Termas').sort((a,b) => new Date(a.fecha) - new Date(b.fecha))
   const capitalEOH  = pulso.filter(r => r.localidad === 'Santiago del Estero').sort((a,b) => new Date(a.fecha) - new Date(b.fecha))
@@ -273,6 +280,14 @@ export default function Home() {
 
   // Last EOH estadía for when showing estimates
   const lastEOHEstadia = termasEOH[termasEOH.length - 1]?.estadia_promedio
+
+  // AirROI estadía informal — latest Termas value
+  const airdnaTermas = airdna
+    .filter(r => r.mercado && r.mercado.toLowerCase().includes('termas'))
+    .sort((a,b) => a.fecha > b.fecha ? 1 : -1)
+  const lastAirROI = airdnaTermas[airdnaTermas.length - 1]
+  const estadiaInformal = lastAirROI ? Number(lastAirROI.estadia_informal) : null
+  const estadiaInformalPeriodo = lastAirROI?.fecha ? new Date(lastAirROI.fecha).toLocaleDateString('es-AR', { month: 'short', year: 'numeric' }) : ''
 
   // EOH cutoff
   const corte = termasEOH.length ? termasEOH[termasEOH.length - 1].fecha : null
@@ -333,7 +348,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <KPIStrip termasLast={termasLast} capitalLast={capitalLast} periodoStr={periodoStr} isEstimated={isEstimated} lastEOHEstadia={lastEOHEstadia} />
+      <KPIStrip termasLast={termasLast} capitalLast={capitalLast} periodoStr={periodoStr} isEstimated={isEstimated} lastEOHEstadia={lastEOHEstadia} estadiaInformal={estadiaInformal} estadiaInformalPeriodo={estadiaInformalPeriodo} />
       <ChartSection trend={trend} />
       <DonutSection termasLast={termasLast} />
       <BrechaSection />
