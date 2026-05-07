@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState, useMemo } from 'react'
+import * as d3 from 'd3'
 import { C } from '../components/Atoms'
 
 const GEOREF_URL = '/data/provincias.geojson'
-const D3_CDN = 'https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js'
 
 function norm(nombre) {
   const MAP = {
@@ -12,24 +12,12 @@ function norm(nombre) {
   return MAP[nombre] || nombre
 }
 
-function loadD3() {
-  return new Promise((res) => {
-    if (window.d3) return res(window.d3)
-    const s = document.createElement('script')
-    s.src = D3_CDN
-    s.onload = () => res(window.d3)
-    document.head.appendChild(s)
-  })
-}
-
 export default function MapaISTP({ datos2025 = [] }) {
   const svgRef = useRef(null)
   const [tooltip, setTooltip] = useState(null)
   const [geo, setGeo] = useState(null)
-  const [d3, setD3] = useState(null)
 
   useEffect(() => {
-    loadD3().then(setD3)
     fetch(GEOREF_URL).then(r => r.json()).then(setGeo).catch(() => {})
   }, [])
 
@@ -40,7 +28,7 @@ export default function MapaISTP({ datos2025 = [] }) {
   }, [datos2025])
 
   useEffect(() => {
-    if (!geo || !svgRef.current || !datos2025.length || !d3) return
+    if (!geo || !svgRef.current || !datos2025.length) return
     const scores = datos2025.map(d => +d.istp_nivel || 0)
     const minS = Math.min(...scores), maxS = Math.max(...scores)
     const svg = d3.select(svgRef.current)
@@ -70,12 +58,12 @@ export default function MapaISTP({ datos2025 = [] }) {
         if (d) setTooltip({ n, d, x: event.offsetX, y: event.offsetY })
       })
       .on('mouseleave', () => setTooltip(null))
-  }, [geo, scoreMap, d3, datos2025.length])
+  }, [geo, scoreMap, datos2025.length])
 
   return (
     <div style={{ position: 'relative', width: '100%', maxWidth: 340, flexShrink: 0 }}>
-      {(!geo || !d3) && <div style={{ height: 400, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ fontSize: 'var(--fs-xs)', color: C.stone }}>Cargando mapa…</span></div>}
-      <svg ref={svgRef} style={{ width: '100%', display: geo && d3 ? 'block' : 'none' }} />
+      {!geo && <div style={{ height: 400, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ fontSize: 'var(--fs-xs)', color: C.stone }}>Cargando mapa…</span></div>}
+      <svg ref={svgRef} style={{ width: '100%', display: geo ? 'block' : 'none' }} />
       {tooltip && (
         <div style={{ position: 'absolute', left: tooltip.x + 12, top: Math.max(0, tooltip.y - 10), background: C.ink, border: '1px solid rgba(250,250,247,0.12)', padding: '10px 14px', pointerEvents: 'none', minWidth: 170, fontFamily: 'Plus Jakarta Sans', zIndex: 10 }}>
           <div style={{ fontSize: 'var(--fs-sm)', fontWeight: 500, color: +tooltip.d.es_sde === 1 ? C.volt : C.paper, marginBottom: 6 }}>{tooltip.n}</div>
