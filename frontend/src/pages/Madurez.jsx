@@ -1,7 +1,7 @@
 import { C, Paralelo, VoltLine, Eyebrow, SectionTitle, Interpretacion, ICONS } from '../components/Atoms'
 import { CheckCircle, Circle, Clock } from 'lucide-react'
 
-const VIDEO_URL = 'https://www.pexels.com/es-es/download/video/6804654/'
+const VIDEO_URL = 'https://www.pexels.com/es-es/download/video/36262413/'
 
 const NIVELES = [
   {
@@ -52,15 +52,17 @@ const STATUS = {
   futuro:   { icon: Circle,      color: 'rgba(200,200,191,0.35)', label: 'Futuro' },
 }
 
-function DimRow({ label, estado, nota }) {
+function DimRow({ label, estado, nota, dark = true }) {
   const s = STATUS[estado]
   const Icon = s.icon
+  const textColor = estado === 'activo' ? (dark ? C.paper : C.ink) : (dark ? 'rgba(250,250,247,0.45)' : C.slate)
+  const borderColor = dark ? 'rgba(250,250,247,0.06)' : `${C.stone}40`
   return (
-    <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12, padding: '10px 0', borderBottom: '0.5px solid rgba(250,250,247,0.06)' }}>
+    <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12, padding: '10px 0', borderBottom: `0.5px solid ${borderColor}` }}>
       <Icon size={15} strokeWidth={1.5} style={{ color: s.color, flexShrink: 0, marginTop: 2 }} />
       <div style={{ flex: 1 }}>
-        <span style={{ fontSize: 'var(--fs-base)', color: estado === 'activo' ? C.paper : 'rgba(250,250,247,0.45)', fontWeight: estado === 'activo' ? 400 : 300 }}>{label}</span>
-        {nota && <div style={{ fontSize: 'var(--fs-xs)', color: C.stone, opacity: 0.55, marginTop: 2 }}>{nota}</div>}
+        <span style={{ fontSize: 'var(--fs-base)', color: textColor, fontWeight: estado === 'activo' ? 400 : 300 }}>{label}</span>
+        {nota && <div style={{ fontSize: 'var(--fs-xs)', color: dark ? C.stone : C.slate, opacity: 0.7, marginTop: 2 }}>{nota}</div>}
       </div>
       <span style={{ fontSize: 'var(--fs-2xs)', color: s.color, letterSpacing: '0.1em', textTransform: 'uppercase', flexShrink: 0 }}>{s.label}</span>
     </div>
@@ -123,7 +125,7 @@ export default function Madurez() {
             </div>
           </div>
           <div style={{ maxWidth: 640 }}>
-            {nivel.dimensiones.map((dim, di) => <DimRow key={di} {...dim} />)}
+            {nivel.dimensiones.map((dim, di) => <DimRow key={di} {...dim} dark={ni % 2 === 0} />)}
           </div>
         </section>
       ))}
