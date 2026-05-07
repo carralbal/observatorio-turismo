@@ -1,5 +1,4 @@
 import { useMemo } from 'react'
-import MapaISTP from '../components/MapaISTP'
 import { ScatterChart, Scatter, LineChart, Line, XAxis, YAxis, ZAxis, Tooltip, ResponsiveContainer, ReferenceLine, Cell } from 'recharts'
 import { useCSV, fmt } from '../hooks/useCSV'
 import { C, Paralelo, VoltLine, Eyebrow, SectionTitle, Interpretacion, Loading, ICONS } from '../components/Atoms'
@@ -104,12 +103,7 @@ export default function Madurez() {
             </div>
           ))}
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr minmax(200px,320px)', gap: 'clamp(32px,4vw,56px)', alignItems: 'start', flexWrap: 'wrap' }}>
-          <div>
-            <Interpretacion texto={`Santiago del Estero obtiene un ISTP de nivel de ${sde.nivel?.toFixed(1)}/100 en 2025, ocupando el puesto ${sde.ranking}° de 24 jurisdicciones. Su trayectoria respecto a 2019 es ${sde.tray?.toFixed(1)} (base 100). Se ubica en el Cuadrante I: alto nivel relativo + recuperación por encima de la mediana. Promedio nacional: ${promedio}/100. Fuente: ISTP · elaboración propia.`} />
-          </div>
-          <MapaISTP datos2025={datos2025} />
-        </div>
+        <Interpretacion texto={`Santiago del Estero obtiene un ISTP de nivel de ${sde.nivel?.toFixed(1)}/100 en 2025, ocupando el puesto ${sde.ranking}° de 24 jurisdicciones. Su trayectoria respecto a 2019 es ${sde.tray?.toFixed(1)} (base 100). Se ubica en el Cuadrante I: alto nivel relativo + recuperación por encima de la mediana. Promedio nacional: ${promedio}/100. Fuente: ISTP · elaboración propia.`} />
       </section>
 
       {/* RANKING */}
