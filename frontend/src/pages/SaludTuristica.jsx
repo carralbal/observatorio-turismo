@@ -126,7 +126,7 @@ export default function Madurez() {
           ))}
         </div>
         <div style={{ marginTop: 40 }}>
-          <Interpretacion light texto={`Ranking basado en ISTP de nivel 2025 (escala 0-100, normalización por ranking anual). SDE en ${sde.ranking}° de 24, con ${sde.nivel?.toFixed(1)} puntos. Promedio nacional: ${promedio}. Fuente: ISTP, TFM D. Carralbal MBA UBA, dic 2025.`} />
+          <Interpretacion light texto={`Ranking basado en ISTP de nivel 2025 (escala 0-100, normalización por ranking anual). SDE en ${sde.ranking}° de 24, con ${sde.nivel?.toFixed(1)} puntos. Promedio nacional: ${promedio}. Fuente: ISTP · elaboración propia.`} />
         </div>
       </section>
 
@@ -207,10 +207,10 @@ export default function Madurez() {
             <LineChart data={sdeEvol} margin={{ top: 8, right: 16, left: 0, bottom: 0 }}>
               <XAxis dataKey="label" tick={{ fill: C.slate, fontSize: 11, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} />
               <YAxis tick={{ fill: C.slate, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} width={40} />
-              <Tooltip formatter={(v, n) => [v.toFixed(1), n]} contentStyle={{ background: C.paper, border: '1px solid '+C.stone, fontFamily: 'Plus Jakarta Sans', fontSize: 12 }} />
+              <Tooltip formatter={(v, n) => [v.toFixed(1), n]} contentStyle={{ background: C.ink, border: '1px solid rgba(250,250,247,0.1)', fontFamily: 'Plus Jakarta Sans', fontSize: 12, color: C.paper }} />
               <ReferenceLine y={100} stroke={C.stone} strokeOpacity={0.3} strokeDasharray="4 3" />
               <Line type="monotone" dataKey="nivel"   name="Nivel (0-100)"        stroke={C.ink}   strokeWidth={2.5} dot={{ fill: C.ink,  r: 4, strokeWidth: 0 }} activeDot={{ r: 5 }} />
-              <Line type="monotone" dataKey="ranking" name="Ranking (°)"           stroke={C.stone} strokeWidth={1.5} dot={{ fill: C.stone, r: 3, strokeWidth: 0 }} strokeDasharray="5 3" />
+              <Line type="monotone" dataKey="ranking" name="Ranking (°)"           stroke={C.slate} strokeWidth={1.5} dot={{ fill: C.slate, r: 3, strokeWidth: 0 }} strokeDasharray="5 3" />
             </LineChart>
           </ResponsiveContainer>
         </div>
@@ -225,7 +225,7 @@ export default function Madurez() {
           de Sudamérica. La debilidad estructural es la conectividad aérea (41,7/100):
           recuperar frecuencias hacia el nivel de 2017 es la palanca con mayor impacto
           potencial sobre el ISTP. En el NOA, SDE supera a Salta (65,4), Tucumán (58,8),
-          Entre Ríos (44,2) y Jujuy (47,5). Fuente: ISTP, TFM D. Carralbal MBA UBA, dic 2025.
+          Entre Ríos (44,2) y Jujuy (47,5). Fuente: ISTP · elaboración propia.
         </Interpretacion>
       </section>
     </>

@@ -39,6 +39,7 @@ const router = createBrowserRouter([
       { path: 'imagen',       element: <ImagenP /> },
       { path: 'estimado',     element: <EstimadoP /> },
       { path: 'perfil',       element: <PerfilP /> },
+      { path: 'databook',     element: <DatabookP /> },
     ],
   },
 ])
