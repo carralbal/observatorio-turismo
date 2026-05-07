@@ -131,11 +131,7 @@ export default function Madurez() {
             </div>
           ))}
         </div>
-        <div style={{ marginTop: 40 }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 'clamp(32px,4vw,64px)', alignItems: 'start' }}>
-          <div style={{ flex: 1, minWidth: 0 }}>
         <Interpretacion light texto={`Ranking basado en ISTP de nivel 2025 (escala 0-100, normalización por ranking anual). SDE en ${sde.ranking}° de 24, con ${sde.nivel?.toFixed(1)} puntos. Promedio nacional: ${promedio}. Fuente: ISTP · elaboración propia.`} />
-        </div>
       </section>
 
       {/* CUADRANTES nivel vs trayectoria */}
