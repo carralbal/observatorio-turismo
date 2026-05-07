@@ -86,7 +86,7 @@ function KPIStrip({ termasLast, capitalLast, periodoStr, isEstimated, lastEOHEst
     estadiaInformal
       ? { icon: ICONS.estadia, value: `${estadiaInformal.toFixed(1)}n`, label: 'Estadía media · informal', delta: `AirROI · ${estadiaInformalPeriodo}`, estimated: false, subValue: estadia ? `${Number(estadia).toFixed(2)}n formal` : null, subLabel: estadia ? 'EOH · nov 2025' : null }
       : { icon: ICONS.estadia, value: estadia ? `${Number(estadia).toFixed(2)}n` : '—', label: 'Estadía media · EOH', delta: estadiaDelta, estimated: false },
-    { icon: ICONS.ibt,      value: `${ibt ?? '—'}/100`,    label: 'IBT · Señal digital',  delta: `índice de búsqueda · ${(() => { const src = isEstimated ? lastOLS : lastEOH; return src?.fecha ? new Date(src.fecha).toLocaleDateString('es-AR', { month: 'short', year: 'numeric' }) : '—' })()}`, estimated: false },
+    { icon: ICONS.ibt,      value: `${ibt ?? '—'}/100`,    label: 'IBT · Señal digital',  delta: `índice de búsqueda · ${termasLast?.fecha ? new Date(termasLast.fecha).toLocaleDateString('es-AR', { month: 'short', year: 'numeric' }) : '—'}`, estimated: false },
   ]
   return (
     <section style={{ background: C.paper, padding: 'clamp(56px,7vw,88px) var(--pad)' }}>
