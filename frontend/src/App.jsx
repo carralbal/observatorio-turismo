@@ -16,6 +16,7 @@ import CapturaP from './pages/Captura'
 import SaludP from './pages/SaludTuristica'
 import MadurezP from './pages/Madurez'
 import PerfilP from './pages/Perfil'
+import DatabookP from './pages/Databook'
 
 const router = createBrowserRouter([
   {
