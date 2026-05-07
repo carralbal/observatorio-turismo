@@ -131,39 +131,39 @@ export default function Madurez() {
       </section>
 
       {/* CUADRANTES nivel vs trayectoria */}
-      <section style={{ background: C.paper, padding: 'clamp(56px,7vw,80px) var(--pad)' }}>
-        <SectionTitle icon={ICONS.ibt} context="Nivel 2025 vs Trayectoria (base 2019=100)" main="Cuadrantes de posicionamiento" style={{ marginBottom: 16 }} />
+      <section style={{ background: C.ink, padding: 'clamp(56px,7vw,80px) var(--pad)' }}>
+        <SectionTitle icon={ICONS.ibt} context="Nivel 2025 vs Trayectoria (base 2019=100)" main="Cuadrantes de posicionamiento" light style={{ marginBottom: 16 }} />
         <div style={{ display: 'flex', gap: 24, marginBottom: 40, flexWrap: 'wrap' }}>
           {Object.entries(CUADRANTES).map(([q, info]) => (
             <div key={q} style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
-              <span style={{ fontSize: 'var(--fs-xs)', fontWeight: 700, color: q === sde.cuad ? C.volt : C.slate, flexShrink: 0 }}>C{q}</span>
-              <span style={{ fontSize: 'var(--fs-xs)', color: q === sde.cuad ? C.ink : C.slate, fontWeight: q === sde.cuad ? 500 : 400 }}>{info.sub}</span>
+              <span style={{ fontSize: 'var(--fs-xs)', fontWeight: 700, color: q === sde.cuad ? C.volt : C.stone, flexShrink: 0 }}>C{q}</span>
+              <span style={{ fontSize: 'var(--fs-xs)', color: q === sde.cuad ? C.paper : 'rgba(250,250,247,0.55)', fontWeight: q === sde.cuad ? 500 : 400 }}>{info.sub}</span>
             </div>
           ))}
         </div>
         <div style={{ height: 'clamp(280px,40vw,460px)' }}>
           <ResponsiveContainer width="100%" height="100%">
             <ScatterChart margin={{ top: 16, right: 16, bottom: 16, left: 16 }}>
-              <XAxis type="number" dataKey="nivel" name="Nivel" domain={[0, 105]} tick={{ fill: C.slate, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} label={{ value: 'ISTP Nivel 2025 →', position: 'insideBottomRight', offset: -8, fill: C.stone, fontSize: 9 }} />
-              <YAxis type="number" dataKey="tray" name="Trayectoria" domain={[40, 210]} tick={{ fill: C.slate, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} label={{ value: '↑ Trayectoria', angle: -90, position: 'insideLeft', fill: C.stone, fontSize: 9 }} />
+              <XAxis type="number" dataKey="nivel" name="Nivel" domain={[0, 105]} tick={{ fill: C.stone, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} label={{ value: 'ISTP Nivel 2025 →', position: 'insideBottomRight', offset: -8, fill: C.stone, fontSize: 9 }} />
+              <YAxis type="number" dataKey="tray" name="Trayectoria" domain={[40, 210]} tick={{ fill: C.stone, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} label={{ value: '↑ Trayectoria', angle: -90, position: 'insideLeft', fill: C.stone, fontSize: 9 }} />
               <ZAxis range={[40, 40]} />
               <Tooltip content={<ScatterTip />} cursor={{ strokeDasharray: '3 3' }} />
               {/* Median reference lines */}
-              <ReferenceLine x={medNivel} stroke="rgba(10,10,10,0.15)" strokeDasharray="4 3" />
-              <ReferenceLine y={100}     stroke="rgba(10,10,10,0.15)" strokeDasharray="4 3" label={{ value: '100', position: 'right', fill: C.stone, fontSize: 9 }} />
+              <ReferenceLine x={medNivel} stroke="rgba(250,250,247,0.2)" strokeDasharray="4 3" />
+              <ReferenceLine y={100}     stroke="rgba(250,250,247,0.2)" strokeDasharray="4 3" label={{ value: '100', position: 'right', fill: C.stone, fontSize: 9 }} />
               <Scatter data={scatterData} shape={(props) => {
                 const { cx, cy, payload } = props
                 const isSDE = payload.es_sde
                 return (
                   <g key={`${cx}-${cy}`}>
                     <circle cx={cx} cy={cy} r={isSDE ? 9 : 5}
-                      fill={isSDE ? C.volt : C.stone}
-                      fillOpacity={isSDE ? 1 : 0.45}
+                      fill={isSDE ? C.volt : 'rgba(200,200,191,0.75)'}
+                      fillOpacity={1}
                       stroke={isSDE ? C.ink : 'none'}
                       strokeWidth={isSDE ? 2 : 0}
                     />
                     {isSDE && (
-                      <text x={cx + 12} y={cy + 4} fill={C.ink} fontSize={10} fontFamily="Plus Jakarta Sans" fontWeight={600}>SDE</text>
+                      <text x={cx + 12} y={cy + 4} fill={C.paper} fontSize={10} fontFamily="Plus Jakarta Sans" fontWeight={600}>SDE</text>
                     )}
                   </g>
                 )
@@ -171,7 +171,7 @@ export default function Madurez() {
             </ScatterChart>
           </ResponsiveContainer>
         </div>
-        <Interpretacion texto={`Cada punto representa una provincia. El eje horizontal muestra el nivel ISTP 2025 (posición relativa actual). El eje vertical muestra la trayectoria respecto a 2019 (base=100). La línea vertical punteada marca la mediana de nivel. SDE se ubica en el Cuadrante I: nivel por encima de la mediana y recuperación sólida respecto a 2019.`} />
+        <Interpretacion light texto={`Cada punto representa una provincia. El eje horizontal muestra el nivel ISTP 2025 (posición relativa actual). El eje vertical muestra la trayectoria respecto a 2019 (base=100). La línea vertical punteada marca la mediana de nivel. SDE se ubica en el Cuadrante I: nivel por encima de la mediana y recuperación sólida respecto a 2019.`} />
       </section>
 
       {/* COMPONENTES SDE 2025 */}
