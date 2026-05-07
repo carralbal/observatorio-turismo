@@ -6,7 +6,7 @@ import { C, Paralelo, VoltLine, Eyebrow, SectionTitle, Interpretacion, Loading, 
 const VIDEO_URL = 'https://www.pexels.com/download/video/36865241/'
 
 function KPICard({ value, label, delta, positive }) {
-  const color = positive === undefined ? C.ink : positive ? '#22c55e' : '#ef4444'
+  const color = positive === undefined ? C.ink : positive ? C.ink : C.slate
   return (
     <div style={{ borderLeft: '1px solid '+C.stone, paddingLeft: 'clamp(14px,2vw,24px)' }}>
       <div style={{ fontSize: 'clamp(1.7rem,3vw,3rem)', fontWeight: 200, color, letterSpacing: '-0.045em', lineHeight: 1, marginBottom: 10 }}>{value}</div>
@@ -84,8 +84,8 @@ export default function Nacional() {
           <KPICard value={fmt(ultimo.emisivo)} label="Turistas emisivos" delta={'argentinos que salen · '+fechaActual} />
           <KPICard
             value={(ultimo.saldo < 0 ? '−' : '+') + fmt(Math.abs(ultimo.saldo||0))}
-            label={'Balanza '+(saldoPositivo?'superavitaria':'deficitaria')}
-            delta={'saldo '+(saldoPositivo?'positivo':'negativo')+' de divisas'}
+            label={'Balanza '+(saldoPositivo ? 'superavitaria' : 'deficitaria')}
+            delta={'saldo '+(saldoPositivo ? 'positivo' : 'negativo')+' de divisas'}
             positive={saldoPositivo}
           />
           <KPICard value={'$'+fmt(ultimo.tcn||0)} label="Tipo de cambio oficial" delta={'ARS/USD · '+fechaActual} />
@@ -126,7 +126,7 @@ export default function Nacional() {
         <Interpretacion light texto="El turismo receptivo internacional es un indicador de competitividad de Argentina. Cuando el peso se deprecia, Argentina se vuelve barata en dólares y aumenta el receptivo. Esta dinámica define el entorno macro en el que opera el turismo interno de SDE." />
       </section>
 
-      {/* SALDO DIVISAS — dark, barras positivas/negativas con eje en 0 */}
+      {/* SALDO DIVISAS — dark, barras paper=superávit / slate=déficit, eje en 0 */}
       <section style={{ background: C.ink, padding: 'clamp(56px,7vw,80px) var(--pad)' }}>
         <SectionTitle icon={ICONS.ibt} context="Balanza turística anual" main="Saldo divisas turísticas" light style={{ marginBottom: 40 }} />
         <div style={{ height: 'clamp(200px,26vw,300px)' }}>
@@ -138,29 +138,32 @@ export default function Nacional() {
               <ReferenceLine y={0} stroke="rgba(250,250,247,0.4)" strokeWidth={1.5} />
               <Bar dataKey="saldo" name="Saldo" radius={[3,3,0,0]}>
                 {serieAnual.map((entry, i) => (
-                  <Cell key={i} fill={entry.saldo >= 0 ? 'rgba(250,250,247,0.5)' : '#ef4444'} fillOpacity={0.85} />
+                  <Cell
+                    key={i}
+                    fill={entry.saldo >= 0 ? 'rgba(250,250,247,0.55)' : C.slate}
+                    fillOpacity={0.9}
+                  />
                 ))}
               </Bar>
             </ComposedChart>
           </ResponsiveContainer>
         </div>
         <div style={{ display: 'flex', gap: 20, marginTop: 16 }}>
-          {[{c:'rgba(250,250,247,0.5)',l:'Superávit'},{c:'#ef4444',l:'Déficit'}].map((x,i)=>(
+          {[{c:'rgba(250,250,247,0.55)',l:'Superávit'},{c:C.slate,l:'Déficit'}].map((x,i)=>(
             <div key={i} style={{ display:'flex', gap:6, alignItems:'center' }}>
               <div style={{ width:10, height:10, background:x.c, borderRadius:2 }} />
               <Eyebrow light style={{ opacity:0.55 }}>{x.l}</Eyebrow>
             </div>
           ))}
         </div>
-        <Interpretacion light texto={'La balanza turística mide el saldo entre lo que gastan los turistas extranjeros en Argentina (ingresos) y lo que gastan los argentinos en el exterior (egresos). Las barras rojas indican años deficitarios. Un déficit sistémico indica que Argentina pierde divisas por turismo — contexto relevante para el turismo interno de SDE. Fuente: ETI INDEC.'} />
+        <Interpretacion light texto='La balanza turística mide el saldo entre ingresos (turistas extranjeros en Argentina) y egresos (argentinos en el exterior). Las barras oscuras (déficit) indican que Argentina pierde divisas por turismo ese año. El eje en cero marca el punto de equilibrio. Fuente: ETI INDEC.' />
       </section>
 
       <section style={{ background: C.paper, padding: 'clamp(40px,5vw,64px) var(--pad)' }}>
         <Interpretacion>
           La balanza turística nacional muestra el contexto macroeconómico en el que opera
           el turismo de SDE. La variación del tipo de cambio afecta directamente la
-          competitividad del destino frente al turismo emisivo: cuando el TCN se atrasa,
-          los argentinos prefieren viajar al exterior. El turismo receptivo internacional
+          competitividad frente al turismo emisivo. El turismo receptivo internacional
           es marginal para SDE — el destino es predominantemente doméstico y regional.
           La fortaleza del observatorio provincial es precisamente esa: independencia del
           ciclo internacional y enfoque en la demanda interna NOA y Buenos Aires.
