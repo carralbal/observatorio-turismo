@@ -50,7 +50,7 @@ function Hero() {
   return (
     <section className="grain" style={{ position: 'relative', minHeight: '42vh', padding: '48px var(--pad) 0', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
       <video autoPlay loop muted playsInline style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }}>
-        <source src="https://www.pexels.com/es-es/download/video/35840960/" type="video/mp4" />
+        <source src="https://www.pexels.com/es-es/download/video/6320380/" type="video/mp4" />
       </video>
       <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.94) 0%, rgba(10,10,10,0.80) 30%, rgba(10,10,10,0.42) 58%, rgba(10,10,10,0.14) 100%)' }} />
       <div style={{ position: 'relative', zIndex: 3 }}>
