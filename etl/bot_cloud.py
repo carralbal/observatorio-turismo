@@ -48,8 +48,8 @@ NUNCA mencionar FEHGRA. Atribuir a INDEC/SIPA-AFIP/ANAC/CNRT/AirDNA/OEDE según 
 """
 
 TABLE_DESCRIPTIONS = """
-mart_sde_pulso: viajeros y pernoctes hoteleros mensuales (Termas / Capital). Fuente EOH. Hasta nov 2025.
-mart_sde_pulso_estimado: estimación OLS de viajeros post-EOH. Incluye flag_estimado, intervalo de confianza.
+mart_sde_pulso: viajeros y pernoctes hoteleros mensuales (Termas / Capital). Columnas: fecha, localidad, viajeros_total, viajeros_res, viajeros_no_res, pernoctes_total, estadia_promedio, ibt_termas, ibt_compuesto, tcn_usd. Fuente EOH. Hasta nov 2025.
+mart_sde_pulso_estimado: estimación OLS de viajeros post-EOH. Columnas: fecha, localidad, viajeros, pernoctes, estadia, flag_estimado. Datos hasta abr 2026.
 mart_infra_aereo: pasajeros y asientos aéreos por ruta y aerolínea. Fuente ANAC.
 mart_infra_terrestre: pasajeros y asientos de ómnibus por ruta. Fuente CNRT. Anual hasta 2024.
 mart_infra_empleo_hyg: empleo registrado HyG por provincia y mes. Fuente SIPA-AFIP/OEDE.
