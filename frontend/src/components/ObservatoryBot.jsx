@@ -39,7 +39,7 @@ export default function ObservatoryBot({ onClose }) {
       const data = await res.json()
       setMessages(prev => [...prev, { role: 'assistant', content: data.answer || 'Sin respuesta.' }])
     } catch {
-      setMessages(prev => [...prev, { role: 'assistant', content: '⚠️ El servidor del bot no responde. Inicialo con:\n\npython3 etl/bot_proxy.py' }])
+      setMessages(prev => [...prev, { role: 'assistant', content: '⚠️ El asistente no está disponible en este momento. Intentá de nuevo en unos segundos.' }])
     }
     setLoading(false)
   }

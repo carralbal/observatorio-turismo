@@ -100,8 +100,7 @@ def gpt(messages, max_tokens=600):
     with urllib_request.urlopen(req, timeout=30) as r:
         return json.loads(r.read())["choices"][0]["message"]["content"]
 
-CON = build_con()
-SCHEMA_STR = get_schema(CON)
+SCHEMA_STR = get_schema(build_con())
 
 SYSTEM_SQL = """Sos un generador de SQL para DuckDB. Dado un esquema y una pregunta, generás UNA query SQL válida.
 
@@ -149,9 +148,10 @@ class Handler(BaseHTTPRequestHandler):
         ctx_str = sep.join(m["role"].upper()+": "+m["content"][:200] for m in msgs[-8:-1])
         pregunta = ("Historial:\n"+ctx_str+"\n\nPREGUNTA: "+ultima) if ctx_str else ultima
         try:
+            con     = build_con()
             sql_raw = gpt([{"role":"system","content":SYSTEM_SQL.format(schema=SCHEMA_STR)},{"role":"user","content":pregunta}], 300)
             sql     = re.sub(r"```sql|```","",sql_raw.strip()).strip()
-            datos   = "(sin datos — pregunta conceptual)" if sql == "NO_SQL" or not sql else run_query(CON, sql)
+            datos   = "(sin datos — pregunta conceptual)" if sql == "NO_SQL" or not sql else run_query(con, sql)
             answer  = gpt([{"role":"system","content":SYSTEM_RESPUESTA},{"role":"user","content":f"Pregunta: {ultima}\n\nResultado:\n{datos}"}], 600)
         except Exception as e:
             answer = f"Error: {e}"
