@@ -14,8 +14,8 @@ function KPICard({ icon: Icon, value, label, delta, dark }) {
       {Icon && <Icon size={23} strokeWidth={1.4} style={{ color: dark ? C.stone : C.slate, opacity: 0.6, marginBottom: 12, display: 'block' }} />}
       <div style={{ fontSize: 'clamp(1.7rem,3vw,3rem)', fontWeight: 200, color, letterSpacing: '-0.045em', lineHeight: 1, marginBottom: 10 }}>{value}</div>
       <VoltLine w={20} />
-      <div style={{ fontSize: 12.5, fontWeight: 400, color, marginTop: 10, marginBottom: 4 }}>{label}</div>
-      {delta && <div style={{ fontSize: 11, color: dark ? C.stone : C.slate, opacity: 0.65 }}>{delta}</div>}
+      <div style={{ fontSize: 'var(--fs-sm)', fontWeight: 400, color, marginTop: 10, marginBottom: 4 }}>{label}</div>
+      {delta && <div style={{ fontSize: 'var(--fs-xs)', color: dark ? C.stone : C.slate, opacity: 0.65 }}>{delta}</div>}
     </div>
   )
 }
@@ -26,7 +26,7 @@ const Tip = ({ active, payload, label }) => {
     <div style={{ background: '#111', border: '1px solid rgba(250,250,247,0.1)', padding: '10px 14px', fontFamily: 'Plus Jakarta Sans' }}>
       <Eyebrow light style={{ marginBottom: 6 }}>{label}</Eyebrow>
       {payload.filter(p => p.dataKey !== 'ic_band').map((p, i) => (
-        <div key={i} style={{ fontSize: 12, color: p.color || C.paper, fontWeight: 300, marginBottom: 2 }}>
+        <div key={i} style={{ fontSize: 'var(--fs-sm)', color: p.color || C.paper, fontWeight: 300, marginBottom: 2 }}>
           {p.name}: {fmt(p.value)}
         </div>
       ))}

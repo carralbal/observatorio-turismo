@@ -10,8 +10,8 @@ function KPICard({ value, label, delta, accent }) {
     <div style={{ borderLeft: '1px solid '+C.stone, paddingLeft: 'clamp(14px,2vw,24px)' }}>
       <div style={{ fontSize: 'clamp(1.7rem,3vw,3rem)', fontWeight: 200, color: accent ? C.volt : C.ink, letterSpacing: '-0.045em', lineHeight: 1, marginBottom: 10 }}>{value}</div>
       <VoltLine w={20} />
-      <div style={{ fontSize: 12.5, fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>{label}</div>
-      {delta && <div style={{ fontSize: 11, color: C.slate, opacity: 0.65 }}>{delta}</div>}
+      <div style={{ fontSize: 'var(--fs-sm)', fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>{label}</div>
+      {delta && <div style={{ fontSize: 'var(--fs-xs)', color: C.slate, opacity: 0.65 }}>{delta}</div>}
     </div>
   )
 }
@@ -22,7 +22,7 @@ const Tip = ({ active, payload, label }) => {
     <div style={{ background: '#111', border: '1px solid rgba(250,250,247,0.1)', padding: '10px 14px', fontFamily: 'Plus Jakarta Sans' }}>
       <Eyebrow light style={{ marginBottom: 6 }}>{label}</Eyebrow>
       {payload.filter(p => p.dataKey !== 'ic_high').map((p,i) => (
-        <div key={i} style={{ fontSize: 12, color: p.color||C.paper, fontWeight: 300 }}>{p.name}: {fmt(p.value)}</div>
+        <div key={i} style={{ fontSize: 'var(--fs-sm)', color: p.color||C.paper, fontWeight: 300 }}>{p.name}: {fmt(p.value)}</div>
       ))}
     </div>
   )
@@ -128,8 +128,8 @@ export default function Senal() {
             <div key={i} style={{ padding: 'clamp(20px,2.5vw,32px)', border: '0.5px solid '+C.stone, borderTop: '2px solid '+item.color }}>
               <div style={{ fontSize: 'clamp(1.5rem,2.5vw,3rem)', fontWeight: 200, color: C.stone, letterSpacing: '-0.05em', opacity: 0.2, marginBottom: 12 }}>{item.n}</div>
               <div style={{ fontSize: '1.05rem', fontWeight: 500, color: C.ink, marginBottom: 10 }}>{item.titulo}</div>
-              <div style={{ fontSize: 13, color: C.slate, marginBottom: 14, lineHeight: 1.6 }}>{item.señal}</div>
-              <div style={{ fontSize: 13, color: C.ink, lineHeight: 1.6, borderLeft: '2px solid '+item.color, paddingLeft: 10 }}>{item.accion}</div>
+              <div style={{ fontSize: 'var(--fs-base)', color: C.slate, marginBottom: 14, lineHeight: 1.6 }}>{item.señal}</div>
+              <div style={{ fontSize: 'var(--fs-base)', color: C.ink, lineHeight: 1.6, borderLeft: '2px solid '+item.color, paddingLeft: 10 }}>{item.accion}</div>
             </div>
           ))}
         </div>

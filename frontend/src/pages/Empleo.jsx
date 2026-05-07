@@ -13,8 +13,8 @@ function KPICard({ icon: Icon, value, label, delta }) {
       {Icon && <Icon size={23} strokeWidth={1.4} style={{ color: C.slate, opacity: 0.6, marginBottom: 12, display: 'block' }} />}
       <div style={{ fontSize: 'clamp(1.7rem,3vw,3rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.045em', lineHeight: 1, marginBottom: 10 }}>{value}</div>
       <VoltLine w={20} />
-      <div style={{ fontSize: 12.5, fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>{label}</div>
-      {delta && <div style={{ fontSize: 11, color: C.slate, opacity: 0.65 }}>{delta}</div>}
+      <div style={{ fontSize: 'var(--fs-sm)', fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>{label}</div>
+      {delta && <div style={{ fontSize: 'var(--fs-xs)', color: C.slate, opacity: 0.65 }}>{delta}</div>}
     </div>
   )
 }
@@ -24,7 +24,7 @@ const AreaTip = ({ active, payload, label }) => {
   return (
     <div style={{ background: '#111', border: '1px solid rgba(250,250,247,0.1)', padding: '10px 14px', fontFamily: 'Plus Jakarta Sans' }}>
       <Eyebrow light style={{ marginBottom: 6 }}>{label}</Eyebrow>
-      {payload.map((p, i) => <div key={i} style={{ fontSize: 12, color: C.paper, fontWeight: 300 }}>{p.name}: {fmt(p.value)}</div>)}
+      {payload.map((p, i) => <div key={i} style={{ fontSize: 'var(--fs-sm)', color: C.paper, fontWeight: 300 }}>{p.name}: {fmt(p.value)}</div>)}
     </div>
   )
 }
@@ -136,7 +136,7 @@ export default function Empleo() {
                 </div>
                 <div>
                   <div style={{ fontSize: 'clamp(0.9rem,1.3vw,1.1rem)', fontWeight: isSDE ? 500 : 400, color: C.ink, marginBottom: 10 }}>
-                    {p.provincia}{isSDE && <span style={{ marginLeft: 8, fontSize: 9, letterSpacing: '0.1em', color: C.volt, fontWeight: 600 }}>SDE</span>}
+                    {p.provincia}{isSDE && <span style={{ marginLeft: 8, fontSize: 'var(--fs-2xs)', letterSpacing: '0.1em', color: C.volt, fontWeight: 600 }}>SDE</span>}
                   </div>
                   <div style={{ height: 2, background: C.stone, borderRadius: 2, overflow: 'hidden' }}>
                     <div style={{ height: '100%', width: pct+'%', background: isSDE ? C.volt : C.ink, opacity: isSDE ? 1 : 0.35 }} />
@@ -144,7 +144,7 @@ export default function Empleo() {
                 </div>
                 <div style={{ textAlign: 'right' }}>
                   <div style={{ fontSize: 'clamp(1.2rem,2vw,2rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.03em' }}>{fmt(p.empleo)}</div>
-                  <div style={{ fontSize: 10, color: C.slate, opacity: 0.5 }}>empleados</div>
+                  <div style={{ fontSize: 'var(--fs-xs)', color: C.slate, opacity: 0.5 }}>empleados</div>
                 </div>
               </div>
             )
@@ -168,8 +168,8 @@ export default function Empleo() {
               <YAxis tick={{ fill: C.stone, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} width={40} />
               <Tooltip content={({ active, payload, label: l }) => active && payload?.length ? (
                 <div style={{ background: '#111', border: '1px solid rgba(250,250,247,0.1)', padding: '8px 12px', fontFamily: 'Plus Jakarta Sans' }}>
-                  <div style={{ fontSize: 11, color: C.stone, marginBottom: 3 }}>{l}</div>
-                  <div style={{ fontSize: 13, color: C.paper, fontWeight: 200 }}>Indice: {payload[0].value}</div>
+                  <div style={{ fontSize: 'var(--fs-xs)', color: C.stone, marginBottom: 3 }}>{l}</div>
+                  <div style={{ fontSize: 'var(--fs-base)', color: C.paper, fontWeight: 200 }}>Indice: {payload[0].value}</div>
                 </div>
               ) : null} cursor={{ stroke: 'rgba(250,250,247,0.07)', strokeWidth: 1 }} />
               <ReferenceLine y={100} stroke="rgba(255,255,0,0.3)" strokeDasharray="4 3" />

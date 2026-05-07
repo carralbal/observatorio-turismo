@@ -11,7 +11,7 @@ const Tip = ({ active, payload, label }) => {
   return (
     <div style={{ background: '#111', border: '1px solid rgba(250,250,247,0.1)', padding: '10px 14px', fontFamily: 'Plus Jakarta Sans' }}>
       <Eyebrow light style={{ marginBottom: 6 }}>{label}</Eyebrow>
-      {payload.map((p,i) => <div key={i} style={{ fontSize: 12, color: p.color||C.paper, fontWeight: 300 }}>{p.name}: {fmt(p.value)}</div>)}
+      {payload.map((p,i) => <div key={i} style={{ fontSize: 'var(--fs-sm)', color: p.color||C.paper, fontWeight: 300 }}>{p.name}: {fmt(p.value)}</div>)}
     </div>
   )
 }
@@ -80,8 +80,8 @@ export default function Benchmark() {
             <div key={i} style={{ borderLeft: '1px solid '+C.stone, paddingLeft: 'clamp(14px,2vw,24px)' }}>
               <div style={{ fontSize: 'clamp(1.4rem,2.5vw,2.8rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.04em', lineHeight: 1, marginBottom: 10 }}>{kv.v}</div>
               <VoltLine w={20} />
-              <div style={{ fontSize: 12.5, fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>{kv.l}</div>
-              <div style={{ fontSize: 11, color: C.slate, opacity: 0.65 }}>{kv.d}</div>
+              <div style={{ fontSize: 'var(--fs-sm)', fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>{kv.l}</div>
+              <div style={{ fontSize: 'var(--fs-xs)', color: C.slate, opacity: 0.65 }}>{kv.d}</div>
             </div>
           ))}
         </div>
@@ -104,7 +104,7 @@ export default function Benchmark() {
                 </div>
                 <div>
                   <div style={{ fontSize: 'clamp(0.85rem,1.2vw,1rem)', fontWeight: r.es_sde?500:400, color: r.es_sde?C.volt:C.paper, marginBottom: 8 }}>
-                    {r.localidad}{r.es_sde && <span style={{ marginLeft: 8, fontSize: 9, color: C.volt, letterSpacing: '0.1em' }}>SDE</span>}
+                    {r.localidad}{r.es_sde && <span style={{ marginLeft: 8, fontSize: 'var(--fs-2xs)', color: C.volt, letterSpacing: '0.1em' }}>SDE</span>}
                   </div>
                   <div style={{ height: 2, background: 'rgba(250,250,247,0.08)', borderRadius: 1, overflow: 'hidden' }}>
                     <div style={{ height: '100%', width: pct+'%', background: r.es_sde?C.volt:C.paper, opacity: r.es_sde?1:0.3 }} />
@@ -112,7 +112,7 @@ export default function Benchmark() {
                 </div>
                 <div style={{ textAlign: 'right' }}>
                   <div style={{ fontSize: 'clamp(1rem,1.8vw,1.8rem)', fontWeight: 200, color: r.es_sde?C.volt:C.paper, letterSpacing: '-0.03em' }}>{fmt(r.viajeros)}</div>
-                  <div style={{ fontSize: 10, color: C.stone, opacity: 0.55 }}>{pctTotal}% del total</div>
+                  <div style={{ fontSize: 'var(--fs-xs)', color: C.stone, opacity: 0.55 }}>{pctTotal}% del total</div>
                 </div>
               </div>
             )

@@ -11,8 +11,8 @@ function KPICard({ value, label, delta }) {
     <div style={{ borderLeft: '1px solid '+C.stone, paddingLeft: 'clamp(14px,2vw,24px)' }}>
       <div style={{ fontSize: 'clamp(1.7rem,3vw,3rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.045em', lineHeight: 1, marginBottom: 10 }}>{value}</div>
       <VoltLine w={20} />
-      <div style={{ fontSize: 12.5, fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>{label}</div>
-      {delta && <div style={{ fontSize: 13, color: C.slate, opacity: 0.65 }}>{delta}</div>}
+      <div style={{ fontSize: 'var(--fs-sm)', fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>{label}</div>
+      {delta && <div style={{ fontSize: 'var(--fs-base)', color: C.slate, opacity: 0.65 }}>{delta}</div>}
     </div>
   )
 }
@@ -89,8 +89,8 @@ export default function Perfil() {
               {transporteData.map((t,i) => (
                 <div key={i} style={{ padding: '14px 0', borderBottom: '0.5px solid rgba(250,250,247,0.1)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-                    <span style={{ fontSize: 13, fontWeight: 400, color: C.paper }}>{t.modo}</span>
-                    <span style={{ fontSize: 13, fontWeight: 200, color: i===0?C.volt:C.paper }}>{t.pct.toFixed(1)}%</span>
+                    <span style={{ fontSize: 'var(--fs-base)', fontWeight: 400, color: C.paper }}>{t.modo}</span>
+                    <span style={{ fontSize: 'var(--fs-base)', fontWeight: 200, color: i===0?C.volt:C.paper }}>{t.pct.toFixed(1)}%</span>
                   </div>
                   <div style={{ height: 2, background: 'rgba(250,250,247,0.1)', borderRadius: 1, overflow: 'hidden' }}>
                     <div style={{ height: '100%', width: t.pct+'%', background: i===0?C.volt:C.paper, opacity: i===0?1:0.4 }} />
@@ -105,8 +105,8 @@ export default function Perfil() {
               {motivoData.map((m,i) => (
                 <div key={i} style={{ padding: '14px 0', borderBottom: '0.5px solid rgba(250,250,247,0.1)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-                    <span style={{ fontSize: 13, fontWeight: 400, color: C.paper }}>{m.motivo}</span>
-                    <span style={{ fontSize: 13, fontWeight: 200, color: i===0?C.volt:C.paper }}>{m.pct.toFixed(1)}%</span>
+                    <span style={{ fontSize: 'var(--fs-base)', fontWeight: 400, color: C.paper }}>{m.motivo}</span>
+                    <span style={{ fontSize: 'var(--fs-base)', fontWeight: 200, color: i===0?C.volt:C.paper }}>{m.pct.toFixed(1)}%</span>
                   </div>
                   <div style={{ height: 2, background: 'rgba(250,250,247,0.1)', borderRadius: 1, overflow: 'hidden' }}>
                     <div style={{ height: '100%', width: Math.min(m.pct,100)+'%', background: i===0?C.volt:C.paper, opacity: i===0?1:0.4 }} />
@@ -130,7 +130,7 @@ export default function Perfil() {
                   <YAxis tick={{ fill: C.stone, fontSize: 9, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} tickFormatter={v => 'USD'+v} width={52} />
                   <Tooltip content={({ active, payload, label: l }) => active && payload?.length ? (
                     <div style={{ background: C.paper, border: '0.5px solid '+C.stone, padding: '6px 10px', fontFamily: 'Plus Jakarta Sans' }}>
-                      <div style={{ fontSize: 13, color: C.ink }}>{l}: USD {payload[0].value}</div>
+                      <div style={{ fontSize: 'var(--fs-base)', color: C.ink }}>{l}: USD {payload[0].value}</div>
                     </div>
                   ) : null} />
                   <Bar dataKey="gasto" radius={[2,2,0,0]}>
@@ -149,7 +149,7 @@ export default function Perfil() {
                   <YAxis tick={{ fill: C.stone, fontSize: 9, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} width={32} />
                   <Tooltip content={({ active, payload, label: l }) => active && payload?.length ? (
                     <div style={{ background: C.paper, border: '0.5px solid '+C.stone, padding: '6px 10px', fontFamily: 'Plus Jakarta Sans' }}>
-                      <div style={{ fontSize: 13, color: C.ink }}>{l}: {payload[0].value} noches</div>
+                      <div style={{ fontSize: 'var(--fs-base)', color: C.ink }}>{l}: {payload[0].value} noches</div>
                     </div>
                   ) : null} />
                   <Bar dataKey="estadia" radius={[2,2,0,0]}>

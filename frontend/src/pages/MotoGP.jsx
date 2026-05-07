@@ -14,8 +14,8 @@ function KPICard({ icon: Icon, value, label, delta, dark }) {
       {Icon && <Icon size={23} strokeWidth={1.4} style={{ color: dark?C.stone:C.slate, opacity: 0.6, marginBottom: 12, display: 'block' }} />}
       <div style={{ fontSize: 'clamp(1.7rem,3vw,3rem)', fontWeight: 200, color, letterSpacing: '-0.045em', lineHeight: 1, marginBottom: 10 }}>{value}</div>
       <VoltLine w={20} />
-      <div style={{ fontSize: 12.5, fontWeight: 400, color, marginTop: 10, marginBottom: 4 }}>{label}</div>
-      {delta && <div style={{ fontSize: 11, color: dark?C.stone:C.slate, opacity: 0.65 }}>{delta}</div>}
+      <div style={{ fontSize: 'var(--fs-sm)', fontWeight: 400, color, marginTop: 10, marginBottom: 4 }}>{label}</div>
+      {delta && <div style={{ fontSize: 'var(--fs-xs)', color: dark?C.stone:C.slate, opacity: 0.65 }}>{delta}</div>}
     </div>
   )
 }
@@ -25,7 +25,7 @@ const Tip = ({ active, payload, label }) => {
   return (
     <div style={{ background: '#111', border: '1px solid rgba(250,250,247,0.1)', padding: '10px 14px', fontFamily: 'Plus Jakarta Sans' }}>
       <Eyebrow light style={{ marginBottom: 6 }}>{label}</Eyebrow>
-      {payload.map((p,i) => <div key={i} style={{ fontSize: 12, color: p.color||C.paper, fontWeight: 300 }}>{p.name}: {fmt(p.value)}</div>)}
+      {payload.map((p,i) => <div key={i} style={{ fontSize: 'var(--fs-sm)', color: p.color||C.paper, fontWeight: 300 }}>{p.name}: {fmt(p.value)}</div>)}
     </div>
   )
 }
@@ -116,7 +116,7 @@ export default function MotoGP() {
               <XAxis dataKey="label" tick={{ fill: C.stone, fontSize: 11, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} />
               <YAxis tick={{ fill: C.stone, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} tickFormatter={v => fmt(v)} width={56} />
               <Tooltip content={<Tip />} cursor={{ stroke: 'rgba(250,250,247,0.07)', strokeWidth: 1 }} />
-              <ReferenceLine y={promBaseline} stroke="rgba(250,250,247,0.2)" strokeDasharray="4 3" label={{ value: 'baseline', fill: C.stone, fontSize: 9 }} />
+              <ReferenceLine y={promBaseline} stroke="rgba(250,250,247,0.2)" strokeDasharray="4 3" label={{ value: 'baseline', fill: C.stone, fontSize: 'var(--fs-2xs)' }} />
               <Line type="monotone" dataKey="viajeros" name="Viajeros" stroke="rgba(250,250,247,0.4)" strokeWidth={1.5} connectNulls
                 dot={(props) => { const {cx,cy,payload} = props; return payload.tiene_motogp ? <circle key={cx} cx={cx} cy={cy} r={6} fill={C.volt} stroke="none"/> : <circle key={cx} cx={cx} cy={cy} r={3} fill="rgba(250,250,247,0.3)" stroke="none"/> }}
                 activeDot={{ r: 5, fill: C.volt }} />

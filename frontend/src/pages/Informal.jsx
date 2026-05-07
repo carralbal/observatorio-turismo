@@ -12,8 +12,8 @@ function KPICard({ icon: Icon, value, label, delta }) {
       {Icon && <Icon size={23} strokeWidth={1.4} style={{ color: C.slate, opacity: 0.6, marginBottom: 12, display: 'block' }} />}
       <div style={{ fontSize: 'clamp(1.7rem,3vw,3rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.045em', lineHeight: 1, marginBottom: 10 }}>{value}</div>
       <VoltLine w={20} />
-      <div style={{ fontSize: 12.5, fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>{label}</div>
-      {delta && <div style={{ fontSize: 11, color: C.slate, opacity: 0.65 }}>{delta}</div>}
+      <div style={{ fontSize: 'var(--fs-sm)', fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>{label}</div>
+      {delta && <div style={{ fontSize: 'var(--fs-xs)', color: C.slate, opacity: 0.65 }}>{delta}</div>}
     </div>
   )
 }
@@ -23,7 +23,7 @@ const Tip = ({ active, payload, label }) => {
   return (
     <div style={{ background: '#111', border: '1px solid rgba(250,250,247,0.1)', padding: '10px 14px', fontFamily: 'Plus Jakarta Sans' }}>
       <Eyebrow light style={{ marginBottom: 6 }}>{label}</Eyebrow>
-      {payload.map((p, i) => <div key={i} style={{ fontSize: 12, color: C.paper, fontWeight: 300 }}>{p.name}: {p.value}{p.name.includes('Ocup') ? '%' : ''}</div>)}
+      {payload.map((p, i) => <div key={i} style={{ fontSize: 'var(--fs-sm)', color: C.paper, fontWeight: 300 }}>{p.name}: {p.value}{p.name.includes('Ocup') ? '%' : ''}</div>)}
     </div>
   )
 }
@@ -136,8 +136,8 @@ export default function Informal() {
                   <YAxis tick={{ fill: C.stone, fontSize: 9, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} tickFormatter={v => '$'+fmt(v)} width={64} />
                   <Tooltip content={({ active, payload, label: l }) => active && payload?.length ? (
                     <div style={{ background: C.paper, border: '0.5px solid '+C.stone, padding: '8px 12px', fontFamily: 'Plus Jakarta Sans' }}>
-                      <div style={{ fontSize: 10, color: C.slate, marginBottom: 3 }}>{l}</div>
-                      <div style={{ fontSize: 13, color: C.ink, fontWeight: 200 }}>${fmt(payload[0].value)}/noche</div>
+                      <div style={{ fontSize: 'var(--fs-xs)', color: C.slate, marginBottom: 3 }}>{l}</div>
+                      <div style={{ fontSize: 'var(--fs-base)', color: C.ink, fontWeight: 200 }}>${fmt(payload[0].value)}/noche</div>
                     </div>
                   ) : null} />
                   <Area type="monotone" dataKey="adr_ars" name="ADR ARS" stroke={C.ink} strokeWidth={1.5} fill="url(#gAdr)" dot={false} />
@@ -162,8 +162,8 @@ export default function Informal() {
                   <div key={i} style={{ padding: '14px 0', borderBottom: '0.5px solid '+C.stone }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
                       <div>
-                        <span style={{ fontSize: 12, fontWeight: item.accent ? 500 : 400, color: C.ink }}>{item.label}</span>
-                        <div style={{ fontSize: 10, color: C.slate, opacity: 0.6, marginTop: 2 }}>{item.desc}</div>
+                        <span style={{ fontSize: 'var(--fs-sm)', fontWeight: item.accent ? 500 : 400, color: C.ink }}>{item.label}</span>
+                        <div style={{ fontSize: 'var(--fs-xs)', color: C.slate, opacity: 0.6, marginTop: 2 }}>{item.desc}</div>
                       </div>
                       <span style={{ fontSize: 'clamp(1rem,1.5vw,1.4rem)', fontWeight: 200, color: item.accent ? C.ink : C.ink, letterSpacing: '-0.02em' }}>${fmt(item.value)}</span>
                     </div>
@@ -196,7 +196,7 @@ export default function Informal() {
                 ].map((kv, j) => (
                   <div key={j}>
                     <div style={{ fontSize: 'clamp(1.2rem,2vw,1.8rem)', fontWeight: 200, color: i===0?C.volt:C.paper, letterSpacing: '-0.03em', lineHeight: 1, marginBottom: 6 }}>{kv.v}</div>
-                    <Eyebrow light style={{ opacity: 0.4, fontSize: 9 }}>{kv.l}</Eyebrow>
+                    <Eyebrow light style={{ opacity: 0.4, fontSize: 'var(--fs-2xs)' }}>{kv.l}</Eyebrow>
                   </div>
                 ))}
               </div>

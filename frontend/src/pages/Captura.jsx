@@ -12,8 +12,8 @@ function KPICard({ icon: Icon, value, label, delta }) {
       {Icon && <Icon size={23} strokeWidth={1.4} style={{ color: C.slate, opacity: 0.6, marginBottom: 12, display: 'block' }} />}
       <div style={{ fontSize: 'clamp(1.7rem,3vw,3rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.045em', lineHeight: 1, marginBottom: 10 }}>{value}</div>
       <VoltLine w={20} />
-      <div style={{ fontSize: 12.5, fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>{label}</div>
-      {delta && <div style={{ fontSize: 11, color: C.slate, opacity: 0.65 }}>{delta}</div>}
+      <div style={{ fontSize: 'var(--fs-sm)', fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>{label}</div>
+      {delta && <div style={{ fontSize: 'var(--fs-xs)', color: C.slate, opacity: 0.65 }}>{delta}</div>}
     </div>
   )
 }
@@ -23,7 +23,7 @@ const Tip = ({ active, payload, label }) => {
   return (
     <div style={{ background: '#111', border: '1px solid rgba(250,250,247,0.1)', padding: '10px 14px', fontFamily: 'Plus Jakarta Sans' }}>
       <Eyebrow light style={{ marginBottom: 6 }}>{label}</Eyebrow>
-      {payload.map((p,i) => <div key={i} style={{ fontSize: 12, color: p.color||C.paper, fontWeight: 300 }}>{p.name}: {fmt(p.value)}</div>)}
+      {payload.map((p,i) => <div key={i} style={{ fontSize: 'var(--fs-sm)', color: p.color||C.paper, fontWeight: 300 }}>{p.name}: {fmt(p.value)}</div>)}
     </div>
   )
 }
@@ -86,7 +86,7 @@ export default function Captura() {
         </div>
         <div style={{ marginTop: 32, padding: 'clamp(16px,2vw,24px)', background: 'rgba(255,255,0,0.04)', border: '0.5px solid rgba(255,255,0,0.15)', borderLeft: '2px solid '+C.volt }}>
           <Eyebrow style={{ marginBottom: 8, color: C.volt, opacity: 0.8 }}>Nota de calidad</Eyebrow>
-          <p style={{ fontSize: 12, color: C.slate, margin: 0, lineHeight: 1.6 }}>{ultimo.nota || 'N1 estimacion — con IIBB SDE (N2) se convierte en dato real.'}</p>
+          <p style={{ fontSize: 'var(--fs-sm)', color: C.slate, margin: 0, lineHeight: 1.6 }}>{ultimo.nota || 'N1 estimacion — con IIBB SDE (N2) se convierte en dato real.'}</p>
         </div>
       </section>
 
@@ -98,8 +98,8 @@ export default function Captura() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 24, padding: '32px 0' }}>
                 <span style={{ fontSize: 'clamp(4rem,8vw,6rem)', fontWeight: 200, color: C.volt, letterSpacing: '-0.05em', lineHeight: 1 }}>{datos[0]?.icv ?? 38}%</span>
                 <div>
-                  <div style={{ fontSize: 13, fontWeight: 600, color: C.paper, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 8 }}>Estimación N1 estática</div>
-                  <div style={{ fontSize: 12, color: C.stone, maxWidth: 340, lineHeight: 1.6 }}>El ICV es una estimación proxy sin variación histórica. Con N2 (convenio DGR-SDE) se convierte en dato fiscal real con variación mensual.</div>
+                  <div style={{ fontSize: 'var(--fs-base)', fontWeight: 600, color: C.paper, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 8 }}>Estimación N1 estática</div>
+                  <div style={{ fontSize: 'var(--fs-sm)', color: C.stone, maxWidth: 340, lineHeight: 1.6 }}>El ICV es una estimación proxy sin variación histórica. Con N2 (convenio DGR-SDE) se convierte en dato fiscal real con variación mensual.</div>
                 </div>
               </div>
             ) : (
@@ -147,11 +147,11 @@ export default function Captura() {
             ].map((item, i) => (
               <div key={i} style={{ padding: 'clamp(14px,2vw,20px)', marginBottom: 8, border: '0.5px solid '+C.stone, borderLeft: '2px solid '+(item.active ? C.volt : C.stone), background: item.active ? 'rgba(255,255,0,0.02)' : 'transparent' }}>
                 <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 6 }}>
-                  <span style={{ fontSize: 14, fontWeight: 600, color: item.active ? C.volt : C.stone, letterSpacing: '0.1em' }}>{item.n}</span>
-                  <span style={{ fontSize: 15, fontWeight: 500, color: C.ink }}>{item.label}</span>
-                  {item.active && <span style={{ fontSize: 9, padding: '2px 6px', background: C.volt, color: C.ink, fontWeight: 600, letterSpacing: '0.1em' }}>ACTIVO</span>}
+                  <span style={{ fontSize: 'var(--fs-md)', fontWeight: 600, color: item.active ? C.volt : C.stone, letterSpacing: '0.1em' }}>{item.n}</span>
+                  <span style={{ fontSize: 'var(--fs-lg)', fontWeight: 500, color: C.ink }}>{item.label}</span>
+                  {item.active && <span style={{ fontSize: 'var(--fs-2xs)', padding: '2px 6px', background: C.volt, color: C.ink, fontWeight: 600, letterSpacing: '0.1em' }}>ACTIVO</span>}
                 </div>
-                <p style={{ fontSize: 13, color: C.slate, margin: 0, lineHeight: 1.6 }}>{item.desc}</p>
+                <p style={{ fontSize: 'var(--fs-base)', color: C.slate, margin: 0, lineHeight: 1.6 }}>{item.desc}</p>
               </div>
             ))}
           </div>

@@ -48,7 +48,7 @@ const BarTip = ({ active, payload, label }) => {
   return (
     <div style={{ background: '#111', border: '1px solid rgba(250,250,247,0.1)', padding: '10px 14px', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
       <Eyebrow light style={{ marginBottom: 6 }}>{label}</Eyebrow>
-      {payload.map((p, i) => <div key={i} style={{ fontSize: 12, color: C.paper, fontWeight: 300 }}>{p.name}: {fmt(p.value)}</div>)}
+      {payload.map((p, i) => <div key={i} style={{ fontSize: 'var(--fs-sm)', color: C.paper, fontWeight: 300 }}>{p.name}: {fmt(p.value)}</div>)}
     </div>
   )
 }
@@ -59,8 +59,8 @@ function KPICard({ icon: Icon, value, label, delta }) {
       {Icon && <Icon size={23} strokeWidth={1.4} style={{ color: C.slate, opacity: 0.6, marginBottom: 12, display: 'block' }} />}
       <div style={{ fontSize: 'clamp(1.7rem,3vw,3rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.045em', lineHeight: 1, marginBottom: 10 }}>{value}</div>
       <VoltLine w={20} />
-      <div style={{ fontSize: 12.5, fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>{label}</div>
-      {delta && <div style={{ fontSize: 11, color: C.slate, opacity: 0.65 }}>{delta}</div>}
+      <div style={{ fontSize: 'var(--fs-sm)', fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>{label}</div>
+      {delta && <div style={{ fontSize: 'var(--fs-xs)', color: C.slate, opacity: 0.65 }}>{delta}</div>}
     </div>
   )
 }
@@ -97,7 +97,7 @@ export default function Terrestre() {
 
       <section style={{ background: C.paper, padding: 'clamp(56px,7vw,80px) var(--pad)' }}>
         <Eyebrow style={{ marginBottom: 52 }}>Indicadores · {anioSel}</Eyebrow>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '0 clamp(14px,4vw,56px)' }}>
+        <div className="grid-kpi">
           <KPICard icon={ICONS.terrestre} value={fmt(actual.pasajeros??0)} label="Pasajeros transportados" delta={deltaPax ? `${deltaPax>0?'+':''}${deltaPax}% vs ${anioSel-1}` : 'datos hasta 2024'} />
           <KPICard icon={ICONS.terrestre} value={fmt(actual.asientos??0)} label="Asientos ofrecidos" delta="capacidad total anual" />
           <KPICard icon={ICONS.terrestre} value={fmt(actual.viajes??0,0)} label="Servicios operados" delta="viajes regulares CNRT" />
@@ -143,9 +143,9 @@ export default function Terrestre() {
                   <div>
                     <div style={{ fontSize: 'clamp(0.9rem,1.3vw,1.15rem)', fontWeight: 400, color: C.ink, marginBottom: 10, lineHeight: 1.3 }}>{r.label}</div>
                     <div style={{ display: 'flex', gap: 'clamp(12px,2vw,24px)', marginBottom: 12, flexWrap: 'wrap' }}>
-                      <span style={{ fontSize: 11, color: C.slate, opacity: 0.65 }}>{fmt(r.viajes,0)} servicios/año</span>
-                      <span style={{ fontSize: 11, color: C.slate, opacity: 0.65 }}>LF: {r.load_factor}%</span>
-                      <span style={{ fontSize: 11, color: C.slate, opacity: 0.65 }}>{fmt(r.asientos)} asientos</span>
+                      <span style={{ fontSize: 'var(--fs-xs)', color: C.slate, opacity: 0.65 }}>{fmt(r.viajes,0)} servicios/año</span>
+                      <span style={{ fontSize: 'var(--fs-xs)', color: C.slate, opacity: 0.65 }}>LF: {r.load_factor}%</span>
+                      <span style={{ fontSize: 'var(--fs-xs)', color: C.slate, opacity: 0.65 }}>{fmt(r.asientos)} asientos</span>
                     </div>
                     <div style={{ height: 2, background: C.stone, borderRadius: 2, overflow: 'hidden' }}>
                       <div style={{ height: '100%', width: pct+'%', background: i===0?C.ink:C.slate, opacity: i===0?1:0.35 }} />
@@ -153,9 +153,9 @@ export default function Terrestre() {
                   </div>
                   <div style={{ textAlign: 'right' }}>
                     <div style={{ fontSize: 'clamp(1.4rem,2.5vw,2.5rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.04em', lineHeight: 1, marginBottom: 6 }}>{fmt(r.pasajeros)}</div>
-                    <div style={{ fontSize: 10, color: C.slate, opacity: 0.55, marginBottom: 8 }}>pasajeros</div>
+                    <div style={{ fontSize: 'var(--fs-xs)', color: C.slate, opacity: 0.55, marginBottom: 8 }}>pasajeros</div>
                     <div style={{ display: 'inline-block', padding: '4px 10px', background: i===0?C.ink:C.stone, borderRadius: 2 }}>
-                      <span style={{ fontSize: 10, fontWeight: 500, color: i===0?C.paper:C.ink, letterSpacing: '0.05em' }}>{pctTot}%</span>
+                      <span style={{ fontSize: 'var(--fs-xs)', fontWeight: 500, color: i===0?C.paper:C.ink, letterSpacing: '0.05em' }}>{pctTot}%</span>
                     </div>
                   </div>
                 </div>
@@ -165,7 +165,8 @@ export default function Terrestre() {
         </div>
         <Interpretacion texto={rutas.length>0 ? `La ruta ${rutas[0]?.label} concentra el ${Math.round((rutas[0]?.pasajeros/rutas.reduce((a,b)=>a+b.pasajeros,0))*100)}% del tráfico total con ${fmt(rutas[0]?.pasajeros)} pasajeros en ${anioSel}. Fuente: CNRT.` : 'Sin datos de rutas para el período.'} />
       </section>
-      <section style={{ background: C.ink, padding: 'clamp(56px,7vw,80px) var(--pad)', display: 'grid', gridTemplateColumns: 'minmax(150px,190px) 1fr', gap: 'clamp(36px,5vw,88px)', alignItems: 'center' }}>
+
+      <section className="grid-donut" style={{ background: C.ink, padding: 'clamp(56px,7vw,80px) var(--pad)' }}>
         <div>
           <svg viewBox="0 0 180 180" width="100%" style={{ maxWidth: 190 }}>
             <circle cx={cx} cy={cy} r={rc} fill="none" stroke="rgba(250,250,247,0.1)" strokeWidth={5} />
@@ -175,13 +176,14 @@ export default function Terrestre() {
               <text textAnchor="middle" dominantBaseline="middle" y="16" fill={C.stone} fontSize={12} fontWeight={400} fontFamily="Plus Jakarta Sans">%</text>
             </g>
           </svg>
-          <div style={{ marginTop: 16 }}><VoltLine w={18} /><Eyebrow light style={{ marginTop: 8, fontSize: 9.5 }}>Load Factor · {anioSel}</Eyebrow></div>
+          <div style={{ marginTop: 16 }}><VoltLine w={18} /><Eyebrow light style={{ marginTop: 8, fontSize: 'var(--fs-2xs)' }}>Load Factor · {anioSel}</Eyebrow></div>
         </div>
         <div>
           <SectionTitle icon={ICONS.ibt} context="Eficiencia de ocupación" main="Load factor terrestre." light />
           <Interpretacion light texto={`El load factor del ${lf}% mide qué proporción de los asientos de ómnibus interurbanos hacia y desde SDE fueron efectivamente ocupados en ${anioSel}. El promedio histórico del corredor NOA ronda el 55–65%: un ${lf}% ${lf < 50 ? 'está muy por debajo de ese umbral' : lf < 65 ? 'se acerca al rango esperado' : 'supera el promedio del corredor'}. Un LF bajo puede tener dos lecturas: si la frecuencia es alta, indica exceso de oferta — más capacidad de la que la demanda requiere. Si las frecuencias son bajas o estacionales, puede indicar una ruta subsidiada de baja rentabilidad comercial. En ambos casos, un LF terrestre bajo contrasta con el LF aéreo alto: el turista que llega en avión no tiene alternativa de regreso en ómnibus con la misma frecuencia. Para la Secretaría de Turismo, esta brecha es un argumento para revisar la articulación multimodal del destino. Fuente: CNRT.`} />
         </div>
       </section>
+
       <section style={{ background: 'var(--paper, #FAFAF7)', padding: 'clamp(40px,5vw,64px) var(--pad)' }}>
         <Interpretacion>
         En 2024, el transporte terrestre hacia SDE transportó 246.334 pasajeros con un load
@@ -193,7 +195,6 @@ export default function Terrestre() {
         — más largo plazo y mayor ingreso — favorece el modo aéreo sobre el terrestre.
           </Interpretacion>
       </section>
-
     </>
   )
 }

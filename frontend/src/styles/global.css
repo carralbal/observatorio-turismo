@@ -11,14 +11,14 @@
   --pad:    clamp(24px, 8vw, 96px);
 
   /* ── Font scale ── */
-  --fs-2xs:  9px;    /* números de capa, dots, micro-labels       */
-  --fs-xs:   10.5px; /* eyebrow, nav labels, ticker, footer        */
-  --fs-sm:   12px;   /* notas al pie, sub-labels                   */
-  --fs-base: 13px;   /* body estándar, items de lista, table cells */
-  --fs-md:   14px;   /* labels de gráficos, leyendas               */
-  --fs-lg:   16px;   /* subtítulos de sección, KPI labels          */
-  --fs-xl:   20px;   /* KPI números medianos                       */
-  --fs-2xl:  28px;   /* KPI números grandes                        */
+  --fs-2xs:  9px;
+  --fs-xs:   10.5px;
+  --fs-sm:   12px;
+  --fs-base: 13px;
+  --fs-md:   14px;
+  --fs-lg:   16px;
+  --fs-xl:   20px;
+  --fs-2xl:  28px;
 }
 
 @media (max-width: 768px) {
@@ -87,3 +87,55 @@ body {
   animation: ticker 28s linear infinite;
 }
 .ticker-track:hover { animation-play-state: paused; }
+
+/* ── Responsive grid utilities ── */
+.grid-kpi {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0 clamp(14px, 4vw, 56px);
+}
+.grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: flex-start;
+}
+.grid-donut {
+  display: grid;
+  grid-template-columns: minmax(150px, 190px) 1fr;
+  gap: clamp(36px, 5vw, 88px);
+  align-items: center;
+}
+.grid-3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 2.5vw, 40px);
+}
+.grid-fuente {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: clamp(24px, 3vw, 48px);
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .grid-kpi {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 16px;
+  }
+  .grid-2col {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .grid-donut {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .grid-3col {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .grid-fuente {
+    grid-template-columns: 1fr;
+  }
+}

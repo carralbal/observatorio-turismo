@@ -61,26 +61,26 @@ export default function Madurez() {
           <div style={{ borderLeft: '1px solid '+C.stone, paddingLeft: 'clamp(14px,2vw,24px)' }}>
             <div style={{ fontSize: 'clamp(1.7rem,3vw,3rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.045em', lineHeight: 1, marginBottom: 10 }}>{sde.score_madurez || '—'} / 5</div>
             <VoltLine w={20} />
-            <div style={{ fontSize: 12.5, fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>Score de madurez SDE</div>
-            <div style={{ fontSize: 13, color: C.slate, opacity: 0.65 }}>{sde.nivel_label || '—'}</div>
+            <div style={{ fontSize: 'var(--fs-sm)', fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>Score de madurez SDE</div>
+            <div style={{ fontSize: 'var(--fs-base)', color: C.slate, opacity: 0.65 }}>{sde.nivel_label || '—'}</div>
           </div>
           <div style={{ borderLeft: '1px solid '+C.stone, paddingLeft: 'clamp(14px,2vw,24px)' }}>
             <div style={{ fontSize: 'clamp(1.7rem,3vw,3rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.045em', lineHeight: 1, marginBottom: 10 }}>{rankingSde}° / {datos.length}</div>
             <VoltLine w={20} />
-            <div style={{ fontSize: 12.5, fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>Ranking nacional</div>
-            <div style={{ fontSize: 13, color: C.slate, opacity: 0.65 }}>entre 24 jurisdicciones</div>
+            <div style={{ fontSize: 'var(--fs-sm)', fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>Ranking nacional</div>
+            <div style={{ fontSize: 'var(--fs-base)', color: C.slate, opacity: 0.65 }}>entre 24 jurisdicciones</div>
           </div>
           <div style={{ borderLeft: '1px solid '+C.stone, paddingLeft: 'clamp(14px,2vw,24px)' }}>
             <div style={{ fontSize: 'clamp(1.7rem,3vw,3rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.045em', lineHeight: 1, marginBottom: 10 }}>{promedio}</div>
             <VoltLine w={20} />
-            <div style={{ fontSize: 12.5, fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>Promedio nacional</div>
-            <div style={{ fontSize: 13, color: C.slate, opacity: 0.65 }}>score medio 24 provincias</div>
+            <div style={{ fontSize: 'var(--fs-sm)', fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>Promedio nacional</div>
+            <div style={{ fontSize: 'var(--fs-base)', color: C.slate, opacity: 0.65 }}>score medio 24 provincias</div>
           </div>
           <div style={{ borderLeft: '1px solid '+C.stone, paddingLeft: 'clamp(14px,2vw,24px)' }}>
             <div style={{ fontSize: 'clamp(1.7rem,3vw,3rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.045em', lineHeight: 1, marginBottom: 10 }}>{DIMENSIONES.filter(d => Number(sde[d.key]) === 1).length} / {DIMENSIONES.length}</div>
             <VoltLine w={20} />
-            <div style={{ fontSize: 12.5, fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>Dimensiones activas</div>
-            <div style={{ fontSize: 13, color: C.slate, opacity: 0.65 }}>capacidades instaladas</div>
+            <div style={{ fontSize: 'var(--fs-sm)', fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>Dimensiones activas</div>
+            <div style={{ fontSize: 'var(--fs-base)', color: C.slate, opacity: 0.65 }}>capacidades instaladas</div>
           </div>
         </div>
       </section>
@@ -95,12 +95,12 @@ export default function Madurez() {
                     borderBottom: `0.5px solid ${d.es_sde ? C.volt+'30' : 'rgba(250,250,247,0.07)'}`,
                     background: d.es_sde ? 'rgba(255,255,0,0.03)' : 'transparent',
                   }}>
-                    <span style={{ fontSize: 10, fontWeight: 600, color: d.es_sde ? C.volt : C.stone, width: 28, textAlign: 'right', flexShrink: 0 }}>{d.ranking}°</span>
-                    <span style={{ fontSize: 13, color: d.es_sde ? C.paper : 'rgba(250,250,247,0.65)', fontWeight: d.es_sde ? 600 : 400, flex: 1, letterSpacing: d.es_sde ? '0.02em' : 0 }}>{d.provincia}</span>
+                    <span style={{ fontSize: 'var(--fs-xs)', fontWeight: 600, color: d.es_sde ? C.volt : C.stone, width: 28, textAlign: 'right', flexShrink: 0 }}>{d.ranking}°</span>
+                    <span style={{ fontSize: 'var(--fs-base)', color: d.es_sde ? C.paper : 'rgba(250,250,247,0.65)', fontWeight: d.es_sde ? 600 : 400, flex: 1, letterSpacing: d.es_sde ? '0.02em' : 0 }}>{d.provincia}</span>
                     <div style={{ width: 80, height: 3, background: 'rgba(250,250,247,0.08)', borderRadius: 1, flexShrink: 0 }}>
                       <div style={{ height: '100%', width: `${(d.score/5)*100}%`, background: d.es_sde ? C.volt : 'rgba(250,250,247,0.25)', borderRadius: 1 }} />
                     </div>
-                    <span style={{ fontSize: 12, fontWeight: d.es_sde ? 600 : 300, color: d.es_sde ? C.volt : C.stone, width: 28, textAlign: 'right', flexShrink: 0 }}>{(+d.score).toFixed(1)}</span>
+                    <span style={{ fontSize: 'var(--fs-sm)', fontWeight: d.es_sde ? 600 : 300, color: d.es_sde ? C.volt : C.stone, width: 28, textAlign: 'right', flexShrink: 0 }}>{(+d.score).toFixed(1)}</span>
                   </div>
                 ))}
               </div>
@@ -117,7 +117,7 @@ export default function Madurez() {
               <div key={i} style={{ padding: 'clamp(14px,2vw,20px)', border: '0.5px solid '+C.stone, borderLeft: '2px solid '+(tiene ? C.volt : C.stone), background: tiene ? 'rgba(255,255,0,0.02)' : 'transparent' }}>
                 <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
                   <div style={{ width: 6, height: 6, borderRadius: '50%', background: tiene ? C.volt : C.stone, flexShrink: 0 }} />
-                  <span style={{ fontSize: 13, fontWeight: tiene ? 500 : 400, color: tiene ? C.ink : C.slate }}>{dim.label}</span>
+                  <span style={{ fontSize: 'var(--fs-base)', fontWeight: tiene ? 500 : 400, color: tiene ? C.ink : C.slate }}>{dim.label}</span>
                 </div>
               </div>
             )

@@ -193,7 +193,7 @@ function EstadoBadge({ estado }) {
     <span style={{
       display: 'inline-block',
       padding: '3px 10px',
-      fontSize: 10,
+      fontSize: 'var(--fs-xs)',
       fontWeight: 600,
       letterSpacing: '0.08em',
       textTransform: 'uppercase',
@@ -227,7 +227,7 @@ function FuenteCard({ f, index }) {
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
           <EstadoBadge estado={f.estado} />
           {f.nota && (
-            <span style={{ fontSize: 10, color: fgDim, fontWeight: 400 }}>{f.nota}</span>
+            <span style={{ fontSize: 'var(--fs-xs)', color: fgDim, fontWeight: 400 }}>{f.nota}</span>
           )}
         </div>
         <div style={{
@@ -241,23 +241,23 @@ function FuenteCard({ f, index }) {
           {f.nombre}
         </div>
         <VoltLine w={20} style={{ marginBottom: 12 }} />
-        <div style={{ fontSize: 13, fontWeight: 600, color: dark ? C.volt : C.ink, marginBottom: 4 }}>
+        <div style={{ fontSize: 'var(--fs-base)', fontWeight: 600, color: dark ? C.volt : C.ink, marginBottom: 4 }}>
           {f.entidad}
         </div>
-        <div style={{ fontSize: 11, color: fgDim, lineHeight: 1.5 }}>
+        <div style={{ fontSize: 'var(--fs-xs)', color: fgDim, lineHeight: 1.5 }}>
           {f.entidad_full}
         </div>
       </div>
 
       {/* Col 2: Qué provee */}
       <div>
-        <div style={{ fontSize: 10, fontWeight: 600, color: fgDim, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 12 }}>
+        <div style={{ fontSize: 'var(--fs-xs)', fontWeight: 600, color: fgDim, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 12 }}>
           Qué provee
         </div>
         <div style={{ fontSize: '0.88rem', color: fg, lineHeight: 1.7, opacity: 0.85 }}>
           {f.provee}
         </div>
-        <div style={{ marginTop: 16, fontSize: 10, color: fgDim, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+        <div style={{ marginTop: 16, fontSize: 'var(--fs-xs)', color: fgDim, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
           Cobertura · {f.cobertura}
         </div>
       </div>
@@ -266,22 +266,22 @@ function FuenteCard({ f, index }) {
       <div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 24 }}>
           <div>
-            <div style={{ fontSize: 10, fontWeight: 600, color: fgDim, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 6 }}>Frecuencia</div>
+            <div style={{ fontSize: 'var(--fs-xs)', fontWeight: 600, color: fgDim, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 6 }}>Frecuencia</div>
             <div style={{ fontSize: '1rem', fontWeight: 300, color: fg }}>{f.frecuencia}</div>
           </div>
           <div>
-            <div style={{ fontSize: 10, fontWeight: 600, color: fgDim, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 6 }}>Desde</div>
+            <div style={{ fontSize: 'var(--fs-xs)', fontWeight: 600, color: fgDim, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 6 }}>Desde</div>
             <div style={{ fontSize: '1rem', fontWeight: 300, color: fg }}>{f.desde}</div>
           </div>
           <div>
-            <div style={{ fontSize: 10, fontWeight: 600, color: fgDim, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 6 }}>Último dato</div>
+            <div style={{ fontSize: 'var(--fs-xs)', fontWeight: 600, color: fgDim, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 6 }}>Último dato</div>
             <div style={{ fontSize: '1rem', fontWeight: 300, color: dark ? C.volt : C.ink }}>{f.hasta}</div>
           </div>
           <div>
-            <div style={{ fontSize: 10, fontWeight: 600, color: fgDim, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 6 }}>Páginas</div>
+            <div style={{ fontSize: 'var(--fs-xs)', fontWeight: 600, color: fgDim, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 6 }}>Páginas</div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
               {f.paginas.map(p => (
-                <span key={p} style={{ fontSize: 10, color: fgDim, background: dark ? 'rgba(250,250,247,0.06)' : C.paper2, padding: '2px 8px' }}>{p}</span>
+                <span key={p} style={{ fontSize: 'var(--fs-xs)', color: fgDim, background: dark ? 'rgba(250,250,247,0.06)' : C.paper2, padding: '2px 8px' }}>{p}</span>
               ))}
             </div>
           </div>
@@ -342,7 +342,7 @@ export default function Fuentes() {
               <div style={{ fontSize: 'clamp(2rem,3vw,2.8rem)', fontWeight: 200, color: i === 0 ? C.volt : C.paper, letterSpacing: '-0.04em', lineHeight: 1, marginBottom: 6 }}>
                 {k.v}
               </div>
-              <div style={{ fontSize: 11, color: C.paper, opacity: 0.45, fontWeight: 400, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+              <div style={{ fontSize: 'var(--fs-xs)', color: C.paper, opacity: 0.45, fontWeight: 400, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
                 {k.l}
               </div>
             </div>
@@ -361,7 +361,7 @@ export default function Fuentes() {
       {/* Footer note */}
       <section style={{ background: C.paper, padding: 'clamp(40px,5vw,64px) var(--pad)' }}>
         <div style={{ maxWidth: 640 }}>
-          <div style={{ fontSize: 10, fontWeight: 600, color: C.stone, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 16 }}>
+          <div style={{ fontSize: 'var(--fs-xs)', fontWeight: 600, color: C.stone, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 16 }}>
             Nota metodológica
           </div>
           <p style={{ fontSize: '0.85rem', color: C.slate, lineHeight: 1.75, margin: 0 }}>

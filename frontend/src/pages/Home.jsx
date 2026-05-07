@@ -309,7 +309,7 @@ function CTAVolt() {
   return (
     <section style={{ background: C.volt, padding: 'clamp(52px, 8vw, 96px) var(--pad)', textAlign: 'center' }}>
       <h2 style={{ fontSize: 'clamp(1rem, 2.7vw, 2.4rem)', fontWeight: 100, color: C.ink, letterSpacing: '-0.04em', lineHeight: 0.92, textTransform: 'uppercase', margin: '0 0 16px' }}>
-        Explorá<br />las dimensiones.
+        Explorá<br />las otras dimensiones.
       </h2>
       <p style={{ fontSize: '0.88rem', fontWeight: 400, color: C.ink, opacity: 0.7, maxWidth: 340, margin: '0 auto', lineHeight: 1.65 }}>
         14 indicadores · datos oficiales al cierre del período seleccionado.
