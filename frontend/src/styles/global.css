@@ -21,7 +21,6 @@
   --fs-2xl:  30px;
 }
 
-/* ── Tablet ── */
 @media (max-width: 1024px) {
   :root {
     --fs-2xs:  11px;
@@ -30,12 +29,9 @@
     --fs-base: 15px;
     --fs-md:   16px;
     --fs-lg:   18px;
-    --fs-xl:   24px;
-    --fs-2xl:  32px;
   }
 }
 
-/* ── Mobile ── */
 @media (max-width: 768px) {
   :root {
     --pad:     18px;
@@ -58,18 +54,6 @@ body {
   background: var(--ink);
   color: var(--ink);
   overflow-x: hidden;
-}
-
-/* ── Prevent horizontal overflow everywhere ── */
-section, main, header, footer, article {
-  overflow-x: hidden;
-  max-width: 100%;
-}
-
-/* ── Chart containers: never overflow ── */
-.recharts-wrapper, .recharts-surface {
-  overflow: hidden !important;
-  max-width: 100% !important;
 }
 
 @keyframes fadeUp {
@@ -165,25 +149,5 @@ section, main, header, footer, article {
   }
   .grid-fuente {
     grid-template-columns: 1fr;
-  }
-
-  /* ── Override inline grid styles on mobile ── */
-  *[style*="repeat(4,1fr)"],
-  *[style*="repeat(4, 1fr)"] {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 24px 14px !important;
-  }
-  *[style*="1fr 1fr"]:not([style*="repeat"]):not([style*="clamp"]) {
-    grid-template-columns: 1fr !important;
-    gap: 24px !important;
-  }
-  *[style*="minmax(150px"] {
-    grid-template-columns: 1fr !important;
-    gap: 28px !important;
-  }
-  *[style*="repeat(3,1fr)"],
-  *[style*="repeat(3, 1fr)"] {
-    grid-template-columns: 1fr !important;
-    gap: 16px !important;
   }
 }
