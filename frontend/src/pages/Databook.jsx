@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { C, Paralelo, VoltLine, Eyebrow, SectionTitle, Interpretacion } from '../components/Atoms'
 import { useCSV } from '../hooks/useCSV'
 
@@ -126,7 +127,7 @@ export default function Databook() {
     <>
       {/* HERO */}
       <section style={{ position: 'relative', minHeight: '44vh', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: 'clamp(64px,8vw,96px) var(--pad) clamp(48px,6vw,72px)' }}>
-        <video autoPlay loop muted playsInline style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0, filter: 'grayscale(1)' }}>
+        <video autoPlay loop muted playsInline style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }}>
           <source src={VIDEO_URL} type="video/mp4" />
         </video>
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.75) 50%, rgba(10,10,10,0.2) 100%)' }} />
@@ -213,9 +214,9 @@ export default function Databook() {
           })}
         </div>
         <div style={{ marginTop: 32, paddingTop: 24, borderTop: `0.5px solid ${C.stone}40` }}>
-          <a href="/fuentes" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, textDecoration: 'none', color: C.ink, fontSize: 'var(--fs-sm)', fontWeight: 500, borderBottom: `1.5px solid ${C.ink}`, paddingBottom: 2 }}>
+          <Link to="/fuentes" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, textDecoration: 'none', color: C.ink, fontSize: 'var(--fs-sm)', fontWeight: 500, borderBottom: `1.5px solid ${C.ink}`, paddingBottom: 2 }}>
             Ver ficha técnica completa por fuente →
-          </a>
+          </Link>
         </div>
       </section>
 
