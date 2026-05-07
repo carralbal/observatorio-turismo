@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, ReferenceLine } from 'recharts'
+import { BarChart, Bar, LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, ReferenceLine } from 'recharts'
 import { useCSV, fmt } from '../hooks/useCSV'
 import { usePeriodo } from '../context/PeriodoContext'
 import { C, Paralelo, VoltLine, Eyebrow, SectionTitle, Interpretacion, Loading, ICONS } from '../components/Atoms'
@@ -11,7 +11,7 @@ function KPICard({ icon: Icon, value, label, delta, dark }) {
   const border = dark ? 'rgba(250,250,247,0.15)' : C.stone
   return (
     <div style={{ borderLeft: '1px solid '+border, paddingLeft: 'clamp(14px,2vw,24px)' }}>
-      {Icon && <Icon size={18} strokeWidth={1.5} style={{ color: dark?C.stone:C.slate, opacity: 0.6, marginBottom: 12, display: 'block' }} />}
+      {Icon && <Icon size={23} strokeWidth={1.4} style={{ color: dark?C.stone:C.slate, opacity: 0.6, marginBottom: 12, display: 'block' }} />}
       <div style={{ fontSize: 'clamp(1.7rem,3vw,3rem)', fontWeight: 200, color, letterSpacing: '-0.045em', lineHeight: 1, marginBottom: 10 }}>{value}</div>
       <VoltLine w={20} />
       <div style={{ fontSize: 12.5, fontWeight: 400, color, marginTop: 10, marginBottom: 4 }}>{label}</div>
@@ -112,15 +112,15 @@ export default function MotoGP() {
         </div>
         <div style={{ height: 'clamp(220px,28vw,340px)' }}>
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={barData} margin={{ top: 8, right: 0, left: 0, bottom: 0 }}>
+            <LineChart data={barData} margin={{ top: 8, right: 0, left: 0, bottom: 0 }}>
               <XAxis dataKey="label" tick={{ fill: C.stone, fontSize: 11, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} />
               <YAxis tick={{ fill: C.stone, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} tickFormatter={v => fmt(v)} width={56} />
-              <Tooltip content={<Tip />} cursor={{ fill: 'rgba(250,250,247,0.04)' }} />
+              <Tooltip content={<Tip />} cursor={{ stroke: 'rgba(250,250,247,0.07)', strokeWidth: 1 }} />
               <ReferenceLine y={promBaseline} stroke="rgba(250,250,247,0.2)" strokeDasharray="4 3" label={{ value: 'baseline', fill: C.stone, fontSize: 9 }} />
-              <Bar dataKey="viajeros" name="Viajeros" radius={[2,2,0,0]}>
-                {barData.map((d,i) => <Cell key={i} fill={d.tiene_motogp ? C.volt : 'rgba(250,250,247,0.25)'} />)}
-              </Bar>
-            </BarChart>
+              <Line type="monotone" dataKey="viajeros" name="Viajeros" stroke="rgba(250,250,247,0.4)" strokeWidth={1.5} connectNulls
+                dot={(props) => { const {cx,cy,payload} = props; return payload.tiene_motogp ? <circle key={cx} cx={cx} cy={cy} r={6} fill={C.volt} stroke="none"/> : <circle key={cx} cx={cx} cy={cy} r={3} fill="rgba(250,250,247,0.3)" stroke="none"/> }}
+                activeDot={{ r: 5, fill: C.volt }} />
+            </LineChart>
           </ResponsiveContainer>
         </div>
         <Interpretacion light texto={'La linea punteada representa el baseline (demanda esperada sin MotoGP, estimada por DiD). Las barras amarillas muestran el exceso de demanda atribuible al evento. Ediciones canceladas: 2020-2022 (COVID). Fuente: EOH INDEC, calculo propio.'} />
@@ -130,14 +130,15 @@ export default function MotoGP() {
         <SectionTitle icon={ICONS.aereo} context="Conectividad aerea en ediciones MotoGP" main="Pasajeros ANAC en ano del evento" style={{ marginBottom: 40 }} />
         <div style={{ height: 'clamp(180px,22vw,260px)' }}>
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={barData} margin={{ top: 4, right: 0, left: 0, bottom: 0 }}>
+            <LineChart data={barData} margin={{ top: 4, right: 0, left: 0, bottom: 0 }}>
               <XAxis dataKey="label" tick={{ fill: C.stone, fontSize: 11, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} />
-              <YAxis tick={{ fill: C.stone, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} tickFormatter={v => fmt(v)} width={56} />
-              <Tooltip content={<Tip />} cursor={{ fill: 'rgba(10,10,10,0.04)' }} />
-              <Bar dataKey="uplift" name="Uplift viajeros" radius={[2,2,0,0]}>
-                {barData.map((d,i) => <Cell key={i} fill={d.tiene_motogp ? C.ink : C.stone} fillOpacity={d.tiene_motogp ? 1 : 0.3} />)}
-              </Bar>
-            </BarChart>
+              <YAxis tick={{ fill: C.ink, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} tickFormatter={v => fmt(v)} width={56} />
+              <Tooltip content={<Tip />} cursor={{ stroke: 'rgba(10,10,10,0.1)', strokeWidth: 1 }} />
+              <ReferenceLine y={0} stroke="rgba(10,10,10,0.2)" />
+              <Line type="monotone" dataKey="uplift" name="Uplift" stroke={C.ink} strokeWidth={1.5} connectNulls
+                dot={(props) => { const {cx,cy,payload} = props; return payload.tiene_motogp ? <circle key={cx} cx={cx} cy={cy} r={5} fill={C.ink} stroke="none"/> : <circle key={cx} cx={cx} cy={cy} r={2} fill={C.stone} stroke="none"/> }}
+                activeDot={{ r: 4 }} />
+            </LineChart>
           </ResponsiveContainer>
         </div>
         <Interpretacion texto={'El uplift positivo en anos con MotoGP confirma el efecto causal del evento sobre la demanda hotelera. El metodo DiD controla por estacionalidad y tendencia usando Santiago Capital como grupo de control. Fuente: EOH INDEC + ANAC, calculo propio.'} />

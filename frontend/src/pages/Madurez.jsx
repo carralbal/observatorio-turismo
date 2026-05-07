@@ -88,21 +88,22 @@ export default function Madurez() {
       <section style={{ background: C.ink, padding: 'clamp(56px,7vw,80px) var(--pad)' }}>
         <SectionTitle icon={ICONS.ibt} context="Score por provincia · 24 jurisdicciones" main="Ranking nacional ISTP" light style={{ marginBottom: 48 }} />
         <div style={{ height: 'clamp(300px,40vw,500px)' }}>
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart layout="vertical" data={datos} margin={{ top: 0, right: 60, left: 0, bottom: 0 }}>
-              <XAxis type="number" domain={[0,5]} tick={{ fill: C.stone, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} />
-              <YAxis type="category" dataKey="provincia" tick={{ fill: C.stone, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} width={120} />
-              <Tooltip content={({ active, payload }) => active && payload?.length ? (
-                <div style={{ background: '#111', border: '1px solid rgba(250,250,247,0.1)', padding: '8px 12px', fontFamily: 'Plus Jakarta Sans' }}>
-                  <div style={{ fontSize: 14, color: C.paper }}>{payload[0]?.payload?.provincia}: {payload[0]?.value} / 5</div>
-                  <div style={{ fontSize: 13, color: C.stone }}>{payload[0]?.payload?.nivel_label}</div>
-                </div>
-              ) : null} cursor={{ fill: 'rgba(250,250,247,0.04)' }} />
-              <Bar dataKey="score" radius={[0,2,2,0]}>
-                {datos.map((d,i) => <Cell key={i} fill={d.es_sde ? C.volt : C.paper} fillOpacity={d.es_sde ? 1 : 0.25} />)}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+                {datos.map((d, i) => (
+                  <div key={d.provincia} style={{
+                    display: 'flex', alignItems: 'center', gap: 16, padding: '12px 0',
+                    borderBottom: `0.5px solid ${d.es_sde ? C.volt+'30' : 'rgba(250,250,247,0.07)'}`,
+                    background: d.es_sde ? 'rgba(255,255,0,0.03)' : 'transparent',
+                  }}>
+                    <span style={{ fontSize: 10, fontWeight: 600, color: d.es_sde ? C.volt : C.stone, width: 28, textAlign: 'right', flexShrink: 0 }}>{d.ranking}°</span>
+                    <span style={{ fontSize: 13, color: d.es_sde ? C.paper : 'rgba(250,250,247,0.65)', fontWeight: d.es_sde ? 600 : 400, flex: 1, letterSpacing: d.es_sde ? '0.02em' : 0 }}>{d.provincia}</span>
+                    <div style={{ width: 80, height: 3, background: 'rgba(250,250,247,0.08)', borderRadius: 1, flexShrink: 0 }}>
+                      <div style={{ height: '100%', width: `${(d.score/5)*100}%`, background: d.es_sde ? C.volt : 'rgba(250,250,247,0.25)', borderRadius: 1 }} />
+                    </div>
+                    <span style={{ fontSize: 12, fontWeight: d.es_sde ? 600 : 300, color: d.es_sde ? C.volt : C.stone, width: 28, textAlign: 'right', flexShrink: 0 }}>{(+d.score).toFixed(1)}</span>
+                  </div>
+                ))}
+              </div>
         </div>
         <Interpretacion light texto={'Santiago del Estero ocupa el puesto '+rankingSde+' de 24 jurisdicciones con score '+sde.score_madurez+'/5. El promedio nacional es '+promedio+'. Las provincias lideres tienen sistemas integrados con actualizacion mensual y fuentes propias. Fuente: ISTP, calculo propio basado en capacidades observadas.'} />
       </section>

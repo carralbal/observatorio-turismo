@@ -11,7 +11,7 @@ function KPICard({ icon: Icon, value, label, delta, dark }) {
   const border = dark ? 'rgba(250,250,247,0.15)' : C.stone
   return (
     <div style={{ borderLeft: '1px solid '+border, paddingLeft: 'clamp(14px,2vw,24px)' }}>
-      {Icon && <Icon size={18} strokeWidth={1.5} style={{ color: dark ? C.stone : C.slate, opacity: 0.6, marginBottom: 12, display: 'block' }} />}
+      {Icon && <Icon size={23} strokeWidth={1.4} style={{ color: dark ? C.stone : C.slate, opacity: 0.6, marginBottom: 12, display: 'block' }} />}
       <div style={{ fontSize: 'clamp(1.7rem,3vw,3rem)', fontWeight: 200, color, letterSpacing: '-0.045em', lineHeight: 1, marginBottom: 10 }}>{value}</div>
       <VoltLine w={20} />
       <div style={{ fontSize: 12.5, fontWeight: 400, color, marginTop: 10, marginBottom: 4 }}>{label}</div>

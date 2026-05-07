@@ -9,7 +9,7 @@ const VIDEO_URL = 'https://www.pexels.com/es-es/download/video/5651781/'
 function KPICard({ icon: Icon, value, label, delta }) {
   return (
     <div style={{ borderLeft: '1px solid '+C.stone, paddingLeft: 'clamp(14px,2vw,24px)' }}>
-      {Icon && <Icon size={18} strokeWidth={1.5} style={{ color: C.slate, opacity: 0.6, marginBottom: 12, display: 'block' }} />}
+      {Icon && <Icon size={23} strokeWidth={1.4} style={{ color: C.slate, opacity: 0.6, marginBottom: 12, display: 'block' }} />}
       <div style={{ fontSize: 'clamp(1.7rem,3vw,3rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.045em', lineHeight: 1, marginBottom: 10 }}>{value}</div>
       <VoltLine w={20} />
       <div style={{ fontSize: 12.5, fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>{label}</div>
@@ -94,6 +94,15 @@ export default function Captura() {
         <SectionTitle icon={ICONS.ibt} context="Evolucion del ICV · serie historica" main="Indice de Captura de Valor" light style={{ marginBottom: 48 }} />
         <div style={{ height: 'clamp(200px,26vw,300px)' }}>
           <ResponsiveContainer width="100%" height="100%">
+            {datos.every(d => d.icv === datos[0]?.icv) ? (
+              <div style={{ display: 'flex', alignItems: 'center', gap: 24, padding: '32px 0' }}>
+                <span style={{ fontSize: 'clamp(4rem,8vw,6rem)', fontWeight: 200, color: C.volt, letterSpacing: '-0.05em', lineHeight: 1 }}>{datos[0]?.icv ?? 38}%</span>
+                <div>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: C.paper, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 8 }}>Estimación N1 estática</div>
+                  <div style={{ fontSize: 12, color: C.stone, maxWidth: 340, lineHeight: 1.6 }}>El ICV es una estimación proxy sin variación histórica. Con N2 (convenio DGR-SDE) se convierte en dato fiscal real con variación mensual.</div>
+                </div>
+              </div>
+            ) : (
             <AreaChart data={datos} margin={{ top: 8, right: 0, left: 0, bottom: 0 }}>
               <defs>
                 <linearGradient id="gICV" x1="0" y1="0" x2="0" y2="1">
@@ -107,6 +116,7 @@ export default function Captura() {
               <ReferenceLine y={icvPromedio} stroke="rgba(250,250,247,0.2)" strokeDasharray="4 3" />
               <Area type="monotone" dataKey="icv" name="ICV %" stroke={C.volt} strokeWidth={1.5} fill="url(#gICV)" dot={false} activeDot={{ r: 3, fill: C.volt, strokeWidth: 0 }} />
             </AreaChart>
+            )}
           </ResponsiveContainer>
         </div>
         <Interpretacion light texto={'El ICV mide que porcentaje del gasto potencial de los turistas se materializa como ingreso registrado en el territorio. Un ICV bajo indica fuga hacia economia informal, alojamiento no registrado o consumo fuera del destino. Promedio historico: '+icvPromedio+'%. Para elevar el ICV a datos N2 se requiere convenio con DGR SDE (IIBB).'} />

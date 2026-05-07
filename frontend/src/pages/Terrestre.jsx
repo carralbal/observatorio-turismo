@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts'
+import { BarChart, Bar, LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts'
 import { useCSV, fmt } from '../hooks/useCSV'
 import { usePeriodo } from '../context/PeriodoContext'
 import { C, Paralelo, VoltLine, Eyebrow, SectionTitle, Interpretacion, Loading, ICONS } from '../components/Atoms'
@@ -56,7 +56,7 @@ const BarTip = ({ active, payload, label }) => {
 function KPICard({ icon: Icon, value, label, delta }) {
   return (
     <div style={{ borderLeft: '1px solid '+C.stone, paddingLeft: 'clamp(14px,2vw,24px)' }}>
-      {Icon && <Icon size={18} strokeWidth={1.5} style={{ color: C.slate, opacity: 0.6, marginBottom: 12, display: 'block' }} />}
+      {Icon && <Icon size={23} strokeWidth={1.4} style={{ color: C.slate, opacity: 0.6, marginBottom: 12, display: 'block' }} />}
       <div style={{ fontSize: 'clamp(1.7rem,3vw,3rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.045em', lineHeight: 1, marginBottom: 10 }}>{value}</div>
       <VoltLine w={20} />
       <div style={{ fontSize: 12.5, fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>{label}</div>
@@ -110,14 +110,14 @@ export default function Terrestre() {
         <SectionTitle icon={ICONS.terrestre} context="Serie histórica 2019–2024" main="Pasajeros por año" light style={{ marginBottom: 48 }} />
         <div style={{ height: 'clamp(200px,26vw,300px)' }}>
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={serie} margin={{ top: 8, right: 0, left: 0, bottom: 0 }}>
+            <LineChart data={serie} margin={{ top: 8, right: 0, left: 0, bottom: 0 }}>
               <XAxis dataKey="label" tick={{ fill: C.stone, fontSize: 11, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} />
               <YAxis tick={{ fill: C.stone, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} tickFormatter={v => fmt(v)} width={60} />
               <Tooltip content={<BarTip />} cursor={{ fill: 'rgba(250,250,247,0.04)' }} />
-              <Bar dataKey="pasajeros" name="Pasajeros" radius={[2,2,0,0]}>
+              <Line type="monotone" dataKey="pasajeros" name="Pasajeros" stroke={C.volt} strokeWidth={2} dot={{ fill: C.volt, r: 4, strokeWidth: 0 }} activeDot={{ r: 5 }} connectNulls >
                 {serie.map((s,i) => <Cell key={i} fill={s.anio===anioSel ? C.volt : C.paper} fillOpacity={s.anio===anioSel ? 1 : 0.3} />)}
-              </Bar>
-            </BarChart>
+              </Line>
+            </LineChart>
           </ResponsiveContainer>
         </div>
         <Interpretacion light texto={serie.length > 1 ? `Pico histórico: ${fmt(Math.max(...serie.map(s=>s.pasajeros)))} pasajeros en ${serie.reduce((a,b)=>a.pasajeros>b.pasajeros?a:b).anio}. La pandemia de 2020 impactó fuertemente el tráfico terrestre. Fuente: CNRT.` : 'Sin serie disponible.'} />
@@ -179,7 +179,7 @@ export default function Terrestre() {
         </div>
         <div>
           <SectionTitle icon={ICONS.ibt} context="Eficiencia de ocupación" main="Load factor terrestre." light />
-          <Interpretacion light texto={`El load factor del ${lf}% indica que por cada 100 asientos de ómnibus disponibles, ${lf} fueron ocupados en ${anioSel}. `+(lf>=70?'Un LF alto sugiere que la demanda terrestre es sólida.':lf>=50?'Un LF moderado indica equilibrio oferta-demanda.':'Un LF bajo puede reflejar exceso de oferta respecto al mercado.')+' Fuente: CNRT.'} />
+          <Interpretacion light texto={`El load factor del ${lf}% mide qué proporción de los asientos de ómnibus interurbanos hacia y desde SDE fueron efectivamente ocupados en ${anioSel}. El promedio histórico del corredor NOA ronda el 55–65%: un ${lf}% ${lf < 50 ? 'está muy por debajo de ese umbral' : lf < 65 ? 'se acerca al rango esperado' : 'supera el promedio del corredor'}. Un LF bajo puede tener dos lecturas: si la frecuencia es alta, indica exceso de oferta — más capacidad de la que la demanda requiere. Si las frecuencias son bajas o estacionales, puede indicar una ruta subsidiada de baja rentabilidad comercial. En ambos casos, un LF terrestre bajo contrasta con el LF aéreo alto: el turista que llega en avión no tiene alternativa de regreso en ómnibus con la misma frecuencia. Para la Secretaría de Turismo, esta brecha es un argumento para revisar la articulación multimodal del destino. Fuente: CNRT.`} />
         </div>
       </section>
       <section style={{ background: 'var(--paper, #FAFAF7)', padding: 'clamp(40px,5vw,64px) var(--pad)' }}>

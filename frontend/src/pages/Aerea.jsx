@@ -86,7 +86,7 @@ const BarTip = ({ active, payload }) => {
 function KPICard({ icon: Icon, value, label, delta }) {
   return (
     <div style={{ borderLeft: `1px solid ${C.stone}`, paddingLeft: 'clamp(14px, 2vw, 24px)' }}>
-      {Icon && <Icon size={18} strokeWidth={1.5} style={{ color: C.slate, opacity: 0.6, marginBottom: 12, display: 'block' }} />}
+      {Icon && <Icon size={23} strokeWidth={1.4} style={{ color: C.slate, opacity: 0.6, marginBottom: 12, display: 'block' }} />}
       <div style={{ fontSize: 'clamp(1.7rem, 3vw, 3rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.045em', lineHeight: 1, marginBottom: 10 }}>{value}</div>
       <VoltLine w={20} />
       <div style={{ fontSize: 12.5, fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>{label}</div>
@@ -219,18 +219,51 @@ export default function Aerea() {
           <SectionTitle icon={ICONS.aereo} context={periodoStr} main="Por aerolínea" />
           <Eyebrow style={{ opacity: 0.5 }}>{aereolineas.length} empresas activas · {periodoStr}</Eyebrow>
         </div>
-        <div style={{ height: 'clamp(240px, 30vw, 360px)' }}>
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart layout="vertical" data={aereolineas} margin={{ top: 0, right: 100, left: 0, bottom: 0 }}>
-              <XAxis type="number" tick={{ fill: C.stone, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} tickFormatter={v => fmt(v)} />
-              <YAxis type="category" dataKey="aerolinea" tick={{ fill: C.ink, fontSize: 13, fontFamily: 'Plus Jakarta Sans', fontWeight: 400 }} tickLine={false} axisLine={false} width={120} />
-              <Tooltip content={<BarTip />} cursor={{ fill: 'rgba(10,10,10,0.04)' }} />
-              <Bar dataKey="pasajeros" name="Pasajeros" radius={[0, 3, 3, 0]}>
-                {aereolineas.map((_, i) => <Cell key={i} fill={i === 0 ? C.ink : i === 1 ? C.slate : C.stone} fillOpacity={i === 0 ? 1 : 0.55} />)}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
+        {(() => {
+          const LOGOS = {
+            'Aerolíneas Argentinas': '/logos/AR.png',
+            'LATAM':                 '/logos/LA.png',
+            'Avianca':               '/logos/AV.png',
+            'JetSMART Airlines':     '/logos/JA.png',
+            'Flybondi':              '/logos/FO.png',
+            'Fly Bondi':             '/logos/FO.png',
+            'Andes Líneas Aéreas':   '/logos/OY.png',
+          }
+          const total = aereolineas.reduce((s, r) => s + r.pasajeros, 0)
+          return (
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              {aereolineas.map((a, i) => {
+                const pct = total > 0 ? (a.pasajeros / total) * 100 : 0
+                const pctDisplay = Math.round(pct)
+                const logoUrl = LOGOS[a.aerolinea]
+                const isTop = i === 0
+                return (
+                  <div key={i} style={{ display: 'grid', gridTemplateColumns: '32px 1fr auto', alignItems: 'center', gap: '0 24px', padding: '20px 0', borderBottom: `1px solid ${C.stone}30` }}>
+                    {/* Rank */}
+                    <span style={{ fontSize: 11, fontWeight: 600, color: C.slate, fontVariantNumeric: 'tabular-nums' }}>{String(i+1).padStart(2,'0')}</span>
+                    {/* Nombre + barra */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                        {logoUrl && <img src={logoUrl} alt={a.aerolinea}
+                          style={{ height: 24, maxWidth: 108, objectFit: 'contain', opacity: 0.45, filter: 'grayscale(1)' }}
+                          onError={e => e.target.style.display='none'} />}
+                        <span style={{ fontSize: 13, fontWeight: 400, color: C.ink, letterSpacing: '0.01em' }}>{a.aerolinea}</span>
+                      </div>
+                      <div style={{ position: 'relative', height: 2, background: `${C.stone}30`, borderRadius: 1, maxWidth: 480 }}>
+                        <div style={{ position: 'absolute', left: 0, top: 0, height: '100%', width: `${pct}%`, background: isTop ? C.volt : C.slate, opacity: isTop ? 0.9 : 0.35, borderRadius: 1, transition: 'width 0.6s ease' }} />
+                      </div>
+                    </div>
+                    {/* Valores */}
+                    <div style={{ textAlign: 'right' }}>
+                      <div style={{ fontSize: 'clamp(1.1rem, 1.8vw, 1.6rem)', fontWeight: 300, color: C.ink, letterSpacing: '-0.03em', lineHeight: 1 }}>{fmt(a.pasajeros)}</div>
+                      <div style={{ fontSize: 10, fontWeight: 500, color: C.slate, marginTop: 4 }}>{pctDisplay}%</div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          )
+        })()}
         <Interpretacion texto={aereolineas.length > 0 ? `${aereolineas[0].aerolinea} lidera el mercado con ${fmt(aereolineas[0].pasajeros)} pasajeros en ${periodoStr}. Operan ${aereolineas.length} aerolíneas con servicios a Santiago del Estero.` : 'Sin datos.'} />
       </section>
 
@@ -311,12 +344,7 @@ export default function Aerea() {
         <div>
           <SectionTitle icon={ICONS.ibt} context="Eficiencia de ocupación" main="Load factor aéreo." light />
           <Interpretacion light texto={
-            `El load factor del ${lf}% indica que por cada 100 asientos disponibles, ${lf} fueron ocupados. ` +
-            (lf >= 80
-              ? 'Un LF alto sugiere que la oferta de vuelos es ajustada — oportunidad para nuevas frecuencias o mayor capacidad.'
-              : lf >= 60
-              ? 'Un LF moderado indica equilibrio entre oferta y demanda de asientos.'
-              : 'Un LF bajo sugiere exceso de capacidad instalada respecto a la demanda efectiva.')
+            `El load factor del ${lf}% mide qué proporción de los asientos ofertados en las rutas que conectan SDE fueron efectivamente ocupados. El promedio histórico de la industria aérea argentina ronda el 75–78%: un ${lf}% significa que los vuelos operan prácticamente a tope. Por encima del 80% sostenido, la ruta está en zona de presión — la demanda existe pero la oferta no alcanza a capturarla. Para una aerolínea, es la señal que justifica agregar frecuencias o aeronaves de mayor capacidad. Para la Secretaría de Turismo, un LF alto es el argumento más concreto para negociar nuevas frecuencias ante aerolíneas y la autoridad aeronáutica — especialmente hacia Buenos Aires, principal mercado emisor de SDE.`
           } />
         </div>
       </section>

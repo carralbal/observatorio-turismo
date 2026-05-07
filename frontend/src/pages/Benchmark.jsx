@@ -124,14 +124,14 @@ export default function Benchmark() {
         <SectionTitle icon={ICONS.viajeros} context="Evolucion SDE · 2018-2025" main="Trayectoria historica" style={{ marginBottom: 40 }} />
         <div style={{ height: 'clamp(180px,22vw,260px)' }}>
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={serieSdeArr} margin={{ top: 4, right: 0, left: 0, bottom: 0 }}>
+            <LineChart data={serieSdeArr} margin={{ top: 8, right: 0, left: 0, bottom: 0 }}>
               <XAxis dataKey="label" tick={{ fill: C.stone, fontSize: 11, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} />
               <YAxis tick={{ fill: C.stone, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} tickFormatter={v=>fmt(v)} width={56} />
               <Tooltip content={<Tip />} cursor={{ fill: 'rgba(10,10,10,0.04)' }} />
-              <Bar dataKey="viajeros" name="Viajeros SDE" radius={[2,2,0,0]}>
+              <Line type="monotone" dataKey="viajeros" name="Viajeros SDE" stroke={C.volt} strokeWidth={2} dot={{ fill: C.volt, r: 3, strokeWidth: 0 }} activeDot={{ r: 4 }} connectNulls >
                 {serieSdeArr.map((s,i) => <Cell key={i} fill={s.anio===anioSel?C.volt:C.ink} fillOpacity={s.anio===anioSel?1:0.5} />)}
-              </Bar>
-            </BarChart>
+              </Line>
+            </LineChart>
           </ResponsiveContainer>
         </div>
         <Interpretacion texto={'La trayectoria de SDE muestra la recuperacion post-COVID y el impacto de la discontinuacion de la EOH en 2025. Para un benchmark robusto con datos actualizados se requiere el acuerdo con el sector hotelero para recepcion directa de estadisticas provinciales.'} />

@@ -31,7 +31,7 @@ function KPICardHome({ icon: Icon, value, label, delta, light = false, volt = fa
   return (
     <div style={{ borderLeft: `1px solid ${light ? 'rgba(250,250,247,0.15)' : C.stone}`, paddingLeft: 'clamp(14px, 2vw, 24px)' }}>
       {Icon && (
-        <Icon size={18} strokeWidth={1.5} style={{
+        <Icon size={23} strokeWidth={1.4} style={{
           color: volt ? C.volt : (light ? C.paper : C.slate),
           opacity: 0.6, marginBottom: 12, display: 'block',
         }} />
