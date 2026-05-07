@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useMemo } from 'react'
 import { C } from '../components/Atoms'
 
-const GEOREF_URL = 'https://apis.datos.gob.ar/georef/api/v2.0/provincias.geojson?max=24'
+const GEOREF_URL = '/data/provincias.geojson'
 const D3_CDN = 'https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js'
 
 function norm(nombre) {
