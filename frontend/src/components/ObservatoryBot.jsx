@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { C, Eyebrow } from './Atoms'
 
-const BOT_URL = 'http://localhost:8765/chat'
+const BOT_URL = 'https://observatorio-bot.onrender.com/chat'
 
 const SUGERENCIAS = [
   '¿Cuántos viajeros tuvo Termas en 2025?',
