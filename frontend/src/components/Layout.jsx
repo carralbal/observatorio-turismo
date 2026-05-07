@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import { C, Paralelo, Eyebrow } from './Atoms'
-import { Database } from 'lucide-react'
+import { Database, Menu, X } from 'lucide-react'
 import PeriodBar from './PeriodBar'
 import BotToggle from './BotToggle'
 
@@ -33,8 +33,8 @@ const CAPAS = [
 const SOURCES = ['INDEC','SIPA-AFIP','ANAC','CNRT','Google Trends','BCRA','AirDNA','OEDE']
 
 export default function Layout() {
-  const [scrolled, setScrolled] = useState(false)
-  const [openCapa, setOpenCapa] = useState(null)
+  const [scrolled, setScrolled]   = useState(false)
+  const [menuOpen, setMenuOpen]   = useState(false)
   const { pathname } = useLocation()
 
   useEffect(() => {
@@ -45,81 +45,156 @@ export default function Layout() {
 
   useEffect(() => { window.scrollTo(0, 0) }, [pathname])
 
+  // lock body scroll when menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [menuOpen])
+
+  const close = () => setMenuOpen(false)
+
   return (
     <>
+      {/* ── TOP NAV ── */}
       <nav className="nav-blur" style={{
-        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 200,
+        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 300,
         height: 60,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         padding: '0 var(--pad)',
-        background: scrolled ? 'rgba(10,10,10,0.95)' : 'rgba(10,10,10,0.7)',
-        borderBottom: `0.5px solid rgba(250,250,247,${scrolled ? 0.1 : 0})`,
+        background: menuOpen
+          ? C.ink
+          : scrolled ? 'rgba(10,10,10,0.95)' : 'rgba(10,10,10,0.7)',
+        borderBottom: `0.5px solid rgba(250,250,247,${scrolled && !menuOpen ? 0.1 : 0})`,
         transition: 'background 0.4s, border-color 0.4s',
       }}>
-        <NavLink to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8 }}>
+        {/* logo */}
+        <NavLink to="/" onClick={close} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8 }}>
           <span style={{ fontSize: 10.5, fontWeight: 700, color: C.paper, letterSpacing: '0.22em', textTransform: 'uppercase' }}>
             Observatorio SDE
           </span>
           <Paralelo w={10} h={5} />
         </NavLink>
-        <div style={{ display: 'flex', gap: 2, alignItems: 'center' }} onMouseLeave={() => setOpenCapa(null)}>
-          {CAPAS.map((capa) => {
-            const isCapaActive = capa.items.some(item =>
-              pathname === item.to || (item.to !== '/' && pathname.startsWith(item.to)))
-            return (
-              <div key={capa.label} style={{ position: 'relative' }} onMouseEnter={() => setOpenCapa(capa.label)}>
-                <button style={{
-                  background: 'none', border: 'none', cursor: 'pointer',
-                  display: 'flex', alignItems: 'center', gap: 5, padding: '6px 12px',
-                  fontSize: 10, fontWeight: isCapaActive ? 700 : 500,
-                  color: C.paper, opacity: isCapaActive ? 1 : 0.45,
-                  letterSpacing: '0.14em', textTransform: 'uppercase',
-                  borderBottom: isCapaActive ? `1.5px solid ${C.volt}` : '1.5px solid transparent',
-                  paddingBottom: 4, transition: 'opacity 0.2s',
-                }}>
-                  <span style={{ fontSize: 8, opacity: 0.35 }}>{capa.num}</span>
-                  {capa.label}
-                  <span style={{ fontSize: 7, opacity: 0.35, marginLeft: 1 }}>▾</span>
-                </button>
-                {openCapa === capa.label && (
-                  <div style={{
-                    position: 'absolute', top: '100%', left: 0,
-                    background: 'rgba(10,10,10,0.97)',
-                    border: '0.5px solid rgba(250,250,247,0.12)',
-                    borderTop: `1.5px solid ${C.volt}`,
-                    minWidth: 180, zIndex: 300, paddingTop: 8, paddingBottom: 8,
-                  }}>
-                    {capa.items.map(({ to, label }) => (
-                      <NavLink key={to} to={to} end={to === '/'} onClick={() => setOpenCapa(null)}
-                        style={({ isActive }) => ({
-                          display: 'block', padding: '9px 18px', textDecoration: 'none',
-                          fontSize: 10.5, fontWeight: isActive ? 600 : 400,
-                          color: C.paper, opacity: isActive ? 1 : 0.55,
-                          letterSpacing: '0.1em', textTransform: 'uppercase',
-                          borderLeft: isActive ? `2px solid ${C.volt}` : '2px solid transparent',
-                          background: isActive ? 'rgba(255,255,0,0.04)' : 'transparent',
-                          transition: 'opacity 0.15s',
-                        })}>{label}
-                      </NavLink>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )
-          })}
-          <NavLink to="/fuentes" style={({ isActive }) => ({
+
+        {/* right side */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+          <NavLink to="/fuentes" onClick={close} style={({ isActive }) => ({
             display: 'flex', alignItems: 'center', gap: 6,
-            padding: '6px 12px', textDecoration: 'none',
+            padding: '6px 0', textDecoration: 'none',
             borderBottom: isActive ? `1.5px solid ${C.volt}` : '1.5px solid transparent',
-            paddingBottom: 4, marginLeft: 8,
+            paddingBottom: 4,
           })}>
             <Database size={13} style={{ color: C.volt }} />
             <span style={{ fontSize: 10, fontWeight: 500, color: C.volt, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
               Fuentes
             </span>
           </NavLink>
+
+          {/* hamburger / close */}
+          <button
+            onClick={() => setMenuOpen(o => !o)}
+            aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+            style={{
+              background: 'none', border: 'none', cursor: 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              color: C.paper, padding: 6, borderRadius: 4,
+              transition: 'opacity 0.2s',
+            }}
+          >
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
       </nav>
+
+      {/* ── FULLSCREEN OVERLAY ── */}
+      <div style={{
+        position: 'fixed', inset: 0, zIndex: 200,
+        background: C.ink,
+        display: 'flex', flexDirection: 'column',
+        padding: 'calc(60px + 48px) var(--pad) 48px',
+        overflowY: 'auto',
+        opacity: menuOpen ? 1 : 0,
+        pointerEvents: menuOpen ? 'all' : 'none',
+        transform: menuOpen ? 'translateY(0)' : 'translateY(-12px)',
+        transition: 'opacity 0.3s ease, transform 0.3s ease',
+      }}>
+        {/* 4-capa grid */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+          gap: '48px 40px',
+          maxWidth: 900,
+          width: '100%',
+          margin: '0 auto',
+        }}>
+          {CAPAS.map((capa) => {
+            const isCapaActive = capa.items.some(item =>
+              pathname === item.to || (item.to !== '/' && pathname.startsWith(item.to)))
+            return (
+              <div key={capa.label}>
+                {/* capa header */}
+                <div style={{ marginBottom: 20 }}>
+                  <span style={{
+                    display: 'block', fontSize: 9, fontWeight: 700,
+                    color: isCapaActive ? C.volt : C.slate,
+                    letterSpacing: '0.22em', textTransform: 'uppercase',
+                    marginBottom: 6,
+                  }}>
+                    {capa.num}
+                  </span>
+                  <span style={{
+                    fontSize: 13, fontWeight: 700,
+                    color: isCapaActive ? C.paper : C.stone,
+                    letterSpacing: '0.12em', textTransform: 'uppercase',
+                  }}>
+                    {capa.label}
+                  </span>
+                  <div style={{
+                    marginTop: 8, height: 1,
+                    background: isCapaActive ? C.volt : 'rgba(200,200,191,0.15)',
+                    width: isCapaActive ? '100%' : '40%',
+                    transition: 'width 0.3s',
+                  }} />
+                </div>
+
+                {/* items */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                  {capa.items.map(({ to, label }) => (
+                    <NavLink
+                      key={to} to={to} end={to === '/'} onClick={close}
+                      style={({ isActive }) => ({
+                        display: 'flex', alignItems: 'center', gap: 10,
+                        padding: '10px 14px',
+                        textDecoration: 'none',
+                        fontSize: 13, fontWeight: isActive ? 600 : 400,
+                        color: isActive ? C.paper : 'rgba(250,250,247,0.45)',
+                        letterSpacing: '0.08em',
+                        background: isActive ? 'rgba(255,255,0,0.06)' : 'transparent',
+                        borderLeft: `2px solid ${isActive ? C.volt : 'transparent'}`,
+                        borderRadius: '0 4px 4px 0',
+                        transition: 'opacity 0.15s, background 0.15s',
+                      })}
+                    >
+                      {label}
+                    </NavLink>
+                  ))}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+
+        {/* footer dentro del overlay */}
+        <div style={{
+          marginTop: 'auto', paddingTop: 48,
+          maxWidth: 900, width: '100%', margin: '64px auto 0',
+          borderTop: '0.5px solid rgba(200,200,191,0.12)',
+          display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+          flexWrap: 'wrap', gap: 8,
+        }}>
+          <Eyebrow style={{ opacity: 0.35, color: C.stone }}>Observatorio de Turismo · Santiago del Estero</Eyebrow>
+          <Eyebrow style={{ opacity: 0.25, color: C.stone }}>Datos oficiales · actualización mensual</Eyebrow>
+        </div>
+      </div>
 
       <PeriodBar />
       <BotToggle />
@@ -128,6 +203,7 @@ export default function Layout() {
         <Outlet />
       </main>
 
+      {/* ── FOOTER ── */}
       <footer style={{ background: C.paper, borderTop: `0.5px solid ${C.stone}` }}>
         <div style={{ padding: '24px 0 14px', borderBottom: `0.5px solid ${C.stone}` }}>
           <Eyebrow style={{ textAlign: 'center', marginBottom: 14, opacity: 0.5 }}>Fuentes oficiales</Eyebrow>
