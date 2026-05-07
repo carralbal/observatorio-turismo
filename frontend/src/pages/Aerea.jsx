@@ -67,7 +67,7 @@ const ChartTip = ({ active, payload, label }) => {
       {payload.map((p, i) => (
         <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 3 }}>
           <div style={{ width: 8, height: 2, background: p.color || C.paper }} />
-          <span style={{ fontSize: 12, color: C.paper, fontWeight: 300 }}>{p.name}: {fmt(p.value)}</span>
+          <span style={{ fontSize: 'var(--fs-sm)', color: C.paper, fontWeight: 300 }}>{p.name}: {fmt(p.value)}</span>
         </div>
       ))}
     </div>
@@ -77,7 +77,7 @@ const BarTip = ({ active, payload }) => {
   if (!active || !payload?.length) return null
   return (
     <div style={{ background: '#111', border: `1px solid rgba(250,250,247,0.1)`, padding: '8px 12px', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-      <span style={{ fontSize: 12, color: C.paper, fontWeight: 300 }}>{fmt(payload[0]?.value)} pasajeros</span>
+      <span style={{ fontSize: 'var(--fs-sm)', color: C.paper, fontWeight: 300 }}>{fmt(payload[0]?.value)} pasajeros</span>
     </div>
   )
 }
@@ -89,8 +89,8 @@ function KPICard({ icon: Icon, value, label, delta }) {
       {Icon && <Icon size={23} strokeWidth={1.4} style={{ color: C.slate, opacity: 0.6, marginBottom: 12, display: 'block' }} />}
       <div style={{ fontSize: 'clamp(1.7rem, 3vw, 3rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.045em', lineHeight: 1, marginBottom: 10 }}>{value}</div>
       <VoltLine w={20} />
-      <div style={{ fontSize: 12.5, fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>{label}</div>
-      {delta && <div style={{ fontSize: 11, color: C.slate, opacity: 0.65 }}>{delta}</div>}
+      <div style={{ fontSize: 'var(--fs-sm)', fontWeight: 400, color: C.ink, marginTop: 10, marginBottom: 4 }}>{label}</div>
+      {delta && <div style={{ fontSize: 'var(--fs-xs)', color: C.slate, opacity: 0.65 }}>{delta}</div>}
     </div>
   )
 }
@@ -115,7 +115,7 @@ export default function Aerea() {
     return agruparPorFecha(base)
   }, [sde, anio])
 
-  const ultimo     = useMemo(() => { const ag = agruparPorFecha(sdeFilt); return ag[ag.length - 1] ?? null }, [sdeFilt])
+  const ultimo      = useMemo(() => { const ag = agruparPorFecha(sdeFilt); return ag[ag.length - 1] ?? null }, [sdeFilt])
   const aereolineas = useMemo(() => agruparPorAerolinea(sdeFilt), [sdeFilt])
   const rutas       = useMemo(() => agruparPorRuta(sdeFilt), [sdeFilt])
 
@@ -142,7 +142,6 @@ export default function Aerea() {
           <source src="https://www.pexels.com/es-es/download/video/11044451/" type="video/mp4" />
         </video>
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.93) 0%, rgba(10,10,10,0.78) 35%, rgba(10,10,10,0.38) 65%, rgba(10,10,10,0.10) 100%)' }} />
-
         <div style={{ position: 'relative', zIndex: 3 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 28 }}>
             <Paralelo />
@@ -239,24 +238,21 @@ export default function Aerea() {
                 const isTop = i === 0
                 return (
                   <div key={i} style={{ display: 'grid', gridTemplateColumns: '32px 1fr auto', alignItems: 'center', gap: '0 24px', padding: '20px 0', borderBottom: `1px solid ${C.stone}30` }}>
-                    {/* Rank */}
-                    <span style={{ fontSize: 11, fontWeight: 600, color: C.slate, fontVariantNumeric: 'tabular-nums' }}>{String(i+1).padStart(2,'0')}</span>
-                    {/* Nombre + barra */}
+                    <span style={{ fontSize: 'var(--fs-xs)', fontWeight: 600, color: C.slate, fontVariantNumeric: 'tabular-nums' }}>{String(i+1).padStart(2,'0')}</span>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                         {logoUrl && <img src={logoUrl} alt={a.aerolinea}
                           style={{ height: 24, maxWidth: 108, objectFit: 'contain', opacity: 0.45, filter: 'grayscale(1)' }}
                           onError={e => e.target.style.display='none'} />}
-                        <span style={{ fontSize: 13, fontWeight: 400, color: C.ink, letterSpacing: '0.01em' }}>{a.aerolinea}</span>
+                        <span style={{ fontSize: 'var(--fs-base)', fontWeight: 400, color: C.ink, letterSpacing: '0.01em' }}>{a.aerolinea}</span>
                       </div>
                       <div style={{ position: 'relative', height: 2, background: `${C.stone}30`, borderRadius: 1, maxWidth: 480 }}>
                         <div style={{ position: 'absolute', left: 0, top: 0, height: '100%', width: `${pct}%`, background: isTop ? C.volt : C.slate, opacity: isTop ? 0.9 : 0.35, borderRadius: 1, transition: 'width 0.6s ease' }} />
                       </div>
                     </div>
-                    {/* Valores */}
                     <div style={{ textAlign: 'right' }}>
                       <div style={{ fontSize: 'clamp(1.1rem, 1.8vw, 1.6rem)', fontWeight: 300, color: C.ink, letterSpacing: '-0.03em', lineHeight: 1 }}>{fmt(a.pasajeros)}</div>
-                      <div style={{ fontSize: 10, fontWeight: 500, color: C.slate, marginTop: 4 }}>{pctDisplay}%</div>
+                      <div style={{ fontSize: 'var(--fs-xs)', fontWeight: 500, color: C.slate, marginTop: 4 }}>{pctDisplay}%</div>
                     </div>
                   </div>
                 )
@@ -291,9 +287,9 @@ export default function Aerea() {
                   <div>
                     <div style={{ fontSize: 'clamp(0.9rem,1.3vw,1.15rem)', fontWeight: 400, color: C.paper, marginBottom: 10, lineHeight: 1.3 }}>{label}</div>
                     <div style={{ display: 'flex', gap: 'clamp(12px,2vw,24px)', marginBottom: 12, flexWrap: 'wrap' }}>
-                      <span style={{ fontSize: 11, color: C.stone, opacity: 0.7 }}>{fmt(r.vuelos, 0)} vuelos</span>
-                      <span style={{ fontSize: 11, color: C.stone, opacity: 0.7 }}>LF: {lfRuta}%</span>
-                      <span style={{ fontSize: 11, color: C.stone, opacity: 0.7 }}>{fmt(r.asientos)} asientos</span>
+                      <span style={{ fontSize: 'var(--fs-xs)', color: C.stone, opacity: 0.7 }}>{fmt(r.vuelos, 0)} vuelos</span>
+                      <span style={{ fontSize: 'var(--fs-xs)', color: C.stone, opacity: 0.7 }}>LF: {lfRuta}%</span>
+                      <span style={{ fontSize: 'var(--fs-xs)', color: C.stone, opacity: 0.7 }}>{fmt(r.asientos)} asientos</span>
                     </div>
                     <div style={{ height: 2, background: 'rgba(250,250,247,0.08)', borderRadius: 2, overflow: 'hidden' }}>
                       <div style={{ height: '100%', width: pct + '%', background: i === 0 ? C.paper : C.stone, opacity: i === 0 ? 1 : 0.4 }} />
@@ -301,9 +297,9 @@ export default function Aerea() {
                   </div>
                   <div style={{ textAlign: 'right' }}>
                     <div style={{ fontSize: 'clamp(1.4rem,2.5vw,2.5rem)', fontWeight: 200, color: C.paper, letterSpacing: '-0.04em', lineHeight: 1, marginBottom: 6 }}>{fmt(r.pasajeros)}</div>
-                    <div style={{ fontSize: 10, color: C.stone, opacity: 0.55, marginBottom: 8 }}>pasajeros</div>
+                    <div style={{ fontSize: 'var(--fs-xs)', color: C.stone, opacity: 0.55, marginBottom: 8 }}>pasajeros</div>
                     <div style={{ display: 'inline-block', padding: '4px 10px', background: i === 0 ? C.paper : 'rgba(250,250,247,0.08)', borderRadius: 2 }}>
-                      <span style={{ fontSize: 10, fontWeight: 500, color: i === 0 ? C.ink : C.stone, letterSpacing: '0.05em' }}>{pctTot}%</span>
+                      <span style={{ fontSize: 'var(--fs-xs)', fontWeight: 500, color: i === 0 ? C.ink : C.stone, letterSpacing: '0.05em' }}>{pctTot}%</span>
                     </div>
                   </div>
                 </div>
@@ -313,6 +309,7 @@ export default function Aerea() {
         </div>
         <Interpretacion light texto={rutas.length > 0 ? `La ruta hacia ${rutas[0]?.ruta.split('\u2194').find(s => !s.includes('Santiago del Estero'))?.trim() ?? rutas[0]?.ruta} lidera el tráfico aéreo de SDE. Fuente: ANAC — datos de vuelos regulares de cabotaje e internacionales.` : 'Sin datos de rutas para el período.'} />
       </section>
+
       {/* ── LOAD FACTOR ── */}
       <section style={{
         background: C.ink, padding: 'clamp(56px, 7vw, 80px) var(--pad)',
@@ -338,7 +335,7 @@ export default function Aerea() {
           </svg>
           <div style={{ marginTop: 16 }}>
             <VoltLine w={18} />
-            <Eyebrow light style={{ marginTop: 8, fontSize: 9.5 }}>Load Factor · {periodoStr}</Eyebrow>
+            <Eyebrow light style={{ marginTop: 8, fontSize: 'var(--fs-2xs)' }}>Load Factor · {periodoStr}</Eyebrow>
           </div>
         </div>
         <div>
@@ -348,18 +345,18 @@ export default function Aerea() {
           } />
         </div>
       </section>
+
       <section style={{ background: 'var(--paper, #FAFAF7)', padding: 'clamp(40px,5vw,64px) var(--pad)' }}>
         <Interpretacion>
-        En 2025, el aeropuerto de Termas operó con un load factor del 80,6% — la demanda
-        supera la oferta de frecuencias. Aun así, con 19.822 pasajeros anuales, el destino
-        opera al 9% de su capacidad histórica: en 2017 llegaban 210.000 pasajeros por año.
-        La salida de Aerolíneas Argentinas en 2019 recortó el 89% de esa conectividad y nunca
-        se recuperó. Hoy, 2 vuelos semanales desde Buenos Aires son el principal cuello de
-        botella del turismo termal. Un LF del 80% en Termas no es señal de salud — es señal
-        de mercado reprimido: hay demanda para más frecuencias que no se están operando.
-          </Interpretacion>
+          En 2025, el aeropuerto de Termas operó con un load factor del 80,6% — la demanda
+          supera la oferta de frecuencias. Aun así, con 19.822 pasajeros anuales, el destino
+          opera al 9% de su capacidad histórica: en 2017 llegaban 210.000 pasajeros por año.
+          La salida de Aerolíneas Argentinas en 2019 recortó el 89% de esa conectividad y nunca
+          se recuperó. Hoy, 2 vuelos semanales desde Buenos Aires son el principal cuello de
+          botella del turismo termal. Un LF del 80% en Termas no es señal de salud — es señal
+          de mercado reprimido: hay demanda para más frecuencias que no se están operando.
+        </Interpretacion>
       </section>
-
     </>
   )
 }
