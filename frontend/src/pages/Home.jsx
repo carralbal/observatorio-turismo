@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { ComposedChart, Area, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
+import { ComposedChart, Area, Line, XAxis, Tooltip, ResponsiveContainer } from 'recharts'
 import { useCSV, fmt } from '../hooks/useCSV'
 import { usePeriodo, filterByPeriodo } from '../context/PeriodoContext'
 import { C, Paralelo, VoltLine, Eyebrow, SectionTitle, Interpretacion, Loading, ICONS } from '../components/Atoms'
@@ -83,8 +83,10 @@ function KPIStrip({ termasLast, capitalLast, periodoStr, isEstimated, lastEOHEst
   const kpis = [
     { icon: ICONS.viajeros, value: fmt(viajeros_termas),    label: 'Viajeros · Termas',   delta: periodoStr,    estimated: isEstimated },
     { icon: ICONS.viajeros, value: fmt(viajeros_capital),   label: 'Viajeros · Capital',  delta: periodoStr,    estimated: isEstimated },
-    { icon: ICONS.estadia,  value: estadia ? `${Number(estadia).toFixed(2)}n` : '—', label: 'Estadía media · EOH', delta: estadiaDelta, estimated: false, subValue: estadiaInformal ? `${estadiaInformal.toFixed(1)}n informal` : null, subLabel: estadiaInformal ? `AirROI · ${estadiaInformalPeriodo}` : null },
-    { icon: ICONS.ibt,      value: `${ibt ?? '—'}/100`,    label: 'IBT · Señal digital',  delta: 'índice de búsqueda', estimated: false },
+    estadiaInformal
+      ? { icon: ICONS.estadia, value: `${estadiaInformal.toFixed(1)}n`, label: 'Estadía media · informal', delta: `AirROI · ${estadiaInformalPeriodo}`, estimated: false, subValue: estadia ? `${Number(estadia).toFixed(2)}n formal` : null, subLabel: estadia ? 'EOH · nov 2025' : null }
+      : { icon: ICONS.estadia, value: estadia ? `${Number(estadia).toFixed(2)}n` : '—', label: 'Estadía media · EOH', delta: estadiaDelta, estimated: false },
+    { icon: ICONS.ibt,      value: `${ibt ?? '—'}/100`,    label: 'IBT · Señal digital',  delta: `índice de búsqueda · ${(() => { const src = isEstimated ? lastOLS : lastEOH; return src?.fecha ? new Date(src.fecha).toLocaleDateString('es-AR', { month: 'short', year: 'numeric' }) : '—' })()}`, estimated: false },
   ]
   return (
     <section style={{ background: C.paper, padding: 'clamp(56px,7vw,88px) var(--pad)' }}>
@@ -203,11 +205,12 @@ function DonutSection({ termasLast }) {
   )
 }
 
-function BrechaSection() {
-  const plazas = 13055, aereo2025 = 455, aereo2017 = 4045
+function BrechaSection({ plazasData }) {
+  const plazas = plazasData ?? 13055
+  const aereo2025 = 455, aereo2017 = 4045
   const cobertura = Math.round((aereo2025 / plazas) * 100)
   const items = [
-    { label: 'Plazas hoteleras',     sub: 'PUNA 2024 · 7° lugar nacional · Termas de Río Hondo', value: plazas,    pct: 100 },
+    { label: 'Plazas hoteleras',     sub: 'PUNA · 7° lugar nacional · Termas de Río Hondo', value: plazas,    pct: 100 },
     { label: 'Asientos aéreos 2025', sub: 'Aerolíneas Argentinas · 2 vuelos/semana',              value: aereo2025, pct: Math.round((aereo2025/plazas)*100) },
     { label: 'Asientos aéreos 2017', sub: 'pico histórico · antes del colapso',                   value: aereo2017, pct: Math.round((aereo2017/plazas)*100) },
   ]
@@ -268,8 +271,9 @@ function CTAVolt() {
 }
 
 
-function ChartEstadia({ termasEOH, airdnaTermas, corte }) {
-  const eohSerie = termasEOH
+function ChartEstadia({ termasAll, airdnaTermas, corte }) {
+  // Use ALL EOH data (no COVID filter) for continuous estadía series
+  const eohSerie = termasAll
     .filter(r => r.estadia_promedio && Number(r.estadia_promedio) > 0)
     .map(r => ({
       fecha: r.fecha,
@@ -280,9 +284,12 @@ function ChartEstadia({ termasEOH, airdnaTermas, corte }) {
     }))
 
   const airMap = {}
-  airdnaTermas.forEach(r => {
-    airMap[r.fecha] = Number(r.estadia_informal) || null
-  })
+  airdnaTermas
+    .filter(r => Number(r.occ_avg ?? r.occ_informal_pct ?? 1) > 0.10) // filter low-occ outliers
+    .forEach(r => {
+      const val = Number(r.estadia_informal) || null
+      if (val && val <= 8) airMap[r.fecha] = val // cap at 8n max
+    })
 
   // Merge: add informal to existing dates or create new ones post-cutoff
   const merged = {}
@@ -429,8 +436,8 @@ export default function Home() {
       <KPIStrip termasLast={termasLast} capitalLast={capitalLast} periodoStr={periodoStr} isEstimated={isEstimated} lastEOHEstadia={lastEOHEstadia} estadiaInformal={estadiaInformal} estadiaInformalPeriodo={estadiaInformalPeriodo} />
       <ChartSection trend={trend} />
       <DonutSection termasLast={termasLast} />
-      <ChartEstadia termasEOH={termasEOH} airdnaTermas={airdnaTermas} corte={corte} />
-      <BrechaSection />
+      <ChartEstadia termasAll={[...pulso].filter(r => r.localidad === 'Termas').sort((a,b) => new Date(a.fecha) - new Date(b.fecha))} airdnaTermas={airdnaTermas} corte={corte} />
+      <BrechaSection plazasData={13055} />
       <CTAVolt />
     </>
   )
