@@ -1,4 +1,3 @@
-
 import duckdb
 import pandas as pd
 import numpy as np
@@ -13,12 +12,12 @@ def generar_estimados():
     modelos = pickle.load(open(MODEL_PATH, "rb"))
     con = duckdb.connect(WAREHOUSE, read_only=True)
 
-    # Datos para prediccion — meses sin EOH
     df_pred = con.execute("""
         WITH meses AS (
             SELECT UNNEST([
                 DATE '2025-12-01', DATE '2026-01-01',
-                DATE '2026-02-01', DATE '2026-03-01'
+                DATE '2026-02-01', DATE '2026-03-01',
+                DATE '2026-04-01'
             ]) AS fecha
         ),
         locs AS (
@@ -84,30 +83,35 @@ def generar_estimados():
         r2   = m["metricas"]["r2"]
 
         for i, row in d.iterrows():
+            idx = list(d.index).index(i)
             rows.append({
-                "fecha":              row["fecha"],
-                "localidad":          loc,
-                "viajeros":           round(max(yp[list(d.index).index(i)], 0)),
-                "viajeros_ic_low":    round(max(yp[list(d.index).index(i)] - 1.28*rmse, 0)),
-                "viajeros_ic_high":   round(yp[list(d.index).index(i)] + 1.28*rmse),
-                "occ_informal_pct":   row.get("occ_informal_pct"),
-                "ibt_compuesto":      row.get("ibt_compuesto"),
-                "tcn_usd":            row.get("tcn_usd"),
-                "anio":               int(row["anio"]),
-                "mes":                int(row["mes"]),
-                "fuente":             "ESTIMADO_OLS",
-                "flag_estimado":      1,
-                "modelo_r2":          round(r2, 3),
-                "modelo_mae":         round(mae),
-                "modelo_rmse":        round(rmse),
+                "fecha":           row["fecha"],
+                "localidad":       loc,
+                "viajeros":        round(max(yp[idx], 0)),
+                "viajeros_ic_low": round(max(yp[idx] - 1.28*rmse, 0)),
+                "viajeros_ic_high":round(yp[idx] + 1.28*rmse),
+                "occ_informal_pct":row.get("occ_informal_pct"),
+                "ibt_compuesto":   row.get("ibt_compuesto"),
+                "tcn_usd":         row.get("tcn_usd"),
+                "anio":            int(row["anio"]),
+                "mes":             int(row["mes"]),
+                "fuente":          "ESTIMADO_OLS",
+                "flag_estimado":   1,
+                "modelo_r2":       round(r2, 3),
+                "modelo_mae":      round(mae),
+                "modelo_rmse":     round(rmse),
             })
 
     return pd.DataFrame(rows)
 
 if __name__ == "__main__":
     df_est = generar_estimados()
-    print(df_est[["fecha","localidad","viajeros","viajeros_ic_low","viajeros_ic_high","fuente"]].to_string())
+    print(df_est[["fecha","localidad","viajeros","ibt_compuesto","fuente"]].to_string())
 
-    # Guardar para verificacion
-    df_est.to_csv("/tmp/estimados_ols.csv", index=False)
-    print(f"\nGuardado en /tmp/estimados_ols.csv")
+    # Escribir al warehouse
+    con = duckdb.connect(WAREHOUSE)
+    con.execute("CREATE OR REPLACE TABLE raw_estimados_ols AS SELECT * FROM df_est")
+    n = con.execute("SELECT COUNT(*) FROM raw_estimados_ols").fetchone()[0]
+    hasta = con.execute("SELECT MAX(fecha) FROM raw_estimados_ols").fetchone()[0]
+    con.close()
+    logger.success(f"raw_estimados_ols → {n} filas · hasta {hasta}")
