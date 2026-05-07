@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import MapaISTP from '../components/MapaISTP'
 import { ScatterChart, Scatter, LineChart, Line, XAxis, YAxis, ZAxis, Tooltip, ResponsiveContainer, ReferenceLine, Cell } from 'recharts'
 import { useCSV, fmt } from '../hooks/useCSV'
 import { C, Paralelo, VoltLine, Eyebrow, SectionTitle, Interpretacion, Loading, ICONS } from '../components/Atoms'
@@ -126,7 +127,9 @@ export default function Madurez() {
           ))}
         </div>
         <div style={{ marginTop: 40 }}>
-          <Interpretacion light texto={`Ranking basado en ISTP de nivel 2025 (escala 0-100, normalización por ranking anual). SDE en ${sde.ranking}° de 24, con ${sde.nivel?.toFixed(1)} puntos. Promedio nacional: ${promedio}. Fuente: ISTP · elaboración propia.`} />
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 'clamp(32px,4vw,64px)', alignItems: 'start' }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
+        <Interpretacion light texto={`Ranking basado en ISTP de nivel 2025 (escala 0-100, normalización por ranking anual). SDE en ${sde.ranking}° de 24, con ${sde.nivel?.toFixed(1)} puntos. Promedio nacional: ${promedio}. Fuente: ISTP · elaboración propia.`} />
         </div>
       </section>
 
