@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import { C, Paralelo, Eyebrow } from './Atoms'
-import { Database, Menu, X } from 'lucide-react'
+import { Database, Layers, Info, Menu, X } from 'lucide-react'
 import PeriodBar from './PeriodBar'
 import BotToggle from './BotToggle'
 
@@ -96,17 +96,23 @@ export default function Layout() {
         </NavLink>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
-          <NavLink to="/fuentes" onClick={close} style={({ isActive }) => ({
-            display: 'flex', alignItems: 'center', gap: 6,
-            padding: '6px 0', textDecoration: 'none',
-            borderBottom: isActive ? `1.5px solid ${C.volt}` : '1.5px solid transparent',
-            paddingBottom: 4,
-          })}>
-            <Database size={isMobile ? 15 : 13} style={{ color: C.volt }} />
-            <span style={{ fontSize: fs.navLabel, fontWeight: 500, color: C.volt, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
-              Fuentes
-            </span>
-          </NavLink>
+          {[
+            { to: '/madurez',  Icon: Layers,   label: 'Madurez'  },
+            { to: '/databook', Icon: Info,      label: 'DataBook' },
+            { to: '/fuentes',  Icon: Database,  label: 'Fuentes'  },
+          ].map(({ to, Icon, label }) => (
+            <NavLink key={to} to={to} onClick={close} style={({ isActive }) => ({
+              display: 'flex', alignItems: 'center', gap: 6,
+              padding: '6px 0', textDecoration: 'none',
+              borderBottom: isActive ? `1.5px solid ${C.volt}` : '1.5px solid transparent',
+              paddingBottom: 4,
+            })}>
+              <Icon size={isMobile ? 15 : 13} style={{ color: C.volt }} />
+              <span style={{ fontSize: fs.navLabel, fontWeight: 500, color: C.volt, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+                {label}
+              </span>
+            </NavLink>
+          ))}
 
           <button
             onClick={() => setMenuOpen(o => !o)}
