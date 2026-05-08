@@ -122,20 +122,34 @@ export default function Eventos() {
           </p>
           <div style={{ display:'flex', gap:0, borderBottom:'0.5px solid rgba(250,250,247,0.12)', marginTop:8 }}>
             {[
-              { id:'motogp', label:'MotoGP',                 sub:'10 ediciones · 2014–2025' },
-              { id:'pumas',  label:'Los Pumas vs Inglaterra', sub:'18 jul 2026 · PRE-EVENTO' },
+              { id:'motogp', label:'MotoGP',                 sub:'10 ediciones · 2014–2025', icon:(
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style={{flexShrink:0}}>
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5"/>
+                  <path d="M2 12h20M12 2c-3 4-3 12 0 20M12 2c3 4 3 12 0 20" stroke="currentColor" strokeWidth="1.5"/>
+                </svg>
+              )},
+              { id:'pumas',  label:'Los Pumas vs Inglaterra', sub:'18 jul 2026 · PRE-EVENTO', icon:(
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style={{flexShrink:0}}>
+                  <ellipse cx="12" cy="12" rx="5" ry="9" transform="rotate(-30 12 12)" stroke="currentColor" strokeWidth="1.5"/>
+                  <path d="M7.5 7.5l9 9M9 6l9 9" stroke="currentColor" strokeWidth="1"/>
+                </svg>
+              )},
             ].map(ev => (
               <button key={ev.id} onClick={() => setEvento(ev.id)} style={{
-                background:  'transparent',
-                color:       evento===ev.id ? C.volt : 'rgba(250,250,247,0.35)',
-                border:      'none',
+                background:   'transparent',
+                color:        evento===ev.id ? C.volt : 'rgba(250,250,247,0.35)',
+                border:       'none',
                 borderBottom: evento===ev.id ? `2px solid ${C.volt}` : '2px solid transparent',
-                padding:'12px 24px 12px 0', marginRight:32,
+                padding:'12px 28px 12px 0', marginRight:24,
                 cursor:'pointer', fontFamily:'Plus Jakarta Sans',
                 transition:'all 0.15s', textAlign:'left',
+                display:'flex', alignItems:'center', gap:10,
               }}>
-                <div style={{ fontSize:'var(--fs-xs)', fontWeight: evento===ev.id ? 700 : 400, letterSpacing:'0.08em', textTransform:'uppercase' }}>{ev.label}</div>
-                <div style={{ fontSize:9, opacity: evento===ev.id ? 0.6 : 0.35, marginTop:3, letterSpacing:'0.04em' }}>{ev.sub}</div>
+                <div style={{ opacity: evento===ev.id ? 1 : 0.4 }}>{ev.icon}</div>
+                <div>
+                  <div style={{ fontSize:'var(--fs-sm)', fontWeight: evento===ev.id ? 700 : 400, letterSpacing:'0.06em', textTransform:'uppercase' }}>{ev.label}</div>
+                  <div style={{ fontSize:'var(--fs-xs)', opacity: evento===ev.id ? 0.6 : 0.3, marginTop:3 }}>{ev.sub}</div>
+                </div>
               </button>
             ))}
           </div>
