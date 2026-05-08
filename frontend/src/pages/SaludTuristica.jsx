@@ -194,7 +194,7 @@ export default function Madurez() {
             )
           })}
         </div>
-        <Interpretacion light texto={`La demanda (pernoctes, peso 50%) y la ocupación (TOP, peso 30%) explican el 80% del ISTP. SDE tiene fortaleza en ocupación (${Number(sde.comp_ocupacion||0).toFixed(1)}/100) y conectividad terrestre (${Number(sde.comp_terrestre||0).toFixed(1)}/100). La brecha de conectividad aérea (${Number(sde.comp_aerea||0).toFixed(1)}/100) es el componente habilitante más débil. Metodología: ponderación 50/30/20 · TFM D. Carralbal MBA UBA 2025.`} />
+        <Interpretacion light texto={`La demanda (pernoctes, peso 50%) y la ocupación (TOP, peso 30%) explican el 80% del ISTP. SDE tiene fortaleza en ocupación (${Number(sde.comp_ocupacion||0).toFixed(1)}/100) y conectividad terrestre (${Number(sde.comp_terrestre||0).toFixed(1)}/100). La brecha de conectividad aérea (${Number(sde.comp_aerea||0).toFixed(1)}/100) es el componente habilitante más débil. Metodología: ponderación 50/30/20.`} />
       </section>
 
       {/* EVOLUCIÓN SDE 2019-2025 */}
@@ -218,11 +218,10 @@ export default function Madurez() {
       <section style={{ background: C.paper, padding: 'clamp(40px,5vw,64px) var(--pad)' }}>
         <Interpretacion>
           Santiago del Estero ocupa el puesto 12° entre 24 provincias con un ISTP de nivel
-          de 57,9/100 — en el Cuadrante I (alto nivel + alta trayectoria). La fortaleza
-          principal es la demanda hotelera de Termas de Río Hondo, el mayor centro termal
-          de Sudamérica. La debilidad estructural es la conectividad aérea (32,8/100):
-          recuperar frecuencias hacia el nivel de 2019 es la palanca con mayor impacto
-          potencial sobre el ISTP. Fuente: ISTP · elaboración propia · TFM D. Carralbal MBA UBA 2025.
+          de 57,9/100 — en el Cuadrante I (alto nivel + alta trayectoria). La ocupación hotelera
+          es el componente más sólido (58,3/100, en mejora sostenida desde 2019). La conectividad
+          aérea (41,7/100) es el componente con mayor potencial de mejora: recuperar frecuencias
+          al nivel de 2019 es la palanca de mayor impacto sobre el índice. Fuente: elaboración propia.
         </Interpretacion>
       </section>
 
@@ -236,19 +235,19 @@ export default function Madurez() {
               El ISTP mide la salud real del sistema turístico provincial: demanda efectiva, ocupación hotelera, conectividad e infraestructura de oferta. No mide el potencial sino el desempeño observado en datos oficiales.
             </p>
             <p style={{ fontSize: 'var(--fs-sm)', color: C.slate, lineHeight: 1.75, margin: 0 }}>
-              Fue desarrollado en el TFM de Diego Carralbal (MBA UBA, 2025) y calibrado sobre las 24 jurisdicciones argentinas usando datos EOH, ANAC, CNRT e INDEC. Escala 0–100, ponderación basada en impacto económico de cada componente.
+              Fue desarrollado con metodología de indicadores compuestos y calibrado sobre las 24 jurisdicciones argentinas usando datos EOH, ANAC, CNRT e INDEC. Escala 0–100, ponderación basada en impacto económico de cada componente.
             </p>
           </div>
           <div>
             <div style={{ fontSize: 'var(--fs-sm)', fontWeight: 600, color: C.ink, marginBottom: 16 }}>Ponderación</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
               {[
-                { comp: 'Demanda (pernoctes EOH)',       peso: '50%', sde: 57.5,  color: C.volt },
-                { comp: 'Ocupación hotelera (TOP)',       peso: '30%', sde: 66.2,  color: C.volt },
-                { comp: 'Conectividad aérea (ANAC)',      peso: '5%',  sde: 32.8,  color: C.stone },
-                { comp: 'Conectividad terrestre (CNRT)',  peso: '5%',  sde: 64.1,  color: C.volt },
-                { comp: 'Oferta — plazas hoteleras',      peso: '5%',  sde: 58.3,  color: C.volt },
-                { comp: 'Oferta — establecimientos',      peso: '5%',  sde: 54.7,  color: C.volt },
+                { comp: 'Demanda (pernoctes EOH)',       peso: '50%', sde: 37.5,  color: C.stone },
+                { comp: 'Ocupación hotelera (TOP)',       peso: '30%', sde: 58.3,  color: C.volt },
+                { comp: 'Conectividad aérea (ANAC)',      peso: '5%',  sde: 41.7,  color: C.stone },
+                { comp: 'Conectividad terrestre (CNRT)',  peso: '5%',  sde: 50.0,  color: C.volt },
+                { comp: 'Oferta — plazas hoteleras',      peso: '5%',  sde: 50.0,  color: C.volt },
+                { comp: 'Oferta — establecimientos',      peso: '5%',  sde: 45.8,  color: C.volt },
               ].map((c, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 14px', background: C.paper }}>
                   <span style={{ fontSize: 9, fontWeight: 700, color: C.stone, letterSpacing: '0.1em', width: 32, flexShrink: 0 }}>{c.peso}</span>
