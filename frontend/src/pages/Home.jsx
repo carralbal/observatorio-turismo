@@ -376,6 +376,7 @@ export default function Home() {
   const { data: estimado,    loading: l2 } = useCSV('/data/data_pulso_estimado.csv')
   const { data: airdna }                   = useCSV('/data/data_airdna_sde.csv')
   const { data: alojamiento }              = useCSV('/data/data_alojamiento.csv')
+  const { data: aereo }                    = useCSV('/data/data_aereo.csv')
 
   const termasEOH   = pulso.filter(r => r.localidad === 'Termas').sort((a,b) => new Date(a.fecha) - new Date(b.fecha))
   const capitalEOH  = pulso.filter(r => r.localidad === 'Santiago del Estero').sort((a,b) => new Date(a.fecha) - new Date(b.fecha))
