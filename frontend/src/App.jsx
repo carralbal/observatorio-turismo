@@ -16,6 +16,9 @@ import CapturaP from './pages/Captura'
 import SaludP from './pages/SaludTuristica'
 import MadurezP from './pages/Madurez'
 import PerfilP from './pages/Perfil'
+import AgendaP from './pages/Agenda'
+import AlojamientoP from './pages/Alojamiento'
+import DatabookP from './pages/Databook'
 import DatabookP from './pages/Databook'
 
 const router = createBrowserRouter([
@@ -39,6 +42,9 @@ const router = createBrowserRouter([
       { path: 'imagen',       element: <ImagenP /> },
       { path: 'estimado',     element: <EstimadoP /> },
       { path: 'perfil',       element: <PerfilP /> },
+      { path: 'agenda',      element: <AgendaP /> },
+      { path: 'alojamiento', element: <AlojamientoP /> },
+      { path: 'databook',    element: <DatabookP /> },
       { path: 'databook',     element: <DatabookP /> },
     ],
   },

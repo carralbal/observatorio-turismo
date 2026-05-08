@@ -45,7 +45,7 @@ export default function Informal() {
       p25: Number(r.adr_p25), p50: Number(r.adr_p50), p75: Number(r.adr_p75),
       anio: Number(r.anio),
     }))
-    .filter(r => r.occ !== null && r.occ > 0)
+    .filter(r => r.occ !== null && r.occ > 0 && r.fecha >= '2023-03-01')
     .sort((a,b) => a.fecha > b.fecha ? 1 : -1)
   , [rawTermas])
 

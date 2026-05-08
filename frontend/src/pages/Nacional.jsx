@@ -88,7 +88,7 @@ export default function Nacional() {
             delta={'saldo '+(saldoPositivo ? 'positivo' : 'negativo')+' de divisas'}
             positive={saldoPositivo}
           />
-          <KPICard value={'$'+fmt(ultimo.tcn||0)} label="Tipo de cambio oficial" delta={'ARS/USD · '+fechaActual} />
+          <KPICard value={'$'+fmt(ultimo.tcn||0, 1)} label="Tipo de cambio oficial" delta={'ARS/USD · '+fechaActual} />
         </div>
         <Interpretacion texto={'En '+fechaActual+', Argentina recibe '+fmt(ultimo.receptivo)+' turistas internacionales y '+fmt(ultimo.emisivo)+' argentinos viajan al exterior. La balanza turística es '+(saldoPositivo?'superavitaria':'deficitaria')+'. El tipo de cambio oficial es $'+fmt(ultimo.tcn)+' ARS/USD. Fuente: ETI INDEC + BCRA.'} />
       </section>

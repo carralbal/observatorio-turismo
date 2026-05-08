@@ -63,8 +63,8 @@ export default function Madurez() {
 
   // Scatter data
   const scatterData = datos2025.map(r => ({ provincia: r.provincia, nivel: r.nivel, tray: r.tray, cuad: r.cuad, es_sde: r.es_sde }))
-  const medNivel = 56.25   // from TFM
-  const medTray  = 85.43   // from TFM
+  const medNivel = 56.25
+  const medTray  = 85.43
 
   if (loading) return <Loading />
 
@@ -78,7 +78,7 @@ export default function Madurez() {
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.93) 0%, rgba(10,10,10,0.78) 35%, rgba(10,10,10,0.38) 65%, rgba(10,10,10,0.10) 100%)' }} />
         <div style={{ position: 'relative', zIndex: 3 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 28 }}>
-            <Paralelo /><Eyebrow light>ISTP · TFM D. Carralbal · Capa 4 · Decisión</Eyebrow>
+            <Paralelo /><Eyebrow light>ISTP · Salud Turística · 24 jurisdicciones</Eyebrow>
           </div>
           <h1 style={{ fontSize: 'clamp(2.4rem,5vw,5rem)', fontWeight: 200, color: C.paper, letterSpacing: '-0.04em', lineHeight: 1, margin: '0 0 16px' }}>Salud Turística<br />Provincial.</h1>
           <p style={{ fontSize: '0.9rem', fontWeight: 300, color: C.paper, opacity: 0.6, maxWidth: 520, lineHeight: 1.65, margin: 0 }}>Índice de Salud Turística Provincial (ISTP). Comparación de las 24 jurisdicciones argentinas por nivel y trayectoria. Escala 0-100. Elaboración propia.</p>

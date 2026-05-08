@@ -24,7 +24,9 @@ const CAPAS = [
     { to: '/benchmark', label: 'Benchmark' },
   ]},
   { label: 'Decisión', num: '04', items: [
-    { to: '/estimado', label: 'Estimado OLS'       },
+    { to: '/estimado',    label: 'Estimado OLS'  },
+    { to: '/agenda',      label: 'Agenda 90 días' },
+    { to: '/alojamiento', label: 'Alojamiento'    },
     { to: '/salud',    label: 'Salud Turística'  },
     { to: '/madurez',  label: 'Madurez Obs.'     },
     { to: '/nacional', label: 'Nacional'          },
