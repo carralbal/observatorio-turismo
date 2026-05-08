@@ -33,6 +33,7 @@ const router = createBrowserRouter([
       { path: 'empleo',       element: <EmpleoP /> },
       { path: 'fuentes',      element: <FuentesP /> },
       { path: 'nacional',     element: <NacionalP /> },
+      { path: 'eventos',     element: <EventosP /> },
       { path: 'motogp',       element: <MotoGPP /> },
       { path: 'señal',        element: <SenalP /> },
       { path: 'benchmark',    element: <BenchmarkP /> },
