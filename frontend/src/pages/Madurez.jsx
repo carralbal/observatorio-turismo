@@ -112,6 +112,68 @@ export default function Madurez() {
         </div>
       </section>
 
+      {/* EXPLICACIÓN ISTP */}
+      <section style={{ background: C.paper2, padding: 'clamp(56px,7vw,80px) var(--pad)' }}>
+        <SectionTitle main="Cómo se calcula el ISTP." context="Índice de Salud Turística Provincial · metodología" style={{ marginBottom: 48 }} />
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,420px),1fr))', gap: 40, marginBottom: 48 }}>
+          <div>
+            <div style={{ fontSize: 'var(--fs-sm)', fontWeight: 600, color: C.ink, marginBottom: 16, letterSpacing: '0.02em' }}>¿Qué mide?</div>
+            <p style={{ fontSize: 'var(--fs-sm)', color: C.slate, lineHeight: 1.75, margin: '0 0 16px' }}>
+              El ISTP evalúa la capacidad institucional de cada provincia para medir, analizar y anticipar su actividad turística. No mide cuántos turistas recibe sino qué tan bien está equipada para conocer esa realidad y tomar decisiones basadas en datos.
+            </p>
+            <p style={{ fontSize: 'var(--fs-sm)', color: C.slate, lineHeight: 1.75, margin: 0 }}>
+              Fue desarrollado en el TFM de Diego Carralbal (2025) y aplicado a 24 provincias argentinas. El ranking posiciona a SDE 4° a nivel nacional, por encima de la mayoría de las provincias del NOA.
+            </p>
+          </div>
+          <div>
+            <div style={{ fontSize: 'var(--fs-sm)', fontWeight: 600, color: C.ink, marginBottom: 16, letterSpacing: '0.02em' }}>Fórmula</div>
+            <div style={{ background: C.paper, padding: 'clamp(16px,2vw,24px)', borderLeft: `2px solid ${C.volt}`, marginBottom: 16 }}>
+              <div style={{ fontSize: 'var(--fs-xs)', color: C.slate, lineHeight: 2 }}>
+                <span style={{ fontWeight: 600, color: C.ink }}>Score bruto</span> = Σ (indicador × peso)<br />
+                <span style={{ color: C.stone }}>máximo = 6.0 puntos</span><br /><br />
+                <span style={{ fontWeight: 600, color: C.ink }}>Score madurez</span> = normalización 0–5<br />
+                <span style={{ color: C.stone }}>determina nivel 1 a 5</span>
+              </div>
+            </div>
+            <div style={{ fontSize: 'var(--fs-xs)', color: C.slate, lineHeight: 1.6 }}>
+              SDE: score bruto <strong style={{ color: C.ink }}>4.0 / 6.0</strong> · score madurez <strong style={{ color: C.ink }}>3.7</strong> · Nivel 4 · Ranking <strong style={{ color: C.ink }}>4° nacional</strong>
+            </div>
+          </div>
+        </div>
+
+        {/* Tabla de dimensiones con pesos */}
+        <div style={{ fontSize: 'var(--fs-sm)', fontWeight: 600, color: C.ink, marginBottom: 20, letterSpacing: '0.02em' }}>Las 9 dimensiones del índice</div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(min(100%,280px),1fr))', gap: 1 }}>
+          {[
+            { dim: 'Viajeros hoteleros (EOH)', peso: 1.0, sde: true,  nota: 'fuente primaria de demanda' },
+            { dim: 'N2 fiscal (IIBB HyG)',     peso: 1.0, sde: false, nota: 'autonomía de fuente fiscal' },
+            { dim: 'Medición de eventos (DiD)', peso: 1.0, sde: true,  nota: 'capacidad analítica avanzada' },
+            { dim: 'Pasajeros aéreos (ANAC)',   peso: 0.5, sde: true,  nota: 'conectividad y acceso' },
+            { dim: 'Empleo desagregado (OEDE)', peso: 0.5, sde: false, nota: 'mercado laboral sectorial' },
+            { dim: 'Tablero público de datos',  peso: 0.5, sde: true,  nota: 'transparencia y acceso' },
+            { dim: 'Actualización mensual',     peso: 0.5, sde: true,  nota: 'regularidad operativa' },
+            { dim: 'Señales anticipadas (IBT)', peso: 0.5, sde: true,  nota: 'anticipación de demanda' },
+            { dim: 'Ciclo institucional formal',peso: 0.5, sde: false, nota: 'acto administrativo provincial' },
+          ].map((d, i) => (
+            <div key={i} style={{ background: C.paper, padding: 'clamp(14px,2vw,20px)', display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+              <div style={{ width: 8, height: 8, borderRadius: '50%', background: d.sde ? C.volt : C.stone, flexShrink: 0, marginTop: 5, opacity: d.sde ? 1 : 0.5 }} />
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: 'var(--fs-sm)', color: d.sde ? C.ink : C.slate, fontWeight: d.sde ? 500 : 400, marginBottom: 3 }}>{d.dim}</div>
+                <div style={{ fontSize: 'var(--fs-xs)', color: C.slate, opacity: 0.65 }}>{d.nota}</div>
+              </div>
+              <div style={{ flexShrink: 0, textAlign: 'right' }}>
+                <div style={{ fontSize: 'var(--fs-sm)', fontWeight: 600, color: d.peso === 1 ? C.ink : C.slate }}>{d.peso.toFixed(1)}</div>
+                <div style={{ fontSize: 9, color: C.stone, letterSpacing: '0.08em', textTransform: 'uppercase' }}>pts</div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style={{ display: 'flex', gap: 20, marginTop: 16, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}><div style={{ width: 8, height: 8, borderRadius: '50%', background: C.volt }} /><span style={{ fontSize: 10, color: C.slate, letterSpacing: '0.1em', textTransform: 'uppercase' }}>SDE activo</span></div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}><div style={{ width: 8, height: 8, borderRadius: '50%', background: C.stone, opacity: 0.5 }} /><span style={{ fontSize: 10, color: C.slate, letterSpacing: '0.1em', textTransform: 'uppercase' }}>SDE pendiente</span></div>
+        </div>
+      </section>
+
       {/* NIVELES */}
       {NIVELES.map((nivel, ni) => (
         <section key={nivel.num} style={{ background: ni % 2 === 0 ? C.ink : C.paper, padding: 'clamp(56px,7vw,80px) var(--pad)' }}>
