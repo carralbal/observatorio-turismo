@@ -56,6 +56,7 @@ export default function Estimado() {
       viajeros_est: Number(r.viajeros) || null,
       ic_low: Number(r.viajeros_ic_low) || null,
       ic_high: Number(r.viajeros_ic_high) || null,
+      viajeros_fit: Number(r.viajeros_fit) || null,
       anio: Number(r.anio),
     }))
     .sort((a,b) => a.fecha > b.fecha ? 1 : -1)
@@ -82,6 +83,8 @@ export default function Estimado() {
         viajeros_est: (!corte || r.fecha > corte) ? r.viajeros_est : null,
         ic_low:       (!corte || r.fecha > corte) ? r.ic_low  : null,
         ic_high:      (!corte || r.fecha > corte) ? r.ic_high : null,
+        // In-sample fit — only BEFORE cutoff
+        viajeros_fit: (corte && r.fecha <= corte) ? (Number(r.viajeros_fit) || null) : null,
       }))
   }, [obs, est, corte])
 
@@ -125,6 +128,7 @@ export default function Estimado() {
             {[
               {c: C.paper,    l: 'Observado (EOH)', dash: false},
               {c: C.volt,     l: 'Estimado (OLS)',  dash: true},
+              {c: `${C.volt}80`, l: 'Ajuste histórico', dash: true},
               {c: 'rgba(255,255,0,0.12)', l: 'IC 80%', area: true},
             ].map((x,i) => (
               <div key={i} style={{ display:'flex', gap:7, alignItems:'center' }}>
@@ -162,6 +166,8 @@ export default function Estimado() {
               <Area type="monotone" dataKey="ic_low" fill={C.ink} stroke="none" legendType="none" />
               {/* Observed line — full history */}
               <Line type="monotone" dataKey="viajeros_obs" stroke={C.paper} strokeWidth={2.5} dot={false} name="Observado" connectNulls={false} activeDot={{ r:3, fill:C.paper, strokeWidth:0 }} />
+              {/* In-sample fit — historical period only */}
+              <Line type="monotone" dataKey="viajeros_fit" stroke={C.volt} strokeWidth={1.5} dot={false} strokeDasharray="3 3" strokeOpacity={0.55} name="Ajuste histórico" connectNulls activeDot={{ r:3, fill:C.volt, strokeWidth:0 }} />
               {/* Estimated line — only after cutoff (null before) */}
               <Line type="monotone" dataKey="viajeros_est" stroke={C.volt} strokeWidth={2.5} dot={false} strokeDasharray="6 3" name="Estimado" connectNulls activeDot={{ r:4, fill:C.volt, strokeWidth:0 }} />
             </ComposedChart>

@@ -1,7 +1,8 @@
 /*
   mart_sde_pulso_estimado
   Serie completa EOH = real (hasta nov 2025) + OLS calibrado (dic 2025 en adelante)
-  Modelo: R²=0.865 Termas · R²=0.804 Capital
+  viajeros_fit = predicción in-sample del modelo sobre período histórico (validación)
+  Modelo: R²=0.871 Termas · R²=0.818 Capital
   Variables: ANAC + Google Trends + BCRA + IPC NOA + AirDNA informal
 */
 
@@ -49,14 +50,21 @@ estimados AS (
     WHERE viajeros IS NOT NULL
 ),
 
+fitted AS (
+    SELECT fecha, localidad, viajeros_fit
+    FROM {{ source('raw', 'raw_fitted_ols') }}
+),
+
 combinado AS (
     SELECT
-        fecha, localidad, viajeros, pernoctes, estadia,
-        viajeros_ic_low, viajeros_ic_high,
-        occ_informal_pct, ibt_termas, ibt_compuesto, tcn_usd,
-        anio, mes, fuente, flag_estimado,
-        modelo_r2, modelo_mae, modelo_rmse
-    FROM eoh_real
+        e.fecha, e.localidad, e.viajeros, e.pernoctes, e.estadia,
+        e.viajeros_ic_low, e.viajeros_ic_high,
+        e.occ_informal_pct, e.ibt_termas, e.ibt_compuesto, e.tcn_usd,
+        e.anio, e.mes, e.fuente, e.flag_estimado,
+        e.modelo_r2, e.modelo_mae, e.modelo_rmse,
+        f.viajeros_fit
+    FROM eoh_real e
+    LEFT JOIN fitted f USING (fecha, localidad)
 
     UNION ALL
 
@@ -65,7 +73,8 @@ combinado AS (
         viajeros_ic_low, viajeros_ic_high,
         occ_informal_pct, ibt_termas, ibt_compuesto, tcn_usd,
         anio, mes, fuente, flag_estimado,
-        modelo_r2, modelo_mae, modelo_rmse
+        modelo_r2, modelo_mae, modelo_rmse,
+        NULL::DOUBLE AS viajeros_fit
     FROM estimados
     WHERE viajeros IS NOT NULL
 )
