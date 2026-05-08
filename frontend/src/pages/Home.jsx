@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import { ComposedChart, Area, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
 import { useCSV, fmt } from '../hooks/useCSV'
 import { usePeriodo, filterByPeriodo } from '../context/PeriodoContext'
@@ -64,7 +64,7 @@ function Hero() {
           <p style={{ fontSize: 'clamp(0.85rem,1.3vw,1rem)', fontWeight: 300, color: C.paper, opacity: 0.62, maxWidth: 400, lineHeight: 1.72, margin: 0, animation: 'fadeUp 0.8s 0.22s ease both' }}>
             El sistema de indicadores turísticos de Santiago del Estero. Datos oficiales actualizados mensualmente.
           </p>
-          <img src={ESCUDO} alt="Escudo Santiago del Estero" style={{ height: 'clamp(48px,6.4vw,72px)', width: 'auto', objectFit: 'contain', flexShrink: 0, filter: 'brightness(0) invert(1)' }} />
+          <img src={ESCUDO} alt="Escudo Santiago del Estero" style={{ height: 'clamp(48px,6.4vw,72px)', width: 'auto', objectFit: 'contain', flexShrink: 0, filter: 'invert(1) opacity(0.85)' }} />
         </div>
       </div>
     </section>
@@ -205,14 +205,32 @@ function DonutSection({ termasLast }) {
   )
 }
 
-function BrechaSection({ plazasData }) {
+function BrechaSection({ plazasData, aereoData }) {
   const plazas = plazasData ?? 13055
-  const aereo2025 = 455, aereo2017 = 4045
-  const cobertura = Math.round((aereo2025 / plazas) * 100)
+
+  // Calcular asientos reales desde ANAC — últimos 3 meses disponibles
+  const aereoReciente = useMemo(() => {
+    if (!aereoData?.length) return null
+    const ultimos3 = [...new Set(aereoData.map(r => r.fecha).sort().reverse())].slice(0, 3)
+    const filtrado = aereoData.filter(r => ultimos3.includes(r.fecha) && Number(r.flag_cabotaje) === 1)
+    const totalAsientos = filtrado.reduce((s, r) => s + Number(r.asientos || 0), 0)
+    const totalPax = filtrado.reduce((s, r) => s + Number(r.pasajeros || 0), 0)
+    const totalVuelos = filtrado.reduce((s, r) => s + Number(r.vuelos || 0), 0)
+    // Asientos semanales promedio (÷ semanas en 3 meses ≈ 13)
+    const asientosSemanales = Math.round(totalAsientos / 13)
+    const aereolineas = [...new Set(filtrado.map(r => r.aerolinea).filter(Boolean))]
+    return { asientosSemanales, totalPax, totalVuelos, aereolineas, ultimos3 }
+  }, [aereoData])
+
+  const aereo2025 = aereoReciente?.asientosSemanales ?? 455
+  const aereo2017 = 4045
+  const aereolineasStr = aereoReciente?.aereolineas?.join(' · ') ?? 'Aerolíneas Argentinas'
+  const fechaRef = aereoReciente?.ultimos3?.[0] ? new Date(aereoReciente.ultimos3[0]).toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }) : '2025'
+
   const items = [
-    { label: 'Plazas hoteleras',     sub: 'PUNA · 7° lugar nacional · Termas de Río Hondo', value: plazas,    pct: 100 },
-    { label: 'Asientos aéreos 2025', sub: 'Aerolíneas Argentinas · 2 vuelos/semana',              value: aereo2025, pct: Math.round((aereo2025/plazas)*100) },
-    { label: 'Asientos aéreos 2017', sub: 'pico histórico · antes del colapso',                   value: aereo2017, pct: Math.round((aereo2017/plazas)*100) },
+    { label: 'Plazas hoteleras',         sub: 'PUNA · 7° lugar nacional · Termas de Río Hondo', value: plazas,    pct: 100 },
+    { label: `Asientos aéreos · ${fechaRef}`, sub: aereolineasStr + ' · ambos aeropuertos SDE',       value: aereo2025, pct: Math.round((aereo2025/plazas)*100) },
+    { label: 'Asientos aéreos 2017',     sub: 'pico histórico · antes del colapso',               value: aereo2017, pct: Math.round((aereo2017/plazas)*100) },
   ]
   return (
     <section style={{ background: C.paper, padding: 'clamp(56px,7vw,88px) var(--pad)' }}>
@@ -221,7 +239,7 @@ function BrechaSection({ plazasData }) {
       </div>
       <SectionTitle>Capacidad sin<br />conectividad.</SectionTitle>
       <p style={{ fontSize: '1rem', color: C.slate, maxWidth: 560, margin: '0 0 52px', lineHeight: 1.7 }}>
-        Termas de Río Hondo tiene <strong style={{ color: C.ink }}>13.055 plazas hoteleras</strong> — el 7° stock más grande del país.
+        Termas de Río Hondo tiene <strong style={{ color: C.ink }}>{fmt(plazas)} plazas hoteleras</strong> — el 7° stock más grande del país.
         Pero la conectividad aérea semanal alcanza apenas <strong style={{ color: C.ink }}>{aereo2025} asientos</strong>: el {cobertura}% de su capacidad.
         En 2017 eran 4.045 asientos semanales. Una decisión política en 2019 recortó el 89% — y nunca se recuperó.
       </p>
@@ -250,7 +268,7 @@ function BrechaSection({ plazasData }) {
         </div>
       </div>
       <Interpretacion>
-        Con 13.055 plazas, Termas es el centro termal más grande de Sudamérica en oferta hotelera.
+        Con {fmt(plazas)} plazas, Termas es el centro termal más grande de Sudamérica en oferta hotelera.
         Recuperar el nivel de 2017 implicaría multiplicar por 9 el flujo aéreo actual.
       </Interpretacion>
     </section>
@@ -277,7 +295,7 @@ function ChartEstadia({ termasAll, airdnaTermas, corte }) {
     .filter(r => r.estadia_promedio && Number(r.estadia_promedio) > 0)
     .map(r => ({
       fecha: r.fecha,
-      label: new Date(r.fecha + 'T12:00:00').toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
+      label: new Date(r.fecha).toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
       year: new Date(r.fecha).getFullYear(),
       estadia_eoh:      Number(r.estadia_promedio),
       estadia_informal: null,
@@ -297,7 +315,7 @@ function ChartEstadia({ termasAll, airdnaTermas, corte }) {
   Object.entries(airMap).forEach(([fecha, val]) => {
     if (!merged[fecha]) {
       const d = new Date(fecha)
-      merged[fecha] = { fecha, label: new Date(d.toISOString().slice(0,10) + 'T12:00:00').toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }), year: d.getFullYear(), estadia_eoh: null, estadia_informal: null }
+      merged[fecha] = { fecha, label: d.toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }), year: d.getFullYear(), estadia_eoh: null, estadia_informal: null }
     }
     // Only show informal after EOH cutoff
     if (!corte || fecha > corte) merged[fecha].estadia_informal = val
@@ -354,9 +372,10 @@ function ChartEstadia({ termasAll, airdnaTermas, corte }) {
 
 export default function Home() {
   const { anio, mes } = usePeriodo()
-  const { data: pulso,    loading: l1 } = useCSV('/data/data_pulso.csv', { filter: r => r.flag_covid === 0 })
-  const { data: estimado, loading: l2 } = useCSV('/data/data_pulso_estimado.csv')
-  const { data: airdna } = useCSV('/data/data_airdna_sde.csv')
+  const { data: pulso,       loading: l1 } = useCSV('/data/data_pulso.csv', { filter: r => r.flag_covid === 0 })
+  const { data: estimado,    loading: l2 } = useCSV('/data/data_pulso_estimado.csv')
+  const { data: airdna }                   = useCSV('/data/data_airdna_sde.csv')
+  const { data: alojamiento }              = useCSV('/data/data_alojamiento.csv')
 
   const termasEOH   = pulso.filter(r => r.localidad === 'Termas').sort((a,b) => new Date(a.fecha) - new Date(b.fecha))
   const capitalEOH  = pulso.filter(r => r.localidad === 'Santiago del Estero').sort((a,b) => new Date(a.fecha) - new Date(b.fecha))
@@ -400,7 +419,7 @@ export default function Home() {
     const cap = capitalEOH.find(c => c.fecha === t.fecha)
     eohMap[t.fecha] = {
       fecha: t.fecha,
-      label: new Date(d.toISOString().slice(0,10) + 'T12:00:00').toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
+      label: d.toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
       year: d.getFullYear(),
       termas: Number(t.viajeros_total) || null,
       capital: cap ? Number(cap.viajeros_total) || null : null,
@@ -413,14 +432,14 @@ export default function Home() {
   termasOLS.forEach(t => {
     if (!eohMap[t.fecha]) {
       const d = new Date(t.fecha)
-      eohMap[t.fecha] = { fecha: t.fecha, label: new Date(d.toISOString().slice(0,10) + 'T12:00:00').toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }), year: d.getFullYear(), termas: null, capital: null, termasEst: null, capitalEst: null }
+      eohMap[t.fecha] = { fecha: t.fecha, label: d.toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }), year: d.getFullYear(), termas: null, capital: null, termasEst: null, capitalEst: null }
     }
     if (!corte || t.fecha > corte) eohMap[t.fecha].termasEst = Number(t.viajeros) || null
   })
   capitalOLS.forEach(t => {
     if (!eohMap[t.fecha]) {
       const d = new Date(t.fecha)
-      eohMap[t.fecha] = { fecha: t.fecha, label: new Date(d.toISOString().slice(0,10) + 'T12:00:00').toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }), year: d.getFullYear(), termas: null, capital: null, termasEst: null, capitalEst: null }
+      eohMap[t.fecha] = { fecha: t.fecha, label: d.toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }), year: d.getFullYear(), termas: null, capital: null, termasEst: null, capitalEst: null }
     }
     if (!corte || t.fecha > corte) eohMap[t.fecha].capitalEst = Number(t.viajeros) || null
   })
@@ -437,7 +456,7 @@ export default function Home() {
       <ChartSection trend={trend} />
       <DonutSection termasLast={termasLast} />
       <ChartEstadia termasAll={[...pulso].filter(r => r.localidad === 'Termas').sort((a,b) => new Date(a.fecha) - new Date(b.fecha))} airdnaTermas={airdnaTermas} corte={corte} />
-      <BrechaSection plazasData={13055} />
+      <BrechaSection plazasData={alojamiento.length ? Number(alojamiento[alojamiento.length - 1].plazas) : 13055} aereoData={aereo} />
       <CTAVolt />
     </>
   )
