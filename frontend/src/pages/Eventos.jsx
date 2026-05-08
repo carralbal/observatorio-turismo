@@ -252,7 +252,7 @@ export default function Eventos() {
         </section>
 
         {/* IBT POSICIONAMIENTO */}
-        <section style={{ background:'#111827', padding:'clamp(56px,7vw,80px) var(--pad)' }}>
+        <section style={{ background:C.ink, padding:'clamp(56px,7vw,80px) var(--pad)' }}>
           <div style={{ display:'flex', alignItems:'center', gap:12, marginBottom:12 }}>
             <Paralelo /><Eyebrow light>Google Trends · IBT mensual</Eyebrow>
           </div>
