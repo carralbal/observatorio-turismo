@@ -10,7 +10,6 @@ const CAPAS = [
     { to: '/',          label: 'Pulso'     },
     { to: '/aerea',     label: 'Aérea'     },
     { to: '/terrestre', label: 'Terrestre' },
-    { to: '/motogp',    label: 'MotoGP'    },
     { to: '/eventos',   label: 'Eventos'   },
     { to: '/nacional',  label: 'Nacional'  },
   ]},
