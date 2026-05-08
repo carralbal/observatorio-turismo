@@ -120,20 +120,22 @@ export default function Eventos() {
           <p style={{ fontSize:'0.9rem', fontWeight:300, color:C.paper, opacity:0.6, maxWidth:440, lineHeight:1.65, margin:'0 0 32px' }}>
             Medición del impacto turístico de eventos internacionales en Santiago del Estero. Método diferencias en diferencias (DiD).
           </p>
-          <div style={{ display:'flex', gap:8, flexWrap:'wrap' }}>
+          <div style={{ display:'flex', gap:0, borderBottom:'0.5px solid rgba(250,250,247,0.12)', marginTop:8 }}>
             {[
-              { id:'motogp', label:'🏁  MotoGP',                sub:'10 ediciones · 2014–2025' },
-              { id:'pumas',  label:'🏉  Los Pumas vs Inglaterra', sub:'18 jul 2026 · PRE-EVENTO' },
+              { id:'motogp', label:'MotoGP',                 sub:'10 ediciones · 2014–2025' },
+              { id:'pumas',  label:'Los Pumas vs Inglaterra', sub:'18 jul 2026 · PRE-EVENTO' },
             ].map(ev => (
               <button key={ev.id} onClick={() => setEvento(ev.id)} style={{
-                background: evento===ev.id ? C.volt : 'rgba(250,250,247,0.08)',
-                color:      evento===ev.id ? C.ink  : C.paper,
-                border:     `0.5px solid ${evento===ev.id ? C.volt : 'rgba(250,250,247,0.2)'}`,
-                padding:'10px 18px', cursor:'pointer', fontFamily:'Plus Jakarta Sans',
+                background:  'transparent',
+                color:       evento===ev.id ? C.volt : 'rgba(250,250,247,0.35)',
+                border:      'none',
+                borderBottom: evento===ev.id ? `2px solid ${C.volt}` : '2px solid transparent',
+                padding:'12px 24px 12px 0', marginRight:32,
+                cursor:'pointer', fontFamily:'Plus Jakarta Sans',
                 transition:'all 0.15s', textAlign:'left',
               }}>
-                <div style={{ fontSize:'var(--fs-sm)', fontWeight:600 }}>{ev.label}</div>
-                <div style={{ fontSize:9, opacity:0.7, marginTop:2 }}>{ev.sub}</div>
+                <div style={{ fontSize:'var(--fs-xs)', fontWeight: evento===ev.id ? 700 : 400, letterSpacing:'0.08em', textTransform:'uppercase' }}>{ev.label}</div>
+                <div style={{ fontSize:9, opacity: evento===ev.id ? 0.6 : 0.35, marginTop:3, letterSpacing:'0.04em' }}>{ev.sub}</div>
               </button>
             ))}
           </div>
