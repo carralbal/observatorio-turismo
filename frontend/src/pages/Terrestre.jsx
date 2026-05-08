@@ -16,7 +16,7 @@ function agruparPorAnio(rows) {
     m[k].viajes    += Number(r.viajes)    || 0
   })
   return Object.values(m)
-    .map(x => ({ ...x, load_factor: x.asientos > 0 ? Math.round((x.pasajeros / x.asientos) * 100) : 0, label: String(x.anio) }))
+    .map(x => ({ ...x, load_factor: x.asientos > 0 ? Math.min(100, Math.round((x.pasajeros / x.asientos) * 100)) : 0, label: String(x.anio) }))
     .sort((a, b) => a.anio - b.anio)
 }
 
@@ -33,7 +33,7 @@ function agruparPorRuta(rows) {
   return Object.values(m)
     .map(x => ({
       ...x,
-      load_factor: x.asientos > 0 ? Math.round((x.pasajeros / x.asientos) * 100) : 0,
+      load_factor: x.asientos > 0 ? Math.min(100, Math.round((x.pasajeros / x.asientos) * 100)) : 0,
       label: x.ruta.split('-').map(s =>
         s.replace('Santiago Del Estero','SDE')
          .replace('Ciudad Autónoma De Buenos Aires','CABA')
