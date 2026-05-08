@@ -64,7 +64,7 @@ function Hero() {
           <p style={{ fontSize: 'clamp(0.85rem,1.3vw,1rem)', fontWeight: 300, color: C.paper, opacity: 0.62, maxWidth: 400, lineHeight: 1.72, margin: 0, animation: 'fadeUp 0.8s 0.22s ease both' }}>
             El sistema de indicadores turísticos de Santiago del Estero. Datos oficiales actualizados mensualmente.
           </p>
-          <img src={ESCUDO} alt="Escudo Santiago del Estero" style={{ height: 'clamp(48px,6.4vw,72px)', width: 'auto', objectFit: 'contain', flexShrink: 0, filter: 'invert(1) opacity(0.85)' }} />
+          <img src={ESCUDO} alt="Escudo Santiago del Estero" style={{ height: 'clamp(48px,6.4vw,72px)', width: 'auto', objectFit: 'contain', flexShrink: 0, filter: 'grayscale(1) brightness(2.5) opacity(0.7)' }} />
         </div>
       </div>
     </section>
