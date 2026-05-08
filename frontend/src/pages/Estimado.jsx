@@ -73,6 +73,7 @@ export default function Estimado() {
       map[r.fecha].viajeros_est = r.viajeros_est
       map[r.fecha].ic_low = r.ic_low
       map[r.fecha].ic_high = r.ic_high
+      map[r.fecha].viajeros_fit = r.viajeros_fit
     })
     return Object.values(map)
       .sort((a,b) => a.fecha > b.fecha ? 1 : -1)
