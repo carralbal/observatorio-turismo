@@ -7,29 +7,29 @@ import BotToggle from './BotToggle'
 
 const CAPAS = [
   { label: 'Actividad', num: '01', items: [
-    { to: '/',          label: 'Pulso SDE' },
+    { to: '/',          label: 'Pulso'     },
     { to: '/aerea',     label: 'Aérea'     },
     { to: '/terrestre', label: 'Terrestre' },
     { to: '/motogp',    label: 'MotoGP'    },
+    { to: '/nacional',  label: 'Nacional'  },
   ]},
   { label: 'Señales', num: '02', items: [
-    { to: '/señal',    label: 'Señal IBT'     },
-    { to: '/informal', label: 'Informal'      },
-    { to: '/imagen',   label: 'Imagen Destino'},
+    { to: '/señal',  label: 'Señal IBT'     },
+    { to: '/imagen', label: 'Imagen Destino'},
   ]},
   { label: 'Estructura y Valor', num: '03', items: [
-    { to: '/empleo',    label: 'Empleo'    },
-    { to: '/captura',   label: 'Captura'   },
-    { to: '/perfil',    label: 'Perfil'    },
-    { to: '/benchmark', label: 'Benchmark' },
+    { to: '/alojamiento', label: 'Alojamiento' },
+    { to: '/informal',    label: 'Informal'    },
+    { to: '/empleo',      label: 'Empleo'      },
+    { to: '/captura',     label: 'Captura'     },
+    { to: '/perfil',      label: 'Perfil'      },
+    { to: '/benchmark',   label: 'Benchmark'   },
   ]},
   { label: 'Decisión', num: '04', items: [
-    { to: '/estimado',    label: 'Estimado OLS'  },
-    { to: '/agenda',      label: 'Agenda 90 días' },
-    { to: '/alojamiento', label: 'Alojamiento'    },
-    { to: '/salud',    label: 'Salud Turística'  },
-    { to: '/madurez',  label: 'Madurez Obs.'     },
-    { to: '/nacional', label: 'Nacional'          },
+    { to: '/estimado', label: 'Estimado OLS'   },
+    { to: '/salud',    label: 'Salud Turística'},
+    { to: '/agenda',   label: 'Agenda 90 días' },
+    { to: '/madurez',  label: 'Madurez'        },
   ]},
 ]
 
