@@ -426,22 +426,17 @@ export default function Eventos() {
           </div>
 
           <SectionTitle main="Pax aéreos julio — baseline ANAC." context="Cabotaje · Aeropuerto Mal Paso SDE" style={{ marginBottom:28 }} />
-          <ResponsiveContainer width="100%" height={180}>
-            <BarChart data={ANAC_JULIO} margin={{ top:10, right:10, left:0, bottom:0 }}>
-              <XAxis dataKey="anio" tick={{ fontSize:10, fill:C.slate, fontFamily:'Plus Jakarta Sans' }} axisLine={false} tickLine={false} />
-              <YAxis domain={[0,30000]} tick={{ fontSize:10, fill:C.slate, fontFamily:'Plus Jakarta Sans' }} axisLine={false} tickLine={false} tickFormatter={v => `${(v/1000).toFixed(0)}K`} />
-              <Tooltip content={<TipPaper />} formatter={v => [v.toLocaleString('es-AR'), 'Pasajeros']} />
-              <Bar dataKey="pax" name="Pax cabotaje" radius={[2,2,0,0]}>
-                {ANAC_JULIO.map((r,i) => (
-                  <Cell key={i} fill={r.proyectado ? `${C.volt}80` : r.evento ? C.volt : C.stone} />
-                ))}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
-          <div style={{ display:'flex', gap:20, marginTop:12, flexWrap:'wrap' }}>
-            <div style={{ display:'flex', alignItems:'center', gap:6 }}><div style={{ width:12, height:8, background:C.volt, borderRadius:2 }} /><span style={{ fontSize:10, color:C.slate, letterSpacing:'0.1em', textTransform:'uppercase' }}>Con evento Pumas</span></div>
-            <div style={{ display:'flex', alignItems:'center', gap:6 }}><div style={{ width:12, height:8, background:C.stone, borderRadius:2 }} /><span style={{ fontSize:10, color:C.slate, letterSpacing:'0.1em', textTransform:'uppercase' }}>Baseline</span></div>
-            <div style={{ display:'flex', alignItems:'center', gap:6 }}><div style={{ width:12, height:8, background:`${C.volt}80`, borderRadius:2 }} /><span style={{ fontSize:10, color:C.slate, letterSpacing:'0.1em', textTransform:'uppercase' }}>Proyección 2026</span></div>
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(5,1fr)', gap:0 }}>
+            {ANAC_JULIO.map((r,i) => (
+              <div key={i} style={{ padding:'clamp(18px,2.5vw,28px)', borderRight:`0.5px solid ${C.stone}30`, position:'relative' }}>
+                {r.evento && <div style={{ position:'absolute', top:0, left:0, right:0, height:2, background: r.proyectado ? `${C.volt}60` : C.volt }} />}
+                <div style={{ fontSize:'clamp(1.1rem,2vw,1.6rem)', fontWeight:200, color: r.proyectado ? C.slate : C.ink, letterSpacing:'-0.03em', lineHeight:1, marginBottom:8 }}>
+                  {(r.pax/1000).toFixed(1)}K
+                </div>
+                <div style={{ fontSize:9, fontWeight:700, color:C.slate, letterSpacing:'0.12em', textTransform:'uppercase', marginBottom:4 }}>{r.anio}</div>
+                {r.evento && <div style={{ fontSize:9, color: r.proyectado ? `${C.volt}90` : C.volt, letterSpacing:'0.08em', textTransform:'uppercase', fontWeight:600 }}>{r.proyectado ? 'proyectado' : 'pumas SDE'}</div>}
+              </div>
+            ))}
           </div>
         </section>
 
