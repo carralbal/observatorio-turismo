@@ -98,7 +98,6 @@ export default function Layout() {
         </NavLink>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
-          <div style={{ display: 'flex', gap: 4, '@media(maxWidth:640px)': { display: 'none' } }}>
           {!isMobile && [
             { to: '/agenda',   Icon: Zap,      label: 'Acción'   },
             { to: '/madurez',  Icon: Layers,   label: 'Madurez'  },
