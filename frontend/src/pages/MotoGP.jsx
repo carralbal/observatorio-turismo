@@ -55,6 +55,7 @@ const CustomActiveDot = (props) => {
 
 export default function MotoGP() {
   const { data: raw, loading } = useCSV('/data/data_motogp.csv')
+  const { data: trends } = useCSV('/data/data_trends.csv')
   const termas = useMemo(() => raw.filter(r => Number(r.es_termas) === 1), [raw])
 
   const porAnio = useMemo(() => termas
@@ -77,6 +78,22 @@ export default function MotoGP() {
   const upliftPct = promBaseline > 0 ? Math.round((upliftPromedio/promBaseline)*100) : 0
   const mejorAnio = motogpAnios.reduce((a,b) => b.viajeros > a.viajeros ? b : a, motogpAnios[0] || {})
   const totalViajerosMotoGP = motogpAnios.reduce((a,b) => a+b.viajeros, 0)
+
+
+  // IBT serie con markers de eventos MotoGP
+  const MOTOGP_FECHAS = ['2018-03-01','2018-04-01','2019-03-01','2019-04-01','2022-03-01','2023-03-01','2024-02-01']
+  const ibtSerie = useMemo(() => {
+    if (!trends?.length) return []
+    return trends
+      .filter(r => r.fecha >= '2017-01-01')
+      .map(r => ({
+        fecha:   r.fecha,
+        label:   new Date(r.fecha + 'T12:00:00').toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
+        ibt:     Number(r.ibt_termas),
+        motogp:  Number(r.ibt_motogp),
+        esMotoGP: MOTOGP_FECHAS.includes(r.fecha),
+      }))
+  }, [trends])
 
   if (loading) return <Loading />
 
@@ -182,6 +199,48 @@ export default function MotoGP() {
           $2.800M ARS sobre la economía local.
         </Interpretacion>
       </section>
+      {/* POSICIONAMIENTO DIGITAL */}
+      <section style={{ background: C.ink, padding: 'clamp(56px,7vw,80px) var(--pad)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+          <Paralelo /><Eyebrow light>Google Trends · IBT</Eyebrow>
+        </div>
+        <SectionTitle light main="El evento posiciona el destino." context="IBT Termas de Río Hondo · 2017–2026" style={{ marginBottom: 16 }} />
+        <p style={{ fontSize: 'var(--fs-sm)', color: 'rgba(250,250,247,0.5)', maxWidth: 600, lineHeight: 1.7, marginBottom: 40 }}>
+          Cada edición del MotoGP genera un spike de búsquedas digitales por "Termas de Río Hondo". El impacto no es solo económico — el evento posiciona el destino ante millones de personas que no vinieron pero lo conocieron.
+        </p>
+        <div style={{ height: 'clamp(180px,22vw,280px)', marginBottom: 16 }}>
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={ibtSerie} margin={{ top: 8, right: 0, left: 0, bottom: 0 }}>
+              <XAxis dataKey="label" tick={{ fill: C.stone, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} interval={11} />
+              <YAxis tick={{ fill: C.stone, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} width={28} domain={[0,100]} />
+              <Tooltip contentStyle={{ background: '#111', border: '1px solid rgba(250,250,247,0.1)', fontFamily: 'Plus Jakarta Sans', fontSize: 12 }} labelStyle={{ color: C.stone }} formatter={(v, n) => [v, n === 'ibt' ? 'IBT Termas' : 'IBT MotoGP']} />
+              {ibtSerie.filter(r => r.esMotoGP).map((r, i) => (
+                <ReferenceLine key={i} x={r.label} stroke={C.volt} strokeDasharray="3 3" strokeWidth={1.5} />
+              ))}
+              <Line type="monotone" dataKey="ibt" name="ibt" stroke={C.paper} strokeWidth={2} dot={false} />
+              <Line type="monotone" dataKey="motogp" name="motogp" stroke={C.volt} strokeWidth={1.5} dot={false} strokeDasharray="4 2" />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+        <div style={{ display: 'flex', gap: 24, marginBottom: 24 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div style={{ width: 24, height: 2, background: C.paper }} />
+            <span style={{ fontSize: 'var(--fs-xs)', color: C.stone }}>IBT Termas de Río Hondo</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div style={{ width: 24, height: 2, background: C.volt, borderTop: '2px dashed '+C.volt }} />
+            <span style={{ fontSize: 'var(--fs-xs)', color: C.stone }}>Búsqueda "MotoGP"</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div style={{ width: 2, height: 16, background: C.volt, opacity: 0.6 }} />
+            <span style={{ fontSize: 'var(--fs-xs)', color: C.stone }}>Edición MotoGP</span>
+          </div>
+        </div>
+        <Interpretacion light>
+          Las líneas verticales marcan cada edición del MotoGP en Termas. El IBT sube sistemáticamente en los meses del evento — y en algunos casos el efecto se mantiene 1-2 meses después. El "MotoGP IBT" (línea volt) muestra el interés específico por la carrera: pico en el mes del evento y caída rápida. El IBT de Termas, en cambio, tiene una cola más larga — el destino queda en la memoria del buscador.
+        </Interpretacion>
+      </section>
+
     </>
   )
 }
