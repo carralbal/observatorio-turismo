@@ -19,7 +19,6 @@ import PerfilP from './pages/Perfil'
 import AgendaP from './pages/Agenda'
 import AlojamientoP from './pages/Alojamiento'
 import DatabookP from './pages/Databook'
-import DatabookP from './pages/Databook'
 
 const router = createBrowserRouter([
   {
@@ -45,7 +44,6 @@ const router = createBrowserRouter([
       { path: 'agenda',      element: <AgendaP /> },
       { path: 'alojamiento', element: <AlojamientoP /> },
       { path: 'databook',    element: <DatabookP /> },
-      { path: 'databook',     element: <DatabookP /> },
     ],
   },
 ])
