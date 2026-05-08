@@ -123,12 +123,15 @@ export default function Layout() {
             aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
             style={{
               background: 'none', border: 'none', cursor: 'pointer',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
               color: C.paper, padding: 6, borderRadius: 4,
-              transition: 'opacity 0.2s',
+              transition: 'opacity 0.2s', gap: 2,
             }}
           >
             {menuOpen ? <X size={fs.menuIcon} /> : <Menu size={fs.menuIcon} />}
+            <span style={{ fontSize: 8, fontWeight: 700, letterSpacing: '0.18em', color: menuOpen ? C.stone : C.volt, textTransform: 'uppercase', lineHeight: 1 }}>
+              {menuOpen ? 'cerrar' : 'menú'}
+            </span>
           </button>
         </div>
       </nav>
