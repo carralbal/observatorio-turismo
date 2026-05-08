@@ -14,7 +14,7 @@ WITH viajeros AS (
     WHERE origen_viajeros = 'Total'
       AND localidad IN (
           'Santiago del Estero', 'Termas',
-          'Tucumán', 'La Rioja', 'Catamarca',
+          'Tucumán', 'Salta', 'La Rioja', 'Catamarca',
           'San Luis', 'Jujuy'
       )
     GROUP BY 1, 2, 4
@@ -29,7 +29,7 @@ pernoctes AS (
     WHERE origen_pernoctes = 'Total'
       AND localidad IN (
           'Santiago del Estero', 'Termas',
-          'Tucumán', 'La Rioja', 'Catamarca',
+          'Tucumán', 'Salta', 'La Rioja', 'Catamarca',
           'San Luis', 'Jujuy'
       )
     GROUP BY 1, 2
@@ -43,6 +43,8 @@ cnrt AS (
                  THEN pasajeros ELSE 0 END)     AS pasajeros_bus_sde,
         SUM(CASE WHEN par_origen_destino ILIKE '%Tucumán%'
                  THEN pasajeros ELSE 0 END)     AS pasajeros_bus_tucuman,
+        SUM(CASE WHEN par_origen_destino ILIKE '%Salta%'
+                 THEN pasajeros ELSE 0 END)     AS pasajeros_bus_salta,
         SUM(CASE WHEN par_origen_destino ILIKE '%La Rioja%'
                  THEN pasajeros ELSE 0 END)     AS pasajeros_bus_la_rioja,
         SUM(CASE WHEN par_origen_destino ILIKE '%Catamarca%'
@@ -66,6 +68,7 @@ SELECT
     CASE
         WHEN v.localidad IN ('Santiago del Estero','Termas') THEN c.pasajeros_bus_sde
         WHEN v.localidad = 'Tucumán'   THEN c.pasajeros_bus_tucuman
+        WHEN v.localidad = 'Salta'     THEN c.pasajeros_bus_salta
         WHEN v.localidad = 'La Rioja'  THEN c.pasajeros_bus_la_rioja
         WHEN v.localidad = 'Catamarca' THEN c.pasajeros_bus_catamarca
         WHEN v.localidad = 'San Luis'  THEN c.pasajeros_bus_san_luis

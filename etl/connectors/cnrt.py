@@ -10,7 +10,7 @@ WAREHOUSE = "warehouse/observatorio.duckdb"
 URL = "https://datos.yvera.gob.ar/dataset/b18f1c90-0c66-4771-8bd8-289e5cfa6e60/resource/0e8a61b7-8127-41a4-8e83-a37f50e24d1f/download/magnitudes_por_ruta.csv"
 
 PROVINCIAS_PARES = ["Tucum", "La Rioja", "Catamarca", "San Luis", "Jujuy",
-                    "Santiago", "Termas"]
+                    "Salta", "Santiago", "Termas"]
 
 def fetch_cnrt():
     logger.info("Descargando CNRT — magnitudes por ruta...")
