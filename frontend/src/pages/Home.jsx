@@ -277,7 +277,7 @@ function ChartEstadia({ termasAll, airdnaTermas, corte }) {
     .filter(r => r.estadia_promedio && Number(r.estadia_promedio) > 0)
     .map(r => ({
       fecha: r.fecha,
-      label: new Date(r.fecha).toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
+      label: new Date(r.fecha + 'T12:00:00').toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
       year: new Date(r.fecha).getFullYear(),
       estadia_eoh:      Number(r.estadia_promedio),
       estadia_informal: null,
@@ -297,7 +297,7 @@ function ChartEstadia({ termasAll, airdnaTermas, corte }) {
   Object.entries(airMap).forEach(([fecha, val]) => {
     if (!merged[fecha]) {
       const d = new Date(fecha)
-      merged[fecha] = { fecha, label: d.toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }), year: d.getFullYear(), estadia_eoh: null, estadia_informal: null }
+      merged[fecha] = { fecha, label: new Date(d.toISOString().slice(0,10) + 'T12:00:00').toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }), year: d.getFullYear(), estadia_eoh: null, estadia_informal: null }
     }
     // Only show informal after EOH cutoff
     if (!corte || fecha > corte) merged[fecha].estadia_informal = val
@@ -400,7 +400,7 @@ export default function Home() {
     const cap = capitalEOH.find(c => c.fecha === t.fecha)
     eohMap[t.fecha] = {
       fecha: t.fecha,
-      label: d.toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
+      label: new Date(d.toISOString().slice(0,10) + 'T12:00:00').toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
       year: d.getFullYear(),
       termas: Number(t.viajeros_total) || null,
       capital: cap ? Number(cap.viajeros_total) || null : null,
@@ -413,14 +413,14 @@ export default function Home() {
   termasOLS.forEach(t => {
     if (!eohMap[t.fecha]) {
       const d = new Date(t.fecha)
-      eohMap[t.fecha] = { fecha: t.fecha, label: d.toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }), year: d.getFullYear(), termas: null, capital: null, termasEst: null, capitalEst: null }
+      eohMap[t.fecha] = { fecha: t.fecha, label: new Date(d.toISOString().slice(0,10) + 'T12:00:00').toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }), year: d.getFullYear(), termas: null, capital: null, termasEst: null, capitalEst: null }
     }
     if (!corte || t.fecha > corte) eohMap[t.fecha].termasEst = Number(t.viajeros) || null
   })
   capitalOLS.forEach(t => {
     if (!eohMap[t.fecha]) {
       const d = new Date(t.fecha)
-      eohMap[t.fecha] = { fecha: t.fecha, label: d.toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }), year: d.getFullYear(), termas: null, capital: null, termasEst: null, capitalEst: null }
+      eohMap[t.fecha] = { fecha: t.fecha, label: new Date(d.toISOString().slice(0,10) + 'T12:00:00').toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }), year: d.getFullYear(), termas: null, capital: null, termasEst: null, capitalEst: null }
     }
     if (!corte || t.fecha > corte) eohMap[t.fecha].capitalEst = Number(t.viajeros) || null
   })
