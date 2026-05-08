@@ -92,16 +92,16 @@ export default function Layout() {
       }}>
         <NavLink to="/" onClick={close} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8 }}>
           <span style={{ fontSize: fs.navBrand, fontWeight: 700, color: C.paper, letterSpacing: '0.22em', textTransform: 'uppercase' }}>
-            Observatorio SDE
+            {isMobile ? 'SDE' : 'Observatorio SDE'}
           </span>
           <Paralelo w={10} h={5} />
         </NavLink>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
-          {!isMobile && [
-            { to: '/agenda',   Icon: Zap,      label: 'Acción'   },
-            { to: '/madurez',  Icon: Layers,   label: 'Madurez'  },
-            { to: '/databook', Icon: Info,      label: 'DataBook' },
+        <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 12 : 20 }}>
+          {[
+            { to: '/agenda',   Icon: Zap,    label: 'Acción'   },
+            { to: '/madurez',  Icon: Layers, label: 'Madurez'  },
+            { to: '/databook', Icon: Info,   label: 'DataBook' },
           ].map(({ to, Icon, label }) => (
             <NavLink key={to} to={to} onClick={close} style={({ isActive }) => ({
               display: 'flex', alignItems: 'center', gap: 6,
@@ -109,10 +109,12 @@ export default function Layout() {
               borderBottom: isActive ? `1.5px solid ${C.volt}` : '1.5px solid transparent',
               paddingBottom: 4,
             })}>
-              <Icon size={isMobile ? 15 : 13} style={{ color: C.volt }} />
-              <span style={{ fontSize: fs.navLabel, fontWeight: 500, color: C.volt, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
-                {label}
-              </span>
+              <Icon size={isMobile ? 18 : 13} style={{ color: C.volt }} />
+              {!isMobile && (
+                <span style={{ fontSize: fs.navLabel, fontWeight: 500, color: C.volt, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+                  {label}
+                </span>
+              )}
             </NavLink>
           ))}
 
