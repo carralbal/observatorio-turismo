@@ -35,7 +35,7 @@ const ScatterTip = ({ active, payload }) => {
 }
 
 export default function Madurez() {
-  const { data: raw, loading } = useCSV('/data/data_madurez.csv')
+  const { data: raw, loading } = useCSV('/data/data_salud.csv')
 
   // Last year data (2025)
   const datos2025 = useMemo(() => raw
@@ -220,11 +220,49 @@ export default function Madurez() {
           Santiago del Estero ocupa el puesto 12° entre 24 provincias con un ISTP de nivel
           de 57,9/100 — en el Cuadrante I (alto nivel + alta trayectoria). La fortaleza
           principal es la demanda hotelera de Termas de Río Hondo, el mayor centro termal
-          de Sudamérica. La debilidad estructural es la conectividad aérea (41,7/100):
-          recuperar frecuencias hacia el nivel de 2017 es la palanca con mayor impacto
-          potencial sobre el ISTP. En el NOA, SDE supera a Salta (65,4), Tucumán (58,8),
-          Entre Ríos (44,2) y Jujuy (47,5). Fuente: ISTP · elaboración propia.
+          de Sudamérica. La debilidad estructural es la conectividad aérea (32,8/100):
+          recuperar frecuencias hacia el nivel de 2019 es la palanca con mayor impacto
+          potencial sobre el ISTP. Fuente: ISTP · elaboración propia · TFM D. Carralbal MBA UBA 2025.
         </Interpretacion>
+      </section>
+
+      {/* METODOLOGÍA ISTP */}
+      <section style={{ background: C.paper2, padding: 'clamp(56px,7vw,80px) var(--pad)' }}>
+        <SectionTitle main="Cómo se calcula el ISTP." context="Índice de Salud Turística Provincial · metodología" style={{ marginBottom: 48 }} />
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,420px),1fr))', gap: 40, marginBottom: 48 }}>
+          <div>
+            <div style={{ fontSize: 'var(--fs-sm)', fontWeight: 600, color: C.ink, marginBottom: 16 }}>¿Qué mide?</div>
+            <p style={{ fontSize: 'var(--fs-sm)', color: C.slate, lineHeight: 1.75, margin: '0 0 16px' }}>
+              El ISTP mide la salud real del sistema turístico provincial: demanda efectiva, ocupación hotelera, conectividad e infraestructura de oferta. No mide el potencial sino el desempeño observado en datos oficiales.
+            </p>
+            <p style={{ fontSize: 'var(--fs-sm)', color: C.slate, lineHeight: 1.75, margin: 0 }}>
+              Fue desarrollado en el TFM de Diego Carralbal (MBA UBA, 2025) y calibrado sobre las 24 jurisdicciones argentinas usando datos EOH, ANAC, CNRT e INDEC. Escala 0–100, ponderación basada en impacto económico de cada componente.
+            </p>
+          </div>
+          <div>
+            <div style={{ fontSize: 'var(--fs-sm)', fontWeight: 600, color: C.ink, marginBottom: 16 }}>Ponderación</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+              {[
+                { comp: 'Demanda (pernoctes EOH)',       peso: '50%', sde: 57.5,  color: C.volt },
+                { comp: 'Ocupación hotelera (TOP)',       peso: '30%', sde: 66.2,  color: C.volt },
+                { comp: 'Conectividad aérea (ANAC)',      peso: '5%',  sde: 32.8,  color: C.stone },
+                { comp: 'Conectividad terrestre (CNRT)',  peso: '5%',  sde: 64.1,  color: C.volt },
+                { comp: 'Oferta — plazas hoteleras',      peso: '5%',  sde: 58.3,  color: C.volt },
+                { comp: 'Oferta — establecimientos',      peso: '5%',  sde: 54.7,  color: C.volt },
+              ].map((c, i) => (
+                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 14px', background: C.paper }}>
+                  <span style={{ fontSize: 9, fontWeight: 700, color: C.stone, letterSpacing: '0.1em', width: 32, flexShrink: 0 }}>{c.peso}</span>
+                  <span style={{ fontSize: 'var(--fs-sm)', color: C.ink, flex: 1 }}>{c.comp}</span>
+                  <span style={{ fontSize: 'var(--fs-sm)', fontWeight: 600, color: c.sde < 45 ? C.stone : C.ink }}>{c.sde}</span>
+                  <div style={{ width: 48, height: 4, background: `${C.stone}30`, borderRadius: 2 }}>
+                    <div style={{ width: `${c.sde}%`, height: '100%', background: c.sde < 45 ? C.stone : C.volt, borderRadius: 2 }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div style={{ fontSize: 'var(--fs-xs)', color: C.slate, marginTop: 12, opacity: 0.7 }}>Columna derecha: score SDE 2025 (0–100)</div>
+          </div>
+        </div>
       </section>
     </>
   )
