@@ -224,6 +224,7 @@ function BrechaSection({ plazasData, aereoData }) {
 
   const aereo2025 = aereoReciente?.asientosSemanales ?? 455
   const aereo2017 = 4045
+  const cobertura  = Math.round((aereo2025 / plazas) * 100)
   const aereolineasStr = aereoReciente?.aereolineas?.join(' · ') ?? 'Aerolíneas Argentinas'
   const fechaRef = aereoReciente?.ultimos3?.[0] ? new Date(aereoReciente.ultimos3[0]).toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }) : '2025'
 
