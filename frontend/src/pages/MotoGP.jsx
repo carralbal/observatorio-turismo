@@ -56,6 +56,7 @@ const CustomActiveDot = (props) => {
 export default function MotoGP() {
   const { data: raw, loading } = useCSV('/data/data_motogp.csv')
   const { data: trends } = useCSV('/data/data_trends.csv')
+  const { data: olaRaw } = useCSV('/data/data_motogp_ola.csv')
   const termas = useMemo(() => raw.filter(r => Number(r.es_termas) === 1), [raw])
 
   const porAnio = useMemo(() => termas
@@ -79,6 +80,19 @@ export default function MotoGP() {
   const mejorAnio = motogpAnios.reduce((a,b) => b.viajeros > a.viajeros ? b : a, motogpAnios[0] || {})
   const totalViajerosMotoGP = motogpAnios.reduce((a,b) => a+b.viajeros, 0)
 
+
+  // OLA DE ARRASTRE — datos diarios relativos al evento
+  const olaData = useMemo(() => {
+    if (!olaRaw?.length) return []
+    return olaRaw
+      .filter(r => Number(r.dia_rel) >= -21 && Number(r.dia_rel) <= 16)
+      .map(r => ({
+        label:   r.label,
+        dia_rel: Number(r.dia_rel),
+        ibt:     Number(r.ibt),
+        fase:    r.fase,
+      }))
+  }, [olaRaw])
 
   // IBT serie con markers de eventos MotoGP
   const MOTOGP_FECHAS = ['2018-03-01','2018-04-01','2019-03-01','2019-04-01','2022-03-01','2023-03-01','2024-02-01']
@@ -238,6 +252,74 @@ export default function MotoGP() {
         </div>
         <Interpretacion light>
           Las líneas verticales marcan cada edición del MotoGP en Termas. El IBT sube sistemáticamente en los meses del evento — y en algunos casos el efecto se mantiene 1-2 meses después. El "MotoGP IBT" (línea volt) muestra el interés específico por la carrera: pico en el mes del evento y caída rápida. El IBT de Termas, en cambio, tiene una cola más larga — el destino queda en la memoria del buscador.
+        </Interpretacion>
+      </section>
+
+      {/* OLA DE ARRASTRE */}
+      <section style={{ background: C.paper, padding: 'clamp(56px,7vw,80px) var(--pad)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+          <Paralelo /><Eyebrow>Google Trends · Diario · 2025</Eyebrow>
+        </div>
+        <SectionTitle main="La ola de arrastre." context="IBT diario Termas de Río Hondo · 21 días antes y 16 días después de la carrera" style={{ marginBottom: 16 }} />
+        <p style={{ fontSize: 'var(--fs-sm)', color: C.slate, maxWidth: 640, lineHeight: 1.7, marginBottom: 40 }}>
+          El evento no termina el día de la carrera. El interés digital se construye dos semanas antes y se mantiene elevado una semana después. La carrera 2025 multiplicó por 3.3x el nivel de búsquedas baseline. El arrastre post-evento equivale a +12% sobre el baseline por 10 días adicionales.
+        </p>
+
+        {/* Stats rápidos */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '0 clamp(14px,4vw,40px)', marginBottom: 40 }}>
+          {[
+            { v: '23.8', l: 'Baseline', d: 'promedio sin evento' },
+            { v: '+63%', l: 'Build-up', d: '2 semanas antes' },
+            { v: '3.3×', l: 'Pico carrera', d: 'día de la carrera' },
+            { v: '+12%', l: 'Arrastre', d: '10 días post-evento' },
+          ].map((k, i) => (
+            <div key={i} style={{ borderLeft: `1px solid ${C.stone}`, paddingLeft: 'clamp(10px,1.5vw,20px)' }}>
+              <div style={{ fontSize: 'clamp(1.4rem,2.5vw,2.2rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.04em', lineHeight: 1, marginBottom: 8 }}>{k.v}</div>
+              <VoltLine w={16} />
+              <div style={{ fontSize: 'var(--fs-xs)', fontWeight: 500, color: C.ink, marginTop: 8, marginBottom: 2 }}>{k.l}</div>
+              <div style={{ fontSize: 'var(--fs-xs)', color: C.slate, opacity: 0.7 }}>{k.d}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Gráfico */}
+        <div style={{ height: 'clamp(200px,25vw,300px)', marginBottom: 16 }}>
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={olaData} margin={{ top: 8, right: 0, left: 0, bottom: 0 }}>
+              <defs>
+                <linearGradient id="olaGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stopColor={C.stone} stopOpacity={0.1} />
+                  <stop offset="40%" stopColor={C.volt} stopOpacity={0.15} />
+                  <stop offset="55%" stopColor={C.volt} stopOpacity={0.4} />
+                  <stop offset="70%" stopColor={C.volt} stopOpacity={0.15} />
+                  <stop offset="100%" stopColor={C.stone} stopOpacity={0.05} />
+                </linearGradient>
+              </defs>
+              <XAxis dataKey="label" tick={{ fill: C.stone, fontSize: 9, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} interval={6} />
+              <YAxis tick={{ fill: C.stone, fontSize: 9 }} tickLine={false} axisLine={false} width={24} domain={[0,105]} />
+              <Tooltip contentStyle={{ background: C.paper2, border: `1px solid ${C.stone}30`, fontFamily: 'Plus Jakarta Sans', fontSize: 11 }} formatter={(v) => [v, 'IBT']} />
+              <ReferenceLine x="D+0" stroke={C.volt} strokeWidth={2} label={{ value: 'Carrera', fill: C.ink, fontSize: 9, fontFamily: 'Plus Jakarta Sans' }} />
+              <ReferenceLine y={23.8} stroke={C.stone} strokeDasharray="4 3" strokeWidth={1} />
+              <Line type="monotone" dataKey="ibt" stroke={C.ink} strokeWidth={2.5} dot={(p) => p.payload.dia_rel === 0 ? <circle key={p.key} cx={p.cx} cy={p.cy} r={5} fill={C.volt} stroke="none" /> : null} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+        <div style={{ display: 'flex', gap: 24 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div style={{ width: 20, height: 2, background: C.ink }} />
+            <span style={{ fontSize: 'var(--fs-xs)', color: C.slate }}>IBT Termas · diario</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div style={{ width: 20, height: '1px', background: C.stone, borderTop: '1px dashed' }} />
+            <span style={{ fontSize: 'var(--fs-xs)', color: C.slate }}>Baseline promedio (23.8)</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div style={{ width: 8, height: 8, borderRadius: '50%', background: C.volt }} />
+            <span style={{ fontSize: 'var(--fs-xs)', color: C.slate }}>Día de la carrera</span>
+          </div>
+        </div>
+        <Interpretacion style={{ marginTop: 24 }}>
+          La curva muestra cómo el interés por "Termas de Río Hondo" se construye orgánicamente en las 2 semanas previas a la carrera, alcanza un pico de 100 el día del evento, y sostiene niveles elevados por 10 días adicionales. Esto es el activo intangible del MotoGP: posicionamiento de destino que ninguna campaña publicitaria puede comprar. Fuente: Google Trends · elaboración propia.
         </Interpretacion>
       </section>
 
