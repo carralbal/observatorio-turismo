@@ -38,7 +38,7 @@ export default function Imagen() {
   const datos = useMemo(() => raw.map(r => ({
     ...r,
     fecha: r.fecha,
-    label: new Date(r.fecha).toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
+    label: new Date(r.fecha+'T12:00:00').toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
     videos: Number(r.videos_publicados) || 0,
     vistas: Number(r.vistas_totales) || 0,
     likes: Number(r.likes_totales) || 0,

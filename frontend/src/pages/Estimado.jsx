@@ -41,7 +41,7 @@ export default function Estimado() {
     .filter(r => r.localidad === 'Termas' && Number(r.flag_covid) === 0)
     .map(r => ({
       fecha: r.fecha,
-      label: new Date(r.fecha).toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
+      label: new Date(r.fecha+'T12:00:00').toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
       viajeros_obs: Number(r.viajeros_total) || null,
       anio: Number(r.anio),
     }))
@@ -52,7 +52,7 @@ export default function Estimado() {
     .filter(r => r.localidad === 'Termas')
     .map(r => ({
       fecha: r.fecha,
-      label: new Date(r.fecha).toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
+      label: new Date(r.fecha+'T12:00:00').toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
       viajeros_est: Number(r.viajeros) || null,
       ic_low: Number(r.viajeros_ic_low) || null,
       ic_high: Number(r.viajeros_ic_high) || null,

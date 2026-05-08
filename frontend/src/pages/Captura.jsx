@@ -36,7 +36,7 @@ export default function Captura() {
     .filter(r => Number(r.flag_covid) === 0)
     .map(r => ({
       fecha: r.fecha,
-      label: new Date(r.fecha).toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
+      label: new Date(r.fecha+'T12:00:00').toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
       anio: Number(r.anio),
       viajeros: Number(r.viajeros_total) || 0,
       potencial_usd: Number(r.ingreso_potencial_usd) || 0,

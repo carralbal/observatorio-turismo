@@ -49,7 +49,7 @@ export default function Empleo() {
     .filter(r => Number(r.anio) >= 2015)
     .map(r => ({
       fecha: r.fecha,
-      label: new Date(r.fecha).toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
+      label: new Date(r.fecha+'T12:00:00').toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
       empleo: Number(r.empleo_registrado) || 0,
       anio: Number(r.anio),
     }))

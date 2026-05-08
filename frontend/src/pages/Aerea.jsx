@@ -32,7 +32,7 @@ function agruparPorFecha(rows) {
       load_factor: x.asientos > 0 ? Math.round((x.pasajeros / x.asientos) * 100) : 0,
       label: new Date(x.fecha).toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
     }))
-    .sort((a, b) => new Date(a.fecha) - new Date(b.fecha))
+    .sort((a, b) => new Date(a.fecha+'T12:00:00') - new Date(b.fecha+'T12:00:00'))
 }
 
 function agruparPorAerolinea(rows) {
@@ -105,13 +105,13 @@ export default function Aerea() {
   const sdeFilt = useMemo(() => {
     if (!anio && !mes) return sde
     return sde.filter(r => {
-      const d = new Date(r.fecha)
+      const d = new Date(r.fecha+'T12:00:00')
       return (anio ? d.getFullYear() === anio : true) && (mes ? d.getMonth() + 1 === mes : true)
     })
   }, [sde, anio, mes])
 
   const serie = useMemo(() => {
-    const base = anio ? sde.filter(r => new Date(r.fecha).getFullYear() === anio) : sde
+    const base = anio ? sde.filter(r => new Date(r.fecha+'T12:00:00').getFullYear() === anio) : sde
     return agruparPorFecha(base)
   }, [sde, anio])
 

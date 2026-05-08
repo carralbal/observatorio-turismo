@@ -47,7 +47,7 @@ export default function Perfil() {
   ].filter(r => r.pct > 0)
 
   const serieGasto = datos.map(r => ({
-    label: new Date(r.fecha).toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
+    label: new Date(r.fecha+'T12:00:00').toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
     gasto: Number(r.gasto_promedio_usd) || 0,
     estadia: Number(r.estadia_media_noches) || 0,
   }))

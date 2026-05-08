@@ -35,7 +35,7 @@ export default function Senal() {
     .filter(r => r.localidad === 'Termas')
     .map(r => ({
       fecha: r.fecha,
-      label: new Date(r.fecha).toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
+      label: new Date(r.fecha+'T12:00:00').toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
       ibt: Number(r.ibt_termas) || null,
       ibt_comp: Number(r.ibt_compuesto) || null,
       occ: Number(r.occ_informal_pct) || null,

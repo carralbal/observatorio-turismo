@@ -36,7 +36,7 @@ export default function Informal() {
   const serie = useMemo(() => rawTermas
     .map(r => ({
       fecha: r.fecha,
-      label: new Date(r.fecha).toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
+      label: new Date(r.fecha+'T12:00:00').toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
       occ: Math.round(Number(r.occ_pct_airroi) * 100) / 100,
       adr_ars: Math.round(Number(r.adr_ars)),
       revenue_ars: Math.round(Number(r.revenue_ars)),
