@@ -98,6 +98,25 @@ export default function Eventos() {
       .map(r => ({ label: r.label, dia_rel: Number(r.dia_rel), ibt: Number(r.ibt), fase: r.fase }))
   }, [olaRaw])
 
+  const ibtSdeSerie = useMemo(() => {
+    if (!trends?.length) return []
+    return trends
+      .filter(r => r.fecha >= '2024-05-01')
+      .map(r => ({
+        label:   new Date(r.fecha+'T12:00:00').toLocaleDateString('es-AR', { month:'short', year:'2-digit' }),
+        ibt:     Number(r.ibt_sde),
+        esJulio: new Date(r.fecha+'T12:00:00').getMonth() === 6,
+      }))
+  }, [trends])
+
+  const ANAC_JULIO = [
+    { anio:'2022', pax:19037, evento:true,  proyectado:false },
+    { anio:'2023', pax:22089, evento:false, proyectado:false },
+    { anio:'2024', pax:22252, evento:false, proyectado:false },
+    { anio:'2025', pax:22706, evento:false, proyectado:false },
+    { anio:'2026', pax:25500, evento:true,  proyectado:true  },
+  ]
+
   if (loading) return <Loading />
 
   const videoURL = evento === 'pumas' ? VIDEO_PUMAS : VIDEO_MOTOGP
@@ -323,8 +342,9 @@ export default function Eventos() {
       {evento === 'pumas' && <>
 
         <section style={{ background:C.paper, padding:'clamp(56px,7vw,80px) var(--pad)' }}>
-          <div style={{ display:'inline-flex', alignItems:'center', gap:8, background:'#FFF3CD', padding:'6px 14px', marginBottom:32 }}>
-            <span style={{ fontSize:9, fontWeight:700, letterSpacing:'0.12em', color:'#856404' }}>⏳ PRE-EVENTO · PROYECCIÓN</span>
+          <div style={{ display:'inline-flex', alignItems:'center', gap:8, marginBottom:32 }}>
+            <Paralelo w={10} h={10} />
+            <Eyebrow>Pre-evento · Proyección</Eyebrow>
           </div>
           <SectionTitle main="Los Pumas vs Inglaterra." context="Nations Championship · 18 julio 2026 · Estadio Madre de Ciudades" style={{ marginBottom:40 }} />
           <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(min(100%,220px),1fr))', gap:0 }}>
@@ -339,6 +359,119 @@ export default function Eventos() {
                 <VoltLine w={20} />
                 <div style={{ fontSize:'var(--fs-sm)', fontWeight:400, color:C.ink, marginTop:10, marginBottom:4 }}>{k.l}</div>
                 <div style={{ fontSize:'var(--fs-xs)', color:C.slate, opacity:0.65 }}>{k.d}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* IBT BASELINE SDE */}
+        <section style={{ background:C.ink, padding:'clamp(56px,7vw,80px) var(--pad)' }}>
+          <SectionTitle light main="IBT Santiago del Estero." context="Baseline de interés digital · últimos 24 meses" style={{ marginBottom:40 }} />
+          <ResponsiveContainer width="100%" height={220}>
+            <LineChart data={ibtSdeSerie} margin={{ top:10, right:20, left:0, bottom:0 }}>
+              <XAxis dataKey="label" tick={{ fontSize:10, fill:'rgba(250,250,247,0.4)', fontFamily:'Plus Jakarta Sans' }} axisLine={false} tickLine={false} />
+              <YAxis domain={[0,80]} tick={{ fontSize:10, fill:'rgba(250,250,247,0.4)', fontFamily:'Plus Jakarta Sans' }} axisLine={false} tickLine={false} />
+              <Tooltip content={<Tip />} />
+              <ReferenceLine y={32} stroke={C.stone} strokeDasharray="4 4" strokeOpacity={0.4} label={{ value:'baseline jul 25', fill:C.stone, fontSize:9, position:'insideTopRight' }} />
+              <Line dataKey="ibt" name="IBT SDE" stroke={C.volt} strokeWidth={2}
+                dot={({ cx, cy, payload }) => payload.esJulio
+                  ? <circle key={cx+cy} cx={cx} cy={cy} r={6} fill={C.volt} stroke={C.ink} strokeWidth={2} />
+                  : <circle key={cx+cy} cx={cx} cy={cy} r={2.5} fill={C.stone} opacity={0.5} />}
+                activeDot={{ r:7, fill:C.volt, stroke:C.ink }} />
+            </LineChart>
+          </ResponsiveContainer>
+          <div style={{ display:'flex', gap:20, marginTop:16, flexWrap:'wrap' }}>
+            <div style={{ display:'flex', alignItems:'center', gap:6 }}><div style={{ width:10, height:10, borderRadius:'50%', background:C.volt, border:`2px solid ${C.ink}` }} /><span style={{ fontSize:10, color:C.stone, letterSpacing:'0.1em', textTransform:'uppercase' }}>Julio (mes del evento)</span></div>
+            <div style={{ display:'flex', alignItems:'center', gap:6 }}><div style={{ width:24, height:2, background:C.stone, opacity:0.4 }} /><span style={{ fontSize:10, color:C.stone, letterSpacing:'0.1em', textTransform:'uppercase' }}>Baseline jul 2025 = 32</span></div>
+          </div>
+          <Interpretacion light style={{ marginTop:28 }}>
+            El IBT de julio 2025 fue 32 puntos. El MotoGP generó picos de 3.3× el baseline mensual. Para Pumas vs Inglaterra, evento de 1 día en pico de temporada, se proyecta un spike diario de 2–4× sin arrastre prolongado.
+          </Interpretacion>
+        </section>
+
+        {/* ANTECEDENTES SDE EN RUGBY */}
+        <section style={{ background:C.paper2, padding:'clamp(56px,7vw,80px) var(--pad)' }}>
+          <SectionTitle main="El Madre de Ciudades gana." context="2 partidos · 2 victorias · impacto turístico" style={{ marginBottom:40 }} />
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(min(100%,280px),1fr))', gap:1, marginBottom:48 }}>
+            {[
+              { anio:'2022', rival:'vs Escocia', mes:'Jul · Ventana julio', resultado:'W 45–17', viajeros:'38.400', uplift:'+20%', anac:'19.037', nota:'Primera vez Pumas en SDE. Julio pico. +6.400 viajeros vs baseline 2023–25.' },
+              { anio:'2024', rival:'vs Sudáfrica', mes:'Sep · Rugby Championship', resultado:'W 25–18', viajeros:'N/D', uplift:'N/D', anac:'N/D', nota:'Estadio casi agotado semanas antes. Sep ≠ pico. Sin EOH comparables de septiembre.' },
+              { anio:'2026', rival:'vs Inglaterra', mes:'18 Jul · Nations Championship', resultado:'Proyección', viajeros:'34–42K', uplift:'+10–25%', anac:'24–27K', nota:'Pico de temporada + rival top-5 mundial. Mayor convocatoria histórica proyectada.' },
+            ].map((a,i) => (
+              <div key={i} style={{ background: i===2 ? C.ink : C.paper, padding:'clamp(24px,3vw,36px)' }}>
+                <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', marginBottom:16 }}>
+                  <div>
+                    <div style={{ fontSize:'clamp(1.4rem,2.5vw,2.2rem)', fontWeight:200, color: i===2 ? C.paper : C.ink, letterSpacing:'-0.04em', lineHeight:1 }}>{a.anio}</div>
+                    <div style={{ fontSize:'var(--fs-sm)', fontWeight:600, color: i===2 ? C.volt : C.ink, marginTop:6, letterSpacing:'0.04em' }}>{a.rival}</div>
+                  </div>
+                  <span style={{ fontSize:9, fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase',
+                    color: a.resultado.startsWith('W') ? C.volt : C.stone,
+                    background: a.resultado.startsWith('W') ? C.ink : 'transparent',
+                    padding: a.resultado.startsWith('W') ? '3px 8px' : 0 }}>{a.resultado}</span>
+                </div>
+                <VoltLine w={20} />
+                <div style={{ marginTop:16, display:'grid', gridTemplateColumns:'1fr 1fr', gap:12 }}>
+                  {[['Viajeros SDE',a.viajeros],['Uplift est.',a.uplift],['Pax ANAC',a.anac],['Temporada',a.mes.split('·')[0].trim()]].map(([lbl,val],j) => (
+                    <div key={j}>
+                      <div style={{ fontSize:9, color: i===2 ? C.stone : C.slate, letterSpacing:'0.12em', textTransform:'uppercase', marginBottom:3 }}>{lbl}</div>
+                      <div style={{ fontSize:'var(--fs-sm)', fontWeight:600, color: i===2 ? C.paper : C.ink }}>{val}</div>
+                    </div>
+                  ))}
+                </div>
+                <div style={{ marginTop:16, paddingTop:12, fontSize:'var(--fs-xs)', lineHeight:1.6,
+                  borderTop:`0.5px solid ${i===2 ? 'rgba(250,250,247,0.1)' : C.stone+'40'}`,
+                  color: i===2 ? 'rgba(250,250,247,0.5)' : C.slate }}>{a.nota}</div>
+              </div>
+            ))}
+          </div>
+
+          <SectionTitle main="Pax aéreos julio — baseline ANAC." context="Cabotaje · Aeropuerto Mal Paso SDE" style={{ marginBottom:28 }} />
+          <ResponsiveContainer width="100%" height={180}>
+            <BarChart data={ANAC_JULIO} margin={{ top:10, right:10, left:0, bottom:0 }}>
+              <XAxis dataKey="anio" tick={{ fontSize:10, fill:C.slate, fontFamily:'Plus Jakarta Sans' }} axisLine={false} tickLine={false} />
+              <YAxis domain={[0,30000]} tick={{ fontSize:10, fill:C.slate, fontFamily:'Plus Jakarta Sans' }} axisLine={false} tickLine={false} tickFormatter={v => `${(v/1000).toFixed(0)}K`} />
+              <Tooltip content={<TipPaper />} formatter={v => [v.toLocaleString('es-AR'), 'Pasajeros']} />
+              <Bar dataKey="pax" name="Pax cabotaje" radius={[2,2,0,0]}>
+                {ANAC_JULIO.map((r,i) => (
+                  <Cell key={i} fill={r.proyectado ? `${C.volt}80` : r.evento ? C.volt : C.stone} />
+                ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+          <div style={{ display:'flex', gap:20, marginTop:12, flexWrap:'wrap' }}>
+            <div style={{ display:'flex', alignItems:'center', gap:6 }}><div style={{ width:12, height:8, background:C.volt, borderRadius:2 }} /><span style={{ fontSize:10, color:C.slate, letterSpacing:'0.1em', textTransform:'uppercase' }}>Con evento Pumas</span></div>
+            <div style={{ display:'flex', alignItems:'center', gap:6 }}><div style={{ width:12, height:8, background:C.stone, borderRadius:2 }} /><span style={{ fontSize:10, color:C.slate, letterSpacing:'0.1em', textTransform:'uppercase' }}>Baseline</span></div>
+            <div style={{ display:'flex', alignItems:'center', gap:6 }}><div style={{ width:12, height:8, background:`${C.volt}80`, borderRadius:2 }} /><span style={{ fontSize:10, color:C.slate, letterSpacing:'0.1em', textTransform:'uppercase' }}>Proyección 2026</span></div>
+          </div>
+        </section>
+
+        {/* NATIONS CHAMPIONSHIP */}
+        <section style={{ background:C.paper, padding:'clamp(56px,7vw,80px) var(--pad)' }}>
+          <SectionTitle main="Nations Championship 2026." context="El nuevo torneo global · hemisferio norte vs sur" style={{ marginBottom:40 }} />
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(min(100%,200px),1fr))', gap:0, marginBottom:40 }}>
+            {[
+              { v:'12', l:'Naciones participantes', d:'6 del norte · 6 del sur + invitados' },
+              { v:'1ª ed.', l:'Edición inaugural', d:'Reemplaza al Rugby Championship en 2026' },
+              { v:'Twickenham', l:'Final del torneo', d:'Londres · diciembre 2026' },
+              { v:'Top 5', l:'Ranking de Inglaterra', d:'Una de las potencias históricas del rugby' },
+            ].map((k,i) => (
+              <div key={i} style={{ padding:'clamp(24px,3vw,36px)', borderRight:`0.5px solid ${C.stone}30`, borderBottom:`0.5px solid ${C.stone}30` }}>
+                <div style={{ fontSize:'clamp(1.4rem,2.5vw,2.5rem)', fontWeight:200, color:C.ink, letterSpacing:'-0.04em', lineHeight:1, marginBottom:10 }}>{k.v}</div>
+                <VoltLine w={20} />
+                <div style={{ fontSize:'var(--fs-sm)', fontWeight:400, color:C.ink, marginTop:10, marginBottom:4 }}>{k.l}</div>
+                <div style={{ fontSize:'var(--fs-xs)', color:C.slate, opacity:0.65 }}>{k.d}</div>
+              </div>
+            ))}
+          </div>
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(min(100%,280px),1fr))', gap:16 }}>
+            {[
+              { titulo:'Por qué importa el rival', body:'Inglaterra es el rival de mayor convocatoria que los Pumas recibirán en Santiago del Estero. Potencia histórica, base de fans global con fuerte presencia en Argentina. Alta demanda de entradas prevista.' },
+              { titulo:'Historial Pumas en SDE', body:'2 jugados · 2 ganados. El Madre de Ciudades es estadio invicto para los Pumas: Escocia 2022 (45–17) y Sudáfrica 2024 (25–18). La localía santiagueña potencia el resultado.' },
+              { titulo:'Perfil del turista rugby', body:'El fan de rugby tiene gasto promedio 20–30% superior al turista estándar. Viaja con grupo, consume hotelería formal, gastronomía y servicios. Mayor captura de valor por viajero vs eventos masivos.' },
+            ].map((c,i) => (
+              <div key={i} style={{ padding:'clamp(20px,2.5vw,28px)', background:C.paper2, borderLeft:`2px solid ${C.volt}` }}>
+                <div style={{ fontSize:'var(--fs-sm)', fontWeight:700, color:C.ink, marginBottom:10 }}>{c.titulo}</div>
+                <div style={{ fontSize:'var(--fs-xs)', color:C.slate, lineHeight:1.7 }}>{c.body}</div>
               </div>
             ))}
           </div>
