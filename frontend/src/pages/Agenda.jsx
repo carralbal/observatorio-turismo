@@ -1,3 +1,5 @@
+const VIDEO_URL = 'https://www.pexels.com/es-es/download/video/29167798/'
+
 import { useState, useMemo } from 'react'
 import { C, Paralelo, VoltLine, Eyebrow, SectionTitle } from '../components/Atoms'
 
@@ -63,7 +65,12 @@ export default function Agenda() {
   return (
     <>
       {/* HERO */}
-      <section style={{ background: C.ink, padding: 'clamp(80px,10vw,120px) var(--pad) clamp(56px,7vw,80px)' }}>
+      <section style={{ position: 'relative', overflow: 'hidden', padding: 'clamp(80px,10vw,120px) var(--pad) clamp(56px,7vw,80px)' }}>
+        <video autoPlay loop muted playsInline style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0, filter: 'brightness(0.35)' }}>
+          <source src={VIDEO_URL} type="video/mp4" />
+        </video>
+        <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'linear-gradient(to right, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.6) 60%, rgba(10,10,10,0.2) 100%)' }} />
+        <div style={{ position: 'relative', zIndex: 2 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 28 }}>
           <Paralelo /><Eyebrow light>Capa de Decisión · Observatorio SDE</Eyebrow>
         </div>
@@ -74,6 +81,7 @@ export default function Agenda() {
           Cada señal del observatorio tiene un dueño, un horizonte y una prescripción concreta. El dato sin decisión es decoración.
         </p>
 
+        </div>
         {/* CONTADORES */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, auto)', gap: 0, marginTop: 48, maxWidth: 480 }}>
           {[
