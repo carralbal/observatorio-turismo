@@ -222,9 +222,9 @@ export default function MotoGP() {
         <p style={{ fontSize: 'var(--fs-sm)', color: 'rgba(250,250,247,0.5)', maxWidth: 600, lineHeight: 1.7, marginBottom: 40 }}>
           Cada edición del MotoGP genera un spike de búsquedas digitales por "Termas de Río Hondo". El impacto no es solo económico — el evento posiciona el destino ante millones de personas que no vinieron pero lo conocieron.
         </p>
-        <div style={{ height: 'clamp(180px,22vw,280px)', marginBottom: 16 }}>
+        <div style={{ height: 'clamp(180px,22vw,280px)', marginBottom: 16, background: 'transparent' }}>
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={ibtSerie} margin={{ top: 8, right: 0, left: 0, bottom: 0 }}>
+            <LineChart data={ibtSerie} margin={{ top: 8, right: 0, left: 0, bottom: 0 }} style={{ background: 'transparent' }}>
               <XAxis dataKey="label" tick={{ fill: C.stone, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} interval={11} />
               <YAxis tick={{ fill: C.stone, fontSize: 10, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} width={28} domain={[0,100]} />
               <Tooltip contentStyle={{ background: '#111', border: '1px solid rgba(250,250,247,0.1)', fontFamily: 'Plus Jakarta Sans', fontSize: 12 }} labelStyle={{ color: C.stone }} formatter={(v, n) => [v, n === 'ibt' ? 'IBT Termas' : 'IBT MotoGP']} />
