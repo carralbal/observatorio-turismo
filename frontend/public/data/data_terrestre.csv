@@ -1,5 +1,7 @@
 anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino,flag_sde
+2024,Salta-Salvador Mazza,2913,179402,122294,68.2,Salta,Salvador Mazza,0
 2024,Ciudad Autónoma De Buenos Aires-San Fernando Del Valle De Catamarca,2049,119060,116414,97.8,Ciudad Autónoma De Buenos Aires,San Fernando Del Valle De Catamarca,0
+2024,Salvador Mazza-Salta,2780,170752,115060,67.4,Salvador Mazza,Salta,0
 2024,San Fernando Del Valle De Catamarca-Ciudad Autónoma De Buenos Aires,2040,118562,114835,96.9,San Fernando Del Valle De Catamarca,Ciudad Autónoma De Buenos Aires,0
 2024,San Miguel De Tucumán-Santiago Del Estero,5937,346205,112979,32.6,San Miguel De Tucumán,Santiago Del Estero,1
 2024,Santiago Del Estero-San Miguel De Tucumán,5495,318943,107082,33.6,Santiago Del Estero,San Miguel De Tucumán,1
@@ -11,22 +13,31 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2024,La Plata-San Miguel De Tucumán,970,51595,87003,168.6,La Plata,San Miguel De Tucumán,0
 2024,Salta-San Salvador De Jujuy,3553,187391,85410,45.6,Salta,San Salvador De Jujuy,0
 2024,Córdoba-San Miguel De Tucumán,1816,102398,80024,78.1,Córdoba,San Miguel De Tucumán,0
+2024,Orán-Salta,2003,110240,77886,70.7,Orán,Salta,0
+2024,Salta-Orán,2013,110731,75342,68.0,Salta,Orán,0
 2024,San Salvador De Jujuy-Córdoba,1739,79269,62672,79.1,San Salvador De Jujuy,Córdoba,0
 2024,San Miguel De Tucumán-Salta,2344,133283,61492,46.1,San Miguel De Tucumán,Salta,0
 2024,Salta-San Miguel De Tucumán,2329,132439,60968,46.0,Salta,San Miguel De Tucumán,0
 2024,Córdoba-San Salvador De Jujuy,1709,77988,53381,68.4,Córdoba,San Salvador De Jujuy,0
 2024,San Salvador De Jujuy-Ciudad Autónoma De Buenos Aires,890,54876,52483,95.6,San Salvador De Jujuy,Ciudad Autónoma De Buenos Aires,0
+2024,Salta-La Quiaca,1448,90698,51092,56.3,Salta,La Quiaca,0
 2024,Esquel-San Salvador De Jujuy,341,20143,50380,250.1,Esquel,San Salvador De Jujuy,0
+2024,La Quiaca-Salta,1102,68991,49085,71.1,La Quiaca,Salta,0
 2024,San Salvador De Jujuy-Esquel,343,20240,48028,237.3,San Salvador De Jujuy,Esquel,0
 2024,Ciudad Autónoma De Buenos Aires-San Salvador De Jujuy,861,52866,44328,83.8,Ciudad Autónoma De Buenos Aires,San Salvador De Jujuy,0
 2024,San Salvador De Jujuy-Mendoza,537,31668,42640,134.6,San Salvador De Jujuy,Mendoza,0
 2024,Mendoza-San Salvador De Jujuy,537,31686,41409,130.7,Mendoza,San Salvador De Jujuy,0
 2024,Córdoba-La Rioja,875,49029,38940,79.4,Córdoba,La Rioja,0
+2024,Aguas Blancas-Salta,852,46914,38115,81.2,Aguas Blancas,Salta,0
+2024,Salta-Córdoba,744,43341,36736,84.8,Salta,Córdoba,0
 2024,La Rioja-Córdoba,896,50098,35711,71.3,La Rioja,Córdoba,0
+2024,Córdoba-Salta,735,42783,32989,77.1,Córdoba,Salta,0
 2024,San Fernando Del Valle De Catamarca-Córdoba,966,51105,32426,63.4,San Fernando Del Valle De Catamarca,Córdoba,0
+2024,Salta-Aguas Blancas,848,46715,32318,69.2,Salta,Aguas Blancas,0
 2024,Córdoba-San Fernando Del Valle De Catamarca,918,48571,31560,65.0,Córdoba,San Fernando Del Valle De Catamarca,0
 2024,Ciudad Autónoma De Buenos Aires-La Rioja,605,29995,29002,96.7,Ciudad Autónoma De Buenos Aires,La Rioja,0
 2024,San Fernando Del Valle De Catamarca-Belen,688,39686,28821,72.6,San Fernando Del Valle De Catamarca,Belen,0
+2024,Salta-Ciudad Autónoma De Buenos Aires,471,25449,27601,108.5,Salta,Ciudad Autónoma De Buenos Aires,0
 2024,Belen-San Fernando Del Valle De Catamarca,676,39095,27097,69.3,Belen,San Fernando Del Valle De Catamarca,0
 2024,La Rioja-Ciudad Autónoma De Buenos Aires,602,29839,26282,88.1,La Rioja,Ciudad Autónoma De Buenos Aires,0
 2024,San Miguel De Tucumán-Mar Del Plata,620,35505,26160,73.7,San Miguel De Tucumán,Mar Del Plata,0
@@ -34,8 +45,12 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2024,San Miguel De Tucumán-Mendoza,332,18695,24657,131.9,San Miguel De Tucumán,Mendoza,0
 2024,Mar Del Plata-San Miguel De Tucumán,622,35566,24315,68.4,Mar Del Plata,San Miguel De Tucumán,0
 2024,Ciudad Autónoma De Buenos Aires-San Miguel De Tucumán,610,31899,23542,73.8,Ciudad Autónoma De Buenos Aires,San Miguel De Tucumán,0
+2024,Salta-Corrientes,440,25954,23537,90.7,Salta,Corrientes,0
 2024,Paraná-San Miguel De Tucumán,591,33579,23145,68.9,Paraná,San Miguel De Tucumán,0
+2024,Tartagal-Salta,516,29710,22540,75.9,Tartagal,Salta,0
 2024,San Miguel De Tucumán-Paraná,587,33325,22389,67.2,San Miguel De Tucumán,Paraná,0
+2024,Corrientes-Salta,434,25597,22228,86.8,Corrientes,Salta,0
+2024,Ciudad Autónoma De Buenos Aires-Salta,441,23587,21287,90.2,Ciudad Autónoma De Buenos Aires,Salta,0
 2024,San Miguel De Tucumán-La Rioja,758,44962,21183,47.1,San Miguel De Tucumán,La Rioja,0
 2024,Punta Alta-San Salvador De Jujuy,330,19142,19494,101.8,Punta Alta,San Salvador De Jujuy,0
 2024,Fiambala-San Fernando Del Valle De Catamarca,545,31203,19342,62.0,Fiambala,San Fernando Del Valle De Catamarca,0
@@ -48,12 +63,19 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2024,San Fernando Del Valle De Catamarca-Fiambala,462,26645,17114,64.2,San Fernando Del Valle De Catamarca,Fiambala,0
 2024,La Banda-San Miguel De Tucumán,711,43169,16245,37.6,La Banda,San Miguel De Tucumán,0
 2024,San Fernando Del Valle De Catamarca-Frias,598,25798,15954,61.8,San Fernando Del Valle De Catamarca,Frias,0
+2024,Salta-Avellaneda,284,14849,15923,107.2,Salta,Avellaneda,0
+2024,Salta-Formosa,303,18046,14998,83.1,Salta,Formosa,0
 2024,Santiago Del Estero-Ciudad Autónoma De Buenos Aires,284,17020,14869,87.4,Santiago Del Estero,Ciudad Autónoma De Buenos Aires,1
 2024,San Salvador De Jujuy-Aguas Blancas,330,20108,14393,71.6,San Salvador De Jujuy,Aguas Blancas,0
 2024,Frias-San Fernando Del Valle De Catamarca,581,25046,13130,52.4,Frias,San Fernando Del Valle De Catamarca,0
+2024,Formosa-Salta,303,18056,12743,70.6,Formosa,Salta,0
+2024,Avellaneda-Salta,247,13036,12276,94.2,Avellaneda,Salta,0
 2024,Ciudad Autónoma De Buenos Aires-Santiago Del Estero,289,17320,11404,65.8,Ciudad Autónoma De Buenos Aires,Santiago Del Estero,1
+2024,Salta-La Plata,191,11035,11280,102.2,Salta,La Plata,0
 2024,San Miguel De Tucumán-San Salvador De Jujuy,270,15387,11005,71.5,San Miguel De Tucumán,San Salvador De Jujuy,0
+2024,Salta-Tartagal,287,16395,10961,66.9,Salta,Tartagal,0
 2024,Florencio Varela-San Miguel De Tucumán,186,10937,9495,86.8,Florencio Varela,San Miguel De Tucumán,0
+2024,La Plata-Salta,170,9800,8796,89.8,La Plata,Salta,0
 2024,San Miguel De Tucumán-Florencio Varela,182,10631,8794,82.7,San Miguel De Tucumán,Florencio Varela,0
 2024,San Miguel De Tucumán-Jardin America,205,9715,8672,89.3,San Miguel De Tucumán,Jardin America,0
 2024,Jardin America-San Miguel De Tucumán,206,9769,8557,87.6,Jardin America,San Miguel De Tucumán,0
@@ -74,6 +96,7 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2024,Villa Carlos Paz-San Miguel De Tucumán,120,6658,5391,81.0,Villa Carlos Paz,San Miguel De Tucumán,0
 2024,San Fernando Del Valle De Catamarca-Santa Maria,239,14340,4892,34.1,San Fernando Del Valle De Catamarca,Santa Maria,0
 2024,San Miguel De Tucumán-Orán,263,14956,4533,30.3,San Miguel De Tucumán,Orán,0
+2024,Santa Maria-Salta,251,11295,3936,34.8,Santa Maria,Salta,0
 2024,San Miguel De Tucumán-Santa Maria,284,17040,3383,19.9,San Miguel De Tucumán,Santa Maria,0
 2024,San Miguel De Tucumán-Ingeniero Budge,56,3287,2947,89.7,San Miguel De Tucumán,Ingeniero Budge,0
 2024,Villa San Agustin-La Rioja,89,5364,2564,47.8,Villa San Agustin,La Rioja,0
@@ -87,15 +110,21 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2023,Santiago Del Estero-San Miguel De Tucumán,8083,472684,188208,39.8,Santiago Del Estero,San Miguel De Tucumán,1
 2023,San Salvador De Jujuy-Salta,5096,284864,168989,59.3,San Salvador De Jujuy,Salta,0
 2023,Salta-San Salvador De Jujuy,4814,268122,168704,62.9,Salta,San Salvador De Jujuy,0
+2023,Salta-Salvador Mazza,3374,205143,141103,68.8,Salta,Salvador Mazza,0
 2023,San Fernando Del Valle De Catamarca-Ciudad Autónoma De Buenos Aires,2293,123137,137817,111.9,San Fernando Del Valle De Catamarca,Ciudad Autónoma De Buenos Aires,0
 2023,Ciudad Autónoma De Buenos Aires-San Fernando Del Valle De Catamarca,2324,124444,136697,109.8,Ciudad Autónoma De Buenos Aires,San Fernando Del Valle De Catamarca,0
+2023,Salvador Mazza-Salta,3418,207194,128063,61.8,Salvador Mazza,Salta,0
 2023,Salta-San Miguel De Tucumán,3176,179565,127032,70.7,Salta,San Miguel De Tucumán,0
 2023,San Miguel De Tucumán-Salta,3198,180925,122627,67.8,San Miguel De Tucumán,Salta,0
 2023,San Salvador De Jujuy-Rio Gallegos,873,51761,118245,228.4,San Salvador De Jujuy,Rio Gallegos,0
 2023,San Miguel De Tucumán-Córdoba,2172,123360,114143,92.5,San Miguel De Tucumán,Córdoba,0
 2023,Rio Gallegos-San Salvador De Jujuy,917,54301,112183,206.6,Rio Gallegos,San Salvador De Jujuy,0
 2023,Córdoba-San Miguel De Tucumán,2180,123776,109753,88.7,Córdoba,San Miguel De Tucumán,0
+2023,Salta-La Quiaca,1685,105030,102058,97.2,Salta,La Quiaca,0
+2023,Orán-Salta,2223,121936,89760,73.6,Orán,Salta,0
+2023,Salta-Orán,2249,123315,88315,71.6,Salta,Orán,0
 2023,San Salvador De Jujuy-Ciudad Autónoma De Buenos Aires,1301,80308,80406,100.1,San Salvador De Jujuy,Ciudad Autónoma De Buenos Aires,0
+2023,La Quiaca-Salta,1389,86331,79303,91.9,La Quiaca,Salta,0
 2023,Ciudad Autónoma De Buenos Aires-San Salvador De Jujuy,1234,75754,73476,97.0,Ciudad Autónoma De Buenos Aires,San Salvador De Jujuy,0
 2023,San Salvador De Jujuy-Córdoba,1820,81014,64105,79.1,San Salvador De Jujuy,Córdoba,0
 2023,Córdoba-San Salvador De Jujuy,1743,77193,58033,75.2,Córdoba,San Salvador De Jujuy,0
@@ -107,11 +136,18 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2023,Mendoza-San Salvador De Jujuy,619,36556,48644,133.1,Mendoza,San Salvador De Jujuy,0
 2023,San Miguel De Tucumán-Mendoza,766,44166,44977,101.8,San Miguel De Tucumán,Mendoza,0
 2023,San Miguel De Tucumán-La Plata,837,46587,44445,95.4,San Miguel De Tucumán,La Plata,0
+2023,Aguas Blancas-Salta,1020,55438,42742,77.1,Aguas Blancas,Salta,0
+2023,Salta-Córdoba,873,50021,42540,85.0,Salta,Córdoba,0
+2023,Córdoba-Salta,873,49970,41656,83.4,Córdoba,Salta,0
 2023,La Plata-San Miguel De Tucumán,763,42300,40653,96.1,La Plata,San Miguel De Tucumán,0
+2023,Salta-Corrientes,663,37320,39888,106.9,Salta,Corrientes,0
 2023,Córdoba-San Fernando Del Valle De Catamarca,1078,56167,39659,70.6,Córdoba,San Fernando Del Valle De Catamarca,0
+2023,Corrientes-Salta,658,37016,38126,103.0,Corrientes,Salta,0
+2023,Salta-Ciudad Autónoma De Buenos Aires,626,33423,38043,113.8,Salta,Ciudad Autónoma De Buenos Aires,0
 2023,San Fernando Del Valle De Catamarca-Córdoba,1079,56290,37763,67.1,San Fernando Del Valle De Catamarca,Córdoba,0
 2023,Ciudad Autónoma De Buenos Aires-La Rioja,749,36796,37541,102.0,Ciudad Autónoma De Buenos Aires,La Rioja,0
 2023,Mendoza-San Miguel De Tucumán,786,45330,36836,81.3,Mendoza,San Miguel De Tucumán,0
+2023,Salta-Aguas Blancas,976,53100,36781,69.3,Salta,Aguas Blancas,0
 2023,San Miguel De Tucumán-Mar Del Plata,793,45099,36427,80.8,San Miguel De Tucumán,Mar Del Plata,0
 2023,La Rioja-Ciudad Autónoma De Buenos Aires,751,36828,36292,98.5,La Rioja,Ciudad Autónoma De Buenos Aires,0
 2023,Mar Del Plata-San Miguel De Tucumán,789,44888,34649,77.2,Mar Del Plata,San Miguel De Tucumán,0
@@ -121,6 +157,7 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2023,San Miguel De Tucumán-Paraná,728,41278,30898,74.9,San Miguel De Tucumán,Paraná,0
 2023,San Miguel De Tucumán-Ciudad Autónoma De Buenos Aires,768,39090,30767,78.7,San Miguel De Tucumán,Ciudad Autónoma De Buenos Aires,0
 2023,La Banda-San Miguel De Tucumán,1130,68286,30686,44.9,La Banda,San Miguel De Tucumán,0
+2023,Ciudad Autónoma De Buenos Aires-Salta,606,32234,30588,94.9,Ciudad Autónoma De Buenos Aires,Salta,0
 2023,San Fernando Del Valle De Catamarca-Belen,656,35643,30364,85.2,San Fernando Del Valle De Catamarca,Belen,0
 2023,La Rioja-San Miguel De Tucumán,855,49847,28460,57.1,La Rioja,San Miguel De Tucumán,0
 2023,Cafayate-San Miguel De Tucumán,935,56070,27778,49.5,Cafayate,San Miguel De Tucumán,0
@@ -130,12 +167,20 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2023,San Miguel De Tucumán-Posadas,348,20466,22987,112.3,San Miguel De Tucumán,Posadas,0
 2023,Posadas-San Miguel De Tucumán,348,20465,22702,110.9,Posadas,San Miguel De Tucumán,0
 2023,Punta Alta-San Salvador De Jujuy,314,18125,21632,119.3,Punta Alta,San Salvador De Jujuy,0
+2023,Salta-Avellaneda,353,19436,21452,110.4,Salta,Avellaneda,0
 2023,Frias-San Fernando Del Valle De Catamarca,609,27915,21187,75.9,Frias,San Fernando Del Valle De Catamarca,0
 2023,Fiambala-San Fernando Del Valle De Catamarca,609,34426,21137,61.4,Fiambala,San Fernando Del Valle De Catamarca,0
+2023,Taco Pozo-Salta,246,14050,20734,147.6,Taco Pozo,Salta,0
 2023,San Fernando Del Valle De Catamarca-Fiambala,522,29232,20005,68.4,San Fernando Del Valle De Catamarca,Fiambala,0
+2023,Avellaneda-Salta,343,18940,19599,103.5,Avellaneda,Salta,0
 2023,La Quiaca-San Salvador De Jujuy,336,21124,19456,92.1,La Quiaca,San Salvador De Jujuy,0
 2023,San Salvador De Jujuy-Aguas Blancas,362,22661,18922,83.5,San Salvador De Jujuy,Aguas Blancas,0
+2023,Salta-Taco Pozo,247,14101,18627,132.1,Salta,Taco Pozo,0
+2023,Tartagal-Salta,362,20698,18103,87.5,Tartagal,Salta,0
+2023,Formosa-Salta,312,18379,16859,91.7,Formosa,Salta,0
+2023,Salta-Tartagal,427,24370,16632,68.2,Salta,Tartagal,0
 2023,San Miguel De Tucumán-La Banda,556,32115,16391,51.0,San Miguel De Tucumán,La Banda,0
+2023,Salta-Formosa,312,18383,16259,88.4,Salta,Formosa,0
 2023,Orán-San Miguel De Tucumán,377,21001,15255,72.6,Orán,San Miguel De Tucumán,0
 2023,San Salvador De Jujuy-Punta Alta,269,15512,15166,97.8,San Salvador De Jujuy,Punta Alta,0
 2023,San Miguel De Tucumán-San Jose,631,37845,14577,38.5,San Miguel De Tucumán,San Jose,0
@@ -147,6 +192,8 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2023,San Miguel De Tucumán-Jardin America,261,15016,13694,91.2,San Miguel De Tucumán,Jardin America,0
 2023,San Salvador De Jujuy-Rawson,180,10419,12406,119.1,San Salvador De Jujuy,Rawson,0
 2023,San Jose-San Miguel De Tucumán,559,33525,11874,35.4,San Jose,San Miguel De Tucumán,0
+2023,Salta-La Plata,178,10191,11392,111.8,Salta,La Plata,0
+2023,La Plata-Salta,177,10104,10409,103.0,La Plata,Salta,0
 2023,San Miguel De Tucumán-San Salvador De Jujuy,239,13598,10296,75.7,San Miguel De Tucumán,San Salvador De Jujuy,0
 2023,La Rioja-San Juan,217,12586,10226,81.2,La Rioja,San Juan,0
 2023,Florencio Varela-San Miguel De Tucumán,195,11247,10046,89.3,Florencio Varela,San Miguel De Tucumán,0
@@ -166,6 +213,7 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2023,San Fernando Del Valle De Catamarca-Santa Maria,201,12030,6294,52.3,San Fernando Del Valle De Catamarca,Santa Maria,0
 2023,San Jose Del Boqueron-San Miguel De Tucumán,339,20087,5510,27.4,San Jose Del Boqueron,San Miguel De Tucumán,0
 2023,Villa Carlos Paz-San Miguel De Tucumán,123,6527,5304,81.3,Villa Carlos Paz,San Miguel De Tucumán,0
+2023,Santa Maria-Salta,283,12699,4900,38.6,Santa Maria,Salta,0
 2023,San Miguel De Tucumán-Villa Carlos Paz,112,5833,4798,82.3,San Miguel De Tucumán,Villa Carlos Paz,0
 2023,San Miguel De Tucumán-Nueva Esperanza,146,8608,4179,48.5,San Miguel De Tucumán,Nueva Esperanza,0
 2023,San Miguel De Tucumán-San Fernando Del Valle De Catamarca,261,15339,4122,26.9,San Miguel De Tucumán,San Fernando Del Valle De Catamarca,0
@@ -178,29 +226,43 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2023,Ciudad Autónoma De Buenos Aires-San Luis,49,2718,1358,50.0,Ciudad Autónoma De Buenos Aires,San Luis,0
 2022,San Miguel De Tucumán-Santiago Del Estero,8089,469373,278804,59.4,San Miguel De Tucumán,Santiago Del Estero,1
 2022,Santiago Del Estero-San Miguel De Tucumán,7477,433851,263675,60.8,Santiago Del Estero,San Miguel De Tucumán,1
+2022,Salta-Salvador Mazza,3609,220185,178287,81.0,Salta,Salvador Mazza,0
 2022,Salta-San Salvador De Jujuy,4957,278515,177777,63.8,Salta,San Salvador De Jujuy,0
 2022,San Salvador De Jujuy-Salta,5234,293969,170745,58.1,San Salvador De Jujuy,Salta,0
+2022,Salvador Mazza-Salta,3584,218719,155647,71.2,Salvador Mazza,Salta,0
 2022,Salta-San Miguel De Tucumán,3373,191771,149594,78.0,Salta,San Miguel De Tucumán,0
 2022,San Miguel De Tucumán-Salta,3384,192375,149088,77.5,San Miguel De Tucumán,Salta,0
 2022,San Salvador De Jujuy-Rio Gallegos,972,57364,122162,213.0,San Salvador De Jujuy,Rio Gallegos,0
 2022,Rio Gallegos-San Salvador De Jujuy,1104,64962,115236,177.4,Rio Gallegos,San Salvador De Jujuy,0
+2022,Orán-Salta,2167,123711,106075,85.7,Orán,Salta,0
+2022,Salta-Orán,2172,123948,105840,85.4,Salta,Orán,0
 2022,San Miguel De Tucumán-Córdoba,2014,113684,105481,92.8,San Miguel De Tucumán,Córdoba,0
 2022,Córdoba-San Miguel De Tucumán,2038,115074,100404,87.3,Córdoba,San Miguel De Tucumán,0
 2022,Ciudad Autónoma De Buenos Aires-San Fernando Del Valle De Catamarca,1754,91258,98038,107.4,Ciudad Autónoma De Buenos Aires,San Fernando Del Valle De Catamarca,0
 2022,San Fernando Del Valle De Catamarca-Ciudad Autónoma De Buenos Aires,1720,89692,97544,108.8,San Fernando Del Valle De Catamarca,Ciudad Autónoma De Buenos Aires,0
 2022,San Salvador De Jujuy-Ciudad Autónoma De Buenos Aires,1498,91775,88957,96.9,San Salvador De Jujuy,Ciudad Autónoma De Buenos Aires,0
 2022,Ciudad Autónoma De Buenos Aires-San Salvador De Jujuy,1435,87814,73445,83.6,Ciudad Autónoma De Buenos Aires,San Salvador De Jujuy,0
+2022,La Quiaca-Salta,1451,89543,72275,80.7,La Quiaca,Salta,0
+2022,Salta-La Quiaca,1475,91068,67424,74.0,Salta,La Quiaca,0
 2022,San Miguel De Tucumán-Mendoza,942,54592,52203,95.6,San Miguel De Tucumán,Mendoza,0
+2022,Aguas Blancas-Salta,1044,59359,51708,87.1,Aguas Blancas,Salta,0
 2022,San Salvador De Jujuy-Esquel,391,22836,50510,221.2,San Salvador De Jujuy,Esquel,0
 2022,San Salvador De Jujuy-Mendoza,612,36016,49166,136.5,San Salvador De Jujuy,Mendoza,0
 2022,Mendoza-San Salvador De Jujuy,621,36569,48610,132.9,Mendoza,San Salvador De Jujuy,0
+2022,Córdoba-Salta,1120,62072,48266,77.8,Córdoba,Salta,0
+2022,Salta-Aguas Blancas,1052,59810,47660,79.7,Salta,Aguas Blancas,0
 2022,Esquel-San Salvador De Jujuy,390,22828,46754,204.8,Esquel,San Salvador De Jujuy,0
+2022,Salta-Córdoba,1108,61422,46438,75.6,Salta,Córdoba,0
 2022,Ciudad Autónoma De Buenos Aires-La Rioja,798,38098,45020,118.2,Ciudad Autónoma De Buenos Aires,La Rioja,0
 2022,San Salvador De Jujuy-Córdoba,1528,64918,43509,67.0,San Salvador De Jujuy,Córdoba,0
 2022,La Rioja-Ciudad Autónoma De Buenos Aires,787,37607,43046,114.5,La Rioja,Ciudad Autónoma De Buenos Aires,0
 2022,Mendoza-San Miguel De Tucumán,952,55222,41716,75.5,Mendoza,San Miguel De Tucumán,0
 2022,Córdoba-San Salvador De Jujuy,1529,64927,41511,63.9,Córdoba,San Salvador De Jujuy,0
+2022,Salta-Ciudad Autónoma De Buenos Aires,808,43753,39731,90.8,Salta,Ciudad Autónoma De Buenos Aires,0
+2022,Salta-Corrientes,644,36178,38895,107.5,Salta,Corrientes,0
 2022,Córdoba-San Fernando Del Valle De Catamarca,1097,57228,38828,67.8,Córdoba,San Fernando Del Valle De Catamarca,0
+2022,Corrientes-Salta,633,35556,37800,106.3,Corrientes,Salta,0
+2022,Taco Pozo-Salta,252,14395,37472,260.3,Taco Pozo,Salta,0
 2022,San Fernando Del Valle De Catamarca-Córdoba,1081,56431,37416,66.3,San Fernando Del Valle De Catamarca,Córdoba,0
 2022,San Miguel De Tucumán-Mar Del Plata,786,45299,36423,80.4,San Miguel De Tucumán,Mar Del Plata,0
 2022,La Banda-San Miguel De Tucumán,799,46914,35380,75.4,La Banda,San Miguel De Tucumán,0
@@ -208,6 +270,7 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2022,La Plata-San Miguel De Tucumán,775,45146,35103,77.8,La Plata,San Miguel De Tucumán,0
 2022,Mar Del Plata-San Miguel De Tucumán,777,44854,33595,74.9,Mar Del Plata,San Miguel De Tucumán,0
 2022,San Miguel De Tucumán-La Rioja,933,55105,33414,60.6,San Miguel De Tucumán,La Rioja,0
+2022,Salta-Taco Pozo,252,14398,33085,229.8,Salta,Taco Pozo,0
 2022,San Fernando Del Valle De Catamarca-Belen,734,40378,33043,81.8,San Fernando Del Valle De Catamarca,Belen,0
 2022,Córdoba-La Rioja,745,42181,32743,77.6,Córdoba,La Rioja,0
 2022,La Rioja-San Miguel De Tucumán,930,54905,31830,58.0,La Rioja,San Miguel De Tucumán,0
@@ -218,8 +281,11 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2022,Cafayate-San Miguel De Tucumán,794,47610,30311,63.7,Cafayate,San Miguel De Tucumán,0
 2022,San Miguel De Tucumán-Paraná,724,41212,29928,72.6,San Miguel De Tucumán,Paraná,0
 2022,San Miguel De Tucumán-Ciudad Autónoma De Buenos Aires,860,43972,29447,67.0,San Miguel De Tucumán,Ciudad Autónoma De Buenos Aires,0
+2022,Ciudad Autónoma De Buenos Aires-Salta,648,34333,29320,85.4,Ciudad Autónoma De Buenos Aires,Salta,0
 2022,San Fernando Del Valle De Catamarca-Frias,681,30080,27100,90.1,San Fernando Del Valle De Catamarca,Frias,0
+2022,Salta-Tartagal,603,34483,26470,76.8,Salta,Tartagal,0
 2022,Ciudad Autónoma De Buenos Aires-San Miguel De Tucumán,851,43771,26408,60.3,Ciudad Autónoma De Buenos Aires,San Miguel De Tucumán,0
+2022,Tartagal-Salta,600,34298,24964,72.8,Tartagal,Salta,0
 2022,San Miguel De Tucumán-Salvador Mazza,755,43212,23299,53.9,San Miguel De Tucumán,Salvador Mazza,0
 2022,San Miguel De Tucumán-Posadas,361,21241,23080,108.7,San Miguel De Tucumán,Posadas,0
 2022,San Miguel De Tucumán-San Jose,814,48810,22523,46.1,San Miguel De Tucumán,San Jose,0
@@ -232,9 +298,13 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2022,Orán-San Miguel De Tucumán,403,22739,19094,84.0,Orán,San Miguel De Tucumán,0
 2022,San Miguel De Tucumán-Orán,410,23176,18726,80.8,San Miguel De Tucumán,Orán,0
 2022,San Salvador De Jujuy-Aguas Blancas,357,21726,17096,78.7,San Salvador De Jujuy,Aguas Blancas,0
+2022,Formosa-Salta,288,16866,16248,96.3,Formosa,Salta,0
 2022,Fiambala-San Fernando Del Valle De Catamarca,438,23568,15673,66.5,Fiambala,San Fernando Del Valle De Catamarca,0
+2022,Salta-Formosa,288,16832,15650,93.0,Salta,Formosa,0
+2022,Salta-Avellaneda,292,16761,15647,93.4,Salta,Avellaneda,0
 2022,San Jose-San Miguel De Tucumán,805,48285,15132,31.3,San Jose,San Miguel De Tucumán,0
 2022,Córdoba-San Luis,304,17054,13581,79.6,Córdoba,San Luis,0
+2022,Avellaneda-Salta,247,14177,12690,89.5,Avellaneda,Salta,0
 2022,San Fernando Del Valle De Catamarca-Fiambala,322,17747,12543,70.7,San Fernando Del Valle De Catamarca,Fiambala,0
 2022,San Miguel De Tucumán-Neuquén,182,10477,12194,116.4,San Miguel De Tucumán,Neuquén,0
 2022,La Quiaca-San Salvador De Jujuy,201,12629,12166,96.3,La Quiaca,San Salvador De Jujuy,0
@@ -246,7 +316,9 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2022,San Salvador De Jujuy-Rawson,143,8223,8880,108.0,San Salvador De Jujuy,Rawson,0
 2022,Aguas Blancas-San Salvador De Jujuy,334,20368,8827,43.3,Aguas Blancas,San Salvador De Jujuy,0
 2022,Ciudad Autónoma De Buenos Aires-Santiago Del Estero,223,12988,8611,66.3,Ciudad Autónoma De Buenos Aires,Santiago Del Estero,1
+2022,Salta-La Plata,186,10709,8568,80.0,Salta,La Plata,0
 2022,La Rioja-San Juan,195,11310,8175,72.3,La Rioja,San Juan,0
+2022,La Plata-Salta,185,10629,8172,76.9,La Plata,Salta,0
 2022,San Miguel De Tucumán-Florencio Varela,183,10776,7840,72.8,San Miguel De Tucumán,Florencio Varela,0
 2022,Florencio Varela-San Miguel De Tucumán,193,11376,7380,64.9,Florencio Varela,San Miguel De Tucumán,0
 2022,San Fernando Del Valle De Catamarca-Santa Maria,260,15600,6997,44.9,San Fernando Del Valle De Catamarca,Santa Maria,0
@@ -255,6 +327,7 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2022,Schaqui-San Luis,144,8352,6516,78.0,Schaqui,San Luis,0
 2022,San Fernando Del Valle De Catamarca-San Miguel De Tucumán,310,16785,6250,37.2,San Fernando Del Valle De Catamarca,San Miguel De Tucumán,0
 2022,San Rafael-San Luis,207,11506,5711,49.6,San Rafael,San Luis,0
+2022,Santa Maria-Salta,299,13395,4960,37.0,Santa Maria,Salta,0
 2022,San Luis-San Rafael,203,11301,4827,42.7,San Luis,San Rafael,0
 2022,San Miguel De Tucumán-San Fernando Del Valle De Catamarca,308,16500,4480,27.2,San Miguel De Tucumán,San Fernando Del Valle De Catamarca,0
 2022,Villa San Agustin-La Rioja,102,6220,4289,69.0,Villa San Agustin,La Rioja,0
@@ -274,17 +347,24 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2022,San Salvador De Jujuy-Salvador Mazza,93,5216,2055,39.4,San Salvador De Jujuy,Salvador Mazza,0
 2022,Salvador Mazza-San Salvador De Jujuy,90,5038,1465,29.1,Salvador Mazza,San Salvador De Jujuy,0
 2022,San Jose Del Boqueron-San Miguel De Tucumán,55,3300,1296,39.3,San Jose Del Boqueron,San Miguel De Tucumán,0
+2022,Salta-Santa Maria,50,2226,349,15.7,Salta,Santa Maria,0
 2021,San Miguel De Tucumán-Santiago Del Estero,4314,251454,141569,56.3,San Miguel De Tucumán,Santiago Del Estero,1
 2021,Santiago Del Estero-San Miguel De Tucumán,3868,224275,130947,58.4,Santiago Del Estero,San Miguel De Tucumán,1
 2021,Salta-San Salvador De Jujuy,4433,245437,127033,51.8,Salta,San Salvador De Jujuy,0
+2021,Salta-Salvador Mazza,2612,162751,121442,74.6,Salta,Salvador Mazza,0
 2021,San Salvador De Jujuy-Salta,4268,234656,119088,50.8,San Salvador De Jujuy,Salta,0
+2021,Salvador Mazza-Salta,2626,163456,109675,67.1,Salvador Mazza,Salta,0
+2021,Orán-Salta,2054,122971,90623,73.7,Orán,Salta,0
 2021,San Miguel De Tucumán-Salta,2267,126930,89931,70.9,San Miguel De Tucumán,Salta,0
+2021,Salta-Orán,2069,123942,89242,72.0,Salta,Orán,0
 2021,Salta-San Miguel De Tucumán,2282,127756,87582,68.6,Salta,San Miguel De Tucumán,0
 2021,San Salvador De Jujuy-Rio Gallegos,693,38849,74720,192.3,San Salvador De Jujuy,Rio Gallegos,0
 2021,Rio Gallegos-San Salvador De Jujuy,684,37936,65996,174.0,Rio Gallegos,San Salvador De Jujuy,0
 2021,Ciudad Autónoma De Buenos Aires-San Salvador De Jujuy,1258,77118,62324,80.8,Ciudad Autónoma De Buenos Aires,San Salvador De Jujuy,0
 2021,San Salvador De Jujuy-Ciudad Autónoma De Buenos Aires,1172,71697,59606,83.1,San Salvador De Jujuy,Ciudad Autónoma De Buenos Aires,0
+2021,La Quiaca-Salta,1385,85276,59102,69.3,La Quiaca,Salta,0
 2021,San Miguel De Tucumán-Córdoba,1084,60812,50762,83.5,San Miguel De Tucumán,Córdoba,0
+2021,Salta-La Quiaca,1192,73314,48833,66.6,Salta,La Quiaca,0
 2021,Córdoba-San Miguel De Tucumán,1102,61705,48612,78.8,Córdoba,San Miguel De Tucumán,0
 2021,Ciudad Autónoma De Buenos Aires-San Fernando Del Valle De Catamarca,935,48661,42897,88.2,Ciudad Autónoma De Buenos Aires,San Fernando Del Valle De Catamarca,0
 2021,San Fernando Del Valle De Catamarca-Ciudad Autónoma De Buenos Aires,873,45114,40873,90.6,San Fernando Del Valle De Catamarca,Ciudad Autónoma De Buenos Aires,0
@@ -296,18 +376,30 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2021,Mendoza-San Miguel De Tucumán,805,46329,31719,68.5,Mendoza,San Miguel De Tucumán,0
 2021,Mendoza-San Salvador De Jujuy,447,25816,31531,122.1,Mendoza,San Salvador De Jujuy,0
 2021,San Salvador De Jujuy-Mendoza,455,26277,30595,116.4,San Salvador De Jujuy,Mendoza,0
+2021,Salta-Córdoba,797,44570,30253,67.9,Salta,Córdoba,0
+2021,Córdoba-Salta,764,42549,30061,70.7,Córdoba,Salta,0
+2021,Aguas Blancas-Salta,639,36350,29160,80.2,Aguas Blancas,Salta,0
+2021,Salta-Ciudad Autónoma De Buenos Aires,560,31280,29087,93.0,Salta,Ciudad Autónoma De Buenos Aires,0
 2021,Esquel-San Salvador De Jujuy,364,21395,28967,135.4,Esquel,San Salvador De Jujuy,0
 2021,Córdoba-San Salvador De Jujuy,1282,51667,28256,54.7,Córdoba,San Salvador De Jujuy,0
 2021,San Miguel De Tucumán-Mar Del Plata,626,36496,26815,73.5,San Miguel De Tucumán,Mar Del Plata,0
+2021,Salta-Aguas Blancas,650,37013,25394,68.6,Salta,Aguas Blancas,0
 2021,Mar Del Plata-San Miguel De Tucumán,629,36644,25335,69.1,Mar Del Plata,San Miguel De Tucumán,0
+2021,Salta-Corrientes,502,28120,25162,89.5,Salta,Corrientes,0
 2021,San Fernando Del Valle De Catamarca-Córdoba,811,44755,25114,56.1,San Fernando Del Valle De Catamarca,Córdoba,0
+2021,Taco Pozo-Salta,202,11573,25064,216.6,Taco Pozo,Salta,0
 2021,Córdoba-San Fernando Del Valle De Catamarca,796,44005,24616,55.9,Córdoba,San Fernando Del Valle De Catamarca,0
 2021,San Miguel De Tucumán-Salvador Mazza,659,37749,24515,64.9,San Miguel De Tucumán,Salvador Mazza,0
+2021,Corrientes-Salta,494,27676,23736,85.8,Corrientes,Salta,0
 2021,La Banda-San Miguel De Tucumán,657,38778,21423,55.2,La Banda,San Miguel De Tucumán,0
 2021,Salvador Mazza-San Miguel De Tucumán,650,37299,20824,55.8,Salvador Mazza,San Miguel De Tucumán,0
+2021,Salta-Tartagal,516,28227,20584,72.9,Salta,Tartagal,0
 2021,San Fernando Del Valle De Catamarca-Belen,606,33637,20065,59.7,San Fernando Del Valle De Catamarca,Belen,0
+2021,Salta-Taco Pozo,201,11515,19863,172.5,Salta,Taco Pozo,0
 2021,San Fernando Del Valle De Catamarca-Frias,643,27928,19440,69.6,San Fernando Del Valle De Catamarca,Frias,0
 2021,Belen-San Fernando Del Valle De Catamarca,584,32560,17935,55.1,Belen,San Fernando Del Valle De Catamarca,0
+2021,Ciudad Autónoma De Buenos Aires-Salta,363,20044,17071,85.2,Ciudad Autónoma De Buenos Aires,Salta,0
+2021,Tartagal-Salta,508,27786,17068,61.4,Tartagal,Salta,0
 2021,La Plata-San Miguel De Tucumán,351,20611,16882,81.9,La Plata,San Miguel De Tucumán,0
 2021,La Rioja-Córdoba,424,23952,16103,67.2,La Rioja,Córdoba,0
 2021,San Miguel De Tucumán-La Plata,341,19984,16023,80.2,San Miguel De Tucumán,La Plata,0
@@ -317,6 +409,7 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2021,San Miguel De Tucumán-Cafayate,465,27795,15208,54.7,San Miguel De Tucumán,Cafayate,0
 2021,San Miguel De Tucumán-La Rioja,422,24913,14751,59.2,San Miguel De Tucumán,La Rioja,0
 2021,Ciudad Autónoma De Buenos Aires-San Miguel De Tucumán,390,21410,14413,67.3,Ciudad Autónoma De Buenos Aires,San Miguel De Tucumán,0
+2021,Salta-Avellaneda,249,14267,14388,100.8,Salta,Avellaneda,0
 2021,Frias-San Fernando Del Valle De Catamarca,608,26482,14002,52.9,Frias,San Fernando Del Valle De Catamarca,0
 2021,San Salvador De Jujuy-Aguas Blancas,358,22166,13926,62.8,San Salvador De Jujuy,Aguas Blancas,0
 2021,Córdoba-La Rioja,446,24972,13779,55.2,Córdoba,La Rioja,0
@@ -332,14 +425,19 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2021,San Miguel De Tucumán-Orán,352,20323,12024,59.2,San Miguel De Tucumán,Orán,0
 2021,San Miguel De Tucumán-Posadas,205,12162,11133,91.5,San Miguel De Tucumán,Posadas,0
 2021,Posadas-San Miguel De Tucumán,202,11991,10726,89.5,Posadas,San Miguel De Tucumán,0
+2021,Avellaneda-Salta,190,10960,10027,91.5,Avellaneda,Salta,0
 2021,San Miguel De Tucumán-La Banda,228,12476,8821,70.7,San Miguel De Tucumán,La Banda,0
 2021,Aguas Blancas-San Salvador De Jujuy,358,22176,8802,39.7,Aguas Blancas,San Salvador De Jujuy,0
 2021,San Miguel De Tucumán-Santa Maria,249,14655,8092,55.2,San Miguel De Tucumán,Santa Maria,0
 2021,Fiambala-San Fernando Del Valle De Catamarca,312,13463,7850,58.3,Fiambala,San Fernando Del Valle De Catamarca,0
 2021,San Jose-San Miguel De Tucumán,363,20880,7006,33.6,San Jose,San Miguel De Tucumán,0
 2021,San Fernando Del Valle De Catamarca-Fiambala,232,9179,6890,75.1,San Fernando Del Valle De Catamarca,Fiambala,0
+2021,Salta-La Plata,170,9144,6744,73.8,Salta,La Plata,0
+2021,La Plata-Salta,161,8684,6494,74.8,La Plata,Salta,0
+2021,Salta-Formosa,74,4500,6093,135.4,Salta,Formosa,0
 2021,San Miguel De Tucumán-Jardin America,130,6297,5290,84.0,San Miguel De Tucumán,Jardin America,0
 2021,Jardin America-San Miguel De Tucumán,136,6597,4814,73.0,Jardin America,San Miguel De Tucumán,0
+2021,Formosa-Salta,73,4438,4577,103.1,Formosa,Salta,0
 2021,San Miguel De Tucumán-Villa Carlos Paz,100,5662,4044,71.4,San Miguel De Tucumán,Villa Carlos Paz,0
 2021,San Rafael-San Luis,136,7496,3628,48.4,San Rafael,San Luis,0
 2021,Villa Carlos Paz-San Miguel De Tucumán,101,5733,3565,62.2,Villa Carlos Paz,San Miguel De Tucumán,0
@@ -353,35 +451,51 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2021,San Miguel De Tucumán-San Jose,72,4245,2263,53.3,San Miguel De Tucumán,San Jose,0
 2021,San Fernando Del Valle De Catamarca-Santa Maria,90,5400,2118,39.2,San Fernando Del Valle De Catamarca,Santa Maria,0
 2021,Villa San Agustin-La Rioja,70,4332,1936,44.7,Villa San Agustin,La Rioja,0
+2021,Clorinda-Salta,87,5151,1825,35.4,Clorinda,Salta,0
 2021,San Salvador De Jujuy-Salvador Mazza,74,4630,1809,39.1,San Salvador De Jujuy,Salvador Mazza,0
+2021,Salta-Clorinda,85,5048,1772,35.1,Salta,Clorinda,0
 2021,La Rioja-Villa San Agustin,70,4332,1676,38.7,La Rioja,Villa San Agustin,0
 2021,San Fernando Del Valle De Catamarca-San Miguel De Tucumán,60,3602,1314,36.5,San Fernando Del Valle De Catamarca,San Miguel De Tucumán,0
+2021,Santa Maria-Salta,89,4005,1218,30.4,Santa Maria,Salta,0
 2021,San Miguel De Tucumán-San Jose Del Boqueron,91,4095,1067,26.1,San Miguel De Tucumán,San Jose Del Boqueron,0
 2021,San Miguel De Tucumán-San Fernando Del Valle De Catamarca,66,3962,1041,26.3,San Miguel De Tucumán,San Fernando Del Valle De Catamarca,0
+2021,Salta-Santa Maria,52,2340,490,20.9,Salta,Santa Maria,0
 2020,Santiago Del Estero-San Miguel De Tucumán,1778,96959,60764,62.7,Santiago Del Estero,San Miguel De Tucumán,1
 2020,San Salvador De Jujuy-Salta,1501,78126,58343,74.7,San Salvador De Jujuy,Salta,0
 2020,San Miguel De Tucumán-Santiago Del Estero,1822,99382,57428,57.8,San Miguel De Tucumán,Santiago Del Estero,1
 2020,Salta-San Salvador De Jujuy,1453,75037,53770,71.7,Salta,San Salvador De Jujuy,0
 2020,San Salvador De Jujuy-Ciudad Autónoma De Buenos Aires,728,41539,44697,107.6,San Salvador De Jujuy,Ciudad Autónoma De Buenos Aires,0
+2020,Salvador Mazza-Salta,843,49405,44464,90.0,Salvador Mazza,Salta,0
+2020,Salta-Salvador Mazza,867,50987,44276,86.8,Salta,Salvador Mazza,0
 2020,Salta-San Miguel De Tucumán,828,49669,42589,85.7,Salta,San Miguel De Tucumán,0
 2020,San Miguel De Tucumán-Salta,907,53649,42106,78.5,San Miguel De Tucumán,Salta,0
 2020,Ciudad Autónoma De Buenos Aires-San Salvador De Jujuy,707,40180,39212,97.6,Ciudad Autónoma De Buenos Aires,San Salvador De Jujuy,0
+2020,Salta-La Quiaca,564,34779,34344,98.7,Salta,La Quiaca,0
 2020,San Salvador De Jujuy-Rio Gallegos,322,18698,33898,181.3,San Salvador De Jujuy,Rio Gallegos,0
 2020,San Miguel De Tucumán-Córdoba,666,33929,32233,95.0,San Miguel De Tucumán,Córdoba,0
+2020,Salta-Aguas Blancas,629,37149,31063,83.6,Salta,Aguas Blancas,0
 2020,Córdoba-San Miguel De Tucumán,670,34195,30370,88.8,Córdoba,San Miguel De Tucumán,0
+2020,Aguas Blancas-Salta,584,34467,30178,87.6,Aguas Blancas,Salta,0
 2020,Rio Gallegos-San Salvador De Jujuy,308,17690,29168,164.9,Rio Gallegos,San Salvador De Jujuy,0
+2020,La Quiaca-Salta,496,30459,28306,92.9,La Quiaca,Salta,0
 2020,Ciudad Autónoma De Buenos Aires-San Fernando Del Valle De Catamarca,478,23051,24272,105.3,Ciudad Autónoma De Buenos Aires,San Fernando Del Valle De Catamarca,0
 2020,San Fernando Del Valle De Catamarca-Ciudad Autónoma De Buenos Aires,440,20817,22333,107.3,San Fernando Del Valle De Catamarca,Ciudad Autónoma De Buenos Aires,0
 2020,San Salvador De Jujuy-Córdoba,592,26394,21729,82.3,San Salvador De Jujuy,Córdoba,0
 2020,Córdoba-San Fernando Del Valle De Catamarca,488,26493,19895,75.1,Córdoba,San Fernando Del Valle De Catamarca,0
 2020,San Fernando Del Valle De Catamarca-Córdoba,492,26654,19891,74.6,San Fernando Del Valle De Catamarca,Córdoba,0
+2020,Salta-Córdoba,423,21093,19888,94.3,Salta,Córdoba,0
+2020,Salta-Orán,396,22855,19819,86.7,Salta,Orán,0
+2020,Córdoba-Salta,421,20982,19179,91.4,Córdoba,Salta,0
 2020,Córdoba-La Rioja,438,23687,18702,79.0,Córdoba,La Rioja,0
 2020,La Rioja-Córdoba,442,23855,18579,77.9,La Rioja,Córdoba,0
+2020,Orán-Salta,391,22584,18476,81.8,Orán,Salta,0
 2020,Córdoba-San Salvador De Jujuy,521,22652,17525,77.4,Córdoba,San Salvador De Jujuy,0
 2020,San Miguel De Tucumán-La Plata,283,16653,16427,98.6,San Miguel De Tucumán,La Plata,0
 2020,San Miguel De Tucumán-Mar Del Plata,303,17246,16246,94.2,San Miguel De Tucumán,Mar Del Plata,0
 2020,Mar Del Plata-San Miguel De Tucumán,305,17383,16153,92.9,Mar Del Plata,San Miguel De Tucumán,0
 2020,San Salvador De Jujuy-Mendoza,193,11086,15540,140.2,San Salvador De Jujuy,Mendoza,0
+2020,Salta-Corrientes,260,13861,15055,108.6,Salta,Corrientes,0
+2020,Corrientes-Salta,251,13319,15030,112.8,Corrientes,Salta,0
 2020,Mendoza-San Salvador De Jujuy,196,11254,14960,132.9,Mendoza,San Salvador De Jujuy,0
 2020,Ciudad Autónoma De Buenos Aires-San Miguel De Tucumán,333,14667,14421,98.3,Ciudad Autónoma De Buenos Aires,San Miguel De Tucumán,0
 2020,San Miguel De Tucumán-Cafayate,346,20565,14025,68.2,San Miguel De Tucumán,Cafayate,0
@@ -394,6 +508,7 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2020,La Rioja-Ciudad Autónoma De Buenos Aires,213,9861,10074,102.2,La Rioja,Ciudad Autónoma De Buenos Aires,0
 2020,San Jose-San Miguel De Tucumán,313,18675,9797,52.5,San Jose,San Miguel De Tucumán,0
 2020,San Miguel De Tucumán-Mendoza,126,7023,9586,136.5,San Miguel De Tucumán,Mendoza,0
+2020,Salta-Ciudad Autónoma De Buenos Aires,138,7810,9434,120.8,Salta,Ciudad Autónoma De Buenos Aires,0
 2020,San Fernando Del Valle De Catamarca-Belen,245,14520,9251,63.7,San Fernando Del Valle De Catamarca,Belen,0
 2020,Cafayate-San Miguel De Tucumán,238,14205,9088,64.0,Cafayate,San Miguel De Tucumán,0
 2020,San Miguel De Tucumán-La Banda,209,11428,8935,78.2,San Miguel De Tucumán,La Banda,0
@@ -402,7 +517,9 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2020,Posadas-San Miguel De Tucumán,122,7199,8440,117.2,Posadas,San Miguel De Tucumán,0
 2020,San Miguel De Tucumán-San Jose,239,14265,8403,58.9,San Miguel De Tucumán,San Jose,0
 2020,Bahia Blanca-San Salvador De Jujuy,85,4831,8046,166.5,Bahia Blanca,San Salvador De Jujuy,0
+2020,Salta-Avellaneda,110,6368,7913,124.3,Salta,Avellaneda,0
 2020,San Fernando Del Valle De Catamarca-Fiambala,157,8725,7846,89.9,San Fernando Del Valle De Catamarca,Fiambala,0
+2020,Salta-Tartagal,143,8315,7775,93.5,Salta,Tartagal,0
 2020,Fiambala-San Fernando Del Valle De Catamarca,169,9131,7495,82.1,Fiambala,San Fernando Del Valle De Catamarca,0
 2020,San Salvador De Jujuy-Bahia Blanca,84,4767,7421,155.7,San Salvador De Jujuy,Bahia Blanca,0
 2020,Mendoza-San Miguel De Tucumán,119,6644,7311,110.0,Mendoza,San Miguel De Tucumán,0
@@ -412,9 +529,16 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2020,San Miguel De Tucumán-La Rioja,160,9600,6787,70.7,San Miguel De Tucumán,La Rioja,0
 2020,San Fernando Del Valle De Catamarca-Frias,250,10691,6464,60.5,San Fernando Del Valle De Catamarca,Frias,0
 2020,Rawson-San Salvador De Jujuy,88,4900,5851,119.4,Rawson,San Salvador De Jujuy,0
+2020,Salta-Paraná,77,4467,5839,130.7,Salta,Paraná,0
 2020,San Salvador De Jujuy-Rawson,87,4845,5797,119.6,San Salvador De Jujuy,Rawson,0
+2020,Avellaneda-Salta,88,5102,5775,113.2,Avellaneda,Salta,0
+2020,Salta-Formosa,88,5048,5720,113.3,Salta,Formosa,0
 2020,La Rioja-Salvador Mazza,75,4165,5711,137.1,La Rioja,Salvador Mazza,0
+2020,Ciudad Autónoma De Buenos Aires-Salta,99,5621,5687,101.2,Ciudad Autónoma De Buenos Aires,Salta,0
+2020,Tartagal-Salta,131,7649,5639,73.7,Tartagal,Salta,0
 2020,Salvador Mazza-San Miguel De Tucumán,91,5351,5636,105.3,Salvador Mazza,San Miguel De Tucumán,0
+2020,Paraná-Salta,79,4583,5503,120.1,Paraná,Salta,0
+2020,Formosa-Salta,88,5045,5496,108.9,Formosa,Salta,0
 2020,Salvador Mazza-San Salvador De Jujuy,137,8499,5317,62.6,Salvador Mazza,San Salvador De Jujuy,0
 2020,Frias-San Fernando Del Valle De Catamarca,221,9421,5149,54.7,Frias,San Fernando Del Valle De Catamarca,0
 2020,San Miguel De Tucumán-Neuquén,82,3556,5144,144.7,San Miguel De Tucumán,Neuquén,0
@@ -424,7 +548,9 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2020,San Miguel De Tucumán-Paraná,87,4898,4755,97.1,San Miguel De Tucumán,Paraná,0
 2020,San Salvador De Jujuy-Aguas Blancas,89,5520,4738,85.8,San Salvador De Jujuy,Aguas Blancas,0
 2020,San Salvador De Jujuy-Salvador Mazza,134,8336,4519,54.2,San Salvador De Jujuy,Salvador Mazza,0
+2020,Salta-Clorinda,84,4952,4502,90.9,Salta,Clorinda,0
 2020,Termas De Rio Hondo-Ciudad Autónoma De Buenos Aires,75,4804,4488,93.4,Termas De Rio Hondo,Ciudad Autónoma De Buenos Aires,1
+2020,Clorinda-Salta,84,4931,4312,87.4,Clorinda,Salta,0
 2020,San Fernando Del Valle De Catamarca-San Miguel De Tucumán,163,9722,4197,43.2,San Fernando Del Valle De Catamarca,San Miguel De Tucumán,0
 2020,Córdoba-San Luis,79,4576,4139,90.5,Córdoba,San Luis,0
 2020,Schaqui-San Luis,76,4408,4045,91.8,Schaqui,San Luis,0
@@ -432,6 +558,7 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2020,San Miguel De Tucumán-Jardin America,102,4787,3890,81.3,San Miguel De Tucumán,Jardin America,0
 2020,Ciudad Autónoma De Buenos Aires-Termas De Rio Hondo,74,4714,3792,80.4,Ciudad Autónoma De Buenos Aires,Termas De Rio Hondo,1
 2020,San Luis-Schaqui,75,4350,3749,86.2,San Luis,Schaqui,0
+2020,Salta-Mendoza,78,3306,3748,113.4,Salta,Mendoza,0
 2020,Aguas Blancas-San Salvador De Jujuy,91,5644,3688,65.3,Aguas Blancas,San Salvador De Jujuy,0
 2020,Jardin America-San Miguel De Tucumán,81,3889,3670,94.4,Jardin America,San Miguel De Tucumán,0
 2020,San Miguel De Tucumán-Florencio Varela,64,3762,3576,95.1,San Miguel De Tucumán,Florencio Varela,0
@@ -439,6 +566,7 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2020,San Miguel De Tucumán-Villa Carlos Paz,70,3907,3475,88.9,San Miguel De Tucumán,Villa Carlos Paz,0
 2020,La Plata-San Fernando Del Valle De Catamarca,55,3147,3410,108.4,La Plata,San Fernando Del Valle De Catamarca,0
 2020,Florencio Varela-San Miguel De Tucumán,56,3285,3365,102.4,Florencio Varela,San Miguel De Tucumán,0
+2020,Mendoza-Salta,78,3304,3266,98.8,Mendoza,Salta,0
 2020,Ciudad Autónoma De Buenos Aires-San Luis,88,3712,3219,86.7,Ciudad Autónoma De Buenos Aires,San Luis,0
 2020,Santiago Del Estero-San Fernando Del Valle De Catamarca,68,3740,3211,85.9,Santiago Del Estero,San Fernando Del Valle De Catamarca,1
 2020,San Fernando Del Valle De Catamarca-La Plata,53,3036,3161,104.1,San Fernando Del Valle De Catamarca,La Plata,0
@@ -455,26 +583,38 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2019,San Miguel De Tucumán-Santiago Del Estero,9062,497582,244197,49.1,San Miguel De Tucumán,Santiago Del Estero,1
 2019,San Salvador De Jujuy-Salta,6207,323475,191663,59.3,San Salvador De Jujuy,Salta,0
 2019,Salta-San Salvador De Jujuy,6190,322228,182938,56.8,Salta,San Salvador De Jujuy,0
+2019,Salta-Salvador Mazza,3565,207155,157500,76.0,Salta,Salvador Mazza,0
 2019,Salta-San Miguel De Tucumán,3225,178751,156338,87.5,Salta,San Miguel De Tucumán,0
+2019,Salvador Mazza-Salta,3526,204877,151881,74.1,Salvador Mazza,Salta,0
 2019,San Miguel De Tucumán-Salta,3344,183805,147755,80.4,San Miguel De Tucumán,Salta,0
 2019,Córdoba-San Miguel De Tucumán,2559,133724,114739,85.8,Córdoba,San Miguel De Tucumán,0
 2019,San Miguel De Tucumán-Córdoba,2457,128174,113324,88.4,San Miguel De Tucumán,Córdoba,0
+2019,Salta-La Quiaca,1773,109281,112631,103.1,Salta,La Quiaca,0
 2019,San Salvador De Jujuy-Rio Gallegos,941,54714,109816,200.7,San Salvador De Jujuy,Rio Gallegos,0
 2019,Rio Gallegos-San Salvador De Jujuy,947,54357,108599,199.8,Rio Gallegos,San Salvador De Jujuy,0
+2019,La Quiaca-Salta,1841,113124,104778,92.6,La Quiaca,Salta,0
 2019,San Salvador De Jujuy-Ciudad Autónoma De Buenos Aires,1915,101894,102205,100.3,San Salvador De Jujuy,Ciudad Autónoma De Buenos Aires,0
+2019,Salta-Aguas Blancas,2478,144163,101048,70.1,Salta,Aguas Blancas,0
 2019,Ciudad Autónoma De Buenos Aires-San Salvador De Jujuy,1932,102294,100498,98.2,Ciudad Autónoma De Buenos Aires,San Salvador De Jujuy,0
+2019,Aguas Blancas-Salta,2339,137051,95260,69.5,Aguas Blancas,Salta,0
 2019,Córdoba-San Fernando Del Valle De Catamarca,2102,113133,81249,71.8,Córdoba,San Fernando Del Valle De Catamarca,0
 2019,San Fernando Del Valle De Catamarca-Córdoba,2094,112204,78037,69.5,San Fernando Del Valle De Catamarca,Córdoba,0
+2019,Salta-Orán,1713,98432,71969,73.1,Salta,Orán,0
+2019,Córdoba-Salta,1735,86042,70222,81.6,Córdoba,Salta,0
 2019,Córdoba-La Rioja,1810,98270,68631,69.8,Córdoba,La Rioja,0
 2019,La Rioja-Córdoba,1803,97822,66984,68.5,La Rioja,Córdoba,0
+2019,Orán-Salta,1732,99447,65201,65.6,Orán,Salta,0
+2019,Salta-Córdoba,1703,84076,65082,77.4,Salta,Córdoba,0
 2019,Ciudad Autónoma De Buenos Aires-San Fernando Del Valle De Catamarca,1425,62571,56747,90.7,Ciudad Autónoma De Buenos Aires,San Fernando Del Valle De Catamarca,0
 2019,Ciudad Autónoma De Buenos Aires-San Miguel De Tucumán,1427,63242,55390,87.6,Ciudad Autónoma De Buenos Aires,San Miguel De Tucumán,0
 2019,San Fernando Del Valle De Catamarca-Ciudad Autónoma De Buenos Aires,1379,60945,54337,89.2,San Fernando Del Valle De Catamarca,Ciudad Autónoma De Buenos Aires,0
 2019,San Miguel De Tucumán-Ciudad Autónoma De Buenos Aires,1329,58956,54089,91.7,San Miguel De Tucumán,Ciudad Autónoma De Buenos Aires,0
 2019,San Salvador De Jujuy-Córdoba,1894,70736,53806,76.1,San Salvador De Jujuy,Córdoba,0
 2019,Córdoba-San Salvador De Jujuy,1902,71163,51147,71.9,Córdoba,San Salvador De Jujuy,0
+2019,Corrientes-Salta,918,47861,47811,99.9,Corrientes,Salta,0
 2019,San Miguel De Tucumán-La Plata,905,53473,46154,86.3,San Miguel De Tucumán,La Plata,0
 2019,San Miguel De Tucumán-Cafayate,1292,76912,45559,59.2,San Miguel De Tucumán,Cafayate,0
+2019,Salta-Corrientes,906,47149,44645,94.7,Salta,Corrientes,0
 2019,San Miguel De Tucumán-Mar Del Plata,955,55746,44174,79.2,San Miguel De Tucumán,Mar Del Plata,0
 2019,San Salvador De Jujuy-Esquel,437,25775,43427,168.5,San Salvador De Jujuy,Esquel,0
 2019,La Plata-San Miguel De Tucumán,879,52063,42578,81.8,La Plata,San Miguel De Tucumán,0
@@ -484,11 +624,13 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2019,Ciudad Autónoma De Buenos Aires-La Rioja,857,39278,38555,98.2,Ciudad Autónoma De Buenos Aires,La Rioja,0
 2019,Mendoza-San Salvador De Jujuy,571,32651,37443,114.7,Mendoza,San Salvador De Jujuy,0
 2019,La Rioja-Ciudad Autónoma De Buenos Aires,817,38198,36651,96.0,La Rioja,Ciudad Autónoma De Buenos Aires,0
+2019,Ciudad Autónoma De Buenos Aires-Salta,714,40583,35735,88.1,Ciudad Autónoma De Buenos Aires,Salta,0
 2019,Esquel-San Salvador De Jujuy,426,25134,35669,141.9,Esquel,San Salvador De Jujuy,0
 2019,Mar Del Plata-San Miguel De Tucumán,758,44074,33124,75.2,Mar Del Plata,San Miguel De Tucumán,0
 2019,San Jose-San Miguel De Tucumán,1140,68325,31879,46.7,San Jose,San Miguel De Tucumán,0
 2019,San Miguel De Tucumán-San Jose,958,57465,30823,53.6,San Miguel De Tucumán,San Jose,0
 2019,San Miguel De Tucumán-Mendoza,342,18966,30022,158.3,San Miguel De Tucumán,Mendoza,0
+2019,Salta-Ciudad Autónoma De Buenos Aires,564,31907,29555,92.6,Salta,Ciudad Autónoma De Buenos Aires,0
 2019,San Fernando Del Valle De Catamarca-Frias,908,40067,28443,71.0,San Fernando Del Valle De Catamarca,Frias,0
 2019,San Miguel De Tucumán-Posadas,486,28415,28271,99.5,San Miguel De Tucumán,Posadas,0
 2019,San Miguel De Tucumán-La Banda,705,40110,27586,68.8,San Miguel De Tucumán,La Banda,0
@@ -498,54 +640,73 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2019,La Banda-San Miguel De Tucumán,969,54046,26401,48.8,La Banda,San Miguel De Tucumán,0
 2019,Fiambala-San Fernando Del Valle De Catamarca,757,41957,26180,62.4,Fiambala,San Fernando Del Valle De Catamarca,0
 2019,San Miguel De Tucumán-Salvador Mazza,362,20748,25921,124.9,San Miguel De Tucumán,Salvador Mazza,0
+2019,Salta-Tartagal,571,27582,25027,90.7,Salta,Tartagal,0
 2019,Posadas-San Miguel De Tucumán,489,28563,24751,86.7,Posadas,San Miguel De Tucumán,0
 2019,Frias-San Fernando Del Valle De Catamarca,895,39479,24492,62.0,Frias,San Fernando Del Valle De Catamarca,0
 2019,San Fernando Del Valle De Catamarca-San Miguel De Tucumán,1069,61797,24461,39.6,San Fernando Del Valle De Catamarca,San Miguel De Tucumán,0
 2019,San Miguel De Tucumán-La Rioja,672,40305,23705,58.8,San Miguel De Tucumán,La Rioja,0
 2019,La Rioja-Salvador Mazza,332,19053,23510,123.4,La Rioja,Salvador Mazza,0
 2019,Cafayate-San Miguel De Tucumán,900,53719,23427,43.6,Cafayate,San Miguel De Tucumán,0
+2019,Salta-Clorinda,351,20474,22958,112.1,Salta,Clorinda,0
 2019,Paraná-San Miguel De Tucumán,376,20919,22839,109.2,Paraná,San Miguel De Tucumán,0
+2019,Tartagal-Salta,534,25703,22035,85.7,Tartagal,Salta,0
+2019,Salta-Paraná,370,21394,21962,102.7,Salta,Paraná,0
+2019,Salta-Formosa,392,22423,21857,97.5,Salta,Formosa,0
 2019,San Miguel De Tucumán-Paraná,373,20844,21605,103.7,San Miguel De Tucumán,Paraná,0
 2019,Salvador Mazza-San Miguel De Tucumán,361,20725,20864,100.7,Salvador Mazza,San Miguel De Tucumán,0
 2019,Mendoza-San Miguel De Tucumán,339,18882,20616,109.2,Mendoza,San Miguel De Tucumán,0
 2019,San Salvador De Jujuy-Rawson,336,19098,20415,106.9,San Salvador De Jujuy,Rawson,0
+2019,Paraná-Salta,351,20329,20191,99.3,Paraná,Salta,0
+2019,Clorinda-Salta,352,20496,19708,96.2,Clorinda,Salta,0
 2019,Salvador Mazza-La Rioja,330,18950,19702,104.0,Salvador Mazza,La Rioja,0
 2019,Rawson-San Salvador De Jujuy,340,19291,19482,101.0,Rawson,San Salvador De Jujuy,0
+2019,Salta-Avellaneda,285,16322,19464,119.3,Salta,Avellaneda,0
+2019,Formosa-Salta,380,21739,18566,85.4,Formosa,Salta,0
 2019,Salvador Mazza-San Salvador De Jujuy,383,23658,18037,76.2,Salvador Mazza,San Salvador De Jujuy,0
 2019,San Salvador De Jujuy-Aguas Blancas,352,21826,18035,82.6,San Salvador De Jujuy,Aguas Blancas,0
 2019,Córdoba-San Luis,351,20025,16319,81.5,Córdoba,San Luis,0
+2019,Avellaneda-Salta,284,16205,16032,98.9,Avellaneda,Salta,0
 2019,San Miguel De Tucumán-Neuquén,313,13200,15904,120.5,San Miguel De Tucumán,Neuquén,0
 2019,San Luis-Ciudad Autónoma De Buenos Aires,533,20280,15258,75.2,San Luis,Ciudad Autónoma De Buenos Aires,0
 2019,San Salvador De Jujuy-Salvador Mazza,379,23445,15204,64.8,San Salvador De Jujuy,Salvador Mazza,0
 2019,La Rioja-San Juan,433,25075,15064,60.1,La Rioja,San Juan,0
 2019,San Miguel De Tucumán-Florencio Varela,339,20209,14261,70.6,San Miguel De Tucumán,Florencio Varela,0
+2019,Salta-Mendoza,333,14259,13579,95.2,Salta,Mendoza,0
 2019,Neuquén-San Miguel De Tucumán,322,13524,13346,98.7,Neuquén,San Miguel De Tucumán,0
 2019,Florencio Varela-San Miguel De Tucumán,342,20391,13193,64.7,Florencio Varela,San Miguel De Tucumán,0
 2019,Aguas Blancas-San Salvador De Jujuy,351,21766,13068,60.0,Aguas Blancas,San Salvador De Jujuy,0
 2019,Jardin America-San Miguel De Tucumán,456,21741,13010,59.8,Jardin America,San Miguel De Tucumán,0
+2019,Mendoza-Salta,325,13870,12992,93.7,Mendoza,Salta,0
+2019,Salta-Humahuaca,751,15111,12906,85.4,Salta,Humahuaca,0
 2019,Ciudad Autónoma De Buenos Aires-San Luis,510,18698,12748,68.2,Ciudad Autónoma De Buenos Aires,San Luis,0
 2019,San Miguel De Tucumán-Jardin America,451,21587,12603,58.4,San Miguel De Tucumán,Jardin America,0
 2019,San Luis-Córdoba,304,17398,12254,70.4,San Luis,Córdoba,0
 2019,San Luis-Schaqui,314,18212,12248,67.3,San Luis,Schaqui,0
 2019,Termas De Rio Hondo-Ciudad Autónoma De Buenos Aires,292,17718,12195,68.8,Termas De Rio Hondo,Ciudad Autónoma De Buenos Aires,1
 2019,La Plata-San Fernando Del Valle De Catamarca,242,14016,11936,85.2,La Plata,San Fernando Del Valle De Catamarca,0
+2019,Salta-Salinas Grandes,627,12580,11411,90.7,Salta,Salinas Grandes,0
 2019,Ciudad Autónoma De Buenos Aires-Termas De Rio Hondo,298,18084,11095,61.4,Ciudad Autónoma De Buenos Aires,Termas De Rio Hondo,1
 2019,Schaqui-San Luis,314,18212,11013,60.5,Schaqui,San Luis,0
 2019,San Fernando Del Valle De Catamarca-Santiago Del Estero,296,17568,10632,60.5,San Fernando Del Valle De Catamarca,Santiago Del Estero,1
 2019,Santiago Del Estero-San Fernando Del Valle De Catamarca,293,17450,10619,60.9,Santiago Del Estero,San Fernando Del Valle De Catamarca,1
 2019,San Miguel De Tucumán-San Salvador De Jujuy,219,12601,10267,81.5,San Miguel De Tucumán,San Salvador De Jujuy,0
+2019,Salta-Caba,183,10661,10081,94.6,Salta,Caba,0
 2019,San Salvador De Jujuy-Caba,184,10187,9721,95.4,San Salvador De Jujuy,Caba,0
 2019,San Fernando Del Valle De Catamarca-La Plata,225,13044,9682,74.2,San Fernando Del Valle De Catamarca,La Plata,0
 2019,Santa Maria-San Fernando Del Valle De Catamarca,258,15435,8827,57.2,Santa Maria,San Fernando Del Valle De Catamarca,0
 2019,San Fernando Del Valle De Catamarca-Santa Maria,291,17445,7983,45.8,San Fernando Del Valle De Catamarca,Santa Maria,0
 2019,San Salvador De Jujuy-San Miguel De Tucumán,218,12167,7676,63.1,San Salvador De Jujuy,San Miguel De Tucumán,0
+2019,Salta-La Plata,142,7231,6660,92.1,Salta,La Plata,0
 2019,Caba-San Salvador De Jujuy,110,6253,5755,92.0,Caba,San Salvador De Jujuy,0
+2019,La Plata-Salta,142,7147,5626,78.7,La Plata,Salta,0
 2019,Santiago Del Estero-Mar Del Plata,86,5154,4018,78.0,Santiago Del Estero,Mar Del Plata,1
 2019,San Miguel De Tucumán-Villa Carlos Paz,83,4551,3780,83.1,San Miguel De Tucumán,Villa Carlos Paz,0
+2019,Santa Maria-Salta,179,8049,3076,38.2,Santa Maria,Salta,0
 2019,San Salvador De Jujuy-Mar Del Plata,50,2999,2961,98.7,San Salvador De Jujuy,Mar Del Plata,0
 2019,San Miguel De Tucumán-Rio Negro,55,3180,2862,90.0,San Miguel De Tucumán,Rio Negro,0
 2019,Santiago Del Estero-Ciudad Autónoma De Buenos Aires,76,4015,2685,66.9,Santiago Del Estero,Ciudad Autónoma De Buenos Aires,1
 2019,San Miguel De Tucumán-San Jose Del Boqueron,229,12000,2524,21.0,San Miguel De Tucumán,San Jose Del Boqueron,0
+2019,Caba-Salta,48,2773,2491,89.8,Caba,Salta,0
 2019,Santiago Del Estero-Ingeniero Budge,76,4369,2213,50.7,Santiago Del Estero,Ingeniero Budge,1
 2019,Ingeniero Budge-Santiago Del Estero,74,4305,2104,48.9,Ingeniero Budge,Santiago Del Estero,1
 2019,San Miguel De Tucumán-Aguas Blancas,64,3814,2018,52.9,San Miguel De Tucumán,Aguas Blancas,0
@@ -558,3 +719,4 @@ anio,par_origen_destino,viajes,asientos,pasajeros,load_factor_pct,origen,destino
 2019,Mina Alumbrera-San Miguel De Tucumán,51,1999,747,37.4,Mina Alumbrera,San Miguel De Tucumán,0
 2019,Nueva Esperanza-San Miguel De Tucumán,85,3930,677,17.2,Nueva Esperanza,San Miguel De Tucumán,0
 2019,Termas De Rio Hondo-San Miguel,81,1539,603,39.2,Termas De Rio Hondo,San Miguel,1
+2019,Salta-Purmamarca,49,964,573,59.4,Salta,Purmamarca,0
