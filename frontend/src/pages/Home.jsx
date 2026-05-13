@@ -241,8 +241,7 @@ function BrechaSection({ plazasData, aereoData }) {
       <SectionTitle>Capacidad sin<br />conectividad.</SectionTitle>
       <p style={{ fontSize: '1rem', color: C.slate, maxWidth: 560, margin: '0 0 52px', lineHeight: 1.7 }}>
         Termas de Río Hondo tiene <strong style={{ color: C.ink }}>{fmt(plazas)} plazas hoteleras</strong> — el 7° stock más grande del país.
-        Pero la conectividad aérea semanal alcanza apenas <strong style={{ color: C.ink }}>{aereo2025} asientos</strong>: el {cobertura}% de su capacidad.
-        En 2017 eran 4.045 asientos semanales. Una decisión política en 2019 recortó el 89% — y nunca se recuperó.
+        La conectividad aérea total SDE — <strong style={{ color: C.ink }}>{aereo2025} asientos semanales ({cobertura}%)</strong> — recuperó niveles de 2017 con Aerolíneas, Flybondi y Andes en ambos aeropuertos. Pero la conectividad directa a Termas (SANH) sigue siendo la restricción estructural del destino.
       </p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 32, maxWidth: 640 }}>
         {items.map((item, i) => (
@@ -262,15 +261,14 @@ function BrechaSection({ plazasData, aereoData }) {
         ))}
       </div>
       <div style={{ marginTop: 52, paddingTop: 32, borderTop: `0.5px solid ${C.stone}40`, display: 'flex', alignItems: 'baseline', gap: 20 }}>
-        <span style={{ fontSize: 'clamp(3rem,6vw,5rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.05em', lineHeight: 1 }}>−89%</span>
+        <span style={{ fontSize: 'clamp(3rem,6vw,5rem)', fontWeight: 200, color: C.ink, letterSpacing: '-0.05em', lineHeight: 1 }}>{cobertura}%</span>
         <div>
-          <div style={{ fontSize: 'var(--fs-lg)', fontWeight: 600, color: C.ink, textTransform: 'uppercase', letterSpacing: '0.06em' }}>caída de conectividad aérea 2017→2025</div>
-          <div style={{ fontSize: 'var(--fs-sm)', color: C.slate, marginTop: 4 }}>de 4.045 a {fmt(aereo2025)} asientos semanales · {cobertura}% de cobertura actual</div>
+          <div style={{ fontSize: 'var(--fs-lg)', fontWeight: 600, color: C.ink, textTransform: 'uppercase', letterSpacing: '0.06em' }}>Cobertura aérea total SDE · 2026</div>
+          <div style={{ fontSize: 'var(--fs-sm)', color: C.slate, marginTop: 4 }}>{fmt(aereo2025)} asientos semanales · AA + Flybondi + Andes · SANE + SANH</div>
         </div>
       </div>
       <Interpretacion>
-        Con {fmt(plazas)} plazas, Termas es el centro termal más grande de Sudamérica en oferta hotelera.
-        Recuperar el nivel de 2017 implicaría multiplicar por 9 el flujo aéreo actual.
+        Con {fmt(plazas)} plazas, Termas es el mayor destino termal de Sudamérica. La conectividad total SDE se recuperó a niveles de 2017, pero distribuida entre SANE (Capital) y SANH (Termas). Fortalecer las frecuencias directas a Termas es la palanca clave para capturar más valor hotelero.
       </Interpretacion>
     </section>
   )
