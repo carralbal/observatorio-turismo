@@ -1,0 +1,237 @@
+=== INICIO Wed May 13 03:00:01 -03 2026 ===
+2026-05-13 03:00:03.993 | INFO     | __main__:<module>:203 - Primera carga — descargando desde 2014
+2026-05-13 03:00:04.329 | INFO     | __main__:fetch_via_pytrends:51 - pytrends: 2014-01-01 2026-05-13
+2026-05-13 03:00:05.560 | INFO     | __main__:fetch_via_pytrends:75 -   Descargando: Termas de Río Hondo
+/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pytrends/request.py:260: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  df = df.fillna(False)
+2026-05-13 03:00:13.802 | SUCCESS  | __main__:fetch_via_pytrends:89 -   OK: ibt_termas — 149 meses
+2026-05-13 03:00:13.802 | INFO     | __main__:fetch_via_pytrends:102 -   Pausa 17 min antes del próximo término...
+2026-05-13 03:17:33.837 | INFO     | __main__:fetch_via_pytrends:75 -   Descargando: Santiago del Estero turismo
+2026-05-13 03:17:39.547 | WARNING  | __main__:fetch_via_pytrends:93 -   Intento 1 falló: HTTPSConnectionPool(host='trends.google.com', port=443): Max retries exceeded with url: /trends/api/widgetdata/multiline?req=%7B%22time%22%3A+%222014-01-01+2026-05-13%22%2C+%22resolution%22%3A+%22MONTH%22%2C+%22locale%22%3A+%22es-419%22%2C+%22comparisonItem%22%3A+%5B%7B%22geo%22%3A+%7B%22country%22%3A+%22AR%22%7D%2C+%22complexKeywordsRestriction%22%3A+%7B%22keyword%22%3A+%5B%7B%22type%22%3A+%22BROAD%22%2C+%22value%22%3A+%22Santiago+del+Estero+turismo%22%7D%5D%7D%7D%5D%2C+%22requestOptions%22%3A+%7B%22property%22%3A+%22%22%2C+%22backend%22%3A+%22IZG%22%2C+%22category%22%3A+0%7D%2C+%22userConfig%22%3A+%7B%22userType%22%3A+%22USER_TYPE_SCRAPER%22%7D%7D&token=APO0_qgAAAAAagVo_rhC7_udPzm6vR83M19iZ1ypS6Ax&tz=180 (Caused by ResponseError('too many 429 error responses')) — esperando 653s
+/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pytrends/request.py:260: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  df = df.fillna(False)
+2026-05-13 03:28:38.792 | SUCCESS  | __main__:fetch_via_pytrends:89 -   OK: ibt_santiago — 149 meses
+2026-05-13 03:28:38.792 | INFO     | __main__:fetch_via_pytrends:102 -   Pausa 20 min antes del próximo término...
+2026-05-13 03:48:43.828 | INFO     | __main__:fetch_via_pytrends:75 -   Descargando: MotoGP Argentina
+2026-05-13 03:48:50.721 | WARNING  | __main__:fetch_via_pytrends:93 -   Intento 1 falló: HTTPSConnectionPool(host='trends.google.com', port=443): Max retries exceeded with url: /trends/api/widgetdata/multiline?req=%7B%22time%22%3A+%222014-01-01+2026-05-13%22%2C+%22resolution%22%3A+%22MONTH%22%2C+%22locale%22%3A+%22es-419%22%2C+%22comparisonItem%22%3A+%5B%7B%22geo%22%3A+%7B%22country%22%3A+%22AR%22%7D%2C+%22complexKeywordsRestriction%22%3A+%7B%22keyword%22%3A+%5B%7B%22type%22%3A+%22BROAD%22%2C+%22value%22%3A+%22MotoGP+Argentina%22%7D%5D%7D%7D%5D%2C+%22requestOptions%22%3A+%7B%22property%22%3A+%22%22%2C+%22backend%22%3A+%22IZG%22%2C+%22category%22%3A+0%7D%2C+%22userConfig%22%3A+%7B%22userType%22%3A+%22USER_TYPE_SCRAPER%22%7D%7D&token=APO0_qgAAAAAagVwTDQ3moh0p1bqCwBPk6djbbrM2Jzh&tz=180 (Caused by ResponseError('too many 429 error responses')) — esperando 676s
+2026-05-13 04:00:14.734 | WARNING  | __main__:fetch_via_pytrends:93 -   Intento 2 falló: HTTPSConnectionPool(host='trends.google.com', port=443): Max retries exceeded with url: /trends/api/widgetdata/multiline?req=%7B%22time%22%3A+%222014-01-01+2026-05-13%22%2C+%22resolution%22%3A+%22MONTH%22%2C+%22locale%22%3A+%22es-419%22%2C+%22comparisonItem%22%3A+%5B%7B%22geo%22%3A+%7B%22country%22%3A+%22AR%22%7D%2C+%22complexKeywordsRestriction%22%3A+%7B%22keyword%22%3A+%5B%7B%22type%22%3A+%22BROAD%22%2C+%22value%22%3A+%22MotoGP+Argentina%22%7D%5D%7D%7D%5D%2C+%22requestOptions%22%3A+%7B%22property%22%3A+%22%22%2C+%22backend%22%3A+%22IZG%22%2C+%22category%22%3A+0%7D%2C+%22userConfig%22%3A+%7B%22userType%22%3A+%22USER_TYPE_SCRAPER%22%7D%7D&token=APO0_qgAAAAAagVy95P-XMOcTo6FnY9RKotaA7x3Rao4&tz=180 (Caused by ResponseError('too many 429 error responses')) — esperando 628s
+2026-05-13 04:10:50.572 | WARNING  | __main__:fetch_via_pytrends:93 -   Intento 3 falló: HTTPSConnectionPool(host='trends.google.com', port=443): Max retries exceeded with url: /trends/api/widgetdata/multiline?req=%7B%22time%22%3A+%222014-01-01+2026-05-13%22%2C+%22resolution%22%3A+%22MONTH%22%2C+%22locale%22%3A+%22es-419%22%2C+%22comparisonItem%22%3A+%5B%7B%22geo%22%3A+%7B%22country%22%3A+%22AR%22%7D%2C+%22complexKeywordsRestriction%22%3A+%7B%22keyword%22%3A+%5B%7B%22type%22%3A+%22BROAD%22%2C+%22value%22%3A+%22MotoGP+Argentina%22%7D%5D%7D%7D%5D%2C+%22requestOptions%22%3A+%7B%22property%22%3A+%22%22%2C+%22backend%22%3A+%22IZG%22%2C+%22category%22%3A+0%7D%2C+%22userConfig%22%3A+%7B%22userType%22%3A+%22USER_TYPE_SCRAPER%22%7D%7D&token=APO0_qgAAAAAagV1c4DKXr0BZlnWX2meAOtlGX0JuU_r&tz=180 (Caused by ResponseError('too many 429 error responses')) — esperando 660s
+2026-05-13 04:10:50.573 | ERROR    | __main__:fetch_via_pytrends:97 -   Falló definitivamente: MotoGP Argentina
+2026-05-13 04:10:50.575 | INFO     | __main__:<module>:208 - pytrends falló o --manual — intentando CSV manual...
+2026-05-13 04:10:50.576 | INFO     | __main__:import_manual_csv:122 - Importando CSV procesado: data/raw/trends/manual/raw_google_trends_manual.csv
+2026-05-13 04:10:50.625 | SUCCESS  | __main__:upsert_warehouse:186 - DuckDB: raw_google_trends → 149 meses · hasta 2026-05-01 00:00:00
+2026-05-13 04:10:51.695 | INFO     | __main__:fetch_anac_sde:13 - Descargando microdatos ANAC (puede tardar)...
+2026-05-13 04:13:03.048 | SUCCESS  | __main__:fetch_anac_sde:39 - DuckDB: raw_anac_sde → 12629 filas
+2026-05-13 04:13:03.049 | INFO     | __main__:fetch_anac_sde:40 - Período: 2017-01-01 00:00:00 → 2026-03-31 00:00:00
+indice_tiempo
+2017    259904
+2018    143223
+2019    153825
+2020     26826
+2021     77288
+2022    197365
+2023    249387
+2024    227580
+2025    242599
+2026     47896
+Name: pasajeros, dtype: int64
+2026-05-13 04:13:04.164 | INFO     | __main__:fetch_bcra_fx:12 - Descargando tipo de cambio BCRA...
+2026-05-13 04:13:05.680 | SUCCESS  | __main__:fetch_bcra_fx:44 - DuckDB: raw_bcra_tcn → 137 meses · último: 1423.2 ARS/USD (2026-03)
+         fecha      tcn_usd
+131 2025-10-01  1463.387097
+132 2025-11-01  1453.666667
+133 2025-12-01  1471.129032
+134 2026-01-01  1472.741935
+135 2026-02-01  1427.142857
+136 2026-03-01  1423.235294
+2026-05-13 04:13:06.590 | INFO     | __main__:fetch_airroi:44 - Descargando AirROI — Termas de Río Hondo...
+2026-05-13 04:13:10.326 | SUCCESS  | __main__:fetch_airroi:57 -   occ → 36 meses · ['fecha', 'occ_avg', 'occ_p25', 'occ_p50', 'occ_p75', 'occ_p90']
+2026-05-13 04:13:12.791 | SUCCESS  | __main__:fetch_airroi:57 -   adr → 36 meses · ['fecha', 'adr_avg', 'adr_p25', 'adr_p50', 'adr_p75', 'adr_p90']
+2026-05-13 04:13:16.109 | SUCCESS  | __main__:fetch_airroi:57 -   los → 36 meses · ['fecha', 'los_avg', 'los_p25', 'los_p50', 'los_p75', 'los_p90']
+2026-05-13 04:13:18.629 | SUCCESS  | __main__:fetch_airroi:57 -   rev → 36 meses · ['fecha', 'rev_avg', 'rev_p25', 'rev_p50', 'rev_p75', 'rev_p90']
+2026-05-13 04:13:22.212 | SUCCESS  | __main__:fetch_airroi:57 -   listings → 36 meses · ['fecha', 'listings_count']
+2026-05-13 04:13:22.379 | SUCCESS  | __main__:fetch_airroi:87 - DuckDB: raw_airroi_termas → 36 meses
+
+Columnas: ['fecha', 'occ_avg', 'occ_p25', 'occ_p50', 'occ_p75', 'occ_p90', 'adr_avg', 'adr_p25', 'adr_p50', 'adr_p75', 'adr_p90', 'los_avg', 'los_p25', 'los_p50', 'los_p75', 'los_p90', 'rev_avg', 'rev_p25', 'rev_p50', 'rev_p75', 'rev_p90', 'listings_count', 'mercado']
+Período: 2023-05 → 2026-04
+        fecha  occ_avg   adr_avg  los_avg
+28 2025-09-01     0.29   91158.4      5.4
+29 2025-10-01     0.28   54120.3      2.0
+30 2025-11-01     0.21   49092.3      1.8
+31 2025-12-01     0.09   74051.3      2.0
+32 2026-01-01     0.18   73033.0      7.5
+33 2026-02-01     0.25   74178.4      3.8
+34 2026-03-01     0.15   97109.6      5.2
+35 2026-04-01     0.16  129362.9      2.3
+2026-05-13 04:13:23.153 | INFO     | __main__:fetch_cnrt:16 - Descargando CNRT — magnitudes por ruta...
+2026-05-13 04:13:23.554 | INFO     | __main__:fetch_cnrt:24 - Total filas raw: 4163 → filtrado NOA+pares: 721
+2026-05-13 04:13:23.691 | SUCCESS  | __main__:fetch_cnrt:37 - DuckDB: raw_cnrt_pares → 721 filas
+indice_tiempo
+2019    5438821
+2020    1588689
+2021    2993981
+2022    4866087
+2023    4662401
+2024    3397659
+Name: pasajeros, dtype: int64
+2026-05-13 04:13:24.553 | INFO     | __main__:fetch_ipc:15 - Descargando IPC por capítulos...
+2026-05-13 04:13:25.284 | SUCCESS  | __main__:fetch_ipc:43 - DuckDB: raw_ipc_capitulos → 112 meses
+2026-05-13 04:13:25.285 | INFO     | __main__:fetch_ipc:44 - IPC Restaurantes/Hoteles nacional: 13684.7 (2026-03)
+    indice_tiempo  ipc_restaurantes_hoteles_nacional  ipc_restaurantes_hoteles_noa  ipc_alimentos_bebidas_no_alcoholicas_nacional  ipc_transporte_nacional
+106    2025-10-01                         11665.8824                    12372.2614                                     10136.6605                9997.0294
+107    2025-11-01                         11952.2159                    12403.6217                                     10421.9128               10299.7148
+108    2025-12-01                         12333.0229                    12619.7848                                     10748.4071               10712.0821
+109    2026-01-01                         12843.2705                    13002.6597                                     11251.1166               10909.2325
+110    2026-02-01                         13228.6515                    13486.7770                                     11624.9808               11124.8788
+111    2026-03-01                         13684.7468                    13963.5707                                     12014.7000               11583.9560
+2026-05-13 04:13:26.096 | INFO     | __main__:fetch_eti:20 - Descargando ETI — receptivo...
+2026-05-13 04:13:26.437 | INFO     | __main__:fetch_eti:22 -   Columnas: ['indice_tiempo', 'medio_de_transporte', 'pais_origen', 'viajes_de_turistas_no_residentes', 'observaciones']
+2026-05-13 04:13:26.480 | SUCCESS  | __main__:fetch_eti:30 -   raw_eti_receptivo → 5265 filas
+2026-05-13 04:13:26.480 | INFO     | __main__:fetch_eti:20 - Descargando ETI — emisivo...
+2026-05-13 04:13:26.723 | INFO     | __main__:fetch_eti:22 -   Columnas: ['indice_tiempo', 'medio_de_transporte', 'pais_destino', 'viajes_de_turistas_residentes', 'observaciones']
+2026-05-13 04:13:26.735 | SUCCESS  | __main__:fetch_eti:30 -   raw_eti_emisivo → 3321 filas
+2026-05-13 04:13:26.735 | INFO     | __main__:fetch_eti:20 - Descargando ETI — balanza...
+2026-05-13 04:13:27.034 | INFO     | __main__:fetch_eti:22 -   Columnas: ['indice_tiempo', 'medio_de_transporte', 'pais', 'balanza', 'observaciones']
+2026-05-13 04:13:27.048 | SUCCESS  | __main__:fetch_eti:30 -   raw_eti_balanza → 3321 filas
+2026-05-13 04:13:27.048 | INFO     | __main__:fetch_eti:20 - Descargando ETI — serie_mensual...
+2026-05-13 04:13:27.250 | INFO     | __main__:fetch_eti:22 -   Columnas: ['indice_tiempo', 'emisivo_aerea_bolivia', 'emisivo_aerea_europa', 'emisivo_aerea_chile', 'emisivo_aerea_paraguay', 'emisivo_aerea_brasil', 'emisivo_aerea_ee_uu_y_canada', 'emisivo_aerea_resto_de_america', 'emisivo_aerea_resto_del_mundo', 'emisivo_aerea_uruguay', 'emisivo_terrestre_bolivia', 'emisivo_terrestre_europa', 'emisivo_terrestre_chile', 'emisivo_terrestre_paraguay', 'emisivo_terrestre_brasil', 'emisivo_terrestre_ee_uu_y_canada', 'emisivo_terrestre_resto_de_america', 'emisivo_terrestre_resto_del_mundo', 'emisivo_terrestre_uruguay', 'emisivo_fluvial_maritima_bolivia', 'emisivo_fluvial_maritima_europa', 'emisivo_fluvial_maritima_chile', 'emisivo_fluvial_maritima_paraguay', 'emisivo_fluvial_maritima_brasil', 'emisivo_fluvial_maritima_ee_uu_y_canada', 'emisivo_fluvial_maritima_resto_de_america', 'emisivo_fluvial_maritima_resto_del_mundo', 'emisivo_fluvial_maritima_uruguay', 'receptivo_aerea_bolivia', 'receptivo_aerea_europa', 'receptivo_aerea_chile', 'receptivo_aerea_paraguay', 'receptivo_aerea_brasil', 'receptivo_aerea_ee_uu_y_canada', 'receptivo_aerea_resto_de_america', 'receptivo_aerea_resto_del_mundo', 'receptivo_aerea_uruguay', 'receptivo_terrestre_bolivia', 'receptivo_terrestre_europa', 'receptivo_terrestre_chile', 'receptivo_terrestre_paraguay', 'receptivo_terrestre_brasil', 'receptivo_terrestre_ee_uu_y_canada', 'receptivo_terrestre_resto_de_america', 'receptivo_terrestre_resto_del_mundo', 'receptivo_terrestre_uruguay', 'receptivo_fluvial_maritima_bolivia', 'receptivo_fluvial_maritima_europa', 'receptivo_fluvial_maritima_chile', 'receptivo_fluvial_maritima_paraguay', 'receptivo_fluvial_maritima_brasil', 'receptivo_fluvial_maritima_ee_uu_y_canada', 'receptivo_fluvial_maritima_resto_de_america', 'receptivo_fluvial_maritima_resto_del_mundo', 'receptivo_fluvial_maritima_uruguay', 'balanza_aerea_bolivia', 'balanza_aerea_europa', 'balanza_aerea_chile', 'balanza_aerea_paraguay', 'balanza_aerea_brasil', 'balanza_aerea_ee_uu_y_canada', 'balanza_aerea_resto_de_america', 'balanza_aerea_resto_del_mundo', 'balanza_aerea_uruguay', 'balanza_terrestre_bolivia', 'balanza_terrestre_europa', 'balanza_terrestre_chile', 'balanza_terrestre_paraguay', 'balanza_terrestre_brasil', 'balanza_terrestre_ee_uu_y_canada', 'balanza_terrestre_resto_de_america', 'balanza_terrestre_resto_del_mundo', 'balanza_terrestre_uruguay', 'balanza_fluvial_maritima_bolivia', 'balanza_fluvial_maritima_europa', 'balanza_fluvial_maritima_chile', 'balanza_fluvial_maritima_paraguay', 'balanza_fluvial_maritima_brasil', 'balanza_fluvial_maritima_ee_uu_y_canada', 'balanza_fluvial_maritima_resto_de_america', 'balanza_fluvial_maritima_resto_del_mundo', 'balanza_fluvial_maritima_uruguay']
+2026-05-13 04:13:27.276 | SUCCESS  | __main__:fetch_eti:30 -   raw_eti_serie_mensual → 123 filas
+2026-05-13 04:13:28.249 | INFO     | __main__:fetch_youtube:59 - Descargando datos YouTube — recientes + históricos...
+2026-05-13 04:13:28.249 | INFO     | __main__:fetch_youtube:63 -   [reciente] 'Termas de Río Hondo turismo' (order=date)...
+2026-05-13 04:13:29.382 | INFO     | __main__:fetch_youtube:63 -   [reciente] 'Termas de Río Hondo hotel' (order=date)...
+2026-05-13 04:13:30.600 | INFO     | __main__:fetch_youtube:63 -   [reciente] 'Santiago del Estero turismo' (order=date)...
+2026-05-13 04:13:31.426 | INFO     | __main__:fetch_youtube:63 -   [reciente] 'MotoGP Termas Argentina' (order=date)...
+2026-05-13 04:13:32.258 | INFO     | __main__:fetch_youtube:63 -   [reciente] 'Termas de Río Hondo 2026' (order=date)...
+2026-05-13 04:13:33.106 | INFO     | __main__:fetch_youtube:63 -   [historico] 'Termas de Río Hondo' (order=viewCount)...
+2026-05-13 04:13:34.077 | INFO     | __main__:fetch_youtube:63 -   [historico] 'MotoGP Argentina Termas' (order=viewCount)...
+2026-05-13 04:13:35.002 | INFO     | __main__:fetch_youtube:63 -   [historico] 'Termas Río Hondo MotoGP 2014' (order=viewCount)...
+2026-05-13 04:13:35.743 | INFO     | __main__:fetch_youtube:63 -   [historico] 'Termas Río Hondo MotoGP 2015' (order=viewCount)...
+2026-05-13 04:13:36.984 | INFO     | __main__:fetch_youtube:63 -   [historico] 'Termas Río Hondo MotoGP 2019' (order=viewCount)...
+2026-05-13 04:13:37.717 | INFO     | __main__:fetch_youtube:63 -   [historico] 'Santiago del Estero viaje' (order=viewCount)...
+2026-05-13 04:13:38.715 | INFO     | __main__:fetch_youtube:63 -   [historico] 'turismo termal Argentina' (order=viewCount)...
+2026-05-13 04:13:39.719 | SUCCESS  | __main__:fetch_youtube:112 - DuckDB: raw_youtube_sde → 511 videos únicos
+
+Total: 511 videos únicos
+Período: 2009 → 2026
+
+Top 10 por vistas:
+                                                                                      titulo                    canal    vistas fecha_publi        tag
+500                                SANTIAGO DEL ESTERO ME ESTA LLAMANDO....HONDO SENTIMIENTO             kike enrique  16377146  2017-08-19  historico
+300                               #GrazieVale - Rossi&#39;s Greatest Rivalries: Marc Marquez                   MotoGP   4812064  2021-11-26  historico
+301                                                      2015 #ArgentinaGP | Vintage MotoGP™                   MotoGP   3482752  2020-06-01  historico
+351             [MOTOGP 2018] Chặng 2 tại trường đua Termas de Río Hondo Circuit (Argentina)  Honda Việt Nam Official   2330520  2018-04-17  historico
+302                                                           MotoGP™ Rewind: Argentina 2014                   MotoGP   2105648  2014-05-01  historico
+250                                Termas Clash: Marquez and Rossi, the clash of the titans!                   MotoGP   2102442  2018-04-09  historico
+304                                                   MotoGP Rewind: A recap of #ArgentinaGP                   MotoGP   1762475  2015-04-28  historico
+502  Hacemos un viaje en Autobús de Chile a Argentina y… 🇨🇱🇦🇷 #viajes #autobus #curiosidades         Gemelos Viajeros   1717618  2024-03-24  historico
+501                                   Así es VIVIR MONTE ADENTRO en Santiago del Estero 2025           Soy mi TIERRA    1564502  2025-03-15  historico
+305                                                    MotoGP™ Full Race | 2018 #ArgentinaGP                   MotoGP   1545984  2022-03-30  historico
+
+Por tag:
+tag
+historico    289
+reciente     222
+Name: video_id, dtype: int64
+2026-05-13 04:13:40.539 | INFO     | __main__:fetch_evyth:27 - Descargando EVyTH — destino...
+2026-05-13 04:13:40.726 | SUCCESS  | __main__:fetch_evyth:37 -   raw_evyth_destino → 400 filas · cols: ['indice_tiempo', 'region_destino', 'turistas']
+2026-05-13 04:13:40.726 | INFO     | __main__:fetch_evyth:27 - Descargando EVyTH — origen...
+2026-05-13 04:13:40.857 | SUCCESS  | __main__:fetch_evyth:37 -   raw_evyth_origen → 400 filas · cols: ['indice_tiempo', 'region_origen', 'turistas']
+2026-05-13 04:13:40.858 | INFO     | __main__:fetch_evyth:27 - Descargando EVyTH — motivo...
+2026-05-13 04:13:40.997 | SUCCESS  | __main__:fetch_evyth:37 -   raw_evyth_motivo → 200 filas · cols: ['indice_tiempo', 'motivo', 'turistas']
+2026-05-13 04:13:40.997 | INFO     | __main__:fetch_evyth:27 - Descargando EVyTH — alojamiento...
+2026-05-13 04:13:41.231 | SUCCESS  | __main__:fetch_evyth:37 -   raw_evyth_alojamiento → 348 filas · cols: ['indice_tiempo', 'tipo_alojamiento', 'turistas']
+2026-05-13 04:13:41.232 | INFO     | __main__:fetch_evyth:27 - Descargando EVyTH — edad...
+2026-05-13 04:13:41.368 | SUCCESS  | __main__:fetch_evyth:37 -   raw_evyth_edad → 251 filas · cols: ['indice_tiempo', 'edad', 'turistas']
+2026-05-13 04:13:41.368 | INFO     | __main__:fetch_evyth:27 - Descargando EVyTH — sexo...
+2026-05-13 04:13:41.511 | SUCCESS  | __main__:fetch_evyth:37 -   raw_evyth_sexo → 100 filas · cols: ['indice_tiempo', 'sexo', 'turistas']
+2026-05-13 04:13:41.511 | INFO     | __main__:fetch_evyth:27 - Descargando EVyTH — transporte...
+2026-05-13 04:13:41.731 | SUCCESS  | __main__:fetch_evyth:37 -   raw_evyth_transporte → 200 filas · cols: ['indice_tiempo', 'tipo_transporte', 'turistas']
+2026-05-13 04:13:41.731 | INFO     | __main__:fetch_evyth:27 - Descargando EVyTH — quintil...
+2026-05-13 04:13:41.863 | SUCCESS  | __main__:fetch_evyth:37 -   raw_evyth_quintil → 150 filas · cols: ['indice_tiempo', 'quintil', 'turistas']
+2026-05-13 04:13:41.864 | INFO     | __main__:fetch_evyth:27 - Descargando EVyTH — gasto_destino...
+2026-05-13 04:13:42.007 | SUCCESS  | __main__:fetch_evyth:37 -   raw_evyth_gasto_destino → 400 filas · cols: ['indice_tiempo', 'region_destino', 'gasto_promedio']
+2026-05-13 04:13:42.007 | INFO     | __main__:fetch_evyth:27 - Descargando EVyTH — estadia_destino...
+2026-05-13 04:13:42.233 | SUCCESS  | __main__:fetch_evyth:37 -   raw_evyth_estadia_destino → 400 filas · cols: ['indice_tiempo', 'region_destino', 'estadia_media']
+2026-05-13 04:13:42.233 | INFO     | __main__:fetch_evyth:27 - Descargando EVyTH — serie_trimestral...
+2026-05-13 04:13:42.416 | SUCCESS  | __main__:fetch_evyth:37 -   raw_evyth_serie_trimestral → 50 filas · cols: ['indice_tiempo', 'destino_caba', 'destino_cordoba', 'destino_cuyo']
+2026-05-13 04:13:43.419 | INFO     | __main__:fetch_eoh:23 - Descargando viajeros_localidad...
+2026-05-13 04:13:44.114 | SUCCESS  | __main__:fetch_eoh:32 -   raw_eoh_viajeros_localidad → 14064 filas
+2026-05-13 04:13:44.114 | INFO     | __main__:fetch_eoh:23 - Descargando pernoctes_localidad...
+2026-05-13 04:13:44.820 | SUCCESS  | __main__:fetch_eoh:32 -   raw_eoh_pernoctes_localidad → 14064 filas
+2026-05-13 04:13:44.821 | INFO     | __main__:fetch_eoh:23 - Descargando estadia_destino...
+2026-05-13 04:13:45.148 | SUCCESS  | __main__:fetch_eoh:32 -   raw_eoh_estadia_destino → 4767 filas
+2026-05-13 04:13:45.148 | INFO     | __main__:fetch_eoh:23 - Descargando toh_region_categoria...
+2026-05-13 04:13:45.603 | SUCCESS  | __main__:fetch_eoh:32 -   raw_eoh_toh_region_categoria → 5845 filas
+2026-05-13 04:13:45.714 | SUCCESS  | __main__:fetch_eoh:35 - EOH completo en DuckDB
+2026-05-13 04:13:46.616 | INFO     | __main__:download:25 - Descargando xlsx OEDE empleo trimestral...
+2026-05-13 04:13:47.675 | SUCCESS  | __main__:download:29 -   Descargado: data/raw/sipa/sipa_empleo_trimestral_2dig.xlsx (1487 KB)
+2026-05-13 04:13:48.297 | INFO     | __main__:load:63 - Procesando 25 provincias...
+2026-05-13 04:13:48.373 | SUCCESS  | __main__:load:69 -   Partidos de GBA: 75 trimestres · último: 2025-T3 = 52157
+2026-05-13 04:13:48.447 | SUCCESS  | __main__:load:69 -   Capital Federal: 75 trimestres · último: 2025-T3 = 99391
+2026-05-13 04:13:48.568 | SUCCESS  | __main__:load:69 -   Resto de Buenos Aires: 75 trimestres · último: 2025-T3 = 36275
+2026-05-13 04:13:48.642 | SUCCESS  | __main__:load:69 -   Catamarca: 75 trimestres · último: 2025-T3 = 1548
+2026-05-13 04:13:48.715 | SUCCESS  | __main__:load:69 -   Cordoba: 75 trimestres · último: 2025-T3 = 21985
+2026-05-13 04:13:48.789 | SUCCESS  | __main__:load:69 -   Corrientes: 75 trimestres · último: 2025-T3 = 3710
+2026-05-13 04:13:48.908 | SUCCESS  | __main__:load:69 -   Chaco: 75 trimestres · último: 2025-T3 = 1335
+2026-05-13 04:13:48.981 | SUCCESS  | __main__:load:69 -   Chubut: 75 trimestres · último: 2025-T3 = 3502
+2026-05-13 04:13:49.060 | SUCCESS  | __main__:load:69 -   Entre Rios: 75 trimestres · último: 2025-T3 = 3954
+2026-05-13 04:13:49.133 | SUCCESS  | __main__:load:69 -   Formosa: 75 trimestres · último: 2025-T3 = 767
+2026-05-13 04:13:49.253 | SUCCESS  | __main__:load:69 -   Jujuy: 75 trimestres · último: 2025-T3 = 1918
+2026-05-13 04:13:49.330 | SUCCESS  | __main__:load:69 -   La Pampa: 75 trimestres · último: 2025-T3 = 1046
+2026-05-13 04:13:49.403 | SUCCESS  | __main__:load:69 -   La Rioja: 75 trimestres · último: 2025-T3 = 1100
+2026-05-13 04:13:49.475 | SUCCESS  | __main__:load:69 -   Mendoza: 75 trimestres · último: 2025-T3 = 13162
+2026-05-13 04:13:49.549 | SUCCESS  | __main__:load:69 -   Misiones: 75 trimestres · último: 2025-T3 = 4273
+2026-05-13 04:13:49.669 | SUCCESS  | __main__:load:69 -   Neuquen: 75 trimestres · último: 2025-T3 = 9669
+2026-05-13 04:13:49.741 | SUCCESS  | __main__:load:69 -   Rio Negro: 75 trimestres · último: 2025-T3 = 9809
+2026-05-13 04:13:49.815 | SUCCESS  | __main__:load:69 -   Salta: 75 trimestres · último: 2025-T3 = 6003
+2026-05-13 04:13:49.889 | SUCCESS  | __main__:load:69 -   San Juan: 75 trimestres · último: 2025-T3 = 2691
+2026-05-13 04:13:50.020 | SUCCESS  | __main__:load:69 -   San Luis: 75 trimestres · último: 2025-T3 = 1765
+2026-05-13 04:13:50.096 | SUCCESS  | __main__:load:69 -   Santa Cruz: 75 trimestres · último: 2025-T3 = 4143
+2026-05-13 04:13:50.169 | SUCCESS  | __main__:load:69 -   Santa Fe: 75 trimestres · último: 2025-T3 = 15022
+2026-05-13 04:13:50.244 | SUCCESS  | __main__:load:69 -   Santiago del Estero: 75 trimestres · último: 2025-T3 = 3387
+2026-05-13 04:13:50.375 | SUCCESS  | __main__:load:69 -   Tucuman: 75 trimestres · último: 2025-T3 = 5234
+2026-05-13 04:13:50.453 | SUCCESS  | __main__:load:69 -   Tierra del Fuego: 75 trimestres · último: 2025-T3 = 3161
+2026-05-13 04:13:50.607 | SUCCESS  | __main__:load:78 - DuckDB: raw_sipa_empleo_trimestral_hyg → 1875 filas · último período: 2025-T3
+                provincia  anio  trimestre  periodo  empleo_hyg
+1719  Santiago del Estero  2024          2  2024-T2        3067
+1720  Santiago del Estero  2024          3  2024-T3        3358
+1721  Santiago del Estero  2024          4  2024-T4        3026
+1722  Santiago del Estero  2025          1  2025-T1        3012
+1723  Santiago del Estero  2025          2  2025-T2        3145
+1724  Santiago del Estero  2025          3  2025-T3        3387
+--- dbt run ---
+--- modelo OLS ---
+2026-05-13 04:14:03.505 | SUCCESS  | __main__:<module>:193 - raw_estimados_ols → 10 filas · hasta 2026-04-01 00:00:00
+2026-05-13 04:14:03.505 | SUCCESS  | __main__:<module>:194 - raw_fitted_ols → 150 filas (in-sample fit)
+       fecha            localidad  viajeros  ibt_compuesto        fuente
+0 2025-12-01               Termas     22315           16.3  ESTIMADO_OLS
+1 2026-01-01               Termas     28879           27.4  ESTIMADO_OLS
+2 2026-02-01               Termas     26067           26.5  ESTIMADO_OLS
+3 2026-03-01               Termas     28865           28.8  ESTIMADO_OLS
+4 2026-04-01               Termas     36729           26.7  ESTIMADO_OLS
+5 2025-12-01  Santiago del Estero     17137           16.3  ESTIMADO_OLS
+6 2026-01-01  Santiago del Estero     19851           27.4  ESTIMADO_OLS
+7 2026-02-01  Santiago del Estero     19898           26.5  ESTIMADO_OLS
+8 2026-03-01  Santiago del Estero     21278           28.8  ESTIMADO_OLS
+9 2026-04-01  Santiago del Estero     21234           26.7  ESTIMADO_OLS
+--- export CSVs ---
+  ✓ mart_sde_pulso → 186 filas
+  ✓ mart_sde_motogp → 24 filas
+  ✓ mart_sde_benchmark → 760 filas
+  ✓ mart_nacional_macro → 123 filas
+  ✓ mart_sde_captura_valor → 95 filas
+  ✓ mart_nacional_madurez → 24 filas
+  ✓ mart_sde_youtube → 183 filas
+  ✓ mart_sde_pulso_estimado → 160 filas
+  ✓ mart_sde_perfil_turista → 50 filas
+  ✓ mart_infra_aereo → 1145 filas
+  ✓ mart_infra_terrestre → 721 filas
+  ✓ mart_infra_informal_termas → 60 filas
+  ✓ mart_infra_empleo_hyg → 1875 filas
+  ✓ stg_airdna_sde → 120 filas
+--- git push ---
+[main eea99f6] data: actualización automática 2026-05-13
+ 2 files changed, 157 insertions(+), 154 deletions(-)
+fatal: could not read Username for 'https://github.com': Device not configured
+--- vercel deploy ---
+=== FIN Wed May 13 04:14:05 -03 2026 ===

@@ -1,0 +1,417 @@
+=== INICIO Tue May 12 03:00:00 -03 2026 ===
+2026-05-12 03:00:02.861 | INFO     | __main__:<module>:203 - Primera carga — descargando desde 2014
+2026-05-12 03:00:03.128 | INFO     | __main__:fetch_via_pytrends:51 - pytrends: 2014-01-01 2026-05-12
+2026-05-12 03:00:04.261 | INFO     | __main__:fetch_via_pytrends:75 -   Descargando: Termas de Río Hondo
+2026-05-12 03:00:09.529 | WARNING  | __main__:fetch_via_pytrends:93 -   Intento 1 falló: HTTPSConnectionPool(host='trends.google.com', port=443): Max retries exceeded with url: /trends/api/widgetdata/multiline?req=%7B%22time%22%3A+%222014-01-01+2026-05-12%22%2C+%22resolution%22%3A+%22MONTH%22%2C+%22locale%22%3A+%22es-419%22%2C+%22comparisonItem%22%3A+%5B%7B%22geo%22%3A+%7B%22country%22%3A+%22AR%22%7D%2C+%22complexKeywordsRestriction%22%3A+%7B%22keyword%22%3A+%5B%7B%22type%22%3A+%22BROAD%22%2C+%22value%22%3A+%22Termas+de+R%5Cu00edo+Hondo%22%7D%5D%7D%7D%5D%2C+%22requestOptions%22%3A+%7B%22property%22%3A+%22%22%2C+%22backend%22%3A+%22IZG%22%2C+%22category%22%3A+0%7D%2C+%22userConfig%22%3A+%7B%22userType%22%3A+%22USER_TYPE_SCRAPER%22%7D%7D&token=APO0_qgAAAAAagQTZHJQHJeTAHb5GB86mO3yHdJXngTc&tz=180 (Caused by ResponseError('too many 429 error responses')) — esperando 661s
+/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pytrends/request.py:260: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  df = df.fillna(False)
+2026-05-12 03:11:16.492 | SUCCESS  | __main__:fetch_via_pytrends:89 -   OK: ibt_termas — 149 meses
+2026-05-12 03:11:16.493 | INFO     | __main__:fetch_via_pytrends:102 -   Pausa 18 min antes del próximo término...
+2026-05-12 03:29:20.631 | INFO     | __main__:fetch_via_pytrends:75 -   Descargando: Santiago del Estero turismo
+2026-05-12 03:29:28.027 | WARNING  | __main__:fetch_via_pytrends:93 -   Intento 1 falló: HTTPSConnectionPool(host='trends.google.com', port=443): Max retries exceeded with url: /trends/api/widgetdata/multiline?req=%7B%22time%22%3A+%222014-01-01+2026-05-12%22%2C+%22resolution%22%3A+%22MONTH%22%2C+%22locale%22%3A+%22es-419%22%2C+%22comparisonItem%22%3A+%5B%7B%22geo%22%3A+%7B%22country%22%3A+%22AR%22%7D%2C+%22complexKeywordsRestriction%22%3A+%7B%22keyword%22%3A+%5B%7B%22type%22%3A+%22BROAD%22%2C+%22value%22%3A+%22Santiago+del+Estero+turismo%22%7D%5D%7D%7D%5D%2C+%22requestOptions%22%3A+%7B%22property%22%3A+%22%22%2C+%22backend%22%3A+%22IZG%22%2C+%22category%22%3A+0%7D%2C+%22userConfig%22%3A+%7B%22userType%22%3A+%22USER_TYPE_SCRAPER%22%7D%7D&token=APO0_qgAAAAAagQaQdlROTUjPo3zGwoFatmEZn8Kjp3C&tz=180 (Caused by ResponseError('too many 429 error responses')) — esperando 662s
+2026-05-12 03:40:37.878 | WARNING  | __main__:fetch_via_pytrends:93 -   Intento 2 falló: HTTPSConnectionPool(host='trends.google.com', port=443): Max retries exceeded with url: /trends/api/widgetdata/multiline?req=%7B%22time%22%3A+%222014-01-01+2026-05-12%22%2C+%22resolution%22%3A+%22MONTH%22%2C+%22locale%22%3A+%22es-419%22%2C+%22comparisonItem%22%3A+%5B%7B%22geo%22%3A+%7B%22country%22%3A+%22AR%22%7D%2C+%22complexKeywordsRestriction%22%3A+%7B%22keyword%22%3A+%5B%7B%22type%22%3A+%22BROAD%22%2C+%22value%22%3A+%22Santiago+del+Estero+turismo%22%7D%5D%7D%7D%5D%2C+%22requestOptions%22%3A+%7B%22property%22%3A+%22%22%2C+%22backend%22%3A+%22IZG%22%2C+%22category%22%3A+0%7D%2C+%22userConfig%22%3A+%7B%22userType%22%3A+%22USER_TYPE_SCRAPER%22%7D%7D&token=APO0_qgAAAAAagQc37FR0xk7NfmlePrVM58YJt-uphXz&tz=180 (Caused by ResponseError('too many 429 error responses')) — esperando 851s
+2026-05-12 03:54:54.773 | WARNING  | __main__:fetch_via_pytrends:93 -   Intento 3 falló: HTTPSConnectionPool(host='trends.google.com', port=443): Max retries exceeded with url: /trends/api/widgetdata/multiline?req=%7B%22time%22%3A+%222014-01-01+2026-05-12%22%2C+%22resolution%22%3A+%22MONTH%22%2C+%22locale%22%3A+%22es-419%22%2C+%22comparisonItem%22%3A+%5B%7B%22geo%22%3A+%7B%22country%22%3A+%22AR%22%7D%2C+%22complexKeywordsRestriction%22%3A+%7B%22keyword%22%3A+%5B%7B%22type%22%3A+%22BROAD%22%2C+%22value%22%3A+%22Santiago+del+Estero+turismo%22%7D%5D%7D%7D%5D%2C+%22requestOptions%22%3A+%7B%22property%22%3A+%22%22%2C+%22backend%22%3A+%22IZG%22%2C+%22category%22%3A+0%7D%2C+%22userConfig%22%3A+%7B%22userType%22%3A+%22USER_TYPE_SCRAPER%22%7D%7D&token=APO0_qgAAAAAagQgOiR6-lFVCJpmZrLdQtL3NTIzxhdi&tz=180 (Caused by ResponseError('too many 429 error responses')) — esperando 859s
+2026-05-12 03:54:54.773 | ERROR    | __main__:fetch_via_pytrends:97 -   Falló definitivamente: Santiago del Estero turismo
+2026-05-12 03:54:54.776 | INFO     | __main__:<module>:208 - pytrends falló o --manual — intentando CSV manual...
+2026-05-12 03:54:54.776 | INFO     | __main__:import_manual_csv:122 - Importando CSV procesado: data/raw/trends/manual/raw_google_trends_manual.csv
+2026-05-12 03:54:54.844 | SUCCESS  | __main__:upsert_warehouse:186 - DuckDB: raw_google_trends → 149 meses · hasta 2026-05-01 00:00:00
+2026-05-12 03:54:55.810 | INFO     | __main__:fetch_anac_sde:13 - Descargando microdatos ANAC (puede tardar)...
+Traceback (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 1346, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1257, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1303, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1252, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1012, in _send_output
+    self.send(msg)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 952, in send
+    self.connect()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1426, in connect
+    self.sock = self._context.wrap_socket(self.sock,
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/ssl.py", line 500, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/ssl.py", line 1040, in _create
+    self.do_handshake()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/ssl.py", line 1309, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1129)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/diegocarralbal/observatorio-turismo/etl/connectors/anac_sde.py", line 44, in <module>
+    df = fetch_anac_sde()
+  File "/Users/diegocarralbal/observatorio-turismo/etl/connectors/anac_sde.py", line 17, in fetch_anac_sde
+    for chunk in pd.read_csv(URL, chunksize=50000):
+  File "/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pandas/io/common.py", line 728, in get_handle
+    ioargs = _get_filepath_or_buffer(
+  File "/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pandas/io/common.py", line 384, in _get_filepath_or_buffer
+    with urlopen(req_info) as req:
+  File "/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pandas/io/common.py", line 289, in urlopen
+    return urllib.request.urlopen(*args, **kwargs)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 214, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 517, in open
+    response = self._open(req, data)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 534, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 494, in _call_chain
+    result = func(*args)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 1389, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 1349, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1129)>
+2026-05-12 03:54:57.381 | INFO     | __main__:fetch_bcra_fx:12 - Descargando tipo de cambio BCRA...
+2026-05-12 03:54:58.873 | SUCCESS  | __main__:fetch_bcra_fx:44 - DuckDB: raw_bcra_tcn → 137 meses · último: 1423.2 ARS/USD (2026-03)
+         fecha      tcn_usd
+131 2025-10-01  1463.387097
+132 2025-11-01  1453.666667
+133 2025-12-01  1471.129032
+134 2026-01-01  1472.741935
+135 2026-02-01  1427.142857
+136 2026-03-01  1423.235294
+2026-05-12 03:54:59.753 | INFO     | __main__:fetch_airroi:44 - Descargando AirROI — Termas de Río Hondo...
+2026-05-12 03:55:03.461 | SUCCESS  | __main__:fetch_airroi:57 -   occ → 36 meses · ['fecha', 'occ_avg', 'occ_p25', 'occ_p50', 'occ_p75', 'occ_p90']
+2026-05-12 03:55:05.776 | SUCCESS  | __main__:fetch_airroi:57 -   adr → 36 meses · ['fecha', 'adr_avg', 'adr_p25', 'adr_p50', 'adr_p75', 'adr_p90']
+2026-05-12 03:55:09.091 | SUCCESS  | __main__:fetch_airroi:57 -   los → 36 meses · ['fecha', 'los_avg', 'los_p25', 'los_p50', 'los_p75', 'los_p90']
+2026-05-12 03:55:12.432 | SUCCESS  | __main__:fetch_airroi:57 -   rev → 36 meses · ['fecha', 'rev_avg', 'rev_p25', 'rev_p50', 'rev_p75', 'rev_p90']
+2026-05-12 03:55:14.889 | SUCCESS  | __main__:fetch_airroi:57 -   listings → 36 meses · ['fecha', 'listings_count']
+2026-05-12 03:55:15.068 | SUCCESS  | __main__:fetch_airroi:87 - DuckDB: raw_airroi_termas → 36 meses
+
+Columnas: ['fecha', 'occ_avg', 'occ_p25', 'occ_p50', 'occ_p75', 'occ_p90', 'adr_avg', 'adr_p25', 'adr_p50', 'adr_p75', 'adr_p90', 'los_avg', 'los_p25', 'los_p50', 'los_p75', 'los_p90', 'rev_avg', 'rev_p25', 'rev_p50', 'rev_p75', 'rev_p90', 'listings_count', 'mercado']
+Período: 2023-05 → 2026-04
+        fecha  occ_avg   adr_avg  los_avg
+28 2025-09-01     0.29   91158.4      5.4
+29 2025-10-01     0.28   54120.3      2.0
+30 2025-11-01     0.21   49092.3      1.8
+31 2025-12-01     0.09   74051.3      2.0
+32 2026-01-01     0.18   73033.0      7.5
+33 2026-02-01     0.25   74178.4      3.8
+34 2026-03-01     0.15   97109.6      5.2
+35 2026-04-01     0.16  129362.9      2.3
+2026-05-12 03:55:15.857 | INFO     | __main__:fetch_cnrt:16 - Descargando CNRT — magnitudes por ruta...
+Traceback (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 1346, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1257, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1303, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1252, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1012, in _send_output
+    self.send(msg)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 952, in send
+    self.connect()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1426, in connect
+    self.sock = self._context.wrap_socket(self.sock,
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/ssl.py", line 500, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/ssl.py", line 1040, in _create
+    self.do_handshake()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/ssl.py", line 1309, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1129)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/diegocarralbal/observatorio-turismo/etl/connectors/cnrt.py", line 41, in <module>
+    df = fetch_cnrt()
+  File "/Users/diegocarralbal/observatorio-turismo/etl/connectors/cnrt.py", line 17, in fetch_cnrt
+    df = pd.read_csv(URL)
+  File "/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pandas/io/common.py", line 728, in get_handle
+    ioargs = _get_filepath_or_buffer(
+  File "/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pandas/io/common.py", line 384, in _get_filepath_or_buffer
+    with urlopen(req_info) as req:
+  File "/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pandas/io/common.py", line 289, in urlopen
+    return urllib.request.urlopen(*args, **kwargs)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 214, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 517, in open
+    response = self._open(req, data)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 534, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 494, in _call_chain
+    result = func(*args)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 1389, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 1349, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1129)>
+2026-05-12 03:55:16.812 | INFO     | __main__:fetch_ipc:15 - Descargando IPC por capítulos...
+2026-05-12 03:55:17.627 | SUCCESS  | __main__:fetch_ipc:43 - DuckDB: raw_ipc_capitulos → 112 meses
+2026-05-12 03:55:17.627 | INFO     | __main__:fetch_ipc:44 - IPC Restaurantes/Hoteles nacional: 13684.7 (2026-03)
+    indice_tiempo  ipc_restaurantes_hoteles_nacional  ipc_restaurantes_hoteles_noa  ipc_alimentos_bebidas_no_alcoholicas_nacional  ipc_transporte_nacional
+106    2025-10-01                         11665.8824                    12372.2614                                     10136.6605                9997.0294
+107    2025-11-01                         11952.2159                    12403.6217                                     10421.9128               10299.7148
+108    2025-12-01                         12333.0229                    12619.7848                                     10748.4071               10712.0821
+109    2026-01-01                         12843.2705                    13002.6597                                     11251.1166               10909.2325
+110    2026-02-01                         13228.6515                    13486.7770                                     11624.9808               11124.8788
+111    2026-03-01                         13684.7468                    13963.5707                                     12014.7000               11583.9560
+2026-05-12 03:55:18.449 | INFO     | __main__:fetch_eti:20 - Descargando ETI — receptivo...
+Traceback (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 1346, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1257, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1303, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1252, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1012, in _send_output
+    self.send(msg)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 952, in send
+    self.connect()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1426, in connect
+    self.sock = self._context.wrap_socket(self.sock,
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/ssl.py", line 500, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/ssl.py", line 1040, in _create
+    self.do_handshake()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/ssl.py", line 1309, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1129)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/diegocarralbal/observatorio-turismo/etl/connectors/sinta_eti.py", line 34, in <module>
+    fetch_eti()
+  File "/Users/diegocarralbal/observatorio-turismo/etl/connectors/sinta_eti.py", line 21, in fetch_eti
+    df = pd.read_csv(url)
+  File "/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pandas/io/common.py", line 728, in get_handle
+    ioargs = _get_filepath_or_buffer(
+  File "/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pandas/io/common.py", line 384, in _get_filepath_or_buffer
+    with urlopen(req_info) as req:
+  File "/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pandas/io/common.py", line 289, in urlopen
+    return urllib.request.urlopen(*args, **kwargs)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 214, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 517, in open
+    response = self._open(req, data)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 534, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 494, in _call_chain
+    result = func(*args)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 1389, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 1349, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1129)>
+2026-05-12 03:55:19.428 | INFO     | __main__:fetch_youtube:59 - Descargando datos YouTube — recientes + históricos...
+2026-05-12 03:55:19.428 | INFO     | __main__:fetch_youtube:63 -   [reciente] 'Termas de Río Hondo turismo' (order=date)...
+2026-05-12 03:55:20.519 | INFO     | __main__:fetch_youtube:63 -   [reciente] 'Termas de Río Hondo hotel' (order=date)...
+2026-05-12 03:55:21.671 | INFO     | __main__:fetch_youtube:63 -   [reciente] 'Santiago del Estero turismo' (order=date)...
+2026-05-12 03:55:22.607 | INFO     | __main__:fetch_youtube:63 -   [reciente] 'MotoGP Termas Argentina' (order=date)...
+2026-05-12 03:55:23.805 | INFO     | __main__:fetch_youtube:63 -   [reciente] 'Termas de Río Hondo 2026' (order=date)...
+2026-05-12 03:55:24.615 | INFO     | __main__:fetch_youtube:63 -   [historico] 'Termas de Río Hondo' (order=viewCount)...
+2026-05-12 03:55:25.443 | INFO     | __main__:fetch_youtube:63 -   [historico] 'MotoGP Argentina Termas' (order=viewCount)...
+2026-05-12 03:55:26.412 | INFO     | __main__:fetch_youtube:63 -   [historico] 'Termas Río Hondo MotoGP 2014' (order=viewCount)...
+2026-05-12 03:55:27.253 | INFO     | __main__:fetch_youtube:63 -   [historico] 'Termas Río Hondo MotoGP 2015' (order=viewCount)...
+2026-05-12 03:55:28.309 | INFO     | __main__:fetch_youtube:63 -   [historico] 'Termas Río Hondo MotoGP 2019' (order=viewCount)...
+2026-05-12 03:55:29.301 | INFO     | __main__:fetch_youtube:63 -   [historico] 'Santiago del Estero viaje' (order=viewCount)...
+2026-05-12 03:55:30.110 | INFO     | __main__:fetch_youtube:63 -   [historico] 'turismo termal Argentina' (order=viewCount)...
+2026-05-12 03:55:31.321 | SUCCESS  | __main__:fetch_youtube:112 - DuckDB: raw_youtube_sde → 509 videos únicos
+
+Total: 509 videos únicos
+Período: 2009 → 2026
+
+Top 10 por vistas:
+                                                                                      titulo                    canal    vistas fecha_publi        tag
+500                                SANTIAGO DEL ESTERO ME ESTA LLAMANDO....HONDO SENTIMIENTO             kike enrique  16375444  2017-08-19  historico
+300                               #GrazieVale - Rossi&#39;s Greatest Rivalries: Marc Marquez                   MotoGP   4810574  2021-11-26  historico
+301                                                      2015 #ArgentinaGP | Vintage MotoGP™                   MotoGP   3481490  2020-06-01  historico
+351             [MOTOGP 2018] Chặng 2 tại trường đua Termas de Río Hondo Circuit (Argentina)  Honda Việt Nam Official   2330511  2018-04-17  historico
+302                                                           MotoGP™ Rewind: Argentina 2014                   MotoGP   2105640  2014-05-01  historico
+303                                Termas Clash: Marquez and Rossi, the clash of the titans!                   MotoGP   2101666  2018-04-09  historico
+304                                                   MotoGP Rewind: A recap of #ArgentinaGP                   MotoGP   1762407  2015-04-28  historico
+502  Hacemos un viaje en Autobús de Chile a Argentina y… 🇨🇱🇦🇷 #viajes #autobus #curiosidades         Gemelos Viajeros   1716927  2024-03-24  historico
+501                                   Así es VIVIR MONTE ADENTRO en Santiago del Estero 2025           Soy mi TIERRA    1563971  2025-03-15  historico
+305                                                    MotoGP™ Full Race | 2018 #ArgentinaGP                   MotoGP   1545684  2022-03-30  historico
+
+Por tag:
+tag
+historico    291
+reciente     218
+Name: video_id, dtype: int64
+2026-05-12 03:55:32.148 | INFO     | __main__:fetch_evyth:27 - Descargando EVyTH — destino...
+2026-05-12 03:55:32.211 | WARNING  | __main__:fetch_evyth:39 -   Error destino: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1129)>
+2026-05-12 03:55:32.213 | INFO     | __main__:fetch_evyth:27 - Descargando EVyTH — origen...
+2026-05-12 03:55:32.263 | WARNING  | __main__:fetch_evyth:39 -   Error origen: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1129)>
+2026-05-12 03:55:32.264 | INFO     | __main__:fetch_evyth:27 - Descargando EVyTH — motivo...
+2026-05-12 03:55:32.311 | WARNING  | __main__:fetch_evyth:39 -   Error motivo: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1129)>
+2026-05-12 03:55:32.312 | INFO     | __main__:fetch_evyth:27 - Descargando EVyTH — alojamiento...
+2026-05-12 03:55:32.359 | WARNING  | __main__:fetch_evyth:39 -   Error alojamiento: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1129)>
+2026-05-12 03:55:32.360 | INFO     | __main__:fetch_evyth:27 - Descargando EVyTH — edad...
+2026-05-12 03:55:32.407 | WARNING  | __main__:fetch_evyth:39 -   Error edad: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1129)>
+2026-05-12 03:55:32.408 | INFO     | __main__:fetch_evyth:27 - Descargando EVyTH — sexo...
+2026-05-12 03:55:32.455 | WARNING  | __main__:fetch_evyth:39 -   Error sexo: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1129)>
+2026-05-12 03:55:32.456 | INFO     | __main__:fetch_evyth:27 - Descargando EVyTH — transporte...
+2026-05-12 03:55:32.511 | WARNING  | __main__:fetch_evyth:39 -   Error transporte: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1129)>
+2026-05-12 03:55:32.513 | INFO     | __main__:fetch_evyth:27 - Descargando EVyTH — quintil...
+2026-05-12 03:55:32.572 | WARNING  | __main__:fetch_evyth:39 -   Error quintil: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1129)>
+2026-05-12 03:55:32.573 | INFO     | __main__:fetch_evyth:27 - Descargando EVyTH — gasto_destino...
+2026-05-12 03:55:32.716 | WARNING  | __main__:fetch_evyth:39 -   Error gasto_destino: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1129)>
+2026-05-12 03:55:32.718 | INFO     | __main__:fetch_evyth:27 - Descargando EVyTH — estadia_destino...
+2026-05-12 03:55:32.775 | WARNING  | __main__:fetch_evyth:39 -   Error estadia_destino: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1129)>
+2026-05-12 03:55:32.776 | INFO     | __main__:fetch_evyth:27 - Descargando EVyTH — serie_trimestral...
+2026-05-12 03:55:32.830 | WARNING  | __main__:fetch_evyth:39 -   Error serie_trimestral: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1129)>
+2026-05-12 03:55:33.730 | INFO     | __main__:fetch_eoh:23 - Descargando viajeros_localidad...
+Traceback (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 1346, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1257, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1303, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1252, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1012, in _send_output
+    self.send(msg)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 952, in send
+    self.connect()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/client.py", line 1426, in connect
+    self.sock = self._context.wrap_socket(self.sock,
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/ssl.py", line 500, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/ssl.py", line 1040, in _create
+    self.do_handshake()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/ssl.py", line 1309, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1129)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/diegocarralbal/observatorio-turismo/etl/connectors/sinta_eoh.py", line 38, in <module>
+    fetch_eoh()
+  File "/Users/diegocarralbal/observatorio-turismo/etl/connectors/sinta_eoh.py", line 24, in fetch_eoh
+    df = pd.read_csv(url)
+  File "/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pandas/io/common.py", line 728, in get_handle
+    ioargs = _get_filepath_or_buffer(
+  File "/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pandas/io/common.py", line 384, in _get_filepath_or_buffer
+    with urlopen(req_info) as req:
+  File "/Users/diegocarralbal/observatorio-turismo/.venv/lib/python3.9/site-packages/pandas/io/common.py", line 289, in urlopen
+    return urllib.request.urlopen(*args, **kwargs)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 214, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 517, in open
+    response = self._open(req, data)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 534, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 494, in _call_chain
+    result = func(*args)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 1389, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 1349, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1129)>
+2026-05-12 03:55:34.685 | INFO     | __main__:download:25 - Descargando xlsx OEDE empleo trimestral...
+2026-05-12 03:55:35.531 | SUCCESS  | __main__:download:29 -   Descargado: data/raw/sipa/sipa_empleo_trimestral_2dig.xlsx (1487 KB)
+2026-05-12 03:55:36.042 | INFO     | __main__:load:63 - Procesando 25 provincias...
+2026-05-12 03:55:36.120 | SUCCESS  | __main__:load:69 -   Partidos de GBA: 75 trimestres · último: 2025-T3 = 52157
+2026-05-12 03:55:36.193 | SUCCESS  | __main__:load:69 -   Capital Federal: 75 trimestres · último: 2025-T3 = 99391
+2026-05-12 03:55:36.314 | SUCCESS  | __main__:load:69 -   Resto de Buenos Aires: 75 trimestres · último: 2025-T3 = 36275
+2026-05-12 03:55:36.389 | SUCCESS  | __main__:load:69 -   Catamarca: 75 trimestres · último: 2025-T3 = 1548
+2026-05-12 03:55:36.462 | SUCCESS  | __main__:load:69 -   Cordoba: 75 trimestres · último: 2025-T3 = 21985
+2026-05-12 03:55:36.535 | SUCCESS  | __main__:load:69 -   Corrientes: 75 trimestres · último: 2025-T3 = 3710
+2026-05-12 03:55:36.653 | SUCCESS  | __main__:load:69 -   Chaco: 75 trimestres · último: 2025-T3 = 1335
+2026-05-12 03:55:36.726 | SUCCESS  | __main__:load:69 -   Chubut: 75 trimestres · último: 2025-T3 = 3502
+2026-05-12 03:55:36.800 | SUCCESS  | __main__:load:69 -   Entre Rios: 75 trimestres · último: 2025-T3 = 3954
+2026-05-12 03:55:36.871 | SUCCESS  | __main__:load:69 -   Formosa: 75 trimestres · último: 2025-T3 = 767
+2026-05-12 03:55:36.989 | SUCCESS  | __main__:load:69 -   Jujuy: 75 trimestres · último: 2025-T3 = 1918
+2026-05-12 03:55:37.062 | SUCCESS  | __main__:load:69 -   La Pampa: 75 trimestres · último: 2025-T3 = 1046
+2026-05-12 03:55:37.133 | SUCCESS  | __main__:load:69 -   La Rioja: 75 trimestres · último: 2025-T3 = 1100
+2026-05-12 03:55:37.208 | SUCCESS  | __main__:load:69 -   Mendoza: 75 trimestres · último: 2025-T3 = 13162
+2026-05-12 03:55:37.281 | SUCCESS  | __main__:load:69 -   Misiones: 75 trimestres · último: 2025-T3 = 4273
+2026-05-12 03:55:37.403 | SUCCESS  | __main__:load:69 -   Neuquen: 75 trimestres · último: 2025-T3 = 9669
+2026-05-12 03:55:37.477 | SUCCESS  | __main__:load:69 -   Rio Negro: 75 trimestres · último: 2025-T3 = 9809
+2026-05-12 03:55:37.551 | SUCCESS  | __main__:load:69 -   Salta: 75 trimestres · último: 2025-T3 = 6003
+2026-05-12 03:55:37.623 | SUCCESS  | __main__:load:69 -   San Juan: 75 trimestres · último: 2025-T3 = 2691
+2026-05-12 03:55:37.743 | SUCCESS  | __main__:load:69 -   San Luis: 75 trimestres · último: 2025-T3 = 1765
+2026-05-12 03:55:37.816 | SUCCESS  | __main__:load:69 -   Santa Cruz: 75 trimestres · último: 2025-T3 = 4143
+2026-05-12 03:55:37.889 | SUCCESS  | __main__:load:69 -   Santa Fe: 75 trimestres · último: 2025-T3 = 15022
+2026-05-12 03:55:37.961 | SUCCESS  | __main__:load:69 -   Santiago del Estero: 75 trimestres · último: 2025-T3 = 3387
+2026-05-12 03:55:38.082 | SUCCESS  | __main__:load:69 -   Tucuman: 75 trimestres · último: 2025-T3 = 5234
+2026-05-12 03:55:38.157 | SUCCESS  | __main__:load:69 -   Tierra del Fuego: 75 trimestres · último: 2025-T3 = 3161
+2026-05-12 03:55:38.303 | SUCCESS  | __main__:load:78 - DuckDB: raw_sipa_empleo_trimestral_hyg → 1875 filas · último período: 2025-T3
+                provincia  anio  trimestre  periodo  empleo_hyg
+1719  Santiago del Estero  2024          2  2024-T2        3067
+1720  Santiago del Estero  2024          3  2024-T3        3358
+1721  Santiago del Estero  2024          4  2024-T4        3026
+1722  Santiago del Estero  2025          1  2025-T1        3012
+1723  Santiago del Estero  2025          2  2025-T2        3145
+1724  Santiago del Estero  2025          3  2025-T3        3387
+--- dbt run ---
+--- modelo OLS ---
+2026-05-12 03:55:51.134 | SUCCESS  | __main__:<module>:193 - raw_estimados_ols → 10 filas · hasta 2026-04-01 00:00:00
+2026-05-12 03:55:51.134 | SUCCESS  | __main__:<module>:194 - raw_fitted_ols → 150 filas (in-sample fit)
+       fecha            localidad  viajeros  ibt_compuesto        fuente
+0 2025-12-01               Termas     22315           16.3  ESTIMADO_OLS
+1 2026-01-01               Termas     28879           27.4  ESTIMADO_OLS
+2 2026-02-01               Termas     26067           26.5  ESTIMADO_OLS
+3 2026-03-01               Termas     28865           28.8  ESTIMADO_OLS
+4 2026-04-01               Termas     36729           26.7  ESTIMADO_OLS
+5 2025-12-01  Santiago del Estero     17137           16.3  ESTIMADO_OLS
+6 2026-01-01  Santiago del Estero     19851           27.4  ESTIMADO_OLS
+7 2026-02-01  Santiago del Estero     19898           26.5  ESTIMADO_OLS
+8 2026-03-01  Santiago del Estero     21278           28.8  ESTIMADO_OLS
+9 2026-04-01  Santiago del Estero     21234           26.7  ESTIMADO_OLS
+--- export CSVs ---
+  ✓ mart_sde_pulso → 186 filas
+  ✓ mart_sde_motogp → 24 filas
+  ✓ mart_sde_benchmark → 760 filas
+  ✓ mart_nacional_macro → 123 filas
+  ✓ mart_sde_captura_valor → 95 filas
+  ✓ mart_nacional_madurez → 24 filas
+  ✓ mart_sde_youtube → 180 filas
+  ✓ mart_sde_pulso_estimado → 160 filas
+  ✓ mart_sde_perfil_turista → 50 filas
+  ✓ mart_infra_aereo → 1145 filas
+  ✓ mart_infra_terrestre → 721 filas
+  ✓ mart_infra_informal_termas → 60 filas
+  ✓ mart_infra_empleo_hyg → 1875 filas
+  ✓ stg_airdna_sde → 120 filas
+--- git push ---
+[main 4354439] data: actualización automática 2026-05-12
+ 2 files changed, 152 insertions(+), 157 deletions(-)
+fatal: could not read Username for 'https://github.com': Device not configured
+--- vercel deploy ---
+=== FIN Tue May 12 03:55:53 -03 2026 ===

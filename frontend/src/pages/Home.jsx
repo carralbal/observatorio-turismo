@@ -86,7 +86,7 @@ function KPIStrip({ termasLast, capitalLast, periodoStr, isEstimated, lastEOHEst
     estadiaInformal
       ? { icon: ICONS.estadia, value: `${estadiaInformal.toFixed(1)}n`, label: 'Estadía media · informal', delta: `AirROI · ${estadiaInformalPeriodo}`, estimated: false, subValue: estadia ? `${Number(estadia).toFixed(2)}n formal` : null, subLabel: estadia ? 'EOH · nov 2025' : null }
       : { icon: ICONS.estadia, value: estadia ? `${Number(estadia).toFixed(2)}n` : '—', label: 'Estadía media · EOH', delta: estadiaDelta, estimated: false },
-    { icon: ICONS.ibt,      value: `${ibt ?? '—'}/100`,    label: 'IBT · Señal digital',  delta: `índice de búsqueda · ${termasLast?.fecha ? new Date(termasLast.fecha+'T12:00:00').toLocaleDateString('es-AR', { month: 'short', year: 'numeric' }) : '—'}`, estimated: false },
+    { icon: ICONS.ibt,      value: `${ibt ?? '—'}/100`,    label: 'IBT · Señal digital',  delta: `índice de búsqueda · ${termasLast?.fecha ? new Date(termasLast.fecha).toLocaleDateString('es-AR', { month: 'short', year: 'numeric' }) : '—'}`, estimated: false },
   ]
   return (
     <section style={{ background: C.paper, padding: 'clamp(56px,7vw,88px) var(--pad)' }}>
@@ -226,7 +226,7 @@ function BrechaSection({ plazasData, aereoData }) {
   const aereo2017 = 4045
   const cobertura  = Math.round((aereo2025 / plazas) * 100)
   const aereolineasStr = aereoReciente?.aereolineas?.join(' · ') ?? 'Aerolíneas Argentinas'
-  const fechaRef = aereoReciente?.ultimos3?.[0] ? new Date(aereoReciente.ultimos3[0]+'T12:00:00').toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }) : '2025'
+  const fechaRef = aereoReciente?.ultimos3?.[0] ? new Date(aereoReciente.ultimos3[0]).toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }) : '2025'
 
   const items = [
     { label: 'Plazas hoteleras',         sub: 'PUNA · 7° lugar nacional · Termas de Río Hondo', value: plazas,    pct: 100 },
@@ -276,6 +276,18 @@ function BrechaSection({ plazasData, aereoData }) {
   )
 }
 
+function CTAVolt() {
+  return (
+    <section style={{ background: C.volt, padding: 'clamp(52px,8vw,96px) var(--pad)', textAlign: 'center' }}>
+      <h2 style={{ fontSize: 'clamp(1rem,2.7vw,2.4rem)', fontWeight: 100, color: C.ink, letterSpacing: '-0.04em', lineHeight: 0.92, textTransform: 'uppercase', margin: '0 0 16px' }}>
+        Explorá<br />las otras dimensiones.
+      </h2>
+      <p style={{ fontSize: '0.88rem', fontWeight: 400, color: C.ink, opacity: 0.7, maxWidth: 340, margin: '0 auto', lineHeight: 1.65 }}>
+        14 indicadores · datos oficiales al cierre del período seleccionado.
+      </p>
+    </section>
+  )
+}
 
 
 function ChartEstadia({ termasAll, airdnaTermas, corte }) {
@@ -284,8 +296,8 @@ function ChartEstadia({ termasAll, airdnaTermas, corte }) {
     .filter(r => r.estadia_promedio && Number(r.estadia_promedio) > 0)
     .map(r => ({
       fecha: r.fecha,
-      label: new Date(r.fecha+'T12:00:00').toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
-      year: new Date(r.fecha+'T12:00:00').getFullYear(),
+      label: new Date(r.fecha).toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
+      year: new Date(r.fecha).getFullYear(),
       estadia_eoh:      Number(r.estadia_promedio),
       estadia_informal: null,
     }))
@@ -303,7 +315,7 @@ function ChartEstadia({ termasAll, airdnaTermas, corte }) {
   eohSerie.forEach(r => { merged[r.fecha] = { ...r } })
   Object.entries(airMap).forEach(([fecha, val]) => {
     if (!merged[fecha]) {
-      const d = new Date(fecha+'T12:00:00')
+      const d = new Date(fecha)
       merged[fecha] = { fecha, label: d.toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }), year: d.getFullYear(), estadia_eoh: null, estadia_informal: null }
     }
     // Only show informal after EOH cutoff
@@ -341,6 +353,7 @@ function ChartEstadia({ termasAll, airdnaTermas, corte }) {
               <Eyebrow style={{ opacity: 0.55 }}>{x.l}</Eyebrow>
             </div>
           ))}
+          <Eyebrow style={{ opacity: 0.35, fontSize: 8 }}>· Informal sin datos previos a 2025</Eyebrow>
         </div>
       </div>
       <div style={{ height: 'clamp(180px,22vw,260px)' }}>
@@ -367,10 +380,10 @@ export default function Home() {
   const { data: alojamiento }              = useCSV('/data/data_alojamiento.csv')
   const { data: aereo }                    = useCSV('/data/data_aereo.csv')
 
-  const termasEOH   = pulso.filter(r => r.localidad === 'Termas').sort((a,b) => new Date(a.fecha+'T12:00:00') - new Date(b.fecha+'T12:00:00'))
-  const capitalEOH  = pulso.filter(r => r.localidad === 'Santiago del Estero').sort((a,b) => new Date(a.fecha+'T12:00:00') - new Date(b.fecha+'T12:00:00'))
-  const termasOLS   = estimado.filter(r => r.localidad === 'Termas'                && Number(r.flag_estimado) === 1).sort((a,b) => new Date(a.fecha+'T12:00:00') - new Date(b.fecha+'T12:00:00'))
-  const capitalOLS  = estimado.filter(r => r.localidad === 'Santiago del Estero'   && Number(r.flag_estimado) === 1).sort((a,b) => new Date(a.fecha+'T12:00:00') - new Date(b.fecha+'T12:00:00'))
+  const termasEOH   = pulso.filter(r => r.localidad === 'Termas').sort((a,b) => new Date(a.fecha) - new Date(b.fecha))
+  const capitalEOH  = pulso.filter(r => r.localidad === 'Santiago del Estero').sort((a,b) => new Date(a.fecha) - new Date(b.fecha))
+  const termasOLS   = estimado.filter(r => r.localidad === 'Termas'                && Number(r.flag_estimado) === 1).sort((a,b) => new Date(a.fecha) - new Date(b.fecha))
+  const capitalOLS  = estimado.filter(r => r.localidad === 'Santiago del Estero'   && Number(r.flag_estimado) === 1).sort((a,b) => new Date(a.fecha) - new Date(b.fecha))
 
   // Last EOH estadía for when showing estimates
   const lastEOHEstadia = termasEOH[termasEOH.length - 1]?.estadia_promedio
@@ -381,7 +394,7 @@ export default function Home() {
     .sort((a,b) => a.fecha > b.fecha ? 1 : -1)
   const lastAirROI = airdnaTermas[airdnaTermas.length - 1]
   const estadiaInformal = lastAirROI ? Number(lastAirROI.estadia_informal) : null
-  const estadiaInformalPeriodo = lastAirROI?.fecha ? new Date(lastAirROI.fecha+'T12:00:00').toLocaleDateString('es-AR', { month: 'short', year: 'numeric' }) : ''
+  const estadiaInformalPeriodo = lastAirROI?.fecha ? new Date(lastAirROI.fecha).toLocaleDateString('es-AR', { month: 'short', year: 'numeric' }) : ''
 
   // EOH cutoff
   const corte = termasEOH.length ? termasEOH[termasEOH.length - 1].fecha : null
@@ -398,14 +411,14 @@ export default function Home() {
 
   const periodoStr = (() => {
     const src = isEstimated ? lastOLS : lastEOH
-    const fecha = src?.fecha ? new Date(src.fecha+'T12:00:00').toLocaleDateString('es-AR', { month: 'short', year: 'numeric' }) : '—'
+    const fecha = src?.fecha ? new Date(src.fecha).toLocaleDateString('es-AR', { month: 'short', year: 'numeric' }) : '—'
     return (anio || mes) ? fecha : `Último disponible · ${fecha}`
   })()
 
   // Build merged trend array
   const eohMap = {}
   termasEOH.forEach(t => {
-    const d = new Date(t.fecha+'T12:00:00')
+    const d = new Date(t.fecha)
     const cap = capitalEOH.find(c => c.fecha === t.fecha)
     eohMap[t.fecha] = {
       fecha: t.fecha,
@@ -421,14 +434,14 @@ export default function Home() {
   // Add OLS estimates — only after cutoff
   termasOLS.forEach(t => {
     if (!eohMap[t.fecha]) {
-      const d = new Date(t.fecha+'T12:00:00')
+      const d = new Date(t.fecha)
       eohMap[t.fecha] = { fecha: t.fecha, label: d.toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }), year: d.getFullYear(), termas: null, capital: null, termasEst: null, capitalEst: null }
     }
     if (!corte || t.fecha > corte) eohMap[t.fecha].termasEst = Number(t.viajeros) || null
   })
   capitalOLS.forEach(t => {
     if (!eohMap[t.fecha]) {
-      const d = new Date(t.fecha+'T12:00:00')
+      const d = new Date(t.fecha)
       eohMap[t.fecha] = { fecha: t.fecha, label: d.toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }), year: d.getFullYear(), termas: null, capital: null, termasEst: null, capitalEst: null }
     }
     if (!corte || t.fecha > corte) eohMap[t.fecha].capitalEst = Number(t.viajeros) || null
@@ -445,9 +458,9 @@ export default function Home() {
       <KPIStrip termasLast={termasLast} capitalLast={capitalLast} periodoStr={periodoStr} isEstimated={isEstimated} lastEOHEstadia={lastEOHEstadia} estadiaInformal={estadiaInformal} estadiaInformalPeriodo={estadiaInformalPeriodo} />
       <ChartSection trend={trend} />
       <DonutSection termasLast={termasLast} />
-      <ChartEstadia termasAll={[...pulso].filter(r => r.localidad === 'Termas').sort((a,b) => new Date(a.fecha+'T12:00:00') - new Date(b.fecha+'T12:00:00'))} airdnaTermas={airdnaTermas} corte={corte} />
+      <ChartEstadia termasAll={[...pulso].filter(r => r.localidad === 'Termas').sort((a,b) => new Date(a.fecha) - new Date(b.fecha))} airdnaTermas={airdnaTermas} corte={corte} />
       <BrechaSection plazasData={alojamiento.length ? Number(alojamiento[alojamiento.length - 1].plazas) : 13055} aereoData={aereo} />
-
+      <CTAVolt />
     </>
   )
 }
