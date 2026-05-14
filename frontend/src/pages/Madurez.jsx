@@ -30,7 +30,7 @@ const NIVELES = [
     ],
   },
   {
-    num: 'N3',
+    num: 'N3', /* Objetivo: CST provincial — % turismo en PBG */
     titulo: 'Anticipación y optimización',
     descripcion: 'El observatorio no solo describe — anticipa, modela y genera valor estratégico para la toma de decisiones.',
     dimensiones: [
@@ -55,14 +55,17 @@ const STATUS = {
 function DimRow({ label, estado, nota, dark = true }) {
   const s = STATUS[estado]
   const Icon = s.icon
-  const textColor = estado === 'activo' ? (dark ? C.paper : C.ink) : (dark ? 'rgba(250,250,247,0.45)' : C.slate)
+  const textColor = estado === 'activo'
+    ? (dark ? C.paper : C.ink)
+    : (dark ? 'rgba(250,250,247,0.45)' : C.slate)
+  const notaColor = dark ? C.stone : C.slate
   const borderColor = dark ? 'rgba(250,250,247,0.06)' : `${C.stone}40`
   return (
     <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12, padding: '10px 0', borderBottom: `0.5px solid ${borderColor}` }}>
       <Icon size={15} strokeWidth={1.5} style={{ color: s.color, flexShrink: 0, marginTop: 2 }} />
       <div style={{ flex: 1 }}>
         <span style={{ fontSize: 'var(--fs-base)', color: textColor, fontWeight: estado === 'activo' ? 400 : 300 }}>{label}</span>
-        {nota && <div style={{ fontSize: 'var(--fs-xs)', color: dark ? C.stone : C.slate, opacity: 0.7, marginTop: 2 }}>{nota}</div>}
+        {nota && <div style={{ fontSize: 'var(--fs-xs)', color: notaColor, opacity: 0.7, marginTop: 2 }}>{nota}</div>}
       </div>
       <span style={{ fontSize: 'var(--fs-2xs)', color: s.color, letterSpacing: '0.1em', textTransform: 'uppercase', flexShrink: 0 }}>{s.label}</span>
     </div>
@@ -132,7 +135,7 @@ export default function Madurez() {
 
       <section style={{ background: C.paper, padding: 'clamp(40px,5vw,64px) var(--pad)' }}>
         <Interpretacion>
-          El Observatorio de Turismo SDE tiene N1 completamente operativo y avanza en N3
+          El Observatorio de Turismo SDE tiene N1 completamente operativo y avanza en N3. El horizonte estratégico es la Cuenta Satélite de Turismo provincial (CST-SDE): el único instrumento que mide cuánto del PBG provincial proviene del turismo. Hoy ese dato no existe para SDE — construirlo es la frontera de madurez del observatorio
           con señales anticipadas, modelo OLS y benchmark ISTP. El cuello de botella para
           escalar a N2 es el convenio con la DGR provincial para acceder a datos de IIBB
           del sector HyG — la única fuente que permitiría medir actividad económica real

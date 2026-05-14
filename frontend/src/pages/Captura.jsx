@@ -36,7 +36,7 @@ export default function Captura() {
     .filter(r => Number(r.flag_covid) === 0)
     .map(r => ({
       fecha: r.fecha,
-      label: new Date(r.fecha+'T12:00:00').toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
+      label: new Date(r.fecha).toLocaleDateString('es-AR', { month: 'short', year: '2-digit' }),
       anio: Number(r.anio),
       viajeros: Number(r.viajeros_total) || 0,
       potencial_usd: Number(r.ingreso_potencial_usd) || 0,
@@ -78,7 +78,7 @@ export default function Captura() {
 
       <section style={{ background: C.paper, padding: 'clamp(56px,7vw,80px) var(--pad)' }}>
         <Eyebrow style={{ marginBottom: 52 }}>Indicadores · {fechaActual}</Eyebrow>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '0 clamp(14px,4vw,56px)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(min(100%,180px),1fr))', gap: '0 clamp(14px,3vw,40px)' }}>
           <KPICard icon={ICONS.ibt} value={ultimo.icv+'%'} label="Indice de Captura de Valor" delta="ICV = capturado / potencial" />
           <KPICard icon={ICONS.ibt} value={'USD '+fmt(capturado_usd)} label="Ingreso capturado estimado" delta={fechaActual+' · N1 estimacion'} />
           <KPICard icon={ICONS.ibt} value={'USD '+fmt(potencial_usd)} label="Ingreso potencial" delta={'pernoctes x gasto diario estimado'} />
@@ -123,10 +123,10 @@ export default function Captura() {
       </section>
 
       <section style={{ background: C.paper, padding: 'clamp(56px,7vw,80px) var(--pad)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(32px,5vw,72px)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(min(100%,380px),1fr))', gap: 'clamp(40px,5vw,72px)' }}>
           <div>
             <SectionTitle icon={ICONS.ibt} context="Ingreso potencial vs capturado USD" main="La brecha de valor" style={{ marginBottom: 36 }} />
-            <div style={{ height: 'clamp(180px,22vw,240px)' }}>
+            <div style={{ height: 'clamp(240px,28vw,320px)' }}>
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={datos.filter(r => r.anio >= 2022)} margin={{ top: 4, right: 0, left: 0, bottom: 0 }}>
                   <XAxis dataKey="label" tick={{ fill: C.stone, fontSize: 9, fontFamily: 'Plus Jakarta Sans' }} tickLine={false} axisLine={false} interval={2} />
@@ -143,20 +143,51 @@ export default function Captura() {
             {[
               { n: 'N1', label: 'Estimacion proxy', desc: 'EOH + gasto medio EVyTH. Disponible hoy. Error estimado 20-35%.', active: true },
               { n: 'N2', label: 'Dato fiscal directo', desc: 'IIBB SDE por rubro HyG. Requiere convenio DGR. Error estimado 8-15%.', active: false },
-              { n: 'N3', label: 'Medicion directa', desc: 'Encuesta de gasto en aeropuerto + terminal. Requiere operativo. Error estimado 3-7%.', active: false },
+              { n: 'N3', label: 'CST Provincial + encuesta', desc: 'Cuenta Satélite de Turismo provincial: % del PBG que representa el turismo en SDE. Hoy solo existen en TDF y Neuquén. Requiere CNE 2021 + encuesta de gasto en aeropuerto. Error estimado 3-7%.', active: false },
             ].map((item, i) => (
               <div key={i} style={{ padding: 'clamp(14px,2vw,20px)', marginBottom: 8, border: '0.5px solid '+C.stone, borderLeft: '2px solid '+(item.active ? C.volt : C.stone), background: item.active ? 'rgba(255,255,0,0.02)' : 'transparent' }}>
                 <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 6 }}>
-                  <span style={{ fontSize: 'var(--fs-md)', fontWeight: 600, color: item.active ? C.volt : C.stone, letterSpacing: '0.1em' }}>{item.n}</span>
-                  <span style={{ fontSize: 'var(--fs-lg)', fontWeight: 500, color: C.ink }}>{item.label}</span>
+                  <span style={{ fontSize: 'var(--fs-lg)', fontWeight: 700, color: item.active ? C.volt : C.stone, letterSpacing: '0.1em' }}>{item.n}</span>
+                  <span style={{ fontSize: 'var(--fs-xl)', fontWeight: 500, color: C.ink }}>{item.label}</span>
                   {item.active && <span style={{ fontSize: 'var(--fs-2xs)', padding: '2px 6px', background: C.volt, color: C.ink, fontWeight: 600, letterSpacing: '0.1em' }}>ACTIVO</span>}
                 </div>
-                <p style={{ fontSize: 'var(--fs-base)', color: C.slate, margin: 0, lineHeight: 1.6 }}>{item.desc}</p>
+                <p style={{ fontSize: 'var(--fs-sm)', color: C.slate, margin: 0, lineHeight: 1.7 }}>{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
+      <section style={{ background: C.ink, padding: 'clamp(56px,7vw,80px) var(--pad)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+          <Paralelo /><Eyebrow light>El dato que falta</Eyebrow>
+        </div>
+        <SectionTitle light main="¿Cuánto pesa el turismo en el PBG de SDE?" context="Cuenta Satélite de Turismo provincial · objetivo N3" style={{ marginBottom: 32 }} />
+        <p style={{ fontSize: 'var(--fs-sm)', color: 'rgba(250,250,247,0.6)', maxWidth: 640, lineHeight: 1.75, marginBottom: 40 }}>
+          La Cuenta Satélite de Turismo (CST) mide cuánto del Producto Bruto Geográfico de una provincia proviene directamente del turismo. Solo dos provincias argentinas la tienen: Tierra del Fuego y Neuquén. Para SDE, ese dato no existe — y su ausencia es exactamente el problema que el observatorio existe para resolver.
+        </p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(min(100%,200px),1fr))', gap: 1, marginBottom: 40 }}>
+          {[
+            { v: '1,7%', l: 'Turismo / PBI Argentina', d: 'CST-A INDEC 2022', color: C.stone },
+            { v: '3,0%', l: 'HyG / PBI Argentina', d: 'Cuenta satélite + empleo 2022', color: C.stone },
+            { v: '~8%', l: 'Promedio mundial', d: 'OMT 2023 · referencia global', color: C.stone },
+            { v: '?', l: 'Turismo / PBG SDE', d: 'Sin CST provincial · objetivo N3', color: C.volt },
+          ].map((k, i) => (
+            <div key={i} style={{ padding: 'clamp(20px,2.5vw,32px)', borderRight: '0.5px solid rgba(250,250,247,0.06)', borderBottom: '0.5px solid rgba(250,250,247,0.06)' }}>
+              <div style={{ fontSize: 'clamp(1.8rem,3.5vw,3rem)', fontWeight: 200, color: k.color, letterSpacing: '-0.04em', lineHeight: 1, marginBottom: 10 }}>{k.v}</div>
+              <VoltLine w={16} />
+              <div style={{ fontSize: 'var(--fs-sm)', fontWeight: 400, color: C.paper, marginTop: 10, marginBottom: 4 }}>{k.l}</div>
+              <div style={{ fontSize: 'var(--fs-xs)', color: C.stone, opacity: 0.7 }}>{k.d}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{ padding: 'clamp(18px,2.5vw,28px)', background: 'rgba(255,255,0,0.05)', border: '0.5px solid rgba(255,255,0,0.2)' }}>
+          <div style={{ fontSize: 9, color: C.volt, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 8 }}>Estimación proxy SDE</div>
+          <p style={{ fontSize: 'var(--fs-sm)', color: C.paper, lineHeight: 1.7, margin: 0 }}>
+            Con proxies disponibles (empleo HyG ~3.000 trabajadores, viajeros ~600K-700K/año, gasto estimado USD 80-120M), el turismo representaría entre el 2% y el 4% del PBG provincial. Para tener el dato real se requiere CST provincial basada en el CNE 2021 + convenio DGR + encuesta de gasto. Esta es la frontera N3 del observatorio.
+          </p>
+        </div>
+      </section>
+
       <section style={{ background: 'var(--paper, #FAFAF7)', padding: 'clamp(40px,5vw,64px) var(--pad)' }}>
         <Interpretacion>
         El ICV del 38% es estable a lo largo de toda la serie disponible — lo que significa
