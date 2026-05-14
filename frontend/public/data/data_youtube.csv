@@ -1,182 +1,179 @@
 fecha,anio,mes,categoria,videos_publicados,vistas_totales,likes_totales,comentarios_totales,engagement_promedio,max_vistas_video,titulo_mas_visto
-2026-05-01,2026,5,Termas,58,255852.0,2466.0,81.0,2.64,83550,DOMINGO de TC en TERMAS de RÍO HONDO - Campeones - 09/05/2026
-2026-05-01,2026,5,Otro,15,117560.0,992.0,93.0,2.23,51986,TURISMO CARRETERA - EN VIVO
-2026-05-01,2026,5,MotoGP,1,1790.0,36.0,5.0,2.29,1790,"WERNER CORTÓ LA RACHA en el TC, &quot;PECHITO&quot; en SPA, MOTOGP y más - Campeones News - 10/05/2026"
-2026-04-01,2026,4,Otro,7,117988.0,5810.0,120.0,3.09,93132,Mendoza é espetacular e eu posso provar!
-2026-04-01,2026,4,SDE Capital,18,74881.0,1386.0,44.0,2.96,31542,Pesca Dorado Santiago del Estero #pesca #lineadepesca #fishing #pescasub #dorado #doradillo
-2026-04-01,2026,4,Termas,10,9957.0,243.0,94.0,2.15,2378,mi estadia en hotel los pinos termas de rio hondo y ferias
-2026-04-01,2026,4,MotoGP,2,1587.0,27.0,0.0,1.31,1297,MotoGP 25 | Alex Marquez – Gran Premio YPF Energia de Argentina Race 2026 Gameplay #motogp
-2026-03-01,2026,3,Termas,12,88753.0,418.0,39.0,0.77,81056,"Desde Las Termas, Noticiero 7 mostró el impacto del avance del Río Dulce"
-2026-03-01,2026,3,MotoGP,4,87240.0,761.0,4.0,0.81,62056,🏁 MotoGP 25 | KTM RC16 Attacks Termas de Río Hondo – Argentina GP Flow &amp; Fire! 🇦🇷🏍️
-2026-03-01,2026,3,SDE Capital,3,4421.0,190.0,21.0,3.82,2289,Origen de Santiago del estero #historia #argentina #history #santiagodelestero #guau
-2026-03-01,2026,3,Otro,1,1192.0,16.0,0.0,1.34,1192,#santiagodelestero #paisaje #atardecer
-2026-02-01,2026,2,Otro,2,44341.0,353.0,183.0,0.77,44020,"Macabro hallazgo: la encontraron mutilada, calcinada y envuelta en una frazada"
+2026-05-01,2026,5,Termas,65,253182.0,2499.0,95.0,2.52,83641,DOMINGO de TC en TERMAS de RÍO HONDO - Campeones - 09/05/2026
+2026-05-01,2026,5,Otro,15,141978.0,5649.0,294.0,3.12,63866,"ÚLTIMO DÍA: LLUVIA, FRÍO, PINCHAMOS PERO LLEGAMOS "
+2026-05-01,2026,5,MotoGP,1,1807.0,38.0,5.0,2.38,1807,"WERNER CORTÓ LA RACHA en el TC, &quot;PECHITO&quot; en SPA, MOTOGP y más - Campeones News - 10/05/2026"
+2026-04-01,2026,4,Otro,7,118349.0,5827.0,121.0,3.08,93448,Mendoza é espetacular e eu posso provar!
+2026-04-01,2026,4,SDE Capital,17,74749.0,1371.0,39.0,2.54,31542,Pesca Dorado Santiago del Estero #pesca #lineadepesca #fishing #pescasub #dorado #doradillo
+2026-04-01,2026,4,Termas,10,9982.0,243.0,94.0,2.14,2402,mi estadia en hotel los pinos termas de rio hondo y ferias
+2026-04-01,2026,4,MotoGP,2,1588.0,27.0,0.0,1.31,1298,MotoGP 25 | Alex Marquez – Gran Premio YPF Energia de Argentina Race 2026 Gameplay #motogp
+2026-03-01,2026,3,Otro,2,261113.0,28.0,0.0,0.67,259921,Respuesta y acompañamiento en tiempos difíciles 🫂 #gobiernodelaprovincia #santiagodelestero
+2026-03-01,2026,3,Termas,11,88344.0,417.0,39.0,0.81,81058,"Desde Las Termas, Noticiero 7 mostró el impacto del avance del Río Dulce"
+2026-03-01,2026,3,MotoGP,4,87261.0,761.0,4.0,0.81,62068,🏁 MotoGP 25 | KTM RC16 Attacks Termas de Río Hondo – Argentina GP Flow &amp; Fire! 🇦🇷🏍️
+2026-03-01,2026,3,SDE Capital,3,4430.0,190.0,21.0,3.81,2298,Origen de Santiago del estero #historia #argentina #history #santiagodelestero #guau
+2026-02-01,2026,2,Otro,2,44343.0,353.0,183.0,0.77,44020,"Macabro hallazgo: la encontraron mutilada, calcinada y envuelta en una frazada"
 2026-02-01,2026,2,Termas,1,101.0,0.0,0.0,0.0,101,🌊♨️ ¡ARRANCA LA TEMPORADA EN TERMAS DE RÍO HONDO! ♨️🌊
-2026-01-01,2026,1,SDE Capital,1,61439.0,1426.0,54.0,2.41,61439,Así es VIVIR en un PUEBLO AISLADO de Santiago del Estero
-2026-01-01,2026,1,Termas,7,41286.0,1099.0,117.0,1.43,34303,"FEDERACIÓN TE ESPERA ⛱️ VACACIONES VERANO 2026 👉 Termas, alojamiento y gastronomía #PRECIOS 🇦🇷"
-2026-01-01,2026,1,Otro,1,404.0,3.0,0.0,0.74,404,El Hotel Amerian Carlos V presenta paquetes especiales y experiencias para toda la familia
+2026-01-01,2026,1,SDE Capital,1,61488.0,1427.0,54.0,2.41,61488,Así es VIVIR en un PUEBLO AISLADO de Santiago del Estero
+2026-01-01,2026,1,Termas,7,41351.0,1099.0,117.0,1.42,34339,"FEDERACIÓN TE ESPERA ⛱️ VACACIONES VERANO 2026 👉 Termas, alojamiento y gastronomía #PRECIOS 🇦🇷"
+2026-01-01,2026,1,Otro,1,405.0,3.0,0.0,0.74,405,El Hotel Amerian Carlos V presenta paquetes especiales y experiencias para toda la familia
 2025-12-01,2025,12,Otro,2,92143.0,2342.0,136.0,6.05,91225,El titanic de los Andes 🏔
 2025-12-01,2025,12,MotoGP,2,58974.0,582.0,5.0,1.17,53062,"🏁 MotoGP 25 | Idemitsu Honda RC213V Charges Termas – Flow, Rhythm &amp; Argentina GP Speed! 🇦🇷🏍️"
 2025-12-01,2025,12,Termas,2,52192.0,712.0,23.0,0.86,51866,Termas Rio Hondo
-2025-11-01,2025,11,MotoGP,2,553102.0,6049.0,139.0,1.27,549436,MotoGP HIGHLIGHTS 💃 2025 Argentina GP
-2025-11-01,2025,11,Otro,1,842.0,0.0,1.0,0.12,842,RIO HONDO 2025... ARGENTINA #s1000rr #motociclistico #motorbike
-2025-10-01,2025,10,Termas,1,72303.0,2419.0,77.0,3.45,72303,"VIENEN DE TODO EL MUNDO A CONOCER ESTAS AGUAS TERMALES | Termas de Jordan, Jujuy"
-2025-10-01,2025,10,SDE Capital,1,44293.0,429.0,61.0,1.11,44293,TREN DE SANTIAGO LA BANDA | SANTIAGO DEL ESTERO | NORTE ARGENTINO
+2025-11-01,2025,11,MotoGP,2,553396.0,6051.0,139.0,1.27,549730,MotoGP HIGHLIGHTS 💃 2025 Argentina GP
+2025-11-01,2025,11,Otro,3,2522.0,18.0,1.0,0.87,1295,Departamento Hotel Alto Verde Rio Hondo
+2025-11-01,2025,11,Termas,1,1574.0,22.0,0.0,1.4,1574,Hotel Alto Verde Termas de Rio Hondo
+2025-10-01,2025,10,Termas,1,72345.0,2419.0,77.0,3.45,72345,"VIENEN DE TODO EL MUNDO A CONOCER ESTAS AGUAS TERMALES | Termas de Jordan, Jujuy"
+2025-10-01,2025,10,SDE Capital,1,44312.0,429.0,61.0,1.11,44312,TREN DE SANTIAGO LA BANDA | SANTIAGO DEL ESTERO | NORTE ARGENTINO
 2025-10-01,2025,10,MotoGP,2,9477.0,51.0,0.0,0.56,8298,"🏁 Rossi Juara, Marquez Jatuh! Awal Perang Dua Legenda MotoGP! #motogp #sportkini #argentinagp"
-2025-09-01,2025,9,MotoGP,3,27186.0,389.0,4.0,1.36,20020,🏁 MotoGP 25 | Trackhouse Aprilia RS-GP25 Battles Termas – Argentine GP Showdown! 🇦🇷🏍️
-2025-09-01,2025,9,Otro,1,18406.0,544.0,42.0,3.18,18406,"O QUE FAZER EM MENDOZA, NA ARGENTINA | roteiro completo de 6 dias"
-2025-08-01,2025,8,MotoGP,6,177775.0,3599.0,66.0,1.0,149987,REMEMBER MOTOGP ARGENTINA 2016 DUCATI KECEWA#motogp #marcmarquez #valentinorossi
-2025-08-01,2025,8,Otro,1,122528.0,1798.0,114.0,1.56,122528,"Luis, pescador artesanal de Río Hondo | Una vida sencilla que no cambia por nada"
-2025-07-01,2025,7,Termas,3,173779.0,2055.0,170.0,1.66,104547,RECORRIENDO TERMAS DE RIO HONDO | SANTIAGO DEL ESTERO | VACACIONES DE INVIERNO | NORTE ARGENTINO
-2025-07-01,2025,7,Otro,2,123478.0,5036.0,486.0,2.51,121638,EN esta ciudad de SALTA NACIO EL TURISMO de Argentina
-2025-07-01,2025,7,MotoGP,3,4318.0,40.0,5.0,1.09,2004,CIRCUITO DE TERMAS de RIO HONDO  moto gp
-2025-06-01,2025,6,Otro,1,120825.0,4852.0,439.0,4.38,120825,SORPRESAS Y SECRETOS de esta RUTA hacia el NORTE Argentino
-2025-06-01,2025,6,MotoGP,2,27965.0,243.0,6.0,0.81,18371,🏁 MotoGP 25 | Prima Pramac Yamaha YZRM1 Blasts Through Termas – Argentine GP Heat! 🇦🇷🏍️
-2025-05-01,2025,5,MotoGP,7,30449.0,379.0,68.0,1.17,10861,MotoGP 25 | Prima Pramac Ducati Conquers Termas de Río Hondo – Flow and Speed in Argentina! 🇦🇷
-2025-05-01,2025,5,Termas,1,27579.0,249.0,18.0,0.97,27579,"Final - Turismo Carretera - #fecha5 2025 - Termas de Río Hondo, Santiago del Estero"
-2025-04-01,2025,4,Termas,3,52323.0,1480.0,174.0,2.94,28983,"👑IMPACTANTE rincón en las yungas: TERMAS DE REYES, JUJUY, ARGENTINA"
-2025-04-01,2025,4,MotoGP,2,9827.0,143.0,17.0,2.41,8712,MotoGP 25 - Termas de Rio Hondo (Argentina Grand Prix) - Gameplay (PC UHD) [4K60FPS]
-2025-03-01,2025,3,MotoGP,18,3058232.0,62846.0,2787.0,2.31,800401,Best MotoGP™ Moments! ⚔️ | 2025 Argentina GP
-2025-03-01,2025,3,SDE Capital,1,1564502.0,17998.0,825.0,1.2,1564502,Así es VIVIR MONTE ADENTRO en Santiago del Estero 2025
-2025-03-01,2025,3,Termas,2,220959.0,4456.0,337.0,2.1,127344,The masters at Termas de Rio Hondo 🏆🇦🇷
-2025-02-01,2025,2,Termas,1,174550.0,5032.0,314.0,3.06,174550,Concordia Entre Ríos Termas y todo lo que tenés que conocer
-2025-02-01,2025,2,MotoGP,1,29144.0,281.0,81.0,1.24,29144,VALENTINO ROSSI-Malasia 2015 toda la polémica con Márquez #motogp #valentinorossi #marcmarquez #vr46
-2025-01-01,2025,1,Otro,1,592994.0,29547.0,1969.0,5.31,592994,Día1: Explorando mi lugar Favorito de Argentina 🇦🇷
-2025-01-01,2025,1,SDE Capital,1,80879.0,537.0,34.0,0.71,80879,"ESTO ES SALAVINA, SANTIAGO DEL ESTERO"
-2024-11-01,2024,11,Otro,1,292345.0,6466.0,512.0,2.39,292345,"Me quedaría a vivir en este lugar para siempre | Tapalqué, provincia de Buenos Aires"
+2025-09-01,2025,9,MotoGP,3,27188.0,389.0,4.0,1.36,20020,🏁 MotoGP 25 | Trackhouse Aprilia RS-GP25 Battles Termas – Argentine GP Showdown! 🇦🇷🏍️
+2025-09-01,2025,9,Otro,1,18497.0,545.0,42.0,3.17,18497,"O QUE FAZER EM MENDOZA, NA ARGENTINA | roteiro completo de 6 dias"
+2025-08-01,2025,8,MotoGP,6,177804.0,3599.0,66.0,1.0,149988,REMEMBER MOTOGP ARGENTINA 2016 DUCATI KECEWA#motogp #marcmarquez #valentinorossi
+2025-08-01,2025,8,Otro,1,122576.0,1798.0,114.0,1.56,122576,"Luis, pescador artesanal de Río Hondo | Una vida sencilla que no cambia por nada"
+2025-07-01,2025,7,Termas,3,173884.0,2059.0,170.0,1.66,104604,RECORRIENDO TERMAS DE RIO HONDO | SANTIAGO DEL ESTERO | VACACIONES DE INVIERNO | NORTE ARGENTINO
+2025-07-01,2025,7,Otro,2,123632.0,5038.0,486.0,2.51,121792,EN esta ciudad de SALTA NACIO EL TURISMO de Argentina
+2025-07-01,2025,7,MotoGP,3,4322.0,40.0,5.0,1.09,2008,CIRCUITO DE TERMAS de RIO HONDO  moto gp
+2025-06-01,2025,6,Otro,1,120974.0,4856.0,439.0,4.38,120974,SORPRESAS Y SECRETOS de esta RUTA hacia el NORTE Argentino
+2025-06-01,2025,6,MotoGP,2,27966.0,243.0,6.0,0.81,18372,🏁 MotoGP 25 | Prima Pramac Yamaha YZRM1 Blasts Through Termas – Argentine GP Heat! 🇦🇷🏍️
+2025-05-01,2025,5,Termas,2,91915.0,2370.0,120.0,2.22,64289,VLOG #5-TERMAS ¿CÓMO SE VIVE EL TURISMO CARRETERA DESDE ADENTRO?
+2025-05-01,2025,5,MotoGP,7,30457.0,379.0,68.0,1.17,10861,MotoGP 25 | Prima Pramac Ducati Conquers Termas de Río Hondo – Flow and Speed in Argentina! 🇦🇷
+2025-04-01,2025,4,Termas,3,52350.0,1480.0,174.0,2.94,29004,"👑IMPACTANTE rincón en las yungas: TERMAS DE REYES, JUJUY, ARGENTINA"
+2025-04-01,2025,4,MotoGP,2,9840.0,143.0,17.0,2.41,8725,MotoGP 25 - Termas de Rio Hondo (Argentina Grand Prix) - Gameplay (PC UHD) [4K60FPS]
+2025-03-01,2025,3,MotoGP,18,3058689.0,62849.0,2787.0,2.31,800406,Best MotoGP™ Moments! ⚔️ | 2025 Argentina GP
+2025-03-01,2025,3,SDE Capital,1,1565037.0,18002.0,825.0,1.2,1565037,Así es VIVIR MONTE ADENTRO en Santiago del Estero 2025
+2025-03-01,2025,3,Termas,2,220981.0,4456.0,337.0,2.09,127347,The masters at Termas de Rio Hondo 🏆🇦🇷
+2025-02-01,2025,2,Termas,1,174566.0,5032.0,314.0,3.06,174566,Concordia Entre Ríos Termas y todo lo que tenés que conocer
+2025-02-01,2025,2,MotoGP,1,29167.0,282.0,81.0,1.24,29167,VALENTINO ROSSI-Malasia 2015 toda la polémica con Márquez #motogp #valentinorossi #marcmarquez #vr46
+2025-01-01,2025,1,Otro,1,593069.0,29548.0,1969.0,5.31,593069,Día1: Explorando mi lugar Favorito de Argentina 🇦🇷
+2025-01-01,2025,1,SDE Capital,1,80952.0,537.0,34.0,0.71,80952,"ESTO ES SALAVINA, SANTIAGO DEL ESTERO"
+2024-11-01,2024,11,Otro,1,292762.0,6484.0,512.0,2.39,292762,"Me quedaría a vivir en este lugar para siempre | Tapalqué, provincia de Buenos Aires"
 2024-11-01,2024,11,SDE Capital,1,46063.0,2777.0,62.0,6.16,46063,"En mi viaje por Santiago del Estero me crucé con Juan y Alicia, ellos cartonean para comer"
-2024-11-01,2024,11,Termas,1,22883.0,237.0,20.0,1.12,22883,TERMAS de CACHEUTA 2024 Mendoza
-2024-10-01,2024,10,SDE Capital,1,54701.0,712.0,0.0,1.3,54701,Viaje en TREN  desde Buenos Aires hasta Santiago del Estero 🚅​
-2024-10-01,2024,10,MotoGP,1,12034.0,254.0,49.0,2.52,12034,Argentina GP 2015. Termas de Río hondo. Rossi vs Márquez
-2024-09-01,2024,9,SDE Capital,1,119567.0,3562.0,324.0,3.25,119567,"SIN COMBUSTIBLE y PERDIDA, así me recibe SANTIAGO DEL ESTERO | Ruta 15 - Sumampa"
-2024-09-01,2024,9,Termas,2,72256.0,1405.0,132.0,2.22,40490,"LA PAZ - Entre Rios (TERMAS, PLAYAS e HISTORIA como nadie TE LO MOSTRÓ... Te vas a ENAMORAR !!) HD"
-2024-08-01,2024,8,SDE Capital,3,1404000.0,13719.0,832.0,1.3,781608,ASI se VIVE en el MEDIO DEL MONTE | INCOMPARABLE | SANTIAGO DEL ESTERO 2024
-2024-08-01,2024,8,Otro,2,705658.0,17016.0,1534.0,2.76,449337,EL EXODO Y ABANDONO Las RUINAS de Negra Muerta | Santiago de Estero Argentina
-2024-07-01,2024,7,SDE Capital,1,200231.0,1238.0,0.0,0.62,200231,Asi se vive MONTE ADENTRO en Santiago del Estero 2024 | Recorremos el canal SAUCE
-2024-07-01,2024,7,Termas,1,34343.0,367.0,14.0,1.11,34343,Termas de Rio Hondo - Santiago del Estero
-2024-06-01,2024,6,MotoGP,1,39724.0,132.0,5.0,0.34,39724,[4kWalk] Sgo. del Estero | Termas de Río Hondo 🔵⚪🔴 MotoGP 2023 🏍️🏁 Walking at the Event
-2024-05-01,2024,5,Termas,4,227685.0,2857.0,300.0,1.24,80627,🤑 El Parque Termal más económico de Entre Rios. Termas Chajari tiene alojamientos dentro del parque!
-2024-05-01,2024,5,Otro,2,124370.0,2011.0,117.0,1.47,104674,"Qué hacer en Colón, Entre Ríos? Te muestro 10 lugares para conocer en la ciudad y sus alrededores 😜"
-2024-04-01,2024,4,Otro,1,39964.0,378.0,18.0,0.99,39964,"El Hotel Termal Dolores, escapada ideal de fin de semana ♨️☀️ Buenos Aires, Argentina"
-2024-04-01,2024,4,Termas,1,22846.0,573.0,15.0,2.57,22846,Parque TERMAL CACHEUTA | TERMAS DE CACHEUTA
-2024-03-01,2024,3,Otro,1,1717618.0,60917.0,853.0,3.6,1717618,Hacemos un viaje en Autobús de Chile a Argentina y… 🇨🇱🇦🇷 #viajes #autobus #curiosidades
-2024-02-01,2024,2,MotoGP,1,22449.0,93.0,10.0,0.46,22449,MotoGP (2015) (Arcade) by Raw Thrills - Longplay
-2024-01-01,2024,1,SDE Capital,1,137501.0,2100.0,295.0,1.74,137501,SANTIAGO del ESTERO Capital - Me SORPRENDE mas de lo IMAGINADO !! DECIAN que no valía la PENA IR !!
-2024-01-01,2024,1,Termas,1,90292.0,2260.0,310.0,2.85,90292,"Rio Hondo Santiago del Estero, termas, autódromo, isla tara inti, embalse, el patio indio Froilán"
-2023-12-01,2023,12,SDE Capital,1,181734.0,1186.0,54.0,0.68,181734,Así es VIVIR en el medio del MONTE en completa SOLEDAD/Colonia &quot;Laguna Baya&quot;- Santiago del Estero
-2023-12-01,2023,12,Otro,1,144746.0,2219.0,258.0,1.71,144746,Así se usa DIDI CONDUCTOR 🚗 Tutorial PRIMER VIAJE *Actualizado Argentina 2025
-2023-12-01,2023,12,MotoGP,1,7769.0,57.0,9.0,0.85,7769,moto gp argentina 2015 full race.. rossi vs marques crash..
-2023-10-01,2023,10,SDE Capital,1,1063276.0,11373.0,1067.0,1.17,1063276,Video no apto para turistas | Lo oculto en Santiago del Estero [Cap.2] Viaje por Argentina en moto
-2023-09-01,2023,9,SDE Capital,3,407170.0,4905.0,726.0,1.36,233240,SANTIAGO DEL ESTERO | Quimili | Vilelas | AÑATUYA | en moto por Argentina
-2023-08-01,2023,8,Termas,2,332584.0,8009.0,767.0,1.74,280236,ASI NACIO LA LEYENDA | EL Señor de la 48 por termas de Rio Hondo - Santiago del Estero
-2023-07-01,2023,7,Termas,2,217892.0,3319.0,288.0,1.6,121077,"Estas son las mejores termas de Argentina | Termas de Fiambalá, Catamarca"
-2023-07-01,2023,7,SDE Capital,1,39609.0,342.0,83.0,1.07,39609,Recorriendo SANTIAGO DEL ESTERO CAPITAL FULL CITY TOUR I ARGENTINA I 4K Walking Tour VLOG
-2023-07-01,2023,7,MotoGP,1,37839.0,330.0,30.0,0.95,37839,ASI FUE EL MOTOGP TERMAS 2023 | Capitulo 5 | El ultimo gran viaje.
-2023-06-01,2023,6,Termas,1,21202.0,1099.0,37.0,5.36,21202,"Asombroso !! Un Hotel en el medio de la Montaña. Termas de Reyes, Jujuy, Argentina. Viste el video?"
-2023-04-01,2023,4,MotoGP,6,367183.0,5270.0,305.0,1.36,168848,¡ASI se VIVE el MOTOGP en ARGENTINA en TERMAS DE RIO HONDO! 🔥
-2023-04-01,2023,4,Otro,2,347766.0,5737.0,907.0,1.57,322089,Viaje en tren de Buenos Aires a Tucumán | 31 horas a lo largo de Argentina
-2023-04-01,2023,4,Termas,1,32730.0,504.0,10.0,1.57,32730,Termas de Cacheuta 💙 Mendoza 🤎
-2023-03-01,2023,3,MotoGP,1,561857.0,5616.0,202.0,1.04,561857,2016 #ArgentinaGP | MotoGP™ Full Race
-2023-03-01,2023,3,Termas,1,81292.0,1365.0,234.0,1.97,81292,FIAMBALÁ | Catamarca | la ruta del adobe y de la fe | TERMAS DE FIAMBALÁ | en moto por Argentina
-2023-02-01,2023,2,Otro,1,20706.0,378.0,10.0,1.87,20706,Parque Acuático termal Federación Provincia de Entre Ríos Argentina 🌊🌊
-2023-01-01,2023,1,Termas,2,96028.0,1695.0,554.0,2.39,57034,TRACK DAY Argentina 2022 - Los Mejores AUTOS y SONIDOS en Buenos Aires y Termas de Río Hondo!
-2022-11-01,2022,11,Termas,2,65093.0,1707.0,64.0,2.54,41822,TERMAS DEL JORDAN - JUJUY. 🇦🇷 Podes ver el video completo en nuestro canal!
-2022-10-01,2022,10,SDE Capital,1,85131.0,461.0,97.0,0.66,85131,87- Colonia Menonista y P.N. Copo en Santiago del Estero
-2022-09-01,2022,9,SDE Capital,3,559652.0,17765.0,2274.0,3.64,240975,POCOS SABEN que Tenemos este TREN en la Argentina | Tren al Desarrollo de Santiago del Estero
-2022-08-01,2022,8,SDE Capital,1,47242.0,1049.0,98.0,2.43,47242,Desde Salta a Santiago del Estero por la ruta 34 - día 14 del viaje
-2022-08-01,2022,8,Termas,1,18606.0,587.0,20.0,3.26,18606,SPA FULL DAY en las Termas CACHEUTA en #Mendoza 🧡 #argentina  #argentinaturismo #termas #spa #viaje
-2022-07-01,2022,7,Termas,2,93443.0,1616.0,136.0,1.56,61735,La CHEVY ENFIERRADA Llegó a TERMAS DE RÍO HONDO - Sonido de TC y ONBOARD en Track Day Argentina!
-2022-04-01,2022,4,MotoGP,4,133896.0,2611.0,102.0,1.67,64531,MotoGP Highlights: Argentina (2022) | History is made in Termas de Río Hondo!
-2022-04-01,2022,4,Termas,2,128446.0,1263.0,103.0,1.63,102443,DESTINO TERMAS DE RÍO HONDO | SANTIAGO DEL ESTERO | TURISMO NACIONAL
-2022-03-01,2022,3,MotoGP,3,1677986.0,17471.0,1160.0,1.45,1545984,MotoGP™ Full Race | 2018 #ArgentinaGP
-2022-01-01,2022,1,Termas,1,1353836.0,32681.0,1313.0,2.51,1353836,Rossi vs Marquez Insiden  GP Termas de Río Hondo #Shorts
-2022-01-01,2022,1,Otro,1,38594.0,400.0,97.0,1.29,38594,😨💀EL SOSNEADO: la historia del HOTEL ABANDONADO en MENDOZA
-2021-11-01,2021,11,Otro,1,4812064.0,43757.0,1474.0,0.94,4812064,#GrazieVale - Rossi&#39;s Greatest Rivalries: Marc Marquez
-2021-11-01,2021,11,SDE Capital,1,117055.0,447.0,29.0,0.41,117055,Los Telares y el campo. Santiago del Estero
-2021-10-01,2021,10,SDE Capital,1,105059.0,2741.0,409.0,3.0,105059,🇦🇷 LOS PUEBLOS de Santiago del Estero ❤️
+2024-11-01,2024,11,Termas,1,22889.0,237.0,20.0,1.12,22889,TERMAS de CACHEUTA 2024 Mendoza
+2024-10-01,2024,10,SDE Capital,1,54705.0,713.0,0.0,1.3,54705,Viaje en TREN  desde Buenos Aires hasta Santiago del Estero 🚅​
+2024-10-01,2024,10,MotoGP,1,12036.0,254.0,49.0,2.52,12036,Argentina GP 2015. Termas de Río hondo. Rossi vs Márquez
+2024-09-01,2024,9,SDE Capital,1,119582.0,3562.0,324.0,3.25,119582,"SIN COMBUSTIBLE y PERDIDA, así me recibe SANTIAGO DEL ESTERO | Ruta 15 - Sumampa"
+2024-09-01,2024,9,Termas,2,72337.0,1407.0,132.0,2.22,40504,"LA PAZ - Entre Rios (TERMAS, PLAYAS e HISTORIA como nadie TE LO MOSTRÓ... Te vas a ENAMORAR !!) HD"
+2024-08-01,2024,8,SDE Capital,3,1404418.0,13722.0,832.0,1.3,781677,ASI se VIVE en el MEDIO DEL MONTE | INCOMPARABLE | SANTIAGO DEL ESTERO 2024
+2024-08-01,2024,8,Otro,2,705930.0,17018.0,1534.0,2.76,449454,EL EXODO Y ABANDONO Las RUINAS de Negra Muerta | Santiago de Estero Argentina
+2024-07-01,2024,7,SDE Capital,1,200255.0,1238.0,0.0,0.62,200255,Asi se vive MONTE ADENTRO en Santiago del Estero 2024 | Recorremos el canal SAUCE
+2024-07-01,2024,7,Termas,1,34406.0,367.0,14.0,1.11,34406,Termas de Rio Hondo - Santiago del Estero
+2024-06-01,2024,6,MotoGP,1,39725.0,132.0,5.0,0.34,39725,[4kWalk] Sgo. del Estero | Termas de Río Hondo 🔵⚪🔴 MotoGP 2023 🏍️🏁 Walking at the Event
+2024-05-01,2024,5,Termas,4,227739.0,2857.0,300.0,1.24,80635,🤑 El Parque Termal más económico de Entre Rios. Termas Chajari tiene alojamientos dentro del parque!
+2024-05-01,2024,5,Otro,2,124425.0,2012.0,117.0,1.47,104722,"Qué hacer en Colón, Entre Ríos? Te muestro 10 lugares para conocer en la ciudad y sus alrededores 😜"
+2024-04-01,2024,4,Otro,1,39974.0,378.0,18.0,0.99,39974,"El Hotel Termal Dolores, escapada ideal de fin de semana ♨️☀️ Buenos Aires, Argentina"
+2024-04-01,2024,4,Termas,1,22869.0,573.0,15.0,2.57,22869,Parque TERMAL CACHEUTA | TERMAS DE CACHEUTA
+2024-03-01,2024,3,Otro,1,1718319.0,60927.0,854.0,3.6,1718319,Hacemos un viaje en Autobús de Chile a Argentina y… 🇨🇱🇦🇷 #viajes #autobus #curiosidades
+2024-02-01,2024,2,MotoGP,1,22476.0,94.0,10.0,0.46,22476,MotoGP (2015) (Arcade) by Raw Thrills - Longplay
+2024-01-01,2024,1,SDE Capital,1,137585.0,2101.0,295.0,1.74,137585,SANTIAGO del ESTERO Capital - Me SORPRENDE mas de lo IMAGINADO !! DECIAN que no valía la PENA IR !!
+2024-01-01,2024,1,Termas,1,90315.0,2260.0,310.0,2.85,90315,"Rio Hondo Santiago del Estero, termas, autódromo, isla tara inti, embalse, el patio indio Froilán"
+2023-12-01,2023,12,SDE Capital,1,181755.0,1186.0,54.0,0.68,181755,Así es VIVIR en el medio del MONTE en completa SOLEDAD/Colonia &quot;Laguna Baya&quot;- Santiago del Estero
+2023-12-01,2023,12,Otro,1,144818.0,2219.0,258.0,1.71,144818,Así se usa DIDI CONDUCTOR 🚗 Tutorial PRIMER VIAJE *Actualizado Argentina 2025
+2023-12-01,2023,12,MotoGP,1,7803.0,57.0,9.0,0.85,7803,moto gp argentina 2015 full race.. rossi vs marques crash..
+2023-10-01,2023,10,SDE Capital,1,1063355.0,11375.0,1067.0,1.17,1063355,Video no apto para turistas | Lo oculto en Santiago del Estero [Cap.2] Viaje por Argentina en moto
+2023-10-01,2023,10,Termas,1,19714.0,392.0,6.0,2.02,19714,🇦🇷 Viajar a las TERMAS de FIAMBALA en CATAMARCA Argentina en VACACIONES de VERANO 2024
+2023-09-01,2023,9,SDE Capital,3,407260.0,4907.0,726.0,1.36,233288,SANTIAGO DEL ESTERO | Quimili | Vilelas | AÑATUYA | en moto por Argentina
+2023-08-01,2023,8,Termas,2,332742.0,8010.0,767.0,1.74,280392,ASI NACIO LA LEYENDA | EL Señor de la 48 por termas de Rio Hondo - Santiago del Estero
+2023-07-01,2023,7,Termas,2,217969.0,3321.0,288.0,1.6,121139,"Estas son las mejores termas de Argentina | Termas de Fiambalá, Catamarca"
+2023-07-01,2023,7,MotoGP,1,37840.0,330.0,30.0,0.95,37840,ASI FUE EL MOTOGP TERMAS 2023 | Capitulo 5 | El ultimo gran viaje.
+2023-06-01,2023,6,Termas,1,21219.0,1099.0,37.0,5.35,21219,"Asombroso !! Un Hotel en el medio de la Montaña. Termas de Reyes, Jujuy, Argentina. Viste el video?"
+2023-04-01,2023,4,MotoGP,6,367228.0,5270.0,305.0,1.36,168856,¡ASI se VIVE el MOTOGP en ARGENTINA en TERMAS DE RIO HONDO! 🔥
+2023-04-01,2023,4,Otro,2,347798.0,5738.0,907.0,1.57,322113,Viaje en tren de Buenos Aires a Tucumán | 31 horas a lo largo de Argentina
+2023-04-01,2023,4,Termas,1,32748.0,504.0,10.0,1.57,32748,Termas de Cacheuta 💙 Mendoza 🤎
+2023-03-01,2023,3,MotoGP,1,562558.0,5616.0,202.0,1.03,562558,2016 #ArgentinaGP | MotoGP™ Full Race
+2023-02-01,2023,2,Otro,1,20717.0,378.0,10.0,1.87,20717,Parque Acuático termal Federación Provincia de Entre Ríos Argentina 🌊🌊
+2023-01-01,2023,1,Termas,2,96042.0,1695.0,554.0,2.39,57047,TRACK DAY Argentina 2022 - Los Mejores AUTOS y SONIDOS en Buenos Aires y Termas de Río Hondo!
+2022-11-01,2022,11,Termas,2,65103.0,1708.0,64.0,2.54,41826,TERMAS DEL JORDAN - JUJUY. 🇦🇷 Podes ver el video completo en nuestro canal!
+2022-10-01,2022,10,SDE Capital,1,85138.0,461.0,97.0,0.66,85138,87- Colonia Menonista y P.N. Copo en Santiago del Estero
+2022-09-01,2022,9,SDE Capital,3,559721.0,17765.0,2274.0,3.64,240996,POCOS SABEN que Tenemos este TREN en la Argentina | Tren al Desarrollo de Santiago del Estero
+2022-08-01,2022,8,SDE Capital,1,47245.0,1049.0,98.0,2.43,47245,Desde Salta a Santiago del Estero por la ruta 34 - día 14 del viaje
+2022-08-01,2022,8,Termas,1,18610.0,587.0,20.0,3.26,18610,SPA FULL DAY en las Termas CACHEUTA en #Mendoza 🧡 #argentina  #argentinaturismo #termas #spa #viaje
+2022-07-01,2022,7,Termas,2,93450.0,1616.0,136.0,1.56,61738,La CHEVY ENFIERRADA Llegó a TERMAS DE RÍO HONDO - Sonido de TC y ONBOARD en Track Day Argentina!
+2022-04-01,2022,4,MotoGP,4,133973.0,2612.0,102.0,1.67,64607,MotoGP Highlights: Argentina (2022) | History is made in Termas de Río Hondo!
+2022-04-01,2022,4,Termas,2,128459.0,1263.0,103.0,1.63,102451,DESTINO TERMAS DE RÍO HONDO | SANTIAGO DEL ESTERO | TURISMO NACIONAL
+2022-03-01,2022,3,MotoGP,3,1678313.0,17476.0,1160.0,1.45,1546310,MotoGP™ Full Race | 2018 #ArgentinaGP
+2022-01-01,2022,1,Termas,1,1353838.0,32680.0,1313.0,2.51,1353838,Rossi vs Marquez Insiden  GP Termas de Río Hondo #Shorts
+2022-01-01,2022,1,Otro,1,38602.0,400.0,97.0,1.29,38602,😨💀EL SOSNEADO: la historia del HOTEL ABANDONADO en MENDOZA
+2021-11-01,2021,11,Otro,1,4813435.0,43763.0,1474.0,0.94,4813435,#GrazieVale - Rossi&#39;s Greatest Rivalries: Marc Marquez
+2021-11-01,2021,11,SDE Capital,1,117058.0,447.0,29.0,0.41,117058,Los Telares y el campo. Santiago del Estero
+2021-10-01,2021,10,SDE Capital,2,361718.0,10974.0,1673.0,3.35,256655,🤷‍♂️🤷‍♀️¿QUÉ LES PASA a los Santiagueños? Ya NOS HABÍAN ADVERTIDO ⚠️
 2021-07-01,2021,7,SDE Capital,1,51986.0,2745.0,545.0,6.33,51986,📢 Las 2 CARAS de SANTIAGO DEL ESTERO  [Te mostramos TODO] | 🌎 [USHUAIA-ALASKA] - AÑO2|Ep.45
 2021-06-01,2021,6,Termas,1,45164.0,645.0,141.0,1.74,45164,Termas de Río Hondo - Santiago del Estero
-2021-03-01,2021,3,Termas,1,209240.0,3919.0,353.0,2.04,209240,5 Termas de Entre Ríos - Villa Elisa - Chajarí - Colón - San José - Guaychú. Alojamientos y Tarifas
-2021-03-01,2021,3,SDE Capital,1,34042.0,352.0,52.0,1.19,34042,INGRESO A SANTIAGO DEL ESTERO Y EL 49 EN BICICLETA
+2021-03-01,2021,3,Termas,1,209260.0,3921.0,353.0,2.04,209260,5 Termas de Entre Ríos - Villa Elisa - Chajarí - Colón - San José - Guaychú. Alojamientos y Tarifas
 2021-02-01,2021,2,Termas,1,59292.0,613.0,64.0,1.14,59292,MINI TURISMO - Termas de Federación Entre Ríos 2021 con precios de entradas.
-2021-01-01,2021,1,Otro,1,44464.0,578.0,157.0,1.65,44464,CRÓNICA DE VIAJE | JUJUY - Sgo. DEL ESTERO (VÍA TAC G59630)
-2020-12-01,2020,12,SDE Capital,1,479171.0,2621.0,298.0,0.61,479171,Programa 34 con Lizy en Santiago del Estero y Tucumán (20-12-2020) - Por el mundo en casa
-2020-09-01,2020,9,Termas,1,62070.0,1532.0,176.0,2.75,62070,F1 2020 Termas de Rio Hondo | Sebastian Vettel Onboard | Assetto Corsa
-2020-06-01,2020,6,MotoGP,1,3482752.0,23622.0,1712.0,0.73,3482752,2015 #ArgentinaGP | Vintage MotoGP™
-2020-04-01,2020,4,Termas,2,82019.0,717.0,44.0,1.01,65977,TERMAS VILLA ELISA 2023 - Toda la información sobre este parque - Entre Ríos - País Turístico
-2020-03-01,2020,3,Termas,1,61632.0,448.0,37.0,0.79,61632,Termas Colón - Entre Ríos
-2020-03-01,2020,3,SDE Capital,1,57531.0,1367.0,158.0,2.65,57531,Vuelo desde Santiago del Estero con 42 grados y tormenta cerca
+2021-01-01,2021,1,Otro,1,44472.0,578.0,157.0,1.65,44472,CRÓNICA DE VIAJE | JUJUY - Sgo. DEL ESTERO (VÍA TAC G59630)
+2020-12-01,2020,12,SDE Capital,1,479243.0,2621.0,298.0,0.61,479243,Programa 34 con Lizy en Santiago del Estero y Tucumán (20-12-2020) - Por el mundo en casa
+2020-09-01,2020,9,Termas,1,62076.0,1532.0,176.0,2.75,62076,F1 2020 Termas de Rio Hondo | Sebastian Vettel Onboard | Assetto Corsa
+2020-06-01,2020,6,MotoGP,1,3483765.0,23628.0,1712.0,0.73,3483765,2015 #ArgentinaGP | Vintage MotoGP™
+2020-04-01,2020,4,Termas,2,82025.0,717.0,44.0,1.01,65983,TERMAS VILLA ELISA 2023 - Toda la información sobre este parque - Entre Ríos - País Turístico
+2020-03-01,2020,3,Termas,1,61643.0,448.0,37.0,0.79,61643,Termas Colón - Entre Ríos
+2020-03-01,2020,3,SDE Capital,1,57532.0,1367.0,158.0,2.65,57532,Vuelo desde Santiago del Estero con 42 grados y tormenta cerca
 2019-11-01,2019,11,Termas,1,22319.0,134.0,44.0,0.8,22319,"Termas Cacheuta Hot Springs Mendoza, Argentina"
 2019-10-01,2019,10,MotoGP,2,14227.0,204.0,33.0,1.76,7703,Motogp 19 multiplayer online battle gameplay Rio Hondo Argentina | Drizzmeister RR
-2019-09-01,2019,9,Termas,2,51716.0,335.0,41.0,0.76,29990,"Final Clase 3 - Turismo Nacional - Fecha 8, Termas de Río Hondo | #CarrerasArgentinas"
+2019-09-01,2019,9,Termas,2,51732.0,335.0,41.0,0.76,29998,"Final Clase 3 - Turismo Nacional - Fecha 8, Termas de Río Hondo | #CarrerasArgentinas"
 2019-08-01,2019,8,MotoGP,2,11082.0,98.0,5.0,0.94,6526,MotoGP 19 Termas de Rio Hondo Hotlap + Setup (1:33.382)
 2019-07-01,2019,7,MotoGP,1,5215.0,118.0,39.0,3.01,5215,MotoGP 19 | RRL Round 2: Termas De Rio Hondo (Xbox One League)
-2019-06-01,2019,6,MotoGP,4,107185.0,1327.0,201.0,2.38,76223,MotoGP 19 - Termas de Rio Hondo (ArgentinaGP) - Gameplay (PC HD) [1080p60FPS]
+2019-06-01,2019,6,MotoGP,4,107192.0,1327.0,201.0,2.38,76230,MotoGP 19 - Termas de Rio Hondo (ArgentinaGP) - Gameplay (PC HD) [1080p60FPS]
 2019-06-01,2019,6,Termas,1,55975.0,694.0,40.0,1.31,55975,Lorenzo reveals his secrets to a fast lap of Termas de Rio Hondo!
-2019-05-01,2019,5,Termas,1,574138.0,7960.0,717.0,1.51,574138,POTRERILLOS MENDOZA - TERMAS DE CACHEUTA - MENDOZA ARGENTINA
+2019-05-01,2019,5,Termas,1,574156.0,7960.0,717.0,1.51,574156,POTRERILLOS MENDOZA - TERMAS DE CACHEUTA - MENDOZA ARGENTINA
 2019-05-01,2019,5,MotoGP,2,12296.0,192.0,50.0,1.89,8157,MotoGP 2019 MOD | Career #149 | #2 ArgentinaGP | Close Battles | TV
-2019-04-01,2019,4,MotoGP,8,665868.0,6626.0,452.0,2.08,455907,[MotoGP 2019] Chặng 2 tại đường đua Termas de Rio Hondo - Argentina
-2019-04-01,2019,4,Termas,4,41341.0,1035.0,103.0,4.99,28798,"Termas de Cajon Grande en Las Loicas, Mendoza | Tripin Argentina"
-2019-03-01,2019,3,MotoGP,5,128449.0,2080.0,104.0,1.26,58040,It must be MotoGP™
-2019-03-01,2019,3,Otro,2,81220.0,1192.0,81.0,1.45,71879,Repsol Honda OnBoard: Argentina Grand Prix
-2019-03-01,2019,3,Termas,1,19176.0,293.0,23.0,1.65,19176,ASÍ ES EL CIRCUITO DE TERMAS DE RÍO HONDO
+2019-04-01,2019,4,MotoGP,9,669560.0,6693.0,456.0,2.07,455914,[MotoGP 2019] Chặng 2 tại đường đua Termas de Rio Hondo - Argentina
+2019-04-01,2019,4,Termas,4,41343.0,1035.0,103.0,4.99,28800,"Termas de Cajon Grande en Las Loicas, Mendoza | Tripin Argentina"
+2019-03-01,2019,3,MotoGP,5,128452.0,2080.0,104.0,1.26,58043,It must be MotoGP™
+2019-03-01,2019,3,Otro,1,71881.0,1084.0,67.0,1.6,71881,Repsol Honda OnBoard: Argentina Grand Prix
+2019-03-01,2019,3,Termas,1,19177.0,293.0,23.0,1.65,19177,ASÍ ES EL CIRCUITO DE TERMAS DE RÍO HONDO
 2019-02-01,2019,2,Termas,2,47250.0,124.0,14.0,0.51,34187,Alojamiento 3x2 en Termas de Rio Hondo Termas. Verano 19
 2019-02-01,2019,2,MotoGP,2,14433.0,121.0,32.0,1.21,8175,Ver MOTOGP 2019
 2019-01-01,2019,1,MotoGP,1,25606.0,157.0,86.0,0.95,25606,valentino rossi-berambisi raih gelar motogp 2019
 2018-12-01,2018,12,Otro,1,63201.0,213.0,57.0,0.43,63201,valentino rossi - sponsor utama tim yamaha musim 2019
 2018-12-01,2018,12,MotoGP,1,3922.0,36.0,6.0,1.07,3922,Confirmado: #MotoGP en Termas de Río Hondo (Argentina) hasta 2021
-2018-08-01,2018,8,Termas,1,312106.0,3616.0,83.0,1.19,312106,"Termas de Cacheuta 2020 Mendoza, Argentina |HD|"
-2018-07-01,2018,7,SDE Capital,1,133084.0,1646.0,496.0,1.61,133084,Flybondi: vuelo El Palomar Santiago del Estero
-2018-07-01,2018,7,Termas,1,23980.0,269.0,16.0,1.19,23980,👉 TERMAS DE RÍO HONDO: 6 LUGARES QUE TENÉS QUE CONOCER
-2018-06-01,2018,6,Termas,1,95303.0,372.0,25.0,0.42,95303,Automovilismo - Final TC - Termas de Río Hondo
+2018-08-01,2018,8,Termas,1,312124.0,3616.0,83.0,1.19,312124,"Termas de Cacheuta 2020 Mendoza, Argentina |HD|"
+2018-07-01,2018,7,SDE Capital,1,133087.0,1646.0,496.0,1.61,133087,Flybondi: vuelo El Palomar Santiago del Estero
+2018-07-01,2018,7,Termas,1,23987.0,269.0,16.0,1.19,23987,👉 TERMAS DE RÍO HONDO: 6 LUGARES QUE TENÉS QUE CONOCER
+2018-06-01,2018,6,Termas,1,95318.0,373.0,25.0,0.42,95318,Automovilismo - Final TC - Termas de Río Hondo
 2018-06-01,2018,6,MotoGP,2,64984.0,716.0,71.0,1.32,37857,MotoGP 18 - Termas de Rio Hondo (Argentina GP) - Gameplay (PC HD) [1080p60FPS]
 2018-05-01,2018,5,MotoGP,1,76747.0,947.0,235.0,1.54,76747,MOTOGP Argentina  🔥 ASI ES la FIESTA en la NOCHE de TERMAS de RÍO HONDO (Parte 3)
-2018-04-01,2018,4,MotoGP,4,3830697.0,21022.0,1319.0,1.28,2330520,[MOTOGP 2018] Chặng 2 tại trường đua Termas de Río Hondo Circuit (Argentina)
-2018-04-01,2018,4,Termas,2,2134875.0,10088.0,1818.0,1.71,2102442,"Termas Clash: Marquez and Rossi, the clash of the titans!"
-2018-01-01,2018,1,SDE Capital,1,48217.0,145.0,3.0,0.31,48217,Viaje en tren con 2 hombre araña por LaBanda Santiago del Estero
-2017-08-01,2017,8,SDE Capital,1,16377146.0,24314.0,542.0,0.15,16377146,SANTIAGO DEL ESTERO ME ESTA LLAMANDO....HONDO SENTIMIENTO
-2017-07-01,2017,7,Otro,2,150240.0,3863.0,246.0,2.01,115692,Bailando una Chacarera - Pablo Imhoff
+2018-04-01,2018,4,MotoGP,4,3830743.0,21023.0,1319.0,1.28,2330521,[MOTOGP 2018] Chặng 2 tại trường đua Termas de Río Hondo Circuit (Argentina)
+2018-04-01,2018,4,Termas,2,2135658.0,10093.0,1818.0,1.71,2103223,"Termas Clash: Marquez and Rossi, the clash of the titans!"
+2018-01-01,2018,1,SDE Capital,1,48218.0,145.0,3.0,0.31,48218,Viaje en tren con 2 hombre araña por LaBanda Santiago del Estero
+2017-08-01,2017,8,SDE Capital,1,16379114.0,24319.0,542.0,0.15,16379114,SANTIAGO DEL ESTERO ME ESTA LLAMANDO....HONDO SENTIMIENTO
+2017-07-01,2017,7,Otro,2,150247.0,3863.0,246.0,2.01,115695,Bailando una Chacarera - Pablo Imhoff
 2017-05-01,2017,5,Termas,1,43347.0,294.0,32.0,0.75,43347,Termas de Quicho - Córdoba - Argentina
-2017-03-01,2017,3,Otro,1,390995.0,1868.0,0.0,0.48,390995,Parque acuático de Federación Entre Ríos Argentina - Turismo en Federación
+2017-03-01,2017,3,Otro,1,391002.0,1867.0,0.0,0.48,391002,Parque acuático de Federación Entre Ríos Argentina - Turismo en Federación
 2017-03-01,2017,3,SDE Capital,1,166033.0,6952.0,895.0,4.73,166033,"TODO TIENE UN FINAL, Santiago Del Estero - Cap 50 - Dustin Luke"
-2017-03-01,2017,3,Termas,1,29967.0,120.0,11.0,0.44,29967,"Los Pinos Resort &amp; Spa Termal All Inclusive, Hotel en Termas de Río Hondo"
+2017-03-01,2017,3,Termas,1,29969.0,120.0,11.0,0.44,29969,"Los Pinos Resort &amp; Spa Termal All Inclusive, Hotel en Termas de Río Hondo"
 2016-11-01,2016,11,Otro,1,12958.0,56.0,8.0,0.49,12958,Turismo Termal de San Jerónimo - MELINA Y NADIR
-2016-07-01,2016,7,Termas,1,142560.0,630.0,36.0,0.47,142560,"Invierno en Termas de Fiambalá, Catamarca, Argentina"
+2016-07-01,2016,7,Termas,1,142561.0,630.0,36.0,0.47,142561,"Invierno en Termas de Fiambalá, Catamarca, Argentina"
 2016-05-01,2016,5,Termas,1,49354.0,163.0,9.0,0.35,49354,"Remolino, Dique Frontal, Termas de Río Hondo"
-2016-04-01,2016,4,MotoGP,3,88312.0,296.0,25.0,0.56,64564,Valentino Rossi Onboard - Gp Argentina / Termas de Rio Hondo - MotoGP 16 (mod)
-2016-04-01,2016,4,Termas,1,36688.0,595.0,33.0,1.71,36688,GoPro™ OnBoard lap of the Termas de Río Hondo Circuit
-2016-01-01,2016,1,Termas,1,210626.0,708.0,90.0,0.38,210626,Termas de Rio Hondo
+2016-04-01,2016,4,MotoGP,3,88315.0,296.0,25.0,0.56,64565,Valentino Rossi Onboard - Gp Argentina / Termas de Rio Hondo - MotoGP 16 (mod)
+2016-04-01,2016,4,Termas,1,36690.0,595.0,33.0,1.71,36690,GoPro™ OnBoard lap of the Termas de Río Hondo Circuit
+2016-01-01,2016,1,Termas,1,210631.0,708.0,90.0,0.38,210631,Termas de Rio Hondo
 2015-11-01,2015,11,MotoGP,1,12025.0,10.0,1.0,0.09,12025,MotoGP 2016 en Termas de Río Hondo (Argentina)
-2015-09-01,2015,9,Termas,1,128380.0,638.0,27.0,0.52,128380,Institucional Informativo Termas de Rio Hondo
+2015-09-01,2015,9,Termas,1,128385.0,638.0,27.0,0.52,128385,Institucional Informativo Termas de Rio Hondo
 2015-08-01,2015,8,MotoGP,1,19549.0,106.0,20.0,0.64,19549,MotoGP 15 - Carrera Termas de Río Hondo - MotoGP - Marc Márquez
 2015-08-01,2015,8,Termas,1,7292.0,29.0,1.0,0.41,7292,Fecha 8: Termas de Río Hondo Domingo
-2015-07-01,2015,7,MotoGP,3,216978.0,3127.0,79.0,0.78,206260,Incidente quasi mortale! MOTOGP 15 #3
-2015-07-01,2015,7,SDE Capital,1,48848.0,138.0,30.0,0.34,48848,"Ruta Nacional 34: Santiago del Estero &amp; Tucumán , Argentina (HD)"
-2015-06-01,2015,6,MotoGP,2,80917.0,507.0,92.0,0.67,69986,MOTOGP ASSEN NETHERLANDS 27 JUNE 2015 | VALENTINO ROSSI VS MARQUEZ DRAMATIC TAKES
-2015-06-01,2015,6,Termas,1,31869.0,108.0,14.0,0.38,31869,"Termas de Rio Hondo, Hotel City (su hermosa pileta termal)"
+2015-07-01,2015,7,MotoGP,3,216979.0,3127.0,79.0,0.78,206260,Incidente quasi mortale! MOTOGP 15 #3
+2015-07-01,2015,7,SDE Capital,1,48850.0,138.0,30.0,0.34,48850,"Ruta Nacional 34: Santiago del Estero &amp; Tucumán , Argentina (HD)"
+2015-06-01,2015,6,MotoGP,2,81017.0,507.0,92.0,0.67,70085,MOTOGP ASSEN NETHERLANDS 27 JUNE 2015 | VALENTINO ROSSI VS MARQUEZ DRAMATIC TAKES
+2015-06-01,2015,6,Termas,1,31873.0,108.0,14.0,0.38,31873,"Termas de Rio Hondo, Hotel City (su hermosa pileta termal)"
 2015-05-01,2015,5,MotoGP,1,10098.0,32.0,1.0,0.33,10098,MotoGP Noche 2- Argentina 2015
-2015-04-01,2015,4,MotoGP,10,2247515.0,15471.0,1258.0,0.7,1762475,MotoGP Rewind: A recap of #ArgentinaGP
-2015-04-01,2015,4,Otro,8,148022.0,823.0,37.0,0.56,47349,"DUELLO ROSSI - MARQUEZ  ( GP ARGENTINA, 2015 )"
-2015-04-01,2015,4,Termas,2,38514.0,385.0,24.0,0.95,25360,GoPro™ OnBoard lap of Termas de Río Hondo Circuit
+2015-04-01,2015,4,MotoGP,10,2247705.0,15470.0,1258.0,0.7,1762544,MotoGP Rewind: A recap of #ArgentinaGP
+2015-04-01,2015,4,Otro,8,148119.0,823.0,37.0,0.56,47446,"DUELLO ROSSI - MARQUEZ  ( GP ARGENTINA, 2015 )"
+2015-04-01,2015,4,Termas,2,38516.0,385.0,24.0,0.95,25361,GoPro™ OnBoard lap of Termas de Río Hondo Circuit
 2015-03-01,2015,3,Termas,1,4765.0,11.0,1.0,0.25,4765,WTCC 2015. Autodromo Termas de Rio Hondo. Mehdi Bennani and Rob Huff Contact
 2015-02-01,2015,2,Termas,1,3903.0,5.0,1.0,0.15,3903,Aviso WTCC 2015 Termas de Rio Hondo - Santiago del Estero - República Argentina
 2015-01-01,2015,1,Termas,1,7344.0,26.0,0.0,0.35,7344,Étape 11 - Auto/Moto - Résumé de l&#39;étape - Salta / Termas Rio Hondo
 2014-07-01,2014,7,MotoGP,1,14220.0,312.0,45.0,2.51,14220,MotoGP 14 Ps4 Modo Carrera (Trayectoria) español | Moto3 | Parte 6 Termas de Río Hondo
-2014-06-01,2014,6,MotoGP,3,38331.0,1225.0,129.0,3.27,18060,MotoGp 14 - Gameplay ITA - Let&#39;s Play #06 -(Moto 3)- Passiamo alla versione pc - Termas de Rio Hondo
+2014-06-01,2014,6,MotoGP,3,38332.0,1225.0,129.0,3.27,18060,MotoGp 14 - Gameplay ITA - Let&#39;s Play #06 -(Moto 3)- Passiamo alla versione pc - Termas de Rio Hondo
 2014-06-01,2014,6,Otro,2,19168.0,141.0,5.0,0.77,13373,Assen 2014 - Yamaha Technical Preview
-2014-05-01,2014,5,MotoGP,4,2128711.0,6781.0,123.0,0.33,2105648,MotoGP™ Rewind: Argentina 2014
+2014-05-01,2014,5,MotoGP,4,2128718.0,6781.0,123.0,0.33,2105655,MotoGP™ Rewind: Argentina 2014
 2014-05-01,2014,5,Termas,1,6346.0,30.0,0.0,0.47,6346,Muitas motos em Termas de Rio Hondo (ARG) e a Street Triple fez bonito
-2014-04-01,2014,4,MotoGP,10,314281.0,549.0,23.0,0.14,54398,Previa del MotoGP
+2014-04-01,2014,4,MotoGP,10,314283.0,549.0,23.0,0.14,54398,Previa del MotoGP
 2014-04-01,2014,4,Otro,6,111314.0,749.0,77.0,0.78,51911,Argentina 2014 - Honda OnBoard
 2014-04-01,2014,4,Termas,4,70789.0,396.0,29.0,0.44,39870,Termas de Rio Hondo set to host third round of the season
 2014-01-01,2014,1,MotoGP,1,12743.0,28.0,1.0,0.23,12743,Spot Moto GP 2014 Termas de Río Hondo
 2013-12-01,2013,12,Termas,1,31751.0,131.0,7.0,0.43,31751,"Descubrí Termas de Río Hondo, descubrí Santiago del Estero (institucional informativo)"
 2013-11-01,2013,11,MotoGP,1,16993.0,17.0,0.0,0.1,16993,2014 MotoGP Circuits
 2013-07-01,2013,7,MotoGP,1,43409.0,43.0,5.0,0.11,43409,"Test de prueba, Moto GP, circuito Termas de Rio Hondo, Argentina 2013"
-2013-07-01,2013,7,Termas,1,21136.0,67.0,7.0,0.35,21136,STC2000 - 2013 \ Termas de Rio Hondo - Vuelta onboard del Fiat de Pechito López
-2013-05-01,2013,5,Termas,1,69253.0,296.0,28.0,0.47,69253,Turismo Carretera 2013 - Fecha 6 - Termas Rio Hondo (HD)
+2013-05-01,2013,5,Termas,1,69269.0,297.0,28.0,0.47,69269,Turismo Carretera 2013 - Fecha 6 - Termas Rio Hondo (HD)
 2013-05-01,2013,5,MotoGP,1,4753.0,12.0,2.0,0.29,4753,Test Oficial Moto GP 2013 - Río Hondo - Argentina
-2012-11-01,2012,11,Termas,1,53414.0,104.0,13.0,0.22,53414,TERMAS DE RIO HONDO CITY TOUR
 2012-07-01,2012,7,Termas,1,21315.0,97.0,3.0,0.47,21315,Travesías Fotográficas a Termas Río Hondo Parte 1
 2012-04-01,2012,4,Termas,1,5808.0,59.0,42.0,1.74,5808,DIA 14 Y 15 TUCUMAN - TERMAS DE RIO HONDO.mpg
 2011-01-01,2011,1,SDE Capital,1,182650.0,622.0,90.0,0.39,182650,Caminos de Santiago del Estero.
